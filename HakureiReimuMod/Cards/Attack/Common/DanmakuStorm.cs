@@ -7,20 +7,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
-    public class BasicStrike : AbstractCard {
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6,ValueProp.Move)];
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-        public BasicStrike(
-            ) : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) {
+    public class DanmakuStorm : AbstractCard {
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3,ValueProp.Move),new RepeatVar(2)];
+        
+        public DanmakuStorm(
+            ) : base(0, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
-            
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            SfxCmd.Play("event:/sfx/characters/silent/silent_dagger_spray");
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(DynamicVars.Repeat.IntValue)
+                .FromCard(this).TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }
         protected override void OnUpgrade() {
-            DynamicVars.Damage.UpgradeValueBy(3);
+            DynamicVars.Damage.UpgradeValueBy(1);
         }
     }
 }

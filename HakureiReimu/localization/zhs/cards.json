@@ -1,4 +1,10 @@
 {
+  "HAKUREIREIMU-DANMAKU_STORM.title":"弹幕雨",
+  "HAKUREIREIMU-DANMAKU_STORM.description":"对所有敌人造成{Damage:diff()}点伤害{Repeat:diff()}次。",
+  
+  "HAKUREIREIMU-DARKENED_PEARL.sign":"珠符",
+  "HAKUREIREIMU-DARKENED_PEARL.title":"明珠暗投",
+  "HAKUREIREIMU-DARKENED_PEARL.description":"造成{Damage:diff()}点伤害。\n[gold]生成[/gold]{Repeat:diff()}个[gold]阴阳玉[/gold]。",
   
   "HAKUREIREIMU-SNEAK.title":"偷吃",
   "HAKUREIREIMU-SNEAK.description":"[gold]反制[/gold]非[gold]攻击[/gold]{HakureiReimu_Counter:diff()}。\n获得{Energy:energyIcons()}。",

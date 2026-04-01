@@ -1,8 +1,9 @@
-[gd_scene load_steps=341 format=3 uid="uid://rchq3kv87p1c"]
+[gd_scene load_steps=342 format=3 uid="uid://rchq3kv87p1c"]
 
 [ext_resource type="Texture2D" uid="uid://c1ix1ld511qw3" path="res://HakureiReimu/images/char/HakureiReimu/AttackCloseHeavy/00.png" id="1_b05an"]
 [ext_resource type="Script" uid="uid://ck751icf5xwdr" path="res://HakureiReimuMod/Node/HakureiReimuVisuals.cs" id="1_bhvwh"]
 [ext_resource type="Texture2D" uid="uid://dahhghfo5uijm" path="res://HakureiReimu/images/char/HakureiReimu/AttackCloseHeavy/01.png" id="2_cyuck"]
+[ext_resource type="Texture2D" uid="uid://blj2vun7bjwtr" path="res://HakureiReimu/images/effects/ball.png" id="2_okurp"]
 [ext_resource type="Texture2D" uid="uid://wk5m7mi6hxqv" path="res://HakureiReimu/images/char/HakureiReimu/AttackCloseHeavy/02.png" id="3_quow2"]
 [ext_resource type="Texture2D" uid="uid://14auanahokq5" path="res://HakureiReimu/images/char/HakureiReimu/AttackCloseHeavy/03.png" id="4_shcod"]
 [ext_resource type="Texture2D" uid="uid://bgbqj745pau7p" path="res://HakureiReimu/images/char/HakureiReimu/AttackCloseHeavy/04.png" id="5_nnvp3"]
@@ -10100,10 +10101,16 @@ script = ExtResource("1_bhvwh")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.4509804)
+position = Vector2(5, -20)
+scale = Vector2(1.2, 0.3)
+texture = ExtResource("2_okurp")
+
 [node name="Visuals" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -20)
-scale = Vector2(1.25, 1.25)
+scale = Vector2(1.35, 1.35)
 
 [node name="AnimationTree" type="AnimationTree" parent="Visuals"]
 root_node = NodePath("../Skeleton")
@@ -10224,7 +10231,7 @@ flip_v = true
 
 [node name="00" type="Sprite2D" parent="Visuals/Skeleton"]
 position = Vector2(-128.91566, 190.36145)
-texture = ExtResource("99_p3kju")
+texture = ExtResource("107_who6h")
 centered = false
 offset = Vector2(0, -192)
 flip_v = true

@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmqre8ysohd7m"]
+
+[ext_resource type="Texture2D" uid="uid://bdw6kx2u1fyhv" path="res://HakureiReimu/images/effects/YinYangOrb_Shadow.png" id="1_356q8"]
+[ext_resource type="Texture2D" uid="uid://b3m8hacooynvj" path="res://HakureiReimu/images/effects/YinYangOrb.png" id="2_nrwv1"]
+
+[sub_resource type="Animation" id="Animation_5tm5e"]
+resource_name = "idle_loop"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_wrxtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jco6w"]
+_data = {
+&"RESET": SubResource("Animation_wrxtc"),
+&"idle_loop": SubResource("Animation_5tm5e")
+}
+
+[node name="YinYangOrb" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="YinYangOrbShadow" type="Sprite2D" parent="Body"]
+modulate = Color(0.15487596, 0.154876, 0.15487596, 1)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_356q8")
+
+[node name="YinYangOrb" type="Sprite2D" parent="Body"]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_nrwv1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jco6w")
+}
+autoplay = "idle_loop"

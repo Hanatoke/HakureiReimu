@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3m8hacooynvj"
-path="res://.godot/imported/YinYangJade.png-d8bea881f151693cfc8d2a1052145d00.ctex"
+uid="uid://bdw6kx2u1fyhv"
+path="res://.godot/imported/YinYangOrb_Shadow.png-4592bad38abfae2abba779cda79857b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/effects/YinYangJade.png"
-dest_files=["res://.godot/imported/YinYangJade.png-d8bea881f151693cfc8d2a1052145d00.ctex"]
+source_file="res://HakureiReimu/images/effects/YinYangOrb_Shadow.png"
+dest_files=["res://.godot/imported/YinYangOrb_Shadow.png-4592bad38abfae2abba779cda79857b0.ctex"]
 
 [params]
 

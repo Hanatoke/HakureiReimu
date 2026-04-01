@@ -5,22 +5,27 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Command;
+using HakureiReimu.HakureiReimuMod.Core;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
-    public class BasicStrike : AbstractCard {
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6,ValueProp.Move)];
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-        public BasicStrike(
-            ) : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) {
+    public class DarkenedPearl : AbstractCard {
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7,ValueProp.Move),new RepeatVar(2)];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
+
+        public DarkenedPearl(
+            ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
-            
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
+            await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue);
         }
         protected override void OnUpgrade() {
-            DynamicVars.Damage.UpgradeValueBy(3);
+            DynamicVars.Damage.UpgradeValueBy(2);
+            DynamicVars.Repeat.UpgradeValueBy(1);
         }
     }
 }
