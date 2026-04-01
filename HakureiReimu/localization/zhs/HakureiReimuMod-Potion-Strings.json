@@ -1,0 +1,23 @@
+{
+  "HakureiReimu:SealingTalisman": {
+    "NAME": "封魔符",
+    "DESCRIPTIONS": [
+      "给予 #b",
+      " 层 #y封印 。"
+    ]
+  },
+  "HakureiReimu:BottledBoundary": {
+    "NAME": "瓶装结界",
+    "DESCRIPTIONS": [
+      "从 #b",
+      " 张 #y反制 牌中选择 #b1 张，在手牌生成 #b"," 张复制。这张牌在本回合耗能变为 #b0 。"
+    ]
+  },
+  "HakureiReimu:LuckSign": {
+  "NAME": "大吉签",
+  "DESCRIPTIONS": [
+    "抽取 #b",
+    " 张 #y技能 牌。"
+  ]
+}
+}

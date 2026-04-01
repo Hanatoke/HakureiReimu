@@ -1,0 +1,92 @@
+{
+"HakureiReimu:SealPower": {
+        "NAME": "封印",
+        "DESCRIPTIONS": ["阻止其造成 #b"," 点伤害。"]
+},
+"HakureiReimu:InhibitPower": {
+        "NAME": "遏制",
+        "DESCRIPTIONS": ["阻止下 #b"," 次获得的 #y正面 效果。"]
+},
+"HakureiReimu:TempDexterityPower": {
+        "NAME": "敏捷下降",
+        "DESCRIPTIONS": [
+        "下个回合开始时，失去 #b",
+        " 点 #y敏捷 。"
+        ]
+},
+"HakureiReimu:FlightPlayerPower": {
+        "NAME": "飞行",
+        "DESCRIPTIONS": [
+        "直到下 #b",
+        " 回合，受到的攻击伤害减半。"
+        ]
+},
+"HakureiReimu:ItarudokoroNoAoyamaPower": {
+        "NAME": "青山所在",
+        "DESCRIPTIONS": ["在你将 #y反制 卡置入场上时，抽 #b"," 张牌。"]
+},
+"HakureiReimu:BoundarySolidificationPower": {
+        "NAME": "结界固化",
+        "DESCRIPTIONS": [" #y反制 卡发动的次数增加 #b"," 次。"]
+},
+"HakureiReimu:ParryPower": {
+        "NAME": "招架",
+        "DESCRIPTIONS": ["每当你发动 #y反制 ，获得 #b"," 点 #y格挡 。"]
+},
+"HakureiReimu:YinYangGyokushoPower": {
+        "NAME": "阴阳玉将",
+        "DESCRIPTIONS": [" #y阴阳玉 造成的伤害增加 #b"," 点。"]
+},
+"HakureiReimu:SealingFormationPower": {
+        "NAME": "封魔阵",
+        "DESCRIPTIONS": ["每回合开始时，给予所有敌人 #b"," #y封印 。"]
+},
+"HakureiReimu:KujiKoshinHoPower": {
+        "NAME": "九字护身法",
+        "DESCRIPTIONS": ["在 #b"," 回合内，敌人的 #y封印 不会因为攻击而减少。"]
+},
+"HakureiReimu:ProtectionFeePower": {
+        "NAME": "保护费",
+        "DESCRIPTIONS": [" #y斩杀 时，获得 #b"," #y金币 。"]
+},
+"HakureiReimu:InfinityYinYangJadePower": {
+        "NAME": "无限阴阳玉",
+        "DESCRIPTIONS": ["在你打出一张牌后，生成 #b"," 个 #y阴阳玉 。"]
+},
+"HakureiReimu:YinYangAsukaIPower": {
+        "NAME": "阴阳飞鸟井",
+        "DESCRIPTIONS": [" #y阴阳玉 造成未被格挡的伤害时，给予随机 #y负面 效果 #b"," 次。"]
+},
+"HakureiReimu:RapidResponsePower": {
+        "NAME": "快速响应",
+        "DESCRIPTIONS": ["每当 #y反制 卡置入场上时，使其对随机敌人发动 #b"," 次。"]
+},
+"HakureiReimu:DoubleGreatBoundaryPower": {
+        "NAME": "二重大结界",
+        "DESCRIPTIONS": ["在你打出一张 #y反制 牌时，额外将 #b"," 张 #y临时 复制置入场上。"]
+},
+"HakureiReimu:UnfetteredFormPower": {
+        "NAME": "悠哉形态",
+        "DESCRIPTIONS": ["每回合开始时抽 #b"," 张牌。抽牌达到手牌 #y上限 时，使随机手牌在本回合费用变为 #b0 。"]
+},
+"HakureiReimu:KanzenHyoiToYumoFuinPower": {
+        "NAME": "完全凭依与梦想封印",
+        "DESCRIPTIONS": ["敌人每有 #b"," 层 #y封印 ，你造成的伤害便增加 #b"," 点。 NL 当前增加了 #b"," 点伤害。"]
+},
+"HakureiReimu:DiffusiveBoundaryPower": {
+        "NAME": "扩散结界",
+        "DESCRIPTIONS": ["直到下 #b"," 回合，你的单体攻击同时对所有敌人造成伤害。"]
+},
+"HakureiReimu:HakureiPhantomPower": {
+        "NAME": "博丽幻影",
+        "DESCRIPTIONS": ["每当你发动 #y反制 ，对所有敌人造成 #b"," 点伤害。"]
+},
+"HakureiReimu:RetainBlockPower": {
+        "NAME": "保留格挡",
+        "DESCRIPTIONS": ["在回合开始时，保留 #b"," 点 #y格挡 。"]
+},
+"HakureiReimu:ExtraDrawPower": {
+        "NAME": "额外抽牌",
+        "DESCRIPTIONS": ["下次抽牌时 #y额外 抽 #b"," 张牌。"]
+}
+}

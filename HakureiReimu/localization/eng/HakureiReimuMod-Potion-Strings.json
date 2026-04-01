@@ -1,0 +1,23 @@
+{
+  "HakureiReimu:SealingTalisman": {
+    "NAME": "Sealing Talisman",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #ySeal."
+    ]
+  },
+  "HakureiReimu:BottledBoundary": {
+    "NAME": "Bottled Boundary",
+    "DESCRIPTIONS": [
+      "Choose #b1 of #b",
+      " random #yCounter cards, add #b"," copies to your hand. They cost #b0 this turn."
+    ]
+  },
+  "HakureiReimu:LuckSign": {
+  "NAME": "Daikichi Omikuji",
+  "DESCRIPTIONS": [
+    "Draw #b",
+    " #ySkills."
+  ]
+}
+}

@@ -1,0 +1,66 @@
+{
+  "HakureiReimu:HakureiGohei": {
+    "NAME": "Hakurei's Gohei",
+    "FLAVOR": "Reimu's usual gohei. Hurts alot when people are hit by it.",
+    "DESCRIPTIONS": [
+      "#yChannel #b"," #yhakureireimu:Yin_Yang_Orb at the start of your turn."
+    ]
+  },
+  "HakureiReimu:MoriyaGohei": {
+    "NAME": "Moriya's Gohei",
+    "FLAVOR": "Sanae's gohei. NL How did it end up in here?",
+    "DESCRIPTIONS": [
+      "Replace #rHakurei #rGohei. At the start of your turn, add #b"," #yMiracle into your hand."
+    ]
+  },
+  "HakureiReimu:SaisenBox": {
+    "NAME": "Saisen Box",
+    "FLAVOR": "The saisen box has no money in it!",
+    "DESCRIPTIONS": [
+      "Every #b"," #yGold lost will heal #g"," HP."
+    ]
+  },
+  "HakureiReimu:UltramarineOrbElixir": {
+    "NAME": "Ultramarine Orb Elixir",
+    "FLAVOR": "Is it the past or the future that you see?",
+    "DESCRIPTIONS": [
+      "Upon pickup, select a card from the #ylatest #yvictorious deck to obtain.",
+      "Select a card to add to your deck"
+    ]
+  },
+  "HakureiReimu:WoodenFish": {
+    "NAME": "Wooden Fish",
+    "FLAVOR": "You can seems to hear a faint echo coming from it.",
+    "DESCRIPTIONS": [
+      "You permanently have #yhakureireimu:Counter #yhakureireimu:Attack: Draw #b"," card."
+    ]
+  },
+  "HakureiReimu:OldMikoCostume": {
+    "NAME": "Old Miko Costume",
+    "FLAVOR": "It remains spotless even after a long time has pass.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, place a #yDuplex #yBarrier with #yExhaust onto the battlefield."
+    ]
+  },
+  "HakureiReimu:BoundarySensor": {
+    "NAME": "Boundary Sensor",
+    "FLAVOR": "Can discover boundaries that are difficult to perceive.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, draw #b"," additional cards with #yhakureireimu:Counter."
+    ]
+  },
+  "HakureiReimu:UnluckyTalisman": {
+    "NAME": "Unlucky Talisman",
+    "FLAVOR": "Suffering from the invasion of an unknown power. It will bring forth the power misfortune.",
+    "DESCRIPTIONS": [
+      "Whenever an enemy dies, transfer any #yhakureireimu:Seal it has to ALL other enemies."
+    ]
+  },
+  "HakureiReimu:AutonomousYinYangJade": {
+    "NAME": "Auto Yin-Yang Orb Defense",
+    "FLAVOR": "This Yin-Yang Orb craves the enemy's blood.",
+    "DESCRIPTIONS": [
+      "Whenever #yhakureireimu:Counter is activated, #yChannel #b"," #yhakureireimu:Yin_Yang_Orb."
+    ]
+  }
+}

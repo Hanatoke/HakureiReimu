@@ -1,0 +1,107 @@
+﻿#nullable enable
+using System;
+using System.Threading.Tasks;
+using BaseLib.Extensions;
+using HakureiReimu.HakureiReimuMod.Core;
+using HakureiReimu.HakureiReimuMod.Interface.Counter;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace HakureiReimu.HakureiReimuMod.Cards
+{
+    public abstract class AbstractCounterCard(int cost, CardType type, CardRarity rarity, TargetType target) 
+        :AbstractPersistCard(cost, type, rarity, target),ICounter   
+    {
+        public virtual bool Immediate=>false;
+        public virtual CounterType ActivateType => CounterType.None;
+
+        protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true } &&
+                                                                     command.DamageProps.IsCardOrMonsterMove_();
+
+        protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature applier, Creature target,out CounterType counterType)
+        {
+            if (power.GetTypeForAmount(modifiedAmount)==PowerType.Buff&&ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
+            {
+                counterType = CounterType.Buff;
+                return true;
+            }
+            if (power.GetTypeForAmount(modifiedAmount) == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true }&&target is{IsPlayer:true})
+            {
+                counterType = CounterType.Debuff;
+                return true;
+            }
+            counterType = CounterType.None;
+            return false;
+        }     
+        //-------------------------------------------------------------------------------------------------------
+        public override async Task BeforeAttack(AttackCommand command)
+        {
+            if (InPersisting&&Immediate&&CheckAttack(command))
+            {
+                await InvokeCounter(command.Attacker,CounterType.Attack);
+            }
+        }
+
+        public override async Task AfterAttack(AttackCommand command)
+        {
+            if (InPersisting&&!Immediate&&CheckAttack(command))
+            {
+                await InvokeCounter(command.Attacker,CounterType.Attack);
+            }
+        }
+        //------------------------------------------------------------------------------------------------------
+        public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
+        {
+            if (InPersisting&&creature is {IsMonster:true})
+            {
+                await InvokeCounter(creature,CounterType.Buff);
+            }
+        }
+
+        public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
+        {
+            if (InPersisting&&delta>0&&creature is {IsMonster:true})
+            {
+                await InvokeCounter(creature,CounterType.Buff);
+            }
+        }
+        public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
+        {
+            if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t))
+            {
+                await InvokeCounter(applier,t);
+            }
+        }
+
+        public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        {
+            if (InPersisting&&!addedByPlayer&&card.Type is CardType.Curse or CardType.Status)
+            {
+                await InvokeCounter(null,CounterType.Debuff);
+            }
+        }
+
+        public virtual async Task InvokeCounter(Creature? target,CounterType byType)
+        {
+            await CounterManager.BeforeCounter(this.CombatState,this,this);
+            await Invoke(target);
+            await CounterManager.AfterCounter(this.CombatState,this,this);
+        }
+
+        [Flags]
+        public enum CounterType
+        {
+            None=0,
+            Attack=1<<1,
+            Buff=1<<2,
+            Debuff=1<<3,
+            All=Attack|Buff|Debuff,
+        }
+
+        public abstract Task Invoke(Creature? target, bool cost = true, bool instant = false);
+    }
+}

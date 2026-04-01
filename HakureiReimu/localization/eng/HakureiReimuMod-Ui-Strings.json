@@ -1,0 +1,29 @@
+{
+  "HakureiReimu:Seal": {
+    "TEXT": [
+      "Seal Statistics",
+      "Enemies have #b"," #ySeals in total. Currently #ySeal will prevent #b"," damage to you this turn."
+    ]
+  },
+  "HakureiReimu:BlindBoxReward": {
+    "TEXT": [
+      "Random Blind Box Reward!"
+    ]
+  },
+  "HakureiReimu:UpgradeReward": {
+    "TEXT": [
+      "Upgrade a Card"
+    ]
+  },
+  "HakureiReimu:TransformReward": {
+    "TEXT": [
+      "Transform a Card",
+      "Transform"
+    ]
+  },
+  "HakureiReimu:PurgeReward": {
+    "TEXT": [
+      "Remove a Card"
+    ]
+  }
+}

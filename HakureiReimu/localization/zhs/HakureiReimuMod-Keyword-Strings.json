@@ -1,0 +1,93 @@
+[
+  {
+    "PROPER_NAME": "反制",
+    "NAMES":  [
+      "反制",
+      "反击",
+      "counter"
+    ],
+    "DESCRIPTION": "在敌人进行 #y行为 时发动。后面的 #y数字 代表了这张卡能发动的次数。"
+  },
+  {
+    "PROPER_NAME": "攻击",
+    "NAMES":  [
+      "攻击",
+      "counter_attack"
+    ],
+    "DESCRIPTION": "对玩家造成伤害的视为攻击。 #y多段 攻击也只视为一次攻击行为。"
+  },
+  {
+    "PROPER_NAME": "强化",
+    "NAMES":  [
+      "强化",
+      "counter_buff"
+    ],
+    "DESCRIPTION": "给予怪物 #y正面 效果、 #y格挡 或 #y治疗 的视为强化。"
+  },
+  {
+    "PROPER_NAME": "减益",
+    "NAMES":  [
+      "减益",
+      "counter_debuff"
+    ],
+    "DESCRIPTION": "给予 #y负面 效果或 #y状态牌 的视为减益。"
+  },
+  {
+    "PROPER_NAME": "所有",
+    "NAMES":  [
+      "所有",
+      "counter_any"
+    ],
+    "DESCRIPTION": "包括 #y攻击 、 #y强化 与 #y减益 。"
+  },
+  {
+    "PROPER_NAME": "立即",
+    "NAMES":  [
+      "立即",
+      "立刻",
+      "优先",
+      "counter_immediate"
+    ],
+    "DESCRIPTION": "在怪物的行为执行 #y前 发动。"
+  },
+
+
+  {
+    "NAMES": [
+      "封印"
+    ],
+    "DESCRIPTION": "每一层封印能够阻止其造成的1点伤害。"
+  },
+  {
+    "NAMES": [
+      "阴阳玉"
+    ],
+    "DESCRIPTION": "在你造成攻击伤害后，自动追击敌人造成伤害。你最多同时拥有 #b7 个 #y阴阳玉 。"
+  },
+  {
+    "NAMES": [
+      "遏制"
+    ],
+    "DESCRIPTION": "阻止下一次获得的正面效果。"
+  },
+  {
+    "NAMES": [
+      "击晕"
+    ],
+    "DESCRIPTION": "被 #y击晕 的敌人无法进行任何行动。"
+  },
+  {
+    "PROPER_NAME": "残影",
+    "NAMES":  [
+      "残影",
+      "Blur"
+    ],
+    "DESCRIPTION": " #y格挡 不会在你的下一个回合开始时消失。"
+  },
+  {
+    "NAMES": [
+      "盲盒"
+    ],
+    "DESCRIPTION": "可能获得的奖励：卡牌、遗物、升级、变化、移除。"
+  }
+]

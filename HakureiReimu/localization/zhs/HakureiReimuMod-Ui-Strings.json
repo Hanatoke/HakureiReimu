@@ -1,0 +1,29 @@
+{
+  "HakureiReimu:Seal": {
+    "TEXT": [
+      "封印统计",
+      "敌人总共拥有 #b"," 层 #y封印 ，根据敌人的攻击意图，能为你阻止 #b"," 点伤害。"
+    ]
+  },
+  "HakureiReimu:BlindBoxReward": {
+    "TEXT": [
+      "随机的盲盒奖励!"
+    ]
+  },
+  "HakureiReimu:UpgradeReward": {
+    "TEXT": [
+      "升级一张牌"
+    ]
+  },
+  "HakureiReimu:TransformReward": {
+    "TEXT": [
+      "变化一张牌",
+      "变化"
+    ]
+  },
+  "HakureiReimu:PurgeReward": {
+    "TEXT": [
+      "移除一张牌"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnq7xb1hny3gg"]
+
+[ext_resource type="Texture2D" uid="uid://dgy44p7se4jlw" path="res://HakureiReimu/images/ui/persist.png" id="1_x4le4"]
+[ext_resource type="Script" uid="uid://b65og8dceljy0" path="res://HakureiReimuMod/Node/NPersistIcon.cs" id="2_33gww"]
+
+[node name="PersistIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -276.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 210)
+mouse_filter = 2
+script = ExtResource("2_33gww")
+
+[node name="Img" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 95.0
+offset_right = 297.0
+offset_bottom = 127.0
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+texture = ExtResource("1_x4le4")
+expand_mode = 4
+stretch_mode = 5

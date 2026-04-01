@@ -1,0 +1,93 @@
+[
+  {
+    "PROPER_NAME": "Counter",
+    "NAMES": [
+      "counter"
+    ],
+    "DESCRIPTION": "#yCounter cards activate when an enemy performs a matching #yAction. The number shows how many #yTimes they can trigger before discard."
+  },
+  {
+    "PROPER_NAME": "Attack",
+    "NAMES": [
+      "attack",
+      "counter_attack"
+    ],
+    "DESCRIPTION": "Intents that deals to the player is considered an attack."
+  },
+  {
+    "PROPER_NAME": "Buff",
+    "NAMES": [
+      "buff",
+      "counter_buff"
+    ],
+    "DESCRIPTION": "Intents that gives #yBuff, #yBlock, or #yHealing is considered a buff."
+  },
+  {
+    "PROPER_NAME": "Debuff",
+    "NAMES": [
+      "debuff",
+      "counter_debuff"
+    ],
+    "DESCRIPTION": "Intents that inflicts a negative effect or give #yStatus cards is considered a debuff."
+  },
+  {
+    "PROPER_NAME": "All",
+    "NAMES": [
+      "all",
+      "counter_any"
+    ],
+    "DESCRIPTION": "Any intents that are #yAttack, #yBuff and #yDebuff."
+  },
+  {
+    "PROPER_NAME": "Preemptively",
+    "NAMES": [
+      "preemptively",
+      "counter_preemptively"
+    ],
+    "DESCRIPTION": "Will be activated #ybefore the enemy's action is executed."
+  },
+  {
+    "NAMES": [
+      "seal"
+    ],
+    "DESCRIPTION": "Will be consumed BEFORE #yBlock to prevents damage. NL #ySeal is not removed at the start of your turn."
+  },
+  {
+    "PROPER_NAME": "Yin-Yang Orb",
+    "NAMES": [
+      "yin yang orb",
+      "yin_yang_orb",
+      "yin_yang_orbs",
+      "yin-yang_orb",
+      "yin-yang_orbs"
+    ],
+    "DESCRIPTION": "Deal extra damage after you #yAttacking an enemy. NL Gain additional damage based on #gpositive #yStrength. NL Maximum #yYin-Yang #yOrbs capacity is #b7."
+  },
+  {
+    "NAMES": [
+      "inhibit"
+    ],
+    "DESCRIPTION": "Negates the next buff."
+  },
+  {
+    "NAMES": [
+      "stun"
+    ],
+    "DESCRIPTION": "Enemies with #yStun cannot perform any #yIntent on its next turn."
+  },
+  {
+    "PROPER_NAME": "Blur",
+    "NAMES": [
+      "blur"
+    ],
+    "DESCRIPTION": " #yBlock is not removed at the start of your next turn."
+  },
+  {
+    "PROPER_NAME": "Blind Box",
+    "NAMES": [
+      "blind box",
+      "blind_box"
+    ],
+    "DESCRIPTION": "Possible rewards: NL #yCards choices NL A random #gRelic NL #yUpgrade a card NL #pTransforms a card NL #rRemove a card."
+  }
+]

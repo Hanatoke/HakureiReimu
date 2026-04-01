@@ -1,0 +1,408 @@
+{
+  "HakureiReimu:DanmakuStorm": {
+	"NAME": "Danmaku Storm",
+	"DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  },
+  "HakureiReimu:DarkenedPearl": {
+	"SIGN": "Jewel Sign",
+	"NAME": "Orbs of Light, Cast into Shade",
+	"DESCRIPTION": "Deal !D! damage. NL Channel !M! hakureireimu:Yin-Yang_Orbs."
+  },
+  "HakureiReimu:DanmakuChoja": {
+	"NAME": "Danmaku Rich",
+	"DESCRIPTION": "Deal !D! damage. NL Channel !M! hakureireimu:Yin-Yang_Orbs. NL Add a copy of this card into your discard pile."
+  },
+  "HakureiReimu:DreamSealingScatter": {
+	"SIGN":"Spirit Sign",
+	"NAME": "Dream Seal -Spread-",
+	"DESCRIPTION": "Deal !D! damage to ALL enemies. NL If the enemy has hakureireimu:Seal, apply !M! Vulnerable."
+  },
+  "HakureiReimu:TenhaFushinKyaku": {
+	"SIGN":"Divine Arts",
+	"NAME": "Sky-Conquering Wind God Kick",
+	"DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "HakureiReimu:SealingNeedle": {
+	"NAME": "Sealing Needle",
+	"DESCRIPTION": "Deal !D! damage. NL Apply !M! hakureireimu:Seal. NL Draw !HakureiReimu:SecondMagic! card."
+  },
+  "HakureiReimu:TaiYokaiHoiTaiji": {
+	"SIGN": "Charm",
+	"NAME": "Anti-Youkai Houi-Yoke Prayer",
+	"DESCRIPTION": "Deal !D! damage. NL Deals !M! extra damage for every *Debuff on the enemy."
+  },
+  "HakureiReimu:Shoryuken": {
+	"NAME": "Shoryuken",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Buff !M!. NL Deal !D! damage, apply !HakureiReimu:SecondMagic! Vulnerable."
+  },
+  "HakureiReimu:DoubleDanmakuBoundary": {
+	"SIGN":"Boundary",
+	"NAME": "Duplex Danmaku Barrier",
+	"DESCRIPTION": "Add !M! *Danmaku *Boundary into your hand.",
+	"UPGRADE_DESCRIPTION": "Add !M! *Danmaku *Boundary+ into your hand."
+  },
+  "HakureiReimu:YinYangPreciousJade": {
+	"SIGN": "Treasure Sign",
+	"NAME": "Yin-Yang Treasured Orb",
+	"DESCRIPTION": "Channel hakureireimu:Yin-Yang_Orbs to all slots. NL Exhaust.",
+	"UPGRADE_DESCRIPTION": "Channel hakureireimu:Yin-Yang_Orbs to all slots."
+  },
+  "HakureiReimu:SubspaceAcupoint": {
+	"NAME": "Dimensional Point Rift",
+	"DESCRIPTION": "Apply !M! hakureireimu:Seal and !HakureiReimu:SecondMagic! Weak."
+  },
+  "HakureiReimu:MushabetsuChofuku": {
+	"NAME": "Indiscriminate Exorcism",
+	"DESCRIPTION": "Apply !M! hakureireimu:Seal to ALL enemies. NL Exhaust."
+  },
+  "HakureiReimu:DoubleBoundary": {
+	"SIGN": "Dream Sign",
+	"NAME": "Duplex Barrier",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL hakureireimu:Preemptively gain !B! Block."
+  },
+  "HakureiReimu:Sneak": {
+	"NAME": "Sneak",
+	"DESCRIPTION": " hakureireimu:Counter *NOT hakureireimu:Attack !M!. NL Gain [E]."
+  },
+  "HakureiReimu:GensoBaundariKurakku": {
+	"SIGN": "Barrier",
+	"NAME": "Fantasy Boundary Crack",
+	"DESCRIPTION": "Return a hakureireimu:Counter card from the battlefield into your hand.",
+	"UPGRADE_DESCRIPTION": " Retain. NL Return a hakureireimu:Counter card from the battlefield into your hand.",
+	"EXTENDED_DESCRIPTION": [
+      " Retrieve "
+	]
+  },
+  "HakureiReimu:BackFlip": {
+	"NAME": "Back Flip",
+	"DESCRIPTION": "Gain !B! Block, draw !M! cards."
+  },
+  "HakureiReimu:MakeNoException": {
+	"NAME": "Make No Exception",
+	"DESCRIPTION": " Retain. NL Applies target's *debuffs to ALL other enemies. NL Exhaust."
+  },
+  "HakureiReimu:Dodge": {
+	"NAME": "Graze",
+	"DESCRIPTION": "Can only be played if you have not played any Attack this turn. NL Gain !B! Block.",
+	"EXTENDED_DESCRIPTION": ["I have already played the attack card."]
+  },
+  "HakureiReimu:Strength": {
+	"NAME": "Strength",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Debuff !M!. NL Upgrade !HakureiReimu:SecondMagic! cards from the top of draw pile. NL Exhaust.",
+	"UPGRADE_DESCRIPTION": " hakureireimu:Counter hakureireimu:ALL !M!. NL Upgrade !HakureiReimu:SecondMagic! cards from the top of draw pile. NL Exhaust."
+  },
+  "HakureiReimu:TosatsushaChofuku": {
+	"NAME": "Paparazzi Exorcism",
+	"DESCRIPTION": "Apply !M! hakureireimu:Inhibit to ALL enemies. NL Exhaust."
+  },
+  "HakureiReimu:MenreikiDaiChofuku": {
+	"NAME": "Menreiki Exorcism",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL Deal *Intent's total damage to ALL enemies.",
+	"UPGRADE_DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL hakureireimu:Preemptively deal *Intent's total damage to ALL enemies."
+  },
+  "HakureiReimu:PersuasionNeedle": {
+	"NAME": "Persuasion Needle",
+	"DESCRIPTION": "Apply !M! hakureireimu:Seal. NL Deal damage equal to it's hakureireimu:Seal."
+  },
+  "HakureiReimu:MushoMyoju": {
+	"SIGN": "Spirit Sign",
+	"NAME": "Dream Orb",
+	"DESCRIPTION": "Deal !D! damage. NL If this card triggers hakureireimu:Yin-Yang_Orbs, draw !M! card."
+  },
+  "HakureiReimu:DreamSealingGather": {
+	"SIGN": "Spirit Sign",
+	"NAME": "Dream Seal -Concentrate-",
+	"DESCRIPTION": "Deal !D! damage !M! times. NL Reduce this card's cost by !HakureiReimu:SecondMagic! this combat."
+  },
+  "HakureiReimu:MujihiHaraiBo": {
+	"SIGN": "Bewitched Weapon",
+	"NAME": "Merciless Purification Rod",
+	"DESCRIPTION": "Deal !D! damage. NL Apply hakureireimu:Seal equal to unblocked damage dealt."
+  },
+  "HakureiReimu:YinYangStamp": {
+	"SIGN": "Spirit Sign",
+	"NAME": "Yin-Yang Sign",
+	"DESCRIPTION": "Deal !D! damage. NL If you have applied any *debuff to the enemy this turn, gain [E] [E]."
+  },
+  "HakureiReimu:HakureiDanmakuBoundary": {
+	"SIGN": "Great Barrier",
+	"NAME": "Hakurei Danmaku Barrier",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:ALL !M!. NL Deal !D! damage to ALL enemies, if only once enemy, don't lose *Counter counts."
+  },
+  "HakureiReimu:DoragonzuAsukaiKikku": {
+	"SIGN": "Dragon Kick Sign",
+	"NAME": "Dragon's Asuka'i Kick",
+	"DESCRIPTION": "Deal !D! damage. NL Deal !M! less damage for every other card in your hand."
+  },
+  "HakureiReimu:LeapingYinYangJade": {
+	"SIGN": "Treasure Sign",
+	"NAME": "Dancing Yin Yang Orbs",
+	"DESCRIPTION": "Deal !D! damage to a random enemy !M! times, apply !HakureiReimu:SecondMagic! Vulnerable when hit."
+  },
+  "HakureiReimu:YinYangJadeMidare": {
+	"NAME": "Yin-Yang Dance",
+	"DESCRIPTION": "Deal !D! damage and Channel !M! hakureireimu:Yin-Yang_Orbs for every hakureireimu:Yin-Yang_Orbs you have currently."
+  },
+  "HakureiReimu:HappoOnibakuJin": {
+	"SIGN": "Divine Arts",
+	"NAME": "Omnidirectional Demon-Binding Circle",
+	"DESCRIPTION": "Deal !D! damage for each hakureireimu:Counter on the battlefield.",
+	"EXTENDED_DESCRIPTION": [" NL (Deal damage !M! times)"]
+  },
+  "HakureiReimu:MashoSenketsu": {
+	"SIGN": "Sign III",
+	"NAME": "Exorcising Border",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Debuff !M!. NL Remove one of your debuff, Exhaust a Status or Curse card. NL Exhaust."
+  },
+  "HakureiReimu:DanmakuShashinKinshi": {
+	"SIGN": "Strictly Prohibited",
+	"NAME": "Unauthorized Danmaku Photography",
+	"DESCRIPTION": "Gain !B! Block for each enemy intends to attack. NL Apply !M! hakureireimu:Inhibit to each enemy NOT intended to attack.",
+	"EXTENDED_DESCRIPTION": [" NL (Gain Block !M! times)"]
+  },
+  "HakureiReimu:SoraTobuFushigiNoMiko": {
+	"SIGN": "Untitled",
+	"NAME": "Flying Mysterious Shrine Maiden",
+	"DESCRIPTION": "Gain !M! Dexterity until your next turn."
+  },
+  "HakureiReimu:KujiKoshinHo": {
+	"SIGN": "Main Two Religions",
+	"NAME": "Nine-Syllable Self-Defense",
+	"DESCRIPTION": "Gain !B! Block. NL ALL enemy's attacks will not consume hakureireimu:Seal for a turn."
+  },
+  "HakureiReimu:Duel": {
+	"NAME": "Duel",
+	"DESCRIPTION": "Execute the enemy's *Intent. NL Gain [E] [E] [E] .",
+	"UPGRADE_DESCRIPTION": " Retain. NL Execute the enemy's *Intent. NL Gain [E] [E] [E] ."
+  },
+  "HakureiReimu:UnconsciousTeleportation": {
+	"NAME": "Unconscious Teleportation",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL hakureireimu:Preemptively gain !B! Block. NL Block is not removed at the start of your next turn."
+  },
+  "HakureiReimu:DreamSubspaceHole": {
+	"SIGN": "Dream Sign",
+	"NAME": "Dream Dimensional Rift",
+	"DESCRIPTION": "Draw !M! additional cards the next time you draw any card(s)."
+  },
+  "HakureiReimu:PaparatchiGekitaiKekkai": {
+	"SIGN": "Barrier",
+	"NAME": "Paparazzi-Repelling Barrier",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Debuff !M!. NL Draw !HakureiReimu:SecondMagic! cards."
+  },
+  "HakureiReimu:DiffusiveBoundary": {
+	"SIGN": "Barrier",
+	"NAME": "Expanding Barrier",
+	"DESCRIPTION": "Your attacks deal damage to ALL enemies for a turn.",
+	"EXTENDED_DESCRIPTION": [
+      "#yYin-Yang #yOrbs will also deal damage to ALL enemies."
+	]
+  },
+  "HakureiReimu:HakureiGreatBoundary": {
+	"SIGN": "Great Barrier",
+	"NAME": "Hakurei Great Barrier",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Buff !M!. NL You also gain ALL those buffs. NL Exhaust."
+  },
+  "HakureiReimu:RanboNaSekaiNoSakemeguchi": {
+	"SIGN": "Barrier",
+	"NAME": "Seams of the Tumultuous World",
+	"DESCRIPTION": "Choose a hakureireimu:Counter card on the battlefield and activate it X times against an enemy without reducing its *counts.",
+	"UPGRADE_DESCRIPTION": "Choose a hakureireimu:Counter card on the battlefield, activate it X+1 times against an enemy without reducing its *counts.",
+	"EXTENDED_DESCRIPTION": [
+      "There wasn't any #rCounter effect on the battlefield!"
+	]
+  },
+  "HakureiReimu:NoIntervalBoundary": {
+	"SIGN": "Recollection ",
+	"NAME": "Narrowing Barrier of Avici",
+	"DESCRIPTION": "Shuffle !M! copy of all hakureireimu:Counter card on the battlefield into your draw pile. NL Exhaust."
+  },
+  "HakureiReimu:Deter": {
+	"NAME": "Deter",
+	"DESCRIPTION": "Apply !M! Weak and Vulnerable to ALL enemies. NL Force ALL *Minions to retreat. NL Exhaust.",
+	"UPGRADE_DESCRIPTION": " Innate. NL Apply !M! Weak and Vulnerable to ALL enemies. NL Force ALL *Minions to retreat. NL Exhaust.",
+	"EXTENDED_DESCRIPTION": [
+	  "@Ahhh@ , @I@ @don't@ @want@ @to@ @suffer!@",
+	  "It' the #rRed #rKiller! @Run@ @for@ @your@ @life!@",
+	  "@Retreat!@ @Retreat!@",
+	  "@Run@ @away!@",
+      "@We@ @can't@ @win!@"
+	]
+  },
+  "HakureiReimu:FantasyMoon": {
+	"SIGN": "Dream Battle",
+	"NAME": "Illusionary Moon",
+	"DESCRIPTION": "Halved all attack damage received for a turn. NL Exhaust.",
+	"UPGRADE_DESCRIPTION": " Innate. NL Halved all attack damage received for a turn. NL Exhaust."
+  },
+  "HakureiReimu:YakuyokeKigan": {
+	"SIGN": "Prayer",
+	"NAME": "Disaster-Dispelling Prayer",
+	"DESCRIPTION": "Exhaust !M! card. NL If the selected card is a removable Curse, permanently remove it from your Deck.",
+	"EXTENDED_DESCRIPTION": [
+      " Purge "
+	]
+  },
+  "HakureiReimu:YokaiAshidomeOmamori": {
+	"SIGN": "Amulet",
+	"NAME": "Youkai Repelling Charm",
+	"DESCRIPTION": "If the enemy has at least !M! hakureireimu:Seal, hakureireimu:Stun it for !HakureiReimu:SecondMagic! turns. NL Exhaust.",
+	"EXTENDED_DESCRIPTION": [
+      "Insufficient #rSeal to repel the enemy..."
+	]
+  },
+  "HakureiReimu:ItarudokoroNoAoyama": {
+	"SIGN": "Barrier",
+	"NAME": "The Home Where One Lays to Rest",
+	"DESCRIPTION": "Whenever a hakureireimu:Counter is placed onto the battlefield, draw !M! card."
+  },
+  "HakureiReimu:BoundarySolidification": {
+	"NAME": "Barrier Strengthening",
+	"DESCRIPTION": " hakureireimu:Counter placed onto the battlefield will have its activation *counts increased by !M!."
+  },
+  "HakureiReimu:SukimaNoMiko": {
+	"NAME": "Shrine Maiden in That Gap!?",
+	"DESCRIPTION": "Whenever hakureireimu:Counter is activated, gain !M! Block."
+  },
+  "HakureiReimu:YinYangGyokusho": {
+	"SIGN": "Power Sign",
+	"NAME": "Yin-Yang King Piece",
+	"DESCRIPTION": " hakureireimu:Yin-Yang_Orbs deal !M! additional damage."
+  },
+  "HakureiReimu:YinYangAsukaI": {
+	"SIGN": "Treasure",
+	"NAME": "Yin-Yang Asuka'i",
+	"DESCRIPTION": "Whenever hakureireimu:Yin-Yang_Orbs deals unblocked damage, apply !M! random *Debuff."
+  },
+  "HakureiReimu:SealingFormation": {
+	"SIGN": "Dream Sign",
+	"NAME": "Evil-Sealing Circle",
+	"DESCRIPTION": "At the start of your turn, apply !M! hakureireimu:Seal to ALL enemies."
+  },
+  "HakureiReimu:JinjaHanjoKigan": {
+	"SIGN": "Charm",
+	"NAME": "Shrine Prosperity Prayer Talismans",
+	"DESCRIPTION": "Whenever you Fatal an enemy, gain !M! *Gold."
+  },
+
+
+  "HakureiReimu:KyoakuNaBikkuriMiko": {
+	"NAME": "Most Evil Surprise Miko Orbs",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL hakureireimu:Preemptively deal !D! damage. Deals damage 1 more time for each reactivation within the same turn.",
+	"EXTENDED_DESCRIPTION": [" NL (Deal damage !HakureiReimu:SecondMagic! time)"]
+  },
+  "HakureiReimu:DreamSealingInstant": {
+	"SIGN": "Divine Spirit",
+	"NAME": "Dream Seal -Blink-",
+	"DESCRIPTION": "Deal !D! damage. NL Draw ALL your *Attacks."
+  },
+  "HakureiReimu:HappoRyuSatsuJin": {
+	"SIGN": "Divine Arts",
+	"NAME": "Omnidirectional Dragon-Slaying Circle",
+	"DESCRIPTION": "Deal !D! damage. NL Unconditionally activate ALL hakureireimu:Counter on the battlefield against the enemy."
+  },
+
+
+
+  "HakureiReimu:SprinkleStarSeal": {
+	"SIGN": "Star Spirit Sign",
+	"NAME": "Sprinkle Star Seal",
+	"DESCRIPTION": "Halve target's *Buffs. Double target's *Debuffs. NL Exhaust."
+  },
+  "HakureiReimu:RollingInRichesHeart": {
+	"NAME": "Rolling In Riches Heart",
+	"DESCRIPTION": " Ethereal. NL Spend !M! *Gold to gain a hakureireimu:Blind_Box at the end of combat. NL Exhaust.",
+	"EXTENDED_DESCRIPTION": [
+      "I'm too poor for this..."
+	]
+  },
+  "HakureiReimu:RepeatCast": {
+	"NAME": "Repeated Cast",
+	"DESCRIPTION": "*Return all other cards played this turn back into your hand in order. NL Exhaust."
+  },
+  "HakureiReimu:HelpFromFriends": {
+	"NAME": "Friends' help",
+	"DESCRIPTION": "Gain [E] [E] . NL Retain your hand and [E] for a turn. NL Exhaust.",
+	"UPGRADE_DESCRIPTION": "Gain [E] [E] [E] . NL Retain your hand and [E] for a turn. NL Exhaust."
+  },
+  "HakureiReimu:CheatBoundary": {
+	"SIGN": "Mikuji",
+	"NAME": "Rule Violation Barrier",
+	"DESCRIPTION": "Whenever you play a card this turn, unconditionally activate the adjacent hakureireimu:Counter effects without reducing *counts. NL Exhaust.",
+	"EXTENDED_DESCRIPTION": [
+      "Activate #yCounter effects towards the trigger card's target."
+	]
+  },
+  "HakureiReimu:DreamInnate": {
+	"NAME": "Innate Dream",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:ALL this turn only. NL hakureireimu:Preemptively invalidate their actions. NL Exhaust."
+  },
+  "HakureiReimu:GensoIchijo": {
+	"SIGN": "Dream Sign",
+	"NAME": "Fine Line Fantasy",
+	"DESCRIPTION": " Ethereal. NL Swap a card from your draw pile with this card.",
+	"UPGRADE_DESCRIPTION": " Ethereal. NL Draw 1 card when this card is drawn. NL Swap a card from your draw pile with this card.",
+	"EXTENDED_DESCRIPTION": [
+      " Select a card to swap place with "
+	]
+  },
+  "HakureiReimu:HakureiPhantom": {
+	"SIGN": "Spirit Sign",
+	"NAME": "Hakurei Illusion",
+	"DESCRIPTION": "Whenever hakureireimu:Counter is activated, deal !M! damage to ALL enemies."
+  },
+  "HakureiReimu:TrinityReligionFinale": {
+	"NAME": "Trinity Religion Finale",
+	"DESCRIPTION": "Gain !M! Strength. NL Gain !M! Dexterity. NL Gain !HakureiReimu:SecondMagic! hakureireimu:Inhibit."
+  },
+  "HakureiReimu:DivineMight": {
+	"NAME": "Divine Might",
+	"DESCRIPTION": "Remove ALL your *Debuffs. NL Gain !M! Artifact."
+  },
+  "HakureiReimu:YinYangKijinGyoku": {
+	"SIGN": "Holy Relic",
+	"NAME": "Yin-Yang Kishin Orb",
+	"DESCRIPTION": "Whenever you play a card, Channel !M! hakureireimu:Yin-Yang_Orbs."
+  },
+  "HakureiReimu:UnfetteredForm": {
+	"NAME": "Unfettered Form",
+	"DESCRIPTION": "At the start of your turn, draw !M! additional cards. NL Whenever your Hand becomes *Full from drawing, a random card costs 0 this turn."
+  },
+  "HakureiReimu:KanzenHyoiToYumoFuin": {
+	"NAME": "Perfect Possession and Dream Seal",
+	"DESCRIPTION": "Every !HakureiReimu:SecondMagic! hakureireimu:Seal on ALL enemies increase your Strength by !M!."
+  },
+  "HakureiReimu:MugenNoKosokuKigan": {
+	"SIGN": "Charm",
+	"NAME": "Fantastic High-Speed Prayer Talismans",
+	"DESCRIPTION": "Whenever a hakureireimu:Counter is placed onto the battlefield, unconditionally activate it against a random enemy."
+  },
+  "HakureiReimu:DoubleGreatBoundary": {
+	"SIGN": "Dream Land",
+	"NAME": "Great Duplex Barrier",
+	"DESCRIPTION": "Whenever a hakureireimu:Counter is placed onto the battlefield, place a copy of it with Exhaust."
+  },
+
+
+
+  "HakureiReimu:DanmakuBoundary": {
+	"NAME": "Danmaku Barrier",
+	"DESCRIPTION": " hakureireimu:Counter hakureireimu:Attack !M!. NL hakureireimu:Preemptively deal !D! damage. NL Exhaust."
+  },
+  "HakureiReimu:Seal": {
+	"NAME": "Sealing",
+	"DESCRIPTION": "Deal !D! damage. NL Apply !M! hakureireimu:Seal."
+  },
+  "HakureiReimu:BoundaryCreation": {
+	"NAME": "Barrier Creation",
+	"DESCRIPTION": "Gain !B! Block. NL Add !M! *Danmaku *Barrier into your hand.",
+	"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Add !M! *Danmaku *Barrier+ into your hand."
+  },
+  "HakureiReimu:BasicStrike": {
+	"NAME": "Strike",
+	"DESCRIPTION": "Deal !D! damage."
+  },
+  "HakureiReimu:BasicDefend": {
+	"NAME": "Defend",
+	"DESCRIPTION": "Gain !B! Block."
+  }
+}

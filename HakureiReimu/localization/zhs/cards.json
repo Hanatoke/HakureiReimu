@@ -1,0 +1,28 @@
+{
+  
+  "HAKUREIREIMU-SNEAK.title":"偷吃",
+  "HAKUREIREIMU-SNEAK.description":"[gold]反制[/gold]非[gold]攻击[/gold]{HakureiReimu_Counter:diff()}。\n获得{Energy:energyIcons()}。",
+  
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.title":"打击",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.description":"测试文本。",
+
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.sign":"结界",
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.title":"弹幕结界",
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.description":"[gold]反制攻击[/gold]{HakureiReimu_Counter:diff()}。\n[gold]立即[/gold]造成{Damage:diff()}点伤害。",
+  
+  "HAKUREIREIMU-SEAL.title":"封印",
+  "HAKUREIREIMU-SEAL.description":"造成{Damage:diff()}点伤害。\n给予{Seal:diff()}层[gold]封印[/gold]。",
+  
+  "HAKUREIREIMU-BOUNDARY_CREATION.title":"结界作成",
+  "HAKUREIREIMU-BOUNDARY_CREATION.description":"获得{Block:diff()}点[gold]格挡[/gold]。\n增加一张[gold]{IfUpgraded:show:弹幕结界+|弹幕结界}[/gold]到你的[gold]手牌[/gold]。",
+  
+  "HAKUREIREIMU-BASIC_STRIKE.title":"打击",
+  "HAKUREIREIMU-BASIC_STRIKE.description":"造成{Damage:diff()}点伤害。",
+
+  "HAKUREIREIMU-BASIC_DEFEND.title":"防御",
+  "HAKUREIREIMU-BASIC_DEFEND.description":"获得{Block:diff()}点[gold]格挡[/gold]。",
+  
+  
+  "HAKUREIREIMU-PLACEHOLDER.title":"占位符",
+  "HAKUREIREIMU-PLACEHOLDER.description":"占位符。"
+}

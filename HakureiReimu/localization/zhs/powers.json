@@ -1,0 +1,9 @@
+{
+  "HAKUREIREIMU-SEAL.title": "封印",
+  "HAKUREIREIMU-SEAL.description": "阻止来自其拥有者造成伤害。",
+  "HAKUREIREIMU-SEAL.smartDescription": "阻止来自[gold]{OwnerName}[/gold]造成的[blue]{Amount}[/blue]点伤害。",
+  
+  "PLACEHOLDER.title": "占位符",
+  "PLACEHOLDER.description": "[gold]小刀[/gold]造成额外伤害。",
+  "PLACEHOLDER.smartDescription": "[gold]小刀[/gold]造成[blue]{Amount}[/blue]点额外伤害。"
+}

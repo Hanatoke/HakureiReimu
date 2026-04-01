@@ -1,0 +1,67 @@
+{
+  "HakureiReimu:HakureiGohei": {
+    "NAME": "博丽的御币",
+    "FLAVOR": "灵梦常用的御币，用来打人很痛。",
+    "DESCRIPTIONS": [
+      "每回合生成 #b", " 个 #yhakureireimu:阴阳玉 。"
+    ]
+  },
+  "HakureiReimu:MoriyaGohei": {
+    "NAME": "守矢的御币",
+    "FLAVOR": "早苗的御币，怎么到了灵梦的手上?",
+    "DESCRIPTIONS": [
+      "替换 #r博丽的御币 。每回合开始在手牌中增加 #b", " 张 #y奇迹 。"
+    ]
+  },
+  "HakureiReimu:SaisenBox": {
+    "NAME": "塞钱箱",
+    "FLAVOR": "塞钱箱里根本没有钱!",
+    "DESCRIPTIONS": [
+      "每累计失去 #b", " #y金币 ，便回复 #g"," 点生命值。"
+    ]
+  },
+  "HakureiReimu:UltramarineOrbElixir": {
+    "NAME": "绀珠之药",
+    "FLAVOR": "看见的到底是过去还是未来?",
+    "DESCRIPTIONS": [
+      "拾取时，从上次胜利的游戏卡组中选择一张获得。",
+      "选择要获取的卡牌"
+    ]
+  },
+  "HakureiReimu:WoodenFish": {
+    "NAME": "木鱼",
+    "FLAVOR": "似乎能听到残响。",
+    "DESCRIPTIONS": [
+      " #yhakureireimu:反制 #yhakureireimu:攻击 ：抽 #b",
+      " 张牌。"
+    ]
+  },
+  "HakureiReimu:OldMikoCostume": {
+    "NAME": "老旧的巫女服",
+    "FLAVOR": "即时经过长久的时光，依然一尘不染。",
+    "DESCRIPTIONS": [
+      " 战斗开始时，将一张具有 #y消耗 的 #y二重结界 置入场上。"
+    ]
+  },
+  "HakureiReimu:BoundarySensor": {
+    "NAME": "境界探测仪",
+    "FLAVOR": "能发现难以感知的境界。",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时，额外抽 #b"," 张 #yhakureireimu:反制 牌。"
+    ]
+  },
+  "HakureiReimu:UnluckyTalisman": {
+    "NAME": "厄运护符",
+    "FLAVOR": "遭受未知力量的侵染，将要带来不幸。",
+    "DESCRIPTIONS": [
+      "每当有敌人死去时，将其身上的 #yhakureireimu:封印 层数转移给其他敌人。"
+    ]
+  },
+  "HakureiReimu:AutonomousYinYangJade": {
+    "NAME": "自作主张的阴阳玉",
+    "FLAVOR": "这个阴阳玉渴望敌人的鲜血。",
+    "DESCRIPTIONS": [
+      "每当你发动 #yhakureireimu:反制 时，生成 #b"," 个 #yhakureireimu:阴阳玉 。"
+    ]
+  }
+}

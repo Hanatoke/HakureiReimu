@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://c81r7lr3ad63l"]
+
+[ext_resource type="Script" uid="uid://brp6syr8xeps0" path="res://HakureiReimuMod/PersistCard/Node/NCardFlash.cs" id="1_6x1jl"]
+[ext_resource type="Texture2D" uid="uid://cq1w8wxd7puq7" path="res://HakureiReimu/images/card_item/CardFlash.png" id="1_el8yu"]
+
+[node name="Flash" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_6x1jl")
+
+[node name="Img1" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = -150.0
+offset_top = -210.0
+offset_right = 150.0
+offset_bottom = 210.0
+pivot_offset = Vector2(150, 210)
+mouse_filter = 2
+texture = ExtResource("1_el8yu")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Img2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -150.0
+offset_top = -210.0
+offset_right = 150.0
+offset_bottom = 210.0
+pivot_offset = Vector2(150, 210)
+mouse_filter = 2
+texture = ExtResource("1_el8yu")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Img3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -150.0
+offset_top = -210.0
+offset_right = 150.0
+offset_bottom = 210.0
+pivot_offset = Vector2(150, 210)
+mouse_filter = 2
+texture = ExtResource("1_el8yu")
+expand_mode = 4
+stretch_mode = 5

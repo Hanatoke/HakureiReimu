@@ -1,0 +1,406 @@
+{
+  "HakureiReimu:DanmakuStorm": {
+	"NAME": "弹幕雨",
+	"DESCRIPTION": "对所有敌人造成 !D! 点伤害 !M! 次。"
+  },
+  "HakureiReimu:DarkenedPearl": {
+	"SIGN": "珠符",
+	"NAME": "明珠暗投",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 生成 !M! 个 hakureireimu:阴阳玉 。"
+  },
+  "HakureiReimu:DanmakuChoja": {
+	"NAME": "弹幕富翁",
+	"DESCRIPTION": "造成 !D! 点伤害，生成 !M! 个 hakureireimu:阴阳玉 。 NL 在弃牌堆放入一张此牌的复制品。"
+  },
+  "HakureiReimu:DreamSealingScatter": {
+	"SIGN":"灵符",
+	"NAME": "梦想封印 散",
+	"DESCRIPTION": "对所有敌人造成 !D! 点伤害，给予存在 hakureireimu:封印 的敌人 !M! 层 易伤 。"
+  },
+  "HakureiReimu:TenhaFushinKyaku": {
+	"SIGN":"神技",
+	"NAME": "天霸风神脚",
+	"DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "HakureiReimu:SealingNeedle": {
+	"NAME": "封魔针",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! hakureireimu:封印 。 NL 抽 !HakureiReimu:SecondMagic! 张牌。"
+  },
+  "HakureiReimu:TaiYokaiHoiTaiji": {
+	"SIGN": "御札",
+	"NAME": "对妖怪方位清除",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 其每有一种 *负面 效果，额外造成 !M! 点伤害。"
+  },
+  "HakureiReimu:Shoryuken": {
+	"NAME": "升龙",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:强化 !M! 。 NL 造成 !D! 点伤害，给予 !HakureiReimu:SecondMagic! 易伤 。"
+  },
+  "HakureiReimu:DoubleDanmakuBoundary": {
+	"SIGN":"境界",
+	"NAME": "二重弹幕结界",
+	"DESCRIPTION": "增加 !M! 张 *弹幕结界 到你的手牌。",
+	"UPGRADE_DESCRIPTION": "增加 !M! 张 *弹幕结界+ 到你的手牌。"
+  },
+  "HakureiReimu:YinYangPreciousJade": {
+	"SIGN": "宝符",
+	"NAME": "阴阳宝玉",
+	"DESCRIPTION": "生成 hakureireimu:阴阳玉 直到达到上限。 NL 消耗 。",
+	"UPGRADE_DESCRIPTION": "生成 hakureireimu:阴阳玉 直到达到上限。"
+  },
+  "HakureiReimu:SubspaceAcupoint": {
+	"NAME": "亚空点穴",
+	"DESCRIPTION": "给予 !M! hakureireimu:封印 和 !HakureiReimu:SecondMagic! 层 虚弱 。"
+  },
+  "HakureiReimu:MushabetsuChofuku": {
+	"NAME": "无差别降伏",
+	"DESCRIPTION": "给予所有敌人 !M! hakureireimu:封印 。 NL 消耗 。"
+  },
+  "HakureiReimu:DoubleBoundary": {
+	"SIGN": "梦符",
+	"NAME": "二重结界",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL hakureireimu:立即 获得 !B! 点 格挡 。"
+  },
+  "HakureiReimu:Sneak": {
+	"NAME": "偷吃",
+	"DESCRIPTION": " hakureireimu:反制 非 hakureireimu:攻击 !M! 。 NL 获得 [E] 。"
+  },
+  "HakureiReimu:GensoBaundariKurakku": {
+	"SIGN": "结界",
+	"NAME": "幻想结界缝隙",
+	"DESCRIPTION": "将场上的一张 hakureireimu:反制 牌放入你的手牌。",
+	"UPGRADE_DESCRIPTION": " 保留 。 NL 将场上的一张 hakureireimu:反制 牌放入你的手牌。",
+	"EXTENDED_DESCRIPTION": [
+      " 取回 "
+	]
+  },
+  "HakureiReimu:BackFlip": {
+	"NAME": "空中翻滚",
+	"DESCRIPTION": "获得 !B! 点 格挡 ，抽 !M! 张牌。"
+  },
+  "HakureiReimu:MakeNoException": {
+	"NAME": "一视同仁",
+	"DESCRIPTION": " 保留 。 NL 将目标的 *负面 效果应用给其他敌人。 NL 消耗 。"
+  },
+  "HakureiReimu:Dodge": {
+	"NAME": "闪避",
+	"DESCRIPTION": "只有在本回合还未使用攻击牌时才能打出。 NL 获得 !B! 点 格挡 。",
+	"EXTENDED_DESCRIPTION": ["我已经打出过攻击牌了。"]
+  },
+  "HakureiReimu:Strength": {
+	"NAME": "强化",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:减益 !M! 。 NL 升级 抽牌堆顶部 !HakureiReimu:SecondMagic! 张牌 。 NL 消耗 。",
+	"UPGRADE_DESCRIPTION": " hakureireimu:反制 hakureireimu:所有 !M! 。 NL 升级 抽牌堆顶部 !HakureiReimu:SecondMagic! 张牌 。 NL 消耗 。"
+  },
+  "HakureiReimu:TosatsushaChofuku": {
+	"NAME": "偷拍者降伏",
+	"DESCRIPTION": "给予所有敌人 !M! 层 hakureireimu:遏制 。 NL 消耗 。"
+  },
+  "HakureiReimu:MenreikiDaiChofuku": {
+	"NAME": "面灵气大降服",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL 对所有敌人造成等同于 *攻击者 意图的伤害。",
+	"UPGRADE_DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL hakureireimu:立即 对所有敌人造成等同于 *攻击者 意图的伤害。"
+  },
+  "HakureiReimu:PersuasionNeedle": {
+	"NAME": "信仰之针",
+	"DESCRIPTION": "给予 !M! hakureireimu:封印 。 NL 造成等同于 hakureireimu:封印 层数的伤害。"
+  },
+  "HakureiReimu:MushoMyoju": {
+	"SIGN": "灵符",
+	"NAME": "梦想妙珠",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 如果这张牌触发了 hakureireimu:阴阳玉 ，抽 !M! 张牌。"
+  },
+  "HakureiReimu:DreamSealingGather": {
+	"SIGN": "灵符",
+	"NAME": "梦想封印 集",
+	"DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 这张牌每被打出一次，它在本场战斗中的耗能减少 !HakureiReimu:SecondMagic! 。"
+  },
+  "HakureiReimu:MujihiHaraiBo": {
+	"SIGN": "妖器",
+	"NAME": "无情的驱魔棒",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 给予与所造成的未被格挡的伤害相等的 hakureireimu:封印 。"
+  },
+  "HakureiReimu:YinYangStamp": {
+	"SIGN": "灵符",
+	"NAME": "阴阳印",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 如果本回合你给予过 *负面 效果，获得 [E] [E] 。"
+  },
+  "HakureiReimu:HakureiDanmakuBoundary": {
+	"SIGN": "大结界",
+	"NAME": "博丽弹幕结界",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:所有 !M! 。 NL 对所有敌人造成 !D! 点伤害，如果只有一个敌人则不减少次数。"
+  },
+  "HakureiReimu:DoragonzuAsukaiKikku": {
+	"NAME": "巨龙飞鸟井之踢",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 每有一张其他的手牌，少造成 !M! 点伤害。"
+  },
+  "HakureiReimu:LeapingYinYangJade": {
+	"SIGN": "宝符",
+	"NAME": "跳跃的阴阳玉",
+	"DESCRIPTION": "随机造成 !D! 点伤害 !M! 次，对击中敌人给予 !HakureiReimu:SecondMagic! 易伤 。"
+  },
+  "HakureiReimu:YinYangJadeMidare": {
+	"NAME": "阴阳玉乱舞",
+	"DESCRIPTION": "每有一个 hakureireimu:阴阳玉 ，便造成 !D! 点伤害，生成 !M! 个 hakureireimu:阴阳玉 。"
+  },
+  "HakureiReimu:HappoOnibakuJin": {
+	"SIGN": "神技",
+	"NAME": "八方鬼缚阵",
+	"DESCRIPTION": "场上每有一张 hakureireimu:反制 牌，造成 !D! 点伤害一次。",
+	"EXTENDED_DESCRIPTION": [" NL (造成 !M! 次)"]
+  },
+  "HakureiReimu:MashoSenketsu": {
+	"NAME": "魔净闪结",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:减益 !M! 。 NL 移除一个负面，消耗一张 状态牌 或 诅咒 。 NL 消耗 。"
+  },
+  "HakureiReimu:DanmakuShashinKinshi": {
+	"NAME": "弹幕摄影禁止",
+	"DESCRIPTION": "当前每有一名敌人攻击，获得 !B! 点 格挡 。 NL 否则给予其 !M! 层 hakureireimu:遏制 。",
+	"EXTENDED_DESCRIPTION": [" NL ( 格挡 !HakureiReimu:SecondMagic! 次)"]
+  },
+  "HakureiReimu:SoraTobuFushigiNoMiko": {
+	"SIGN": "无题",
+	"NAME": "飞行的不可思议巫女",
+	"DESCRIPTION": "直到下一回合，获得 !M! 点 敏捷 。"
+  },
+  "HakureiReimu:KujiKoshinHo": {
+	"NAME": "九字护身法",
+	"DESCRIPTION": "获得 !B! 点 格挡 。 NL 本回合敌人的 hakureireimu:封印 不会因为攻击而减少。"
+  },
+  "HakureiReimu:Duel": {
+	"NAME": "决斗",
+	"DESCRIPTION": "目标立即执行当前 *意图 。 NL 获得 [E] [E] [E] 。",
+	"UPGRADE_DESCRIPTION": " 保留 。 NL 目标立即执行当前 *意图 。 NL 获得 [E] [E] [E] 。"
+  },
+  "HakureiReimu:UnconsciousTeleportation": {
+	"NAME": "无意识瞬间移动",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL hakureireimu:立即 获得 !B! 点 格挡 。 NL 你的下一回合开始时 格挡 不会消失。"
+  },
+  "HakureiReimu:DreamSubspaceHole": {
+	"SIGN": "梦符",
+	"NAME": "梦想亚空穴",
+	"DESCRIPTION": "下次抽牌时 *额外 抽 !M! 张牌。"
+  },
+  "HakureiReimu:PaparatchiGekitaiKekkai": {
+	"SIGN": "结界",
+	"NAME": "狗仔队击退结界",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:减益 !M! 。 NL 抽 !HakureiReimu:SecondMagic! 张牌。"
+  },
+  "HakureiReimu:DiffusiveBoundary": {
+	"SIGN": "结界",
+	"NAME": "扩散结界",
+	"DESCRIPTION": "直到下一回合，你的单体攻击同时对所有敌人造成伤害。",
+	"EXTENDED_DESCRIPTION": [
+      "同样能够使 #y阴阳玉 造成全体伤害。"
+	]
+  },
+  "HakureiReimu:HakureiGreatBoundary": {
+	"SIGN": "大结界",
+	"NAME": "博丽大结界",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:强化 !M! 。 NL 使自身获得相同的效果。 NL 消耗 。"
+  },
+  "HakureiReimu:RanboNaSekaiNoSakemeguchi": {
+	"SIGN": "结界",
+	"NAME": "粗暴的世界裂隙",
+	"DESCRIPTION": "选择场上的一张 hakureireimu:反制 牌， *免费 将其发动X次。",
+	"UPGRADE_DESCRIPTION": "选择场上的一张 hakureireimu:反制 牌， *免费 将其发动X+1次。",
+	"EXTENDED_DESCRIPTION": [
+      "我的场上 #r没有 反制牌。"
+	]
+  },
+  "HakureiReimu:NoIntervalBoundary": {
+	"SIGN": "回忆",
+	"NAME": "无间缩结界",
+	"DESCRIPTION": "在抽牌堆加入场上所有的 hakureireimu:反制 卡的各 !M! 张 复制 。 NL 消耗 。"
+  },
+  "HakureiReimu:Deter": {
+	"NAME": "威慑",
+	"DESCRIPTION": "给予所有敌人 !M! 层 虚弱 和 易伤 。 NL 爪牙 将会逃跑。 NL 消耗 。",
+	"UPGRADE_DESCRIPTION": " 固有 。 NL 给予所有敌人 !M! 层 虚弱 和 易伤 。 NL 爪牙 将会逃跑。 NL 消耗 。",
+	"EXTENDED_DESCRIPTION": [
+	  "@苦也！@",
+	  "是 #r赤色杀人魔 ， @逃命哇！@",
+	  "@撤退啊！撤退！@",
+	  "@快跑啊！@",
+      "@不可战胜的！@"
+	]
+  },
+  "HakureiReimu:FantasyMoon": {
+	"SIGN": "梦战",
+	"NAME": "幻想之月",
+	"DESCRIPTION": "直到下一回合，受到的攻击伤害减半。 NL 消耗 。",
+	"UPGRADE_DESCRIPTION": " 固有 。 NL 直到下一回合，受到的攻击伤害减半。 NL 消耗 。"
+  },
+  "HakureiReimu:YakuyokeKigan": {
+	"SIGN": "祈愿",
+	"NAME": "祛除厄运之祈愿",
+	"DESCRIPTION": " 消耗 !M! 张 牌。 NL 如果是 诅咒 ，将其从卡组中 *移除 。",
+	"EXTENDED_DESCRIPTION": [
+      " 移除 "
+	]
+  },
+  "HakureiReimu:YokaiAshidomeOmamori": {
+	"SIGN": "御守",
+	"NAME": "妖怪拘禁符",
+	"DESCRIPTION": "如果目标至少有 !M! 层 hakureireimu:封印 ，将其 hakureireimu:击晕 !HakureiReimu:SecondMagic! 回合。 NL 消耗 。",
+	"EXTENDED_DESCRIPTION": [
+      " #r封印 的力量还不足"
+	]
+  },
+  "HakureiReimu:ItarudokoroNoAoyama": {
+	"SIGN": "结界",
+	"NAME": "人至之处的青山",
+	"DESCRIPTION": "每当有一张 hakureireimu:反制 牌被置入场上时，抽 !M! 张牌。"
+  },
+  "HakureiReimu:BoundarySolidification": {
+	"NAME": "结界固化",
+	"DESCRIPTION": "在 hakureireimu:反制 卡被置入场上时，使其发动次数增加 !M! 次。"
+  },
+  "HakureiReimu:SukimaNoMiko": {
+	"NAME": "隙间里的巫女",
+	"DESCRIPTION": "每当你发动 hakureireimu:反制 时，获得 !M! 点 格挡 。"
+  },
+  "HakureiReimu:YinYangGyokusho": {
+	"SIGN": "力符",
+	"NAME": "阴阳玉将",
+	"DESCRIPTION": " hakureireimu:阴阳玉 造成的伤害增加 !M! 点。"
+  },
+  "HakureiReimu:YinYangAsukaI": {
+	"SIGN": "宝具",
+	"NAME": "阴阳飞鸟井",
+	"DESCRIPTION": " hakureireimu:阴阳玉 造成未被格挡的伤害时，给予随机 *负面 效果 !M! 次。"
+  },
+  "HakureiReimu:SealingFormation": {
+	"SIGN": "梦符",
+	"NAME": "封魔阵",
+	"DESCRIPTION": "每回合开始时，给予所有敌人 !M! hakureireimu:封印 。"
+  },
+  "HakureiReimu:JinjaHanjoKigan": {
+	"SIGN": "御札",
+	"NAME": "神社繁盛祈愿",
+	"DESCRIPTION": "每当你 斩杀 时，获得 !M! *金币 。"
+  },
+
+
+  "HakureiReimu:KyoakuNaBikkuriMiko": {
+	"NAME": "最凶恶的巫女",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL hakureireimu:立即 造成 !D! 点伤害，本回合每发动过一次，额外造成一次伤害。",
+	"EXTENDED_DESCRIPTION": [
+      " NL (造成 !HakureiReimu:SecondMagic! 次)"
+	]
+  },
+  "HakureiReimu:DreamSealingInstant": {
+	"SIGN": "神灵",
+	"NAME": "梦想封印 瞬",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 抽取所有 *攻击 牌。"
+  },
+  "HakureiReimu:HappoRyuSatsuJin": {
+	"SIGN": "神技",
+	"NAME": "八方龙杀阵",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 发动所有 hakureireimu:反制 。"
+  },
+
+
+
+  "HakureiReimu:SprinkleStarSeal": {
+	"SIGN": "星灵符",
+	"NAME": "洒星封印",
+	"DESCRIPTION": "将目标的 *正面 效果层数减半， *负面 效果层数翻倍。 NL 消耗 。"
+  },
+  "HakureiReimu:RollingInRichesHeart": {
+	"NAME": "陷入富贵心",
+	"DESCRIPTION": " 虚无 。 NL 花费 !M! *金币 ，战斗结束后获得一个 hakureireimu:盲盒 奖励。 NL 消耗 。",
+	"EXTENDED_DESCRIPTION": [
+      "我 #r没有 足够的 #y金币 "
+	]
+  },
+  "HakureiReimu:RepeatCast": {
+	"NAME": "复颂",
+	"DESCRIPTION": "将本回合打出过的牌重新移回手牌。 NL 消耗 。"
+  },
+  "HakureiReimu:HelpFromFriends": {
+	"NAME": "友人之助",
+	"DESCRIPTION": "获得 [E] [E] 。 NL 本回合结束时，将手牌和 [E] 保留 至下回合。 NL 消耗 。",
+	"UPGRADE_DESCRIPTION": "获得 [E] [E] [E] 。 NL 本回合结束时，将手牌和 [E] 保留 至下回合。 NL 消耗 。"
+  },
+  "HakureiReimu:CheatBoundary": {
+	"SIGN": "神签",
+	"NAME": "反则结界",
+	"DESCRIPTION": "本回合每打出一张牌， *免费 发动相邻的 hakureireimu:反制 牌。 NL 消耗 。",
+	"EXTENDED_DESCRIPTION": [
+      "默认向触发卡牌的目标发动反制。"
+	]
+  },
+  "HakureiReimu:DreamInnate": {
+	"NAME": "梦想天生",
+	"DESCRIPTION": "在本回合 hakureireimu:反制 hakureireimu:所有 。 NL hakureireimu:立即 使其本次行动无效。 NL 消耗 。"
+  },
+  "HakureiReimu:GensoIchijo": {
+	"SIGN": "梦符",
+	"NAME": "幻想一重",
+	"DESCRIPTION": " 虚无 。 NL 选择抽牌堆的一张牌，将其与本牌交换。",
+	"UPGRADE_DESCRIPTION": " 虚无 。 NL 抽到时再抽一张牌。 NL 选择抽牌堆的一张牌，将其与本牌交换。",
+	"EXTENDED_DESCRIPTION": [
+      " 交换 "
+	]
+  },
+  "HakureiReimu:HakureiPhantom": {
+	"SIGN": "灵符",
+	"NAME": "博丽幻影",
+	"DESCRIPTION": "每当你发动 hakureireimu:反制 时，对所有敌人造成 !M! 点伤害。"
+  },
+  "HakureiReimu:TrinityReligionFinale": {
+	"NAME": "最后的三位一体",
+	"DESCRIPTION": "获得 !M! 点 力量 。 NL 获得 !M! 点 敏捷 。 NL 获得 !HakureiReimu:SecondMagic! 层 hakureireimu:遏制 。"
+  },
+  "HakureiReimu:DivineMight": {
+	"NAME": "神威",
+	"DESCRIPTION": "移除所有 *负面 效果。 NL 获得 !M! 层 人工制品 。"
+  },
+  "HakureiReimu:YinYangKijinGyoku": {
+	"SIGN": "宝具",
+	"NAME": "阴阳鬼神玉",
+	"DESCRIPTION": "在你打出一张牌后，生成 !M! 个 hakureireimu:阴阳玉 。"
+  },
+  "HakureiReimu:UnfetteredForm": {
+	"NAME": "悠哉形态",
+	"DESCRIPTION": "每回合开始时抽 !M! 张牌。 NL 抽牌达到手牌 *上限 时，使随机手牌本回合费用变为0。"
+  },
+  "HakureiReimu:KanzenHyoiToYumoFuin": {
+	"NAME": "完全凭依与梦想封印",
+	"DESCRIPTION": "敌人每有 !HakureiReimu:SecondMagic! 层 hakureireimu:封印 ，你造成的伤害便增加 !M! 点。"
+  },
+  "HakureiReimu:MugenNoKosokuKigan": {
+	"SIGN": "御札",
+	"NAME": "梦幻的高速祈愿",
+	"DESCRIPTION": "在 hakureireimu:反制 牌被置入场上后，使其对随机敌人发动。"
+  },
+  "HakureiReimu:DoubleGreatBoundary": {
+	"SIGN": "梦境",
+	"NAME": "二重大结界",
+	"DESCRIPTION": "在你打出一张 hakureireimu:反制 牌时，额外将一张 *临时 复制置入场上。"
+  },
+
+
+
+  "HakureiReimu:DanmakuBoundary": {
+	"NAME": "弹幕结界",
+	"DESCRIPTION": " hakureireimu:反制 hakureireimu:攻击 !M! 。 NL hakureireimu:立即 造成 !D! 点伤害。 NL 消耗 。"
+  },
+  "HakureiReimu:Seal": {
+	"NAME": "封印",
+	"DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! hakureireimu:封印 。"
+  },
+  "HakureiReimu:BoundaryCreation": {
+	"NAME": "结界作成",
+	"DESCRIPTION": "获得 !B! 点 格挡 。 NL 增加 !M! 张 *弹幕结界 到你的手牌。",
+	"UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 增加 !M! 张 *弹幕结界+ 到你的手牌。"
+  },
+  "HakureiReimu:BasicStrike": {
+	"NAME": "打击",
+	"DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "HakureiReimu:BasicDefend": {
+	"NAME": "防御",
+	"DESCRIPTION": "获得 !B! 点 格挡 。"
+  }
+}

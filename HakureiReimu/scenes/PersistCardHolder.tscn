@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkdr1gohi13p6"]
+
+[ext_resource type="Script" uid="uid://ds5dngok808na" path="res://HakureiReimuMod/PersistCard/Node/NPersistCardHolder.cs" id="1_bd0cs"]
+[ext_resource type="Script" uid="uid://dkeqeunnl0x3b" path="res://HakureiReimuMod/PersistCard/Node/NPersistCardHolderHitbox.cs" id="2_8hxk0"]
+[ext_resource type="Texture2D" uid="uid://dtc6p2vcgvjug" path="res://HakureiReimu/images/card_item/card_super_flash.png" id="3_3kobi"]
+
+[node name="PersistCardHolder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+mouse_filter = 2
+script = ExtResource("1_bd0cs")
+
+[node name="Hitbox" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 150.0
+offset_bottom = 211.0
+pivot_offset = Vector2(150, 211)
+script = ExtResource("2_8hxk0")
+_ignoreDragThreshold = null
+
+[node name="CardSet" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="Flash" type="Control" parent="CardSet"]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="SuperFlash" type="TextureRect" parent="CardSet"]
+unique_name_in_owner = true
+modulate = Color(0.615686, 1, 0.996078, 1)
+layout_mode = 0
+offset_left = -179.0
+offset_top = -342.0
+offset_right = 191.0
+offset_bottom = 366.0
+mouse_filter = 2
+texture = ExtResource("3_3kobi")
+
+[node name="CardPos" type="Control" parent="CardSet"]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="NormalPos" type="Marker2D" parent="CardSet"]
+unique_name_in_owner = true
+position = Vector2(-140, 120)
+
+[node name="HoverPos" type="Marker2D" parent="CardSet"]
+unique_name_in_owner = true
+position = Vector2(-64, -275)
+
+[node name="Count" type="Label" parent="CardSet"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -140.0
+offset_top = 120.0
+offset_right = -76.0
+offset_bottom = 184.0
+pivot_offset = Vector2(32, 32)
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 36
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

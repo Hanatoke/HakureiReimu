@@ -1,0 +1,92 @@
+{
+"HakureiReimu:SealPower": {
+        "NAME": "Seal",
+        "DESCRIPTIONS": ["Prevent it from dealing #b"," damage."]
+},
+"HakureiReimu:InhibitPower": {
+        "NAME": "Inhibit",
+        "DESCRIPTIONS": ["Negates #b"," buffs."]
+},
+"HakureiReimu:TempDexterityPower": {
+        "NAME": "Dexterity Down",
+        "DESCRIPTIONS": [
+        "At the start of next turn, lose #b",
+        " #yDexterity."
+        ]
+},
+"HakureiReimu:FlightPlayerPower": {
+        "NAME": "Flight",
+        "DESCRIPTIONS": [
+        "Receives 50% less attack damage for #b",
+        " turn(s)."
+        ]
+},
+"HakureiReimu:ItarudokoroNoAoyamaPower": {
+        "NAME": "Lays to Rest",
+        "DESCRIPTIONS": ["Whenever a #yCounter is placed onto on the battlefield, draw #b"," card(s)."]
+},
+"HakureiReimu:BoundarySolidificationPower": {
+        "NAME": "Barrier Strengthening",
+        "DESCRIPTIONS": ["#yCounter placed onto the battlefield will have its  #ycounts increased by #b"," ."]
+},
+"HakureiReimu:ParryPower": {
+        "NAME": "Maiden in the Gap",
+        "DESCRIPTIONS": ["Whenever #yCounter is activated, gain #b"," #yBlock."]
+},
+"HakureiReimu:YinYangGyokushoPower": {
+        "NAME": "Yin-Yang King Piece",
+        "DESCRIPTIONS": ["#yYin-Yang #yOrb deal #b"," additional damage."]
+},
+"HakureiReimu:SealingFormationPower": {
+        "NAME": "Evil-Sealing Circle",
+        "DESCRIPTIONS": ["At the start of your turn, apply #b"," #ySeal to ALL enemies."]
+},
+"HakureiReimu:KujiKoshinHoPower": {
+        "NAME": "9-Syllable Self-Defense",
+        "DESCRIPTIONS": ["ALL enemy's attacks will not consume Seal for #b"," turn(s)."]
+},
+"HakureiReimu:ProtectionFeePower": {
+        "NAME": "Prosperity Prayer",
+        "DESCRIPTIONS": ["Whenever you #yFatal an enemy, gain #b"," #yGold."]
+},
+"HakureiReimu:InfinityYinYangJadePower": {
+        "NAME": "Yin-Yang Kishin Orb",
+        "DESCRIPTIONS": ["Whenever you play a card, #yChannel #b"," #yYin-Yang #yOrbs."]
+},
+"HakureiReimu:YinYangAsukaIPower": {
+        "NAME": "Yin-Yang Asuka'i",
+        "DESCRIPTIONS": ["Whenever #yYin-Yang #yOrbs deals unblocked damage, apply #b"," random #yDebuff. NL Possible results: #yPoison, #yVulnerable, #yChoked, #ySeal, #yWeakened, #yConstricted."]
+},
+"HakureiReimu:RapidResponsePower": {
+        "NAME": "High-Speed Prayer",
+        "DESCRIPTIONS": ["Whenever a #yCounter card is placed onto the battlefield, unconditionally activate it against a random enemy #b"," times."]
+},
+"HakureiReimu:DoubleGreatBoundaryPower": {
+        "NAME": "Great Duplex Barrier",
+        "DESCRIPTIONS": ["Whenever a #yCounter card is placed onto the battlefield, place #b"," copies of it with #yExhaust."]
+},
+"HakureiReimu:UnfetteredFormPower": {
+        "NAME": "Unfettered Form",
+        "DESCRIPTIONS": ["At the start of your turn, draw #b"," additional cards. Whenever your Hand becomes Full from drawing, a random card in your costs #b0 this turn."]
+},
+"HakureiReimu:KanzenHyoiToYumoFuinPower": {
+        "NAME": "Perfect Possession",
+        "DESCRIPTIONS": ["Every #b"," #ySeal on ALL enemies increase your #yStrength by #b",". NL Currently treated as having #b"," additional #yStrength."]
+},
+"HakureiReimu:DiffusiveBoundaryPower": {
+        "NAME": "Expanding Barrier",
+        "DESCRIPTIONS": ["Your attacks and #yYin-Yang #yOrbs deal damage to ALL enemies for #b"," turns."]
+},
+"HakureiReimu:HakureiPhantomPower": {
+        "NAME": "Hakurei Illusion",
+        "DESCRIPTIONS": ["Whenever #yCounter is activated, deal #b"," damage to ALL enemies."]
+},
+"HakureiReimu:RetainBlockPower": {
+        "NAME": "Retain Block",
+        "DESCRIPTIONS": ["At the start of your turn, retain #b"," #yBlock."]
+},
+"HakureiReimu:ExtraDrawPower": {
+        "NAME": "Extra Draw",
+        "DESCRIPTIONS": ["Draw #b"," additional cards the next time you draw any card(s)."]
+}
+}

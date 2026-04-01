@@ -1,0 +1,16 @@
+{
+  "HakureiReimu:HakureiReimu": {
+    "NAMES": [
+      "Hakurei Reimu",
+      "Shrine Maiden of Paradise",
+      "Gensokyo Law Enforcement",
+      "Crimson Slasher",
+      "Miser Miko"
+    ],
+    "TEXT": [
+      "I am the shrine maiden of paradise, Reimu Hakurei! NL Leave the incident solving to me!",
+      "NL You've used up your Spell Card.",
+      " text"
+    ]
+  }
+}
