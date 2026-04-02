@@ -1,21 +1,66 @@
 ﻿using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
-using MegaCrit.Sts2.Core.Commands;
+using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Node;
+using MegaCrit.Sts2.Core.AutoSlay.Handlers.Screens;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Orbs;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.Command
 {
     public static class YinYangOrbCmd
     {
-        public static async Task Spawn(PlayerChoiceContext choiceContext,Player player,int amount = 1)
+        public static async Task Spawn(PlayerChoiceContext choiceContext,Player player,int amount)
         {
-            await OrbCmd.Channel<YinYangOrb>(choiceContext, player);
+            if (CombatManager.Instance.IsOverOrEnding)return;
+            for (var i = 0; i < amount; i++)
+            {
+                await Spawn(choiceContext,player);
+            }
         }
-        public static Task Evoke(YinYangOrb orb, Creature target)
+        public static async Task Spawn(PlayerChoiceContext choiceContext,Player player)
         {
-            return Task.CompletedTask;
+            if (CombatManager.Instance.IsOverOrEnding)return;
+            YinYangOrb orb=ModelDb.Orb<YinYangOrb>().ToMutable() as YinYangOrb;
+            if (orb == null)return;
+            orb.Owner = player;
+            YinYangOrbManager manager = player.PlayerCombatState.YinYangOrbManager();
+            if (manager != null)
+            {
+                if (manager.Orbs.Count>=manager.Capacity)
+                {
+                    await Evoke(choiceContext,player);
+                }
+                CombatManager.Instance.History.OrbChanneled(player.Creature.CombatState, orb);
+                manager.Add(orb);
+                NYinYangOrbManager nm = NCombatRoom.Instance?.GetCreatureNode(player.Creature)
+                    .YinYangOrbManager(manager);
+                if (nm != null)
+                {
+                    nm.AddOrb([orb]);
+                }
+            }
+        }
+
+        public static async Task Evoke(PlayerChoiceContext choiceContext,Player player,Creature target=null)
+        {
+            if (CombatManager.Instance.IsOverOrEnding)
+                return;
+            YinYangOrbManager manager = player.PlayerCombatState.YinYangOrbManager();
+            if (manager != null&&manager.Orbs.Count>0)
+            {
+                YinYangOrb orb = manager.Pop();
+                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.YinYangOrbManager(manager).PopOrb();
+                choiceContext.PushModel(orb);
+                await orb.Attack(choiceContext,target);
+                choiceContext.PopModel(orb);
+                orb.RemoveInternal();
+            }
         }
     }
 }

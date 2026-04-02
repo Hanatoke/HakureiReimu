@@ -15,6 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             [HarmonyPostfix]
             public static void Postfix(CombatState __instance,ref IEnumerable<AbstractModel>  __result)
             {
+                //TODO:在新版本中移除
                 List<AbstractModel> list = new(__result);
                 foreach (Player p in __instance.Players)
                 {
@@ -28,6 +29,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         YinYangOrbManager m=YinYangOrbPatch.Managers[p.PlayerCombatState];
                         if (m != null)
                         {
+                            list.Add(m);
                             list.AddRange(m.Orbs);
                         }
                     }

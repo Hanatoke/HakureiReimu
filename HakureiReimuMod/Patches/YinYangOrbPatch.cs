@@ -2,6 +2,7 @@
 using HakureiReimu.HakureiReimuMod.Core;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Patches
 {
@@ -14,7 +15,9 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             [HarmonyPostfix]
             public static void Postfix(PlayerCombatState __instance,Player player)
             {
-                Managers[__instance] = new YinYangOrbManager(player);
+                // Managers[__instance] = new YinYangOrbManager(player);
+                Managers[__instance] = ModelDb.GetById<YinYangOrbManager>(ModelDb.GetId<YinYangOrbManager>()).MutableClone() as YinYangOrbManager;
+                Managers[__instance].Player = player;
                 Managers[__instance].Clear();
             }
         }

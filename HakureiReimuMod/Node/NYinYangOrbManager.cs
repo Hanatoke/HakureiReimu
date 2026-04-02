@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
-using HakureiReimu.HakureiReimuMod.Extensions;
-using HakureiReimu.HakureiReimuMod.Patches;
+using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Orbs;
 
@@ -14,16 +15,13 @@ namespace HakureiReimu.HakureiReimuMod.Node
     public partial class NYinYangOrbManager :Control
     {
         protected NCreature CreatureNode;
-        protected float MinRadius = 225f;
-        protected float MaxRadius = 300f;
-        protected float Range = 150f;
-        protected float AngleOffset = -25f;
         protected float TweenSpeed = 0.45f;
         protected Tween Tween;
         public bool IsLocal { get; protected set; }
         public List<NOrb> Orbs { get; protected set; } = new();
 
         protected Player Player => this.CreatureNode.Entity.Player;
+        protected readonly static Random Random = new();
 
         public static NYinYangOrbManager Create(NCreature creature,bool isLocal)
         {
@@ -34,6 +32,13 @@ namespace HakureiReimu.HakureiReimuMod.Node
             manager.IsLocal = isLocal;
             return manager;
         }
+
+        public override void _Ready()
+        {
+            Vector2 offset = CreatureNode.Visuals.OrbPosition.Position;
+            this.Position = offset/2;
+        }
+
         public override void _EnterTree()
         {
             base._EnterTree();
@@ -52,28 +57,68 @@ namespace HakureiReimu.HakureiReimuMod.Node
         
         public virtual void UpdateVisuals()
         {
-            
+            foreach (NOrb nOrb in Orbs)
+            {
+                nOrb.UpdateVisuals(false);
+            }
+        }
+
+        public virtual void AddOrb(IEnumerable<YinYangOrb> orbs)
+        {
+            foreach (YinYangOrb o in orbs)
+            {
+                NOrb nOrb = NOrb.Create(LocalContext.IsMe(Player),o);
+                this.AddChildSafely(nOrb);
+                Orbs.Add(nOrb);
+                nOrb.Position = Vector2.Zero;
+            }
+            TweenLayout();
+            UpdateControllerNavigation();
+        }
+
+        public virtual NOrb PopOrb()
+        {
+            if (Orbs.Count>0)
+            {
+                int index = Random.Next(0, Orbs.Count);
+                NOrb nOrb = Orbs[index];
+                this.RemoveChildSafely(nOrb);
+                Orbs.RemoveAt(index);
+                TweenLayout();
+                UpdateControllerNavigation();
+                return nOrb;
+            }
+            return null;
         }
 
         public virtual void TweenLayout()
         {
-            if (Player.PlayerCombatState==null)return;
-            int capacity = Player.PlayerCombatState.YinYangOrbManager()?.Capacity ?? 0;
-            if (capacity == 0)
-                return;
-            float num1 = 125f;
-            float num2 = num1 / (capacity - 1);
-            float num3 = Mathf.Lerp(MinRadius, MaxRadius, (float) ((capacity - 3.0) / 7.0));
-            if (!this.IsLocal)
-                num3 *= 0.75f;
             this.Tween?.Kill();
             this.Tween = this.CreateTween().SetParallel();
-            for (int index = 0; index < capacity; ++index)
+            float dist = 160 + Orbs.Count * 10;
+            if (!IsLocal)
             {
-                float radians = float.DegreesToRadians(AngleOffset - num1);
-                Vector2 finalVal = new Vector2(-Mathf.Cos(radians), Mathf.Sin(radians)) * num3;
-                this.Tween.TweenProperty(this.Orbs[index], "position", finalVal, TweenSpeed).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
-                num1 -= num2;
+                dist *= 0.75f;
+            }
+            float angle = 100 + Orbs.Count * 12;
+            float offset = angle / 2;
+            for (var i = 0; i < Orbs.Count; i++)
+            {
+                float x, y;
+                if (Orbs.Count==1)
+                {
+                    x = 0;
+                    y = dist;
+                }
+                else
+                {
+                    float a=angle*((float)i/(Orbs.Count - 1));
+                    a +=90-offset;
+                    a = float.DegreesToRadians(a);
+                    x=dist*Mathf.Cos(a);
+                    y=dist*Mathf.Sin(a);
+                }
+                Tween.TweenProperty(Orbs[i],"position",new Vector2(x,-y), TweenSpeed).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
             }
         }
         private void UpdateControllerNavigation()

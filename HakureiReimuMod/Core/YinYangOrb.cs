@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
@@ -29,16 +31,23 @@ namespace HakureiReimu.HakureiReimuMod.Core
 
         public override Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext playerChoiceContext)
         {
-            
             return Task.FromResult<IEnumerable<Creature>>(new List<Creature>());
         }
-        public virtual Task Attack(Creature taget)
+        public virtual async Task Attack(PlayerChoiceContext playerChoiceContext,Creature target)
         {
-            // var enemies = CombatState.GetOpponentsOf(Owner.Creature)
-            //     .Where(e => e.IsHittable).ToList();
-            // if (enemies.Count == 0) return enemies;
-            // Creature target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
-            return Task.CompletedTask;
+            if (!target.IsHittable)
+            {
+                target = null;
+            }
+            if (target == null)
+            {
+                var enemies = CombatState.GetOpponentsOf(Owner.Creature)
+                    .Where(e => e.IsHittable).ToList();
+                 target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
+            }
+            if (target == null) return;
+            
+            await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);
         }
     }
 }
