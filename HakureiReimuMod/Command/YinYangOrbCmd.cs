@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Node;
@@ -55,9 +56,10 @@ namespace HakureiReimu.HakureiReimuMod.Command
             if (manager != null&&manager.Orbs.Count>0)
             {
                 YinYangOrb orb = manager.Pop();
-                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.YinYangOrbManager(manager).PopOrb();
+                Vector2 pos=Vector2.Zero;
+                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.YinYangOrbManager(manager).PopOrb(out pos);
                 choiceContext.PushModel(orb);
-                await orb.Attack(choiceContext,target);
+                await orb.Attack(choiceContext,target,nOrb,pos);
                 choiceContext.PopModel(orb);
                 orb.RemoveInternal();
             }

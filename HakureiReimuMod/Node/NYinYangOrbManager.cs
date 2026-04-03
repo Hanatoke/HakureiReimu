@@ -76,18 +76,20 @@ namespace HakureiReimu.HakureiReimuMod.Node
             UpdateControllerNavigation();
         }
 
-        public virtual NOrb PopOrb()
+        public virtual NOrb PopOrb(out Vector2 position)
         {
             if (Orbs.Count>0)
             {
                 int index = Random.Next(0, Orbs.Count);
                 NOrb nOrb = Orbs[index];
+                position = nOrb.GlobalPosition;
                 this.RemoveChildSafely(nOrb);
                 Orbs.RemoveAt(index);
                 TweenLayout();
                 UpdateControllerNavigation();
                 return nOrb;
             }
+            position=this.GlobalPosition;
             return null;
         }
 

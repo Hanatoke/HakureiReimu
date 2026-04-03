@@ -44,6 +44,9 @@ public static class StringExtensions {
     public static string CharacterUiPath(this string path) {
         return Path.Join(MainFile.ModId, "images", "charui", path);
     }
+    public static string EffectsPath(this string path) {
+        return Path.Join(MainFile.ModId, "images", "effects", path);
+    }
     public static string ShaderPath(this string path) {
         return Path.Join(MainFile.ModId, "shader", path);
     }

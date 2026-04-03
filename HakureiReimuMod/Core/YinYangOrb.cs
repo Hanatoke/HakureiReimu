@@ -4,10 +4,17 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Node.VFX;
+using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Orbs;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Core
@@ -33,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             return Task.FromResult<IEnumerable<Creature>>(new List<Creature>());
         }
-        public virtual async Task Attack(PlayerChoiceContext playerChoiceContext,Creature target)
+        public virtual async Task Attack(PlayerChoiceContext playerChoiceContext,Creature target,NOrb nOrb,Vector2 startPos)
         {
             if (!target.IsHittable)
             {
@@ -46,7 +53,20 @@ namespace HakureiReimu.HakureiReimuMod.Core
                  target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
             }
             if (target == null) return;
-            
+            NCreature targetNode = NCombatRoom.Instance?.GetCreatureNode(target);
+            if (targetNode!=null)
+            {
+                Vector2 targetPos = targetNode.VfxSpawnPosition;
+                Vector2 v = Vector2.One.Rotated(GD.Randf() * Mathf.Tau) * 100;
+                FlyingVFX vfx=FlyingVFX.Create(new SteeringMover(startPos,targetPos,v));
+                vfx.OnHit = () =>
+                {
+                    NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
+                    VfxCmd.PlayOnCreatureCenter(target,"vfx/vfx_attack_blunt");
+                };
+                vfx.AddChildSafely(CreateCustomSprite());
+                NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+            }
             await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);
         }
     }
