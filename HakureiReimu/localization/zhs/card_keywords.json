@@ -1,3 +1,19 @@
 {
+  "HAKUREIREIMU-COUNTER.title":"反制",
+  "HAKUREIREIMU-COUNTER.description":"在敌人进行[gold]行为[/gold]时发动。后面的[blue]数字[/blue]代表了这张卡能发动的次数。",
   
+  "HAKUREIREIMU-ATTACK.title":"攻击",
+  "HAKUREIREIMU-ATTACK.description":"对玩家造成伤害的视为攻击。[gold]多段[/gold]攻击也只视为一次攻击行为。",
+  
+  "HAKUREIREIMU-BUFF.title":"强化",
+  "HAKUREIREIMU-BUFF.description":"给予怪物[gold]正面[/gold]效果、[blue]格挡[/blue]或[green]治疗[/green]的视为强化。",
+  
+  "HAKUREIREIMU-DEBUFF.title":"减益",
+  "HAKUREIREIMU-DEBUFF.description":"给予[red]负面[/red]效果或[color=gray]状态牌[/color]的视为减益。",
+  
+  "HAKUREIREIMU-ALL.title":"所有",
+  "HAKUREIREIMU-ALL.description":"包括[gold]攻击[/gold]、[gold]强化[/gold]与[gold]减益[/gold]。",
+  
+  "HAKUREIREIMU-IMMEDIATE.title":"立即",
+  "HAKUREIREIMU-IMMEDIATE.description":"在怪物的行为执行[gold]前[/gold]发动。"
 }

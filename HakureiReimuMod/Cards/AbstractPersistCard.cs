@@ -86,7 +86,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             }
         }
 
-        public virtual async Task Flash()
+        public virtual async Task Flash(bool instant = false)
         {
             if (InPersisting&&Slot!=null)
             {
@@ -97,6 +97,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                     2 => 0.25f,
                     _ => 0
                 };
+                if (instant) delay = 0;
                 ActivateThisTurn++;
                 await PersistCardCmd.FlashPersistCard(Slot, delay);
             }

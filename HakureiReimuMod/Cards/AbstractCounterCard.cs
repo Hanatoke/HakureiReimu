@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
     public abstract class AbstractCounterCard(int cost, CardType type, CardRarity rarity, TargetType target) 
         :AbstractPersistCard(cost, type, rarity, target),ICounter   
     {
-        public virtual bool Immediate=>false;
+        public virtual bool IsImmediate=>false;
         public virtual CounterType ActivateType => CounterType.None;
 
         protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true } &&
@@ -24,31 +24,36 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature applier, Creature target,out CounterType counterType)
         {
-            if (power.GetTypeForAmount(modifiedAmount)==PowerType.Buff&&ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
+            PowerType type=power.GetTypeForAmount(modifiedAmount);
+            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
             {
                 counterType = CounterType.Buff;
                 return true;
             }
-            if (power.GetTypeForAmount(modifiedAmount) == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true }&&target is{IsPlayer:true})
+            if (power.IsVisible&&type == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true }&&target is{IsPlayer:true})
             {
                 counterType = CounterType.Debuff;
                 return true;
             }
             counterType = CounterType.None;
             return false;
-        }     
+        }
+
+        protected virtual bool IsInMonsterMove(Creature target) =>
+            target is { IsMonster: true, Monster.IsPerformingMove: true };
         //-------------------------------------------------------------------------------------------------------
         public override async Task BeforeAttack(AttackCommand command)
         {
-            if (InPersisting&&Immediate&&CheckAttack(command))
+            if (InPersisting&&IsImmediate&&CheckAttack(command))
             {
+                await CounterManager.ForceAttackAnimation(command);
                 await InvokeCounter(command.Attacker,CounterType.Attack);
             }
         }
 
         public override async Task AfterAttack(AttackCommand command)
         {
-            if (InPersisting&&!Immediate&&CheckAttack(command))
+            if (InPersisting&&!IsImmediate&&CheckAttack(command))
             {
                 await InvokeCounter(command.Attacker,CounterType.Attack);
             }

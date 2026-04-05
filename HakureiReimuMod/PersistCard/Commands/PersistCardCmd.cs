@@ -5,6 +5,7 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HakureiReimu.HakureiReimuMod.PersistCard.Node;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -48,27 +49,27 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
             }
         }
 
-        public static async Task StopPersistCard(AbstractPersistCardSlot slot)
+        public static async Task StopPersistCard(AbstractPersistCardSlot slot,PileType? overridePile=null)
         {
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 CardModel card = slot.Card;
+                PileType targetPile = overridePile ?? PileType.Discard;
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
                     .PersistCardTable(table);
                 NPersistCardHolder holder = null;
-                // NCard nc=null;
                 if (nt!=null)
                 {
                     holder = nt.GetCardHolder(slot.Card);
                     holder.SetEnabled(false);
                     // nt.RemoveCardHolder(holder);
                 }
-                if (slot.Card.IsDupe)
+                if (!overridePile.HasValue&&slot.Card.IsDupe)
                 {
                     await CardPileCmd.RemoveFromCombat(slot.Card,skipVisuals:true);
                     TweenExhaustCard(holder,nt);
                 }
-                else if (slot.Card.ExhaustOnNextPlay||slot.Card.Keywords.Contains(CardKeyword.Exhaust))
+                else if (!overridePile.HasValue&&(slot.Card.ExhaustOnNextPlay||slot.Card.Keywords.Contains(CardKeyword.Exhaust)))
                 {
                     await CardCmd.Exhaust(new BlockingPlayerChoiceContext(),slot.Card,skipVisuals:true);
                     card.Pile?.InvokeCardAddFinished();
@@ -76,19 +77,33 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 }
                 else
                 {
-                    await CardPileCmd.Add(slot.Card, PileType.Discard,skipVisuals:true);
+                    await CardPileCmd.Add(slot.Card, targetPile,skipVisuals:true);
                     NCard nc = holder?.CardNode;
                     if (nc != null)
                     {
                         nc.ReparentSafely(NCombatRoom.Instance.Ui);
                         Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
-                        tween.TweenCallback(Callable.From((Action) (() =>
+                        switch (targetPile)
                         {
-                            Godot.Node node = card.Pile.Type != PileType.Deck ?  NCombatRoom.Instance.CombatVfxContainer : NRun.Instance.GlobalUi.TopBar.TrailContainer;
-                            nc.ReparentSafely(node);
-                            NCardFlyVfx child = NCardFlyVfx.Create(nc, card.Pile.Type.GetTargetPosition(nc), true, card.Owner.Character.TrailPath);
-                            node.AddChildSafely( child);
-                        })));
+                            case PileType.Hand:
+                                AccessTools.Method(typeof(CardPileCmd), "AppendPileLerpTween", [
+                                    typeof(Tween),
+                                    typeof(NCard),
+                                    typeof(PileType),
+                                    typeof(CardPile)
+                                ]).Invoke(null, [tween, nc, targetPile, null]);
+                                tween.Parallel().TweenCallback(Callable.From(() => NCombatRoom.Instance.Ui.Hand.Add(nc)));
+                                break;
+                            default:
+                                tween.TweenCallback(Callable.From((Action) (() =>
+                                {
+                                    Godot.Node node = card.Pile.Type != PileType.Deck ?  NCombatRoom.Instance.CombatVfxContainer : NRun.Instance.GlobalUi.TopBar.TrailContainer;
+                                    nc.ReparentSafely(node);
+                                    NCardFlyVfx child = NCardFlyVfx.Create(nc, card.Pile.Type.GetTargetPosition(nc), true, card.Owner.Character.TrailPath);
+                                    node.AddChildSafely( child);
+                                })));
+                                break;
+                        }
                     }
                     if (holder!=null)
                     {

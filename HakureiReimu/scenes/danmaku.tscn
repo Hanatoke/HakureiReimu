@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://capjum2ymeo4n"]
+[gd_scene load_steps=41 format=3 uid="uid://capjum2ymeo4n"]
 
 [ext_resource type="Texture2D" uid="uid://bgo6ubkwqwulx" path="res://HakureiReimu/images/effects/danmaku/Light.png" id="1_15kvu"]
+[ext_resource type="Script" uid="uid://biujk4ayqjwyi" path="res://HakureiReimuMod/Node/VFX/NDanmaku.cs" id="1_xckx7"]
 [ext_resource type="Texture2D" uid="uid://dpx0a35eguge" path="res://HakureiReimu/images/effects/danmaku/circle.png" id="2_ipenm"]
 [ext_resource type="Texture2D" uid="uid://b5ou2l6sogah6" path="res://HakureiReimu/images/effects/danmaku/star.png" id="3_ipenm"]
 [ext_resource type="Texture2D" uid="uid://dulec0lpepgra" path="res://HakureiReimu/images/effects/danmaku/GradientCircle.png" id="3_xckx7"]
@@ -22,8 +23,6 @@ curve = SubResource("Curve_0abrb")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15kvu"]
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.59999996
-scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_vy4u8")
 color = Color(1, 1, 1, 0.2509804)
 alpha_curve = SubResource("CurveTexture_15kvu")
@@ -88,9 +87,14 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_mv1k6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_vn1xk"]
 curve_x = SubResource("Curve_yyde1")
 curve_y = SubResource("Curve_lxeqb")
+curve_z = SubResource("Curve_mv1k6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_abrd5"]
 particle_flag_disable_z = true
@@ -130,8 +134,6 @@ curve = SubResource("Curve_abrd5")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vn1xk"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 0.5
 scale_curve = SubResource("CurveTexture_mv1k6")
 alpha_curve = SubResource("CurveTexture_ipenm")
 
@@ -185,14 +187,16 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_lxeqb")
+color = Color(1, 1, 1, 0.2509804)
 alpha_curve = SubResource("CurveTexture_bol1o")
 
 [node name="Danmaku" type="Node2D"]
+script = ExtResource("1_xckx7")
 
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="ColorAble" type="Node2D" parent="Visual"]
-modulate = Color(0.6285556, 0.0023655302, 0.85901535, 1)
+scale = Vector2(2.5, 2.5)
 
 [node name="Trails" type="GPUParticles2D" parent="Visual/ColorAble"]
 amount = 20
@@ -226,6 +230,7 @@ visibility_rect = Rect2(-500, -500, 1000, 1000)
 process_material = SubResource("ParticleProcessMaterial_abrd5")
 
 [node name="Fixed" type="Node2D" parent="Visual"]
+scale = Vector2(2, 2)
 
 [node name="Trails" type="GPUParticles2D" parent="Visual/Fixed"]
 amount = 20

@@ -7,35 +7,33 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
         public Vector3 Position;
         public Vector3 Velocity;
 
-        public float MaxSpeed;
         public float Acceleration;
         public float TurnSpeed;
 
         public Vector3 Target;
-
+        public float MaxSpeed;
         // 👉 深度参数
-        public float DepthScale = 0.002f; // Z 对缩放影响
+        public float DepthScale = 0.02f; // Z 对缩放影响
         public float DepthInfluence = 1f; // Z 对转向影响
 
         public Steering3DMover(
             Vector2 startPos,
             Vector2 targetPos,
-            Vector2 startVelocity,
+            Vector3 startVelocity,
             float startZ = 0f,
             float targetZ = 0f,
-            float maxSpeed = 1000f,
             float turnSpeed = 5f,
             float acceleration = 0f)
         {
             Position = new Vector3(startPos.X, startPos.Y, startZ);
             Target = new Vector3(targetPos.X, targetPos.Y, targetZ);
 
-            MaxSpeed = maxSpeed;
             TurnSpeed = turnSpeed;
             Acceleration = acceleration;
+            MaxSpeed = Acceleration * 2;
 
             Vector2 v2 = startVelocity.Length() > 0.001f
-                ? startVelocity
+                ? new Vector2(startVelocity.X, startVelocity.Y)
                 : (targetPos - startPos).Normalized();
 
             Velocity = new Vector3(v2.X, v2.Y, 0);
@@ -70,17 +68,11 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
             // 🚀 速度控制
             // =========================
             float speed = Velocity.Length();
-
-            if (Acceleration > 0f)
-            {
-                speed += Acceleration * delta;
-                speed = Mathf.Min(speed, MaxSpeed);
-            }
-            else
+            speed += Acceleration * delta;
+            if (speed > MaxSpeed)
             {
                 speed = MaxSpeed;
             }
-
             Velocity = newDir * speed;
 
             // 📍 更新位置

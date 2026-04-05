@@ -2,6 +2,7 @@ using System;
 using BaseLib.Abstracts;
 using BaseLib.Config;
 using BaseLib.Extensions;
+using BaseLib.Patches.Content;
 using BaseLib.Utils;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Character;
@@ -40,6 +41,20 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     protected LocString _Sign;
     public virtual LocString Sign => _Sign ??= LocString.GetIfExists("cards", this.Id.Entry + ".sign");
+    
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Counter;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Attack;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Buff;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Debuff;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword All;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Immediate;
+    
     public virtual void OnReload(NCard card)
     {
         Traverse traverse = Traverse.Create(card);

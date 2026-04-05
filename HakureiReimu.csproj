@@ -19,7 +19,6 @@
 	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HakureiReimuMod\Cards\Attack\Uncommon\" />
     <Folder Include="HakureiReimuMod\Cards\Attack\Rare\" />
     <Folder Include="HakureiReimuMod\Cards\Power\Common\" />
     <Folder Include="HakureiReimuMod\Cards\Power\Rare\" />

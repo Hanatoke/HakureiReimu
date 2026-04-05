@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class Sneak : AbstractCounterCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1),new CounterVar(2)];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [EnergyHoverTip];
 
         public Sneak(
@@ -26,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         public override async Task InvokeCounter(Creature target, CounterType byType)
         {
-            if (CounterManager.InMonsterMove)
+            if (IsInMonsterMove(target))
             {
                 if (byType==CounterType.Attack)
                 {
@@ -45,7 +46,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
-            await Flash();
+            await Flash(instant);
             if (CombatState is {CurrentSide:CombatSide.Player})
             {
                 await PlayerCmd.GainEnergy(1, this.Owner);
