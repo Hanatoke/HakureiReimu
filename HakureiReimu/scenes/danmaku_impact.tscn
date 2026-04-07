@@ -1,0 +1,128 @@
+[gd_scene load_steps=23 format=3 uid="uid://cbu5g7lvki6rx"]
+
+[ext_resource type="Texture2D" uid="uid://dpx0a35eguge" path="res://HakureiReimu/images/effects/danmaku/circle.png" id="1_fh1e8"]
+[ext_resource type="Script" uid="uid://rbdrrhru5ntg" path="res://HakureiReimuMod/Node/VFX/NDanmakuImpact.cs" id="1_x5bpe"]
+[ext_resource type="Texture2D" uid="uid://cmiid38nmosui" path="res://HakureiReimu/images/effects/danmaku/trail.png" id="2_x5bpe"]
+[ext_resource type="Texture2D" uid="uid://dulec0lpepgra" path="res://HakureiReimu/images/effects/danmaku/GradientCircle.png" id="3_inshi"]
+
+[sub_resource type="Curve" id="Curve_uxjgb"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_357im"]
+curve = SubResource("Curve_uxjgb")
+
+[sub_resource type="Curve" id="Curve_fmcgl"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t705v"]
+curve = SubResource("Curve_fmcgl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj5xq"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_t705v")
+color = Color(1, 1, 1, 0.26666668)
+alpha_curve = SubResource("CurveTexture_357im")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3bxxs"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_ur1ml"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tgxus"]
+curve = SubResource("Curve_ur1ml")
+
+[sub_resource type="Curve" id="Curve_vqs3v"]
+_data = [Vector2(0, 0.058449745), 0.0, 0.041296124, 0, 1, Vector2(1, 0.09974587), 0.041296124, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p1uuk"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2h3q2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cftpu"]
+curve_x = SubResource("Curve_vqs3v")
+curve_y = SubResource("Curve_p1uuk")
+curve_z = SubResource("Curve_2h3q2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5yrs0"]
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveXYZTexture_cftpu")
+color = Color(1, 1, 1, 0.2509804)
+alpha_curve = SubResource("CurveTexture_tgxus")
+
+[sub_resource type="Curve" id="Curve_3d32f"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_02nw8"]
+curve = SubResource("Curve_3d32f")
+
+[sub_resource type="Curve" id="Curve_3s13l"]
+_data = [Vector2(0, 0.46315122), 0.0, 0.5368488, 0, 1, Vector2(1, 1), 0.5368488, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5i7m6"]
+curve = SubResource("Curve_3s13l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ckdfo"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_5i7m6")
+color = Color(1, 1, 1, 0.2509804)
+alpha_curve = SubResource("CurveTexture_02nw8")
+
+[node name="DanmakuImpact" type="Node2D"]
+script = ExtResource("1_x5bpe")
+
+[node name="ColorAble" type="Node2D" parent="."]
+
+[node name="Wave" type="GPUParticles2D" parent="ColorAble"]
+emitting = false
+amount = 1
+texture = ExtResource("1_fh1e8")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_sj5xq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ColorAble"]
+material = SubResource("CanvasItemMaterial_3bxxs")
+emitting = false
+amount = 32
+texture = ExtResource("2_x5bpe")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5yrs0")
+
+[node name="Fixed" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Fixed"]
+emitting = false
+amount = 16
+texture = ExtResource("3_inshi")
+lifetime = 0.25
+one_shot = true
+preprocess = 0.25
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ckdfo")

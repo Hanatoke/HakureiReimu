@@ -38,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             int n = (int)((CalculatedVar)DynamicVars["CalculatedNum"]).Calculate(cardPlay.Target);
-            await YinYangOrbCmd.Spawn(choiceContext, Owner, n);
+            await YinYangOrbCmd.Spawn(choiceContext, Owner, n, this);
         }
 
         protected override void OnUpgrade()

@@ -5,7 +5,7 @@ namespace HakureiReimu.HakureiReimuMod.Interface.Counter.Hook
 {
     public interface ICounterListener
     {
-        Task BeforeCounter(CardModel card,ICounter counter);
-        Task AfterCounter(CardModel card,ICounter counter);
+        Task BeforeCounter(ICounter counter);
+        Task AfterCounter(ICounter counter);
     }
 }

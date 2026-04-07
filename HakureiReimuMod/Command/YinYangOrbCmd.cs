@@ -16,15 +16,16 @@ namespace HakureiReimu.HakureiReimuMod.Command
 {
     public static class YinYangOrbCmd
     {
-        public static async Task Spawn(PlayerChoiceContext choiceContext,Player player,int amount)
+        public static async Task Spawn(PlayerChoiceContext choiceContext, Player player, int amount,
+            CardModel cardSource=null)
         {
             if (CombatManager.Instance.IsOverOrEnding)return;
             for (var i = 0; i < amount; i++)
             {
-                await Spawn(choiceContext,player);
+                await Spawn(choiceContext,player,cardSource);
             }
         }
-        public static async Task Spawn(PlayerChoiceContext choiceContext,Player player)
+        public static async Task Spawn(PlayerChoiceContext choiceContext, Player player, CardModel cardSource = null)
         {
             if (CombatManager.Instance.IsOverOrEnding)return;
             YinYangOrb orb=ModelDb.Orb<YinYangOrb>().ToMutable() as YinYangOrb;
@@ -35,7 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             {
                 if (manager.Orbs.Count>=manager.Capacity)
                 {
-                    await Evoke(choiceContext,player);
+                    await Evoke(choiceContext,player,cardSource:cardSource);
                 }
                 CombatManager.Instance.History.OrbChanneled(player.Creature.CombatState, orb);
                 manager.Add(orb);
@@ -48,7 +49,8 @@ namespace HakureiReimu.HakureiReimuMod.Command
             }
         }
 
-        public static async Task Evoke(PlayerChoiceContext choiceContext,Player player,Creature target=null)
+        public static async Task Evoke(PlayerChoiceContext choiceContext, Player player, Creature target = null,
+            CardModel cardSource = null)
         {
             if (CombatManager.Instance.IsOverOrEnding)
                 return;
@@ -62,6 +64,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
                 await orb.Attack(choiceContext,target,nOrb,pos);
                 choiceContext.PopModel(orb);
                 orb.RemoveInternal();
+                await YinYangOrbHook.AfterEvokeOrb(choiceContext,orb, player, target, cardSource);
             }
         }
     }

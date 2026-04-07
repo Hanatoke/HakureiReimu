@@ -1,21 +1,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class TosatsushaChofuku : AbstractCard
     {
         protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-            [HoverTipFactory.FromPower<Powers.Seal>()];
+            [HoverTipFactory.FromPower<InhibitPower>()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<Powers.Seal>(7)];
+            [new PowerVar<InhibitPower>(1)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
@@ -26,12 +26,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         {
             foreach (Creature t in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<Powers.Seal>(t, DynamicVars[Powers.Seal.ID].BaseValue,
+                await PowerCmd.Apply<InhibitPower>(t, DynamicVars[InhibitPower.ID].BaseValue,
                     Owner.Creature, this);
             }
         }
         protected override void OnUpgrade() {
-            DynamicVars[Powers.Seal.ID].UpgradeValueBy(3);
+            DynamicVars[InhibitPower.ID].UpgradeValueBy(1);
         }
     }
 }

@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
-    public class Seal:AbstractPower
+    public class SealPower:AbstractPower
     {
-        public static readonly string ID = nameof(Seal);
+        public static readonly string ID = nameof(SealPower);
         public override PowerType Type => PowerType.Debuff;
         public override PowerStackType StackType => PowerStackType.Counter;
 

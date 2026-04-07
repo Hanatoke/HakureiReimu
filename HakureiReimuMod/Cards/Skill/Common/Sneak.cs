@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         public override async Task InvokeCounter(Creature target, CounterType byType)
         {
-            if (IsInMonsterMove(target))
+            if (CounterManager.InMonsterMove)
             {
                 if (byType==CounterType.Attack)
                 {
@@ -35,12 +36,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
                 }
                 else
                 {
-                    CounterManager.AddToLater(this,async ()=>await base.InvokeCounter(target,byType));
+                    CounterManager.AddToLater(this,async ()=>await CounterCmd.InvokeCounter(CombatState,this,target));
                 }
             }
             else if (byType!=CounterType.Attack)
             {
-                await base.InvokeCounter(target, byType);
+                await CounterCmd.InvokeCounter(CombatState, this, target);
             }
         }
 

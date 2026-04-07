@@ -31,7 +31,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
                         if (powerById != null && !powerById.IsInstanced)
                         {
                             DoHackyThingsForSpecificPowers(powerById);
-                            int num = await PowerCmd.ModifyAmount(powerById, p.Amount, Owner.Creature, this);
+                            await PowerCmd.ModifyAmount(powerById, p.Amount, Owner.Creature, this);
                         }
                         else
                         {

@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
                 .Execute(choiceContext);
             foreach (Creature e in CombatState.HittableEnemies)
             {
-                if (e.HasPower<Powers.Seal>())
+                if (e.HasPower<Powers.SealPower>())
                 {
                     await PowerCmd.Apply<VulnerablePower>(e, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
                 }

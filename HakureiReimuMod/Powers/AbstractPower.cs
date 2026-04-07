@@ -10,14 +10,14 @@ public abstract class AbstractPower : CustomPowerModel {
     //Loads from CharMod/images/powers/your_power.png
     public override string CustomPackedIconPath {
         get {
-            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}84.png".PowerImagePath();
+            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}.png".PowerImagePath();
             return ResourceLoader.Exists(path) ? path : "power.png".PowerImagePath();
         }
     }
 
     public override string CustomBigIconPath {
         get {
-            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}84.png".PowerImagePath();
+            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}.png".PowerImagePath();
             return ResourceLoader.Exists(path) ? path : "power.png".BigPowerImagePath();
         }
     }

@@ -19,9 +19,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .BeforeDamage(async ()=>await FlyingVFXCmd.DanmakuLineToTarget(Owner.Creature,cardPlay.Target))
                 .Execute(choiceContext);
-            await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue);
+            await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue, this);
         }
         protected override void OnUpgrade() {
             DynamicVars.Damage.UpgradeValueBy(2);

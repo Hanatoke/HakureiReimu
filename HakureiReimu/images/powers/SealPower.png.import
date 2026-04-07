@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w3qnm7a8qtnn"
-path="res://.godot/imported/Seal32.png-912289dd2fd903cebb9e4bcc4a984f44.ctex"
+uid="uid://dqqxtcjorstab"
+path="res://.godot/imported/SealPower.png-44463e2ee2d7ab04a6e5b2d9598f2707.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/powers/Seal32.png"
-dest_files=["res://.godot/imported/Seal32.png-912289dd2fd903cebb9e4bcc4a984f44.ctex"]
+source_file="res://HakureiReimu/images/powers/SealPower.png"
+dest_files=["res://.godot/imported/SealPower.png-44463e2ee2d7ab04a6e5b2d9598f2707.ctex"]
 
 [params]
 

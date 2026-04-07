@@ -47,7 +47,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             if (dealer==Player.Creature&&props.IsPoweredAttack_()&&cardSource!=null)
             {
-                await YinYangOrbCmd.Evoke(choiceContext, Player, target);
+                await YinYangOrbCmd.Evoke(choiceContext, Player, target,cardSource);
             }
         }
     }

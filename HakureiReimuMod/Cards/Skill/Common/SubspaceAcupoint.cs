@@ -10,23 +10,23 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class SubspaceAcupoint : AbstractCard
     {
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.Seal>(), HoverTipFactory.FromPower<WeakPower>()];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.SealPower>(), HoverTipFactory.FromPower<WeakPower>()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<Powers.Seal>(6),new PowerVar<WeakPower>(1)];
+            [new PowerVar<Powers.SealPower>(6),new PowerVar<WeakPower>(1)];
         
         public SubspaceAcupoint(
             ) : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<Powers.Seal>(cardPlay.Target, DynamicVars[Powers.Seal.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
             await PowerCmd.Apply<WeakPower>(cardPlay.Target,DynamicVars.Weak.BaseValue,
                 Owner.Creature, this);
         }
         protected override void OnUpgrade() {
-            DynamicVars[Powers.Seal.ID].UpgradeValueBy(1);
+            DynamicVars[Powers.SealPower.ID].UpgradeValueBy(1);
             DynamicVars.Weak.UpgradeValueBy(1);
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
+using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -38,9 +39,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             counterType = CounterType.None;
             return false;
         }
-
-        protected virtual bool IsInMonsterMove(Creature target) =>
-            target is { IsMonster: true, Monster.IsPerformingMove: true };
         //-------------------------------------------------------------------------------------------------------
         public override async Task BeforeAttack(AttackCommand command)
         {
@@ -92,9 +90,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public virtual async Task InvokeCounter(Creature? target,CounterType byType)
         {
-            await CounterManager.BeforeCounter(this.CombatState,this,this);
-            await Invoke(target);
-            await CounterManager.AfterCounter(this.CombatState,this,this);
+            if (!IsImmediate&&CounterManager.InMonsterMove)
+            {
+                CounterManager.AddToLater(this,async  () => await CounterCmd.InvokeCounter(CombatState,this,target));
+            }
+            else
+            {
+                await CounterCmd.InvokeCounter(CombatState, this, target);
+            }
         }
 
         [Flags]

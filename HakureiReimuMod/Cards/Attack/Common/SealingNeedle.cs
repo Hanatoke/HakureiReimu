@@ -10,10 +10,10 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class SealingNeedle : AbstractCard
     {
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.Seal>()];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.SealPower>()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(6, ValueProp.Move), new PowerVar<Powers.Seal>(3),new CardsVar(1)];
+            [new DamageVar(6, ValueProp.Move), new PowerVar<Powers.SealPower>(3),new CardsVar(1)];
         
         public SealingNeedle(
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
@@ -22,13 +22,13 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .Execute(choiceContext);
-            await PowerCmd.Apply<Powers.Seal>(cardPlay.Target, DynamicVars[Powers.Seal.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
         }
         protected override void OnUpgrade() {
             DynamicVars.Damage.UpgradeValueBy(2);
-            DynamicVars[Powers.Seal.ID].UpgradeValueBy(1);
+            DynamicVars[Powers.SealPower.ID].UpgradeValueBy(1);
         }
     }
 }

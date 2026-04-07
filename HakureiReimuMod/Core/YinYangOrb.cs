@@ -42,7 +42,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         }
         public virtual async Task Attack(PlayerChoiceContext playerChoiceContext,Creature target,NOrb nOrb,Vector2 startPos)
         {
-            if (!target.IsHittable)
+            if (target is { IsHittable: false })
             {
                 target = null;
             }

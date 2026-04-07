@@ -16,10 +16,10 @@
   "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.sign":"神技",
   "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.title":"天霸风神脚",
   "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.description":"造成{Damage:diff()}点伤害{Repeat:diff()}次。",
-    
+	
   "HAKUREIREIMU-SEALING_NEEDLE.title":"封魔针",
-  "HAKUREIREIMU-SEALING_NEEDLE.description":"造成{Damage:diff()}点伤害。\n给予{Seal:diff()}层[gold]封印[/gold]。\n抽{Cards:diff()}张牌。",
-      
+  "HAKUREIREIMU-SEALING_NEEDLE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n抽{Cards:diff()}张牌。",
+	  
   "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.sign":"御札",
   "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.title":"对妖怪方位清除",
   "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.description":"造成{CalculatedDamage:diff()}点伤害。\n其每有一种[red]负面[/red]效果，额外造成{ExtraDamage:diff()}点伤害",
@@ -38,10 +38,10 @@
   "HAKUREIREIMU-YIN_YANG_PRECIOUS_JADE.description":"[gold]生成阴阳玉[/gold]直到达到上限。{InCombat:\n（生成{CalculatedNum:diff()}个）|}",
   
   "HAKUREIREIMU-SUBSPACE_ACUPOINT.title":"亚空点穴",
-  "HAKUREIREIMU-SUBSPACE_ACUPOINT.description":"给予{Seal:diff()}层[gold]封印[/gold]和{WeakPower:diff()}层[gold]虚弱[/gold]。",
+  "HAKUREIREIMU-SUBSPACE_ACUPOINT.description":"给予{SealPower:diff()}层[gold]封印[/gold]和{WeakPower:diff()}层[gold]虚弱[/gold]。",
   
   "HAKUREIREIMU-MUSHABETSU_CHOFUKU.title":"无差别降伏",
-  "HAKUREIREIMU-MUSHABETSU_CHOFUKU.description":"给予所有敌人{Seal:diff()}层[gold]封印[/gold]。",
+  "HAKUREIREIMU-MUSHABETSU_CHOFUKU.description":"给予所有敌人{SealPower:diff()}层[gold]封印[/gold]。",
 
   "HAKUREIREIMU-DOUBLE_BOUNDARY.sign":"梦符",
   "HAKUREIREIMU-DOUBLE_BOUNDARY.title":"二重结界",
@@ -68,17 +68,68 @@
   "HAKUREIREIMU-STRENGTH.description":"[gold]反制{IfUpgraded:show:所有|减益}[/gold]{Counter:diff()}。\n[gold]升级[/gold]抽牌堆顶部{Cards:diff()}张牌。",
   
   "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.title":"偷拍者降伏",
-  "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.description":"给予所有敌人{Seal:diff()}层[gold]封印[/gold]。",
+  "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.description":"给予所有敌人{InhibitPower:diff()}层[gold]遏制[/gold]。",
   
   //---------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-MENREIKI_DAI_CHOFUKU.title":"面灵气大降服",
   "HAKUREIREIMU-MENREIKI_DAI_CHOFUKU.description":"[gold]反制攻击[/gold]{Counter:diff()}。\n{IfUpgraded:show:[gold]立即[/gold]|}对所有敌人造成等同于[gold]攻击者[/gold]意图的伤害。",
+	
+  "HAKUREIREIMU-PERSUASION_NEEDLE.title":"信仰之针",
+  "HAKUREIREIMU-PERSUASION_NEEDLE.description":"给予{SealPower:diff()}层[gold]封印[/gold]。\n造成等同于[gold]封印[/gold]层数的伤害。",
+  
+  "HAKUREIREIMU-MUSHO_MYOJU.sign":"灵符",
+  "HAKUREIREIMU-MUSHO_MYOJU.title":"梦想妙珠",
+  "HAKUREIREIMU-MUSHO_MYOJU.description":"造成{Damage:diff()}点伤害。\n如果这张牌触发了[gold]阴阳玉[/gold]，抽{Cards:diff()}张牌。",
   
   "HAKUREIREIMU-DREAM_SEALING_GATHER.sign":"灵符",
   "HAKUREIREIMU-DREAM_SEALING_GATHER.title":"梦想封印 集",
   "HAKUREIREIMU-DREAM_SEALING_GATHER.description":"造成{Damage:diff()}点伤害{Repeat:diff()}次。\n这张牌每被打出一次，它在本场战斗中的耗能减少1。",
+	
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.sign":"妖器",
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.title":"无情的驱魔棒",
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.description":"造成{Damage:diff()}点伤害。\n给予与所造成的未被格挡的伤害相等的[gold]封印[/gold]。",
+
+  "HAKUREIREIMU-YIN_YANG_STAMP.sign":"灵符",
+  "HAKUREIREIMU-YIN_YANG_STAMP.title":"阴阳印",
+  "HAKUREIREIMU-YIN_YANG_STAMP.description":"造成{Damage:diff()}点伤害。\n如果本回合你给予过[red]负面[/red]效果，获得{Energy:energyIcons()}。",
+
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.sign":"大结界",
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.title":"博丽弹幕结界",
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.description":"[gold]反制所有[/gold]{Counter:diff()}。\n对所有敌人造成{Damage:diff()}点伤害。\n如果只有一个敌人则不减少次数。",
+
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.sign":"龙蹴符",
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.title":"巨龙飞鸟井之踢",
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.description":"造成{CalculatedDamage:diff()}点伤害。\n每有一张其他的手牌，少造成{ExtraDamage:diff()}点伤害。",
+
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.sign":"宝符",
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.title":"跳跃的阴阳玉",
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.description":"随机造成{Damage:diff()}点伤害{Repeat:diff()}次。\n对击中敌人给予{VulnerablePower:diff()}[gold]易伤[/gold]。",
   
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.title":"阴阳玉乱舞",
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"每有一个[gold]阴阳玉[/gold]，便造成{Damage:diff()}点伤害，生成{Repeat:diff()}个[gold]阴阳玉[/gold]。{InCombat:\n（重复{CalculatedTimes:diff()}次）|}",
+
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.sign":"神技",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.title":"八方鬼缚阵",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"场上每有一张[gold]反制[/gold]牌，造成{Damage:diff()}点伤害一次。{InCombat:\n（造成{CalculatedTimes:diff()}次）|}",
+  
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  
+  
+  
+  
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.sign":"结界",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.title":"粗暴的世界裂隙",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.description":"选择场上的一张[gold]反制[/gold]牌，[gold]免费[/gold]将其发动{IfUpgraded:show:X+1|X}次。",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.selectionScreenPrompt":"选择",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.title":"梦想封印",
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复{Repeat:diff()}次。",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.title":"打击",
   "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.description":"测试文本。",
 
@@ -87,7 +138,7 @@
   "HAKUREIREIMU-DANMAKU_BOUNDARY.description":"[gold]反制攻击[/gold]{Counter:diff()}。\n[gold]立即[/gold]造成{Damage:diff()}点伤害。",
   
   "HAKUREIREIMU-SEAL.title":"封印",
-  "HAKUREIREIMU-SEAL.description":"造成{Damage:diff()}点伤害。\n给予{Seal:diff()}层[gold]封印[/gold]。",
+  "HAKUREIREIMU-SEAL.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。",
   
   "HAKUREIREIMU-BOUNDARY_CREATION.title":"结界作成",
   "HAKUREIREIMU-BOUNDARY_CREATION.description":"获得{Block:diff()}点[gold]格挡[/gold]。\n增加一张[gold]{IfUpgraded:show:弹幕结界+|弹幕结界}[/gold]到你的[gold]手牌[/gold]。",

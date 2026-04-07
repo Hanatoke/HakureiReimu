@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
-using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class GensoBaundariKurakku : AbstractCard {
@@ -25,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
             {
                 Cancelable = false
             };
-            CardModel c=(await CardSelectCmd.FromSimpleGrid(choiceContext, Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType).Cards, Owner, prefs)).FirstOrDefault();
+            CardModel c=(await CardSelectCmd.FromSimpleGrid(choiceContext, Owner.GetAllCounterCards(), Owner, prefs)).FirstOrDefault();
             if (c is AbstractPersistCard persistCard)
             {
                 await PersistCardCmd.StopPersistCard(persistCard.Slot,PileType.Hand);

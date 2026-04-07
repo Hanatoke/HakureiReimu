@@ -15,7 +15,6 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
         // 👉 深度参数
         public float DepthScale = 0.02f; // Z 对缩放影响
         public float DepthInfluence = 1f; // Z 对转向影响
-
         public Steering3DMover(
             Vector2 startPos,
             Vector2 targetPos,
@@ -30,12 +29,12 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
 
             TurnSpeed = turnSpeed;
             Acceleration = acceleration;
-            MaxSpeed = Acceleration * 2;
+            
 
             Vector2 v2 = startVelocity.Length() > 0.001f
                 ? new Vector2(startVelocity.X, startVelocity.Y)
                 : (targetPos - startPos).Normalized();
-
+            MaxSpeed = v2.Length()+Acceleration * 2;
             Velocity = new Vector3(v2.X, v2.Y, 0);
         }
 

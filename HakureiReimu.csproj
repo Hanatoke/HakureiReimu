@@ -19,11 +19,9 @@
 	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HakureiReimuMod\Cards\Attack\Rare\" />
     <Folder Include="HakureiReimuMod\Cards\Power\Common\" />
     <Folder Include="HakureiReimuMod\Cards\Power\Rare\" />
     <Folder Include="HakureiReimuMod\Cards\Skill\Rare\" />
-    <Folder Include="HakureiReimuMod\Cards\Skill\Uncommon\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="HakureiReimuMod\Extensions\EnumExtensions.cs" />

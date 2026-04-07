@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 
@@ -12,9 +13,11 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
         private float _curveLength;
         private Vector2 _lastPos;
         public IMover Mover;
-        public Action<double> UpdateMethod;
+        public Action<float,double> UpdateMethod;
         public Func<float, float> EaseFunc;
         public Action OnHit;
+        private TaskCompletionSource _hitTcs = new();
+        public Task HitTask => _hitTcs.Task;
 
         public static FlyingVFX Create(IMover mover)
         {
@@ -33,10 +36,11 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
             Vector2 pos = Mover.CurrentPosition(this, t,(float)delta);
             GlobalPosition = pos;
             UpdateRotation(pos);
-            UpdateMethod?.Invoke(delta);
-            if (Mover.IsHit(this,t,(float)delta))
+            UpdateMethod?.Invoke(t,delta);
+            if (Mover.IsHit(this,t,(float)delta)||t>=1)
             {
                 OnHit?.Invoke();
+                _hitTcs.TrySetResult();
                 QueueFree();
             }
         }

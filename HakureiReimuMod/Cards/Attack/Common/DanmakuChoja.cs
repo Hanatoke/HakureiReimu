@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
-            await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue);
+            await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue, this);
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(this.CreateClone(), PileType.Discard, true), 2f);
         }
         protected override void OnUpgrade() {

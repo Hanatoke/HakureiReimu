@@ -1,23 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
 using HakureiReimu.HakureiReimuMod.Interface.Counter.Hook;
+using HakureiReimu.HakureiReimuMod.PersistCard;
+using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
     public static class CounterManager
     {
-        //TODO:废弃功能,等待测试能否删除
         public static bool InMonsterMove=false;
         public static readonly Dictionary<CardModel, Func<Task>> Later = new();
         public static bool AlreadyForceAttackAnimation=false;
+
+        public static List<CardModel> GetAllCounterCards(this Player player)
+        {
+            AbstractPersistCardTable table = player.PlayerCombatState?.PersistCardTable(CounterCardTable.PileType);
+            return table == null ? [] : table.Cards.Where(c=>c.HasCounter()).ToList();
+        }
+        public static bool HasCounter(this CardModel card)
+        {
+            if (card is ICounter) return true;
+            if (card.Enchantment is ICounter) return true;
+            if (card.Affliction is ICounter) return true;
+            return false;
+        }
+        public static IEnumerable<ICounter> GetCountersForCard(this CardModel card)
+        {
+            if (card is ICounter counter)
+            {
+                yield return counter;
+            }
+            if (card.Enchantment is ICounter e)
+            {
+                yield return e;
+            }
+            if (card.Affliction is ICounter a)
+            {
+                yield return a;
+            }
+            //TODO:未来版本可能添加的复数Modifier
+        }
         public static void AddToLater(CardModel card, Func<Task> func)
         {
             Later.TryAdd(card, func);
@@ -58,24 +91,24 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
         }
 
-        public static async Task BeforeCounter(CombatState state,CardModel card, ICounter counter)
+        public static async Task BeforeCounter(CombatState state,ICounter counter)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {
                 if (l is ICounterListener c)
                 {
-                    await c.BeforeCounter(card, counter);
+                    await c.BeforeCounter(counter);
                 }
             }
         }
 
-        public static async Task AfterCounter(CombatState state,CardModel card, ICounter counter)
+        public static async Task AfterCounter(CombatState state,ICounter counter)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {
                 if (l is ICounterListener c)
                 {
-                    await c.AfterCounter(card, counter);
+                    await c.AfterCounter(counter);
                 }
             }
         }

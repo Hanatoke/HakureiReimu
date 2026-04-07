@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfofaakvaaoyk"
-path="res://.godot/imported/Seal84.png-33113876ae8d5d8100052ab746095f5d.ctex"
+uid="uid://gtkiej654qat"
+path="res://.godot/imported/InhibitPower.png-87e6970585c554c80998587a8481aafb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/powers/Seal84.png"
-dest_files=["res://.godot/imported/Seal84.png-33113876ae8d5d8100052ab746095f5d.ctex"]
+source_file="res://HakureiReimu/images/powers/InhibitPower.png"
+dest_files=["res://.godot/imported/InhibitPower.png-87e6970585c554c80998587a8481aafb.ctex"]
 
 [params]
 

@@ -10,10 +10,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class Seal : AbstractCard
     {
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.Seal>()];
-
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.SealPower>()];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(3, ValueProp.Move), new PowerVar<Powers.Seal>(3)];
+            [new DamageVar(3, ValueProp.Move), new PowerVar<Powers.SealPower>(3)];
         
         public Seal(
             ) : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) {
@@ -23,12 +22,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .Execute(choiceContext);
-            await PowerCmd.Apply<Powers.Seal>(cardPlay.Target, DynamicVars[Powers.Seal.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
         }
         protected override void OnUpgrade() {
             DynamicVars.Damage.UpgradeValueBy(1);
-            DynamicVars[Powers.Seal.ID].UpgradeValueBy(1);
+            DynamicVars[Powers.SealPower.ID].UpgradeValueBy(1);
         }
     }
 }

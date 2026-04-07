@@ -1,7 +1,11 @@
 {
-  "HAKUREIREIMU-SEAL.title": "封印",
-  "HAKUREIREIMU-SEAL.description": "阻止来自其拥有者造成伤害。",
-  "HAKUREIREIMU-SEAL.smartDescription": "阻止来自[gold]{OwnerName}[/gold]造成的[blue]{Amount}[/blue]点伤害。",
+  "HAKUREIREIMU-SEAL_POWER.title": "封印",
+  "HAKUREIREIMU-SEAL_POWER.description": "阻止来自其拥有者造成伤害。",
+  "HAKUREIREIMU-SEAL_POWER.smartDescription": "阻止来自[gold]{OwnerName}[/gold]造成的[blue]{Amount}[/blue]点伤害。",
+  
+  "HAKUREIREIMU-INHIBIT_POWER.title": "遏制",
+  "HAKUREIREIMU-INHIBIT_POWER.description": "[red]阻止[/red]获得[gold]正面[/gold]效果。",
+  "HAKUREIREIMU-INHIBIT_POWER.smartDescription": "[red]阻止[/red]下[blue]{Amount}[/blue]次[gold]正面[/gold]效果。",
   
   "PLACEHOLDER.title": "占位符",
   "PLACEHOLDER.description": "[gold]小刀[/gold]造成额外伤害。",

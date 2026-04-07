@@ -97,6 +97,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             this.Tween?.Kill();
             this.Tween = this.CreateTween().SetParallel();
+            if (Orbs.Count<=0) return;
             float dist = 160 + Orbs.Count * 10;
             if (!IsLocal)
             {

@@ -9,16 +9,18 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
         public float Speed;
         public float Acceleration;
         public float TurnSpeed;
+        public float MaxSpeed;
 
         public Vector2 Target;
 
-        public SteeringMover(Vector2 startPos, Vector2 targetPos,Vector2 startVelocity, float speed = 1000, float turnSpeed = 10f,float acceleration = 4000)
+        public SteeringMover(Vector2 startPos, Vector2 targetPos,Vector2 startVelocity, float turnSpeed = 10f,float acceleration = 4000)
         {
             Position = startPos;
             Target = targetPos;
-            Speed = speed;
+            Speed = startVelocity.Length();
             TurnSpeed = turnSpeed;
             Acceleration = acceleration;
+            MaxSpeed = Speed+acceleration * 2;
             Velocity = startVelocity.Length()>=0.001f?startVelocity:(targetPos-startPos).Normalized();
         }
         public bool IsHit(FlyingVFX node, float time, float delta)
@@ -45,6 +47,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
 
             newDir = newDir.Lerp(toTarget, factor).Normalized();
             Speed += Acceleration * delta;
+            if(Speed > MaxSpeed)Speed=MaxSpeed;
             Velocity = newDir * Speed;
 
             Position += Velocity * delta;

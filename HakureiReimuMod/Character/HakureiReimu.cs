@@ -43,7 +43,6 @@ public class HakureiReimu : PlaceholderCharacterModel {
         ModelDb.Card<Seal>(),
         ModelDb.Card<BoundaryCreation>(),
     ];
-
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<BurningBlood>()

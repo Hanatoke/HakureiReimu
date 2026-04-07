@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt20ffaed55xp"]
+
+[ext_resource type="Script" uid="uid://cmpu37yqjh2ru" path="res://HakureiReimuMod/Node/VFX/Trail.cs" id="1_0ogur"]
+[ext_resource type="Texture2D" uid="uid://gg45fl30t7fn" path="res://HakureiReimu/images/effects/trail_faded.png" id="1_rbyev"]
+[ext_resource type="Texture2D" uid="uid://b6jqdu2rjxlss" path="res://HakureiReimu/images/effects/trail.png" id="3_gn6s5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b6b6h"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_kxrvl"]
+_data = [Vector2(0, 0), 1.04147, 0.616773, 0, 0, Vector2(0.799007, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ggb22"]
+offsets = PackedFloat32Array(0, 0.99726)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.7411765)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_22ony"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_ggb22"]
+_data = [Vector2(0, 0), 0.0, 2.70461, 0, 0, Vector2(0.401985, 0.739504), 1.04147, 1.04147, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Trails" type="Node2D"]
+
+[node name="TrailOuter" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_b6b6h")
+width = 30.0
+width_curve = SubResource("Curve_kxrvl")
+gradient = SubResource("Gradient_ggb22")
+texture = ExtResource("1_rbyev")
+texture_mode = 2
+begin_cap_mode = 2
+antialiased = true
+script = ExtResource("1_0ogur")
+_maxSegments = null
+
+[node name="TrailInner" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_22ony")
+width = 15.0
+width_curve = SubResource("Curve_ggb22")
+gradient = SubResource("Gradient_ggb22")
+texture = ExtResource("3_gn6s5")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+antialiased = true
+script = ExtResource("1_0ogur")
+_maxSegments = null

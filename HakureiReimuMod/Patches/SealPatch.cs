@@ -32,7 +32,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 {
                     foreach (PowerModel p in new List<PowerModel>(dealer.Powers))
                     {
-                        if (p is Seal seal)
+                        if (p is SealPower seal)
                         {
                             seal.ModifyDamage(ref amount, ref props,dealer,cardSource);
                         }
