@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 // 彩虹色旋转边框着色器
-uniform float speed : hint_range(0.1, 5.0) = 0.5;
+uniform float speed : hint_range(-5, 5.0) = 0.5;
 
 vec3 hsv2rgb(vec3 c) {
     vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);

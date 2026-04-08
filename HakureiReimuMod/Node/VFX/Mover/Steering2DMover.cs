@@ -25,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
         }
         public bool IsHit(FlyingVFX node, float time, float delta)
         {
-            return node.GlobalPosition.DistanceTo(Target) < 10f;
+            return node.GlobalPosition.DistanceTo(Target) < 20f;
         }
         public Vector2 CurrentPosition(FlyingVFX node, float time, float delta)
         {
@@ -43,7 +43,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
 
             // 👉 吸附（越近越准）
             float dist = Position.DistanceTo(Target);
-            float factor = Mathf.SmoothStep(0f, 1f, 1f - dist / 200f);
+            float factor = Mathf.SmoothStep(0f, 1f, 1f - dist / 400f);
 
             newDir = newDir.Lerp(toTarget, factor).Normalized();
             Speed += Acceleration * delta;

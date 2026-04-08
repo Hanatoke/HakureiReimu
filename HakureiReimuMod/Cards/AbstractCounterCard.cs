@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace HakureiReimu.HakureiReimuMod.Cards
 {
     public abstract class AbstractCounterCard(int cost, CardType type, CardRarity rarity, TargetType target) 
-        :AbstractPersistCard(cost, type, rarity, target),ICounter   
+        :AbstractPersistCard(cost, type, rarity, target),ICounter
     {
         public virtual bool IsImmediate=>false;
         public virtual CounterType ActivateType => CounterType.None;
@@ -59,7 +59,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         //------------------------------------------------------------------------------------------------------
         public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
-            if (InPersisting&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&creature is {IsMonster:true})
             {
                 await InvokeCounter(creature,CounterType.Buff);
             }
@@ -67,7 +67,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
         {
-            if (InPersisting&&delta>0&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&delta>0&&creature is {IsMonster:true})
             {
                 await InvokeCounter(creature,CounterType.Buff);
             }
@@ -82,7 +82,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
         {
-            if (InPersisting&&!addedByPlayer&&card.Type is CardType.Curse or CardType.Status)
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Debuff)&&!addedByPlayer&&card.Type is CardType.Curse or CardType.Status)
             {
                 await InvokeCounter(null,CounterType.Debuff);
             }
@@ -109,7 +109,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             Debuff=1<<3,
             All=Attack|Buff|Debuff,
         }
-
         public abstract Task Invoke(Creature? target, bool cost = true, bool instant = false);
     }
 }

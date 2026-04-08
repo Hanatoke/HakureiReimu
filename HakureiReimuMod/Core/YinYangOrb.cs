@@ -67,7 +67,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 vfx.AddChildSafely(CreateCustomSprite());
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             }
-            await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);
+            IEnumerable<DamageResult> results=await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);
+            await YinYangOrbHook.AfterOrbHit(playerChoiceContext,this,results);
         }
     }
 }

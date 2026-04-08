@@ -7,11 +7,14 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class GensoBaundariKurakku : AbstractCard {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [Counter];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+            HoverTipFactory.FromKeyword(Counter)
+        ];
 
         public GensoBaundariKurakku(
             ) : base(0, CardType.Skill, CardRarity.Common, TargetType.None) {

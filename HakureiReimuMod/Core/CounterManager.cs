@@ -91,24 +91,24 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
         }
 
-        public static async Task BeforeCounter(CombatState state,ICounter counter)
+        public static async Task BeforeCounter(CombatState state,ICounter counter,Creature target)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {
                 if (l is ICounterListener c)
                 {
-                    await c.BeforeCounter(counter);
+                    await c.BeforeCounter(state,counter,target);
                 }
             }
         }
 
-        public static async Task AfterCounter(CombatState state,ICounter counter)
+        public static async Task AfterCounter(CombatState state,ICounter counter,Creature target)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {
                 if (l is ICounterListener c)
                 {
-                    await c.AfterCounter(counter);
+                    await c.AfterCounter(state,counter,target);
                 }
             }
         }

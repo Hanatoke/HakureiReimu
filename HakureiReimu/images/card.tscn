@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dps4dmeuml7kp"]
 
 [ext_resource type="Texture2D" uid="uid://cksh1iu00tbpt" path="res://HakureiReimu/images/cards/BasicStrike_p.png" id="1_xxrw5"]
-[ext_resource type="Texture2D" uid="uid://bq4gjhfl73akv" path="res://HakureiReimu/images/1024/bg_attack_pink.png" id="2_ockfk"]
+[ext_resource type="Texture2D" uid="uid://ccohdx1iqlolv" path="res://HakureiReimu/images/card_item/bg_attack_pink.png" id="2_ockfk"]
 [ext_resource type="Shader" uid="uid://ln1p2m55touy" path="res://HakureiReimu/shader/Energy.gdshader" id="3_1nwqd"]
 [ext_resource type="Texture2D" uid="uid://jj4wbcb8ldoj" path="res://HakureiReimu/images/card_item/energy.png" id="4_ockfk"]
 

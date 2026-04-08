@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
-using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,8 +17,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new CalculationExtraVar(1),
                 new CalculatedVar("CalculatedTimes").WithMultiplier((c,_)=>c.Owner.GetAllCounterCards().Count)
             ];
-
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [Counter];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+            HoverTipFactory.FromKeyword(Counter)
+        ];
 
         public HappoOnibakuJin(
             ) : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {

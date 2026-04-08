@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
-using BaseLib.Utils;
 using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Cards.Attack.Common;
 using HakureiReimu.HakureiReimuMod.Cards.Skill.Common;
@@ -56,13 +55,25 @@ public class HakureiReimu : PlaceholderCharacterModel {
         override all the other methods that define those assets. 
         These are just some of the simplest assets, given some placeholders to differentiate your character with. 
         You don't have to, but you're suggested to rename these images. */
-    public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
+    public override Color MapDrawingColor => new Color("e13ba1");
+    public override Color RemoteTargetingLineColor => new Color("E15847FF");
+    public override Color RemoteTargetingLineOutline => new Color("801212FF");
+    public override string CustomIconTexturePath => "character_icon.png".CharacterUiPath();
+    public override string CustomIconPath =>"Reimu_icon.tscn".ScenePath();
+    public override string CustomMapMarkerPath => "character_icon.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
-    public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
-    //角色模型实例路径
-    public override string CustomVisualPath => Path.Join("HakureiReimu","HakureiReimu.tscn").CharacterPath();
+    public override string CustomMerchantAnimPath => "reimu_merchant.tscn".ScenePath();
+    public override string CustomRestSiteAnimPath => "reimu_rest_site.tscn".ScenePath();
+    public override string CustomCharacterSelectBg => "reimu_bg.tscn".ScenePath();
 
+    // public override Color EnergyLabelOutlineColor => new Color("ffffffff");
+    public override string CustomEnergyCounterPath => "reimu_energy_counter.tscn".ScenePath();
+
+    //角色模型实例路径
+
+    public override string CustomVisualPath => Path.Join("HakureiReimu","HakureiReimu.tscn").CharacterPath();
+//-------------------------------------------------------------------------------------------------------------------------
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Character is HakureiReimu c)

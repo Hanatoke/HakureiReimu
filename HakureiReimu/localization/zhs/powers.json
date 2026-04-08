@@ -6,6 +6,61 @@
   "HAKUREIREIMU-INHIBIT_POWER.title": "遏制",
   "HAKUREIREIMU-INHIBIT_POWER.description": "[red]阻止[/red]获得[gold]正面[/gold]效果。",
   "HAKUREIREIMU-INHIBIT_POWER.smartDescription": "[red]阻止[/red]下[blue]{Amount}[/blue]次[gold]正面[/gold]效果。",
+    
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.title": "九字护身法",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "敌人的[gold]封印[/gold]不会因为攻击你而减少。",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，敌人的[gold]封印[/gold]不会因为攻击你而减少。",
+      
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.title": "额外抽牌",
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.description": "下次抽牌时[gold]额外[/gold]抽牌。",
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.smartDescription": "下次抽牌时[gold]额外[/gold]抽[blue]{Amount}[/blue]张牌。",     
+  
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.title": "扩散结界",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，[gold]{OwnerName}[/gold]的[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
+  
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "保留格挡",
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "在回合开始时保留[gold]格挡[/gold]。",
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "在回合开始时保留[gold]{OwnerName}[/gold]点[gold]格挡[/gold]。",
+      
+  "HAKUREIREIMU-FLIGHT_POWER.title": "飞行",
+  "HAKUREIREIMU-FLIGHT_POWER.description": "受到的攻击伤害减半。",
+  "HAKUREIREIMU-FLIGHT_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，受到的攻击伤害减少[blue]{DamageDecrease:percentLess()}%[/blue]。",
+        
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.title": "青山所在",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.description": "[gold]反制[/gold]卡置入场上时抽牌。",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.smartDescription": "在[gold]{OwnerName}[/gold]将[gold]反制[/gold]卡置入场上时，抽[blue]{Amount}[/blue]张牌。",
+          
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.title": "结界固化",
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.description": "[gold]反制[/gold]卡发动的次数增加。",
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.smartDescription": "[gold]{OwnerName}[/gold]的[gold]反制[/gold]卡发动次数增加[blue]{Amount}[/blue]次。",
+            
+  "HAKUREIREIMU-PARRY_POWER.title": "招架",
+  "HAKUREIREIMU-PARRY_POWER.description": "发动[gold]反制[/gold]时获得[gold]格挡[/gold]。",
+  "HAKUREIREIMU-PARRY_POWER.smartDescription": "每当[gold]{OwnerName}[/gold]发动[gold]反制[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
+              
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.title": "阴阳玉将",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.description": "增加[gold]阴阳玉[/gold]造成的伤害。",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.smartDescription": "[gold]阴阳玉[/gold]造成的伤害增加[blue]{Amount}[/blue]点。",
+  
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.title": "阴阳飞鸟井",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.description": "[gold]阴阳玉[/gold]造成未被格挡的伤害时，给予随机[red]负面[/red]效果。",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.smartDescription": "[gold]阴阳玉[/gold]造成未被格挡的伤害时，给予随机[red]负面[/red]效果[blue]{Amount}[/blue]次。",
+  
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.title": "封魔阵",
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.description": "每回合开始时，给予所有敌人[gold]封印[/gold]。",
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.smartDescription": "每回合开始时，给予所有敌人[blue]{Amount}[/blue]层[gold]封印[/gold]。",
+  
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.title": "保护费",
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.description": "每当你[gold]斩杀[/gold]敌人时获得[gold]金币[/gold]。",
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.smartDescription": "每当你[gold]斩杀[/gold]敌人时获得[blue]{Amount}[/blue][gold]金币[/gold]",
+  
+  
+  
+  
+  
+  
+  
   
   "PLACEHOLDER.title": "占位符",
   "PLACEHOLDER.description": "[gold]小刀[/gold]造成额外伤害。",

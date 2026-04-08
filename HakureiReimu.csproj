@@ -10,13 +10,10 @@
     <Reference Include="0Harmony">
       <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="OldDefectMod">
-      <HintPath>..\Lib\OldDefectMod\OldDefectMod.dll</HintPath>
-    </Reference>
     <Reference Include="sts2">
       <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\sts2.dll</HintPath>
     </Reference>
-	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.0" />
+	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.8" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HakureiReimuMod\Cards\Power\Common\" />

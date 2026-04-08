@@ -1,6 +1,5 @@
 using System;
 using BaseLib.Abstracts;
-using BaseLib.Config;
 using BaseLib.Extensions;
 using BaseLib.Patches.Content;
 using BaseLib.Utils;
@@ -19,8 +18,9 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 namespace HakureiReimu.HakureiReimuMod.Cards;
 
 [Pool(typeof(HakureiReimuCardPool))]
-public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, TargetType target) :CustomCardModel(cost, type, rarity, target),
-    INCardModify
+public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, TargetType target)
+    : CustomCardModel(cost, type, rarity, target),
+        INCardModify
 {
     public const float EnergyScale = 1.5f;
     public const float Size = 512;
@@ -37,9 +37,10 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     //Smaller variant of fullart: 250x350
     //Smaller variant of normalart: 250x190
     //Uses card_portraits/card_name.png as image path. These should be smaller images.
-    public override string PortraitPath => $"{OriginId.CardImagePath()}.png";
+    public override string PortraitPath => $"{OriginId.CardImagePath()}_p.png";
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     protected LocString _Sign;
+
     public virtual LocString Sign => _Sign ??= LocString.GetIfExists("cards", this.Id.Entry + ".sign");
     
     [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
@@ -83,7 +84,6 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         material.Shader = shader;
         border.Material = material;
         control.AddChild(border);
-        
         TextureRect cover=new TextureRect();
         cover.Size=new Vector2(Size,Size);
         cover.ExpandMode = TextureRect.ExpandModeEnum.FitHeight;
@@ -98,6 +98,7 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     protected virtual void ModifyEnergy(NCard card, Traverse traverse)
     {
         TextureRect energyIcon = traverse.Field<TextureRect>("_energyIcon").Value;
+        energyIcon.Texture=PreloadManager.Cache.GetTexture2D("energy.png".CardItemPath());
         Shader shader = GD.Load<Shader>("Energy.gdshader".ShaderPath());
         ShaderMaterial material = new();
         material.Shader = shader;
@@ -115,7 +116,7 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
             title.AddChildSafely(sign);
             sign.AddThemeFontOverride(ThemeConstants.Label.font,title.GetThemeFont(ThemeConstants.Label.font));
             sign.SetText(Sign.GetFormattedText());
-            sign.Position = new Vector2(0, -25);
+            sign.Position = new Vector2(0, -25); 
         }
     }
 }

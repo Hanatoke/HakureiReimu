@@ -1,17 +1,9 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using BaseLib.Extensions;
-using BaseLib.Utils.Patching;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -34,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                     {
                         if (p is SealPower seal)
                         {
-                            seal.ModifyDamage(ref amount, ref props,dealer,cardSource);
+                            seal.ModifyDamage(ref amount, ref props,dealer,cardSource,targets);
                         }
                     }
                 }

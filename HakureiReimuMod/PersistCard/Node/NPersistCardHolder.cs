@@ -3,11 +3,9 @@ using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
@@ -38,10 +36,11 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
         private Vector2 _targetScale;
         public Vector2 HoverOffset =new(0,-50);
         public Vector2 HoverFontScale = Vector2.One * 2;
+        public Vector2 NormalFontScale = Vector2.One * 1.2f;
         public float TargetAlpha { get; set; } = 1;
         public override Vector2 SmallScale => Vector2.One;
         public NCard HoverTip;
-        public float TipScale => 1/Scale.X*0.8f;
+        public float TipScale => 1/Scale.X*1f;
         public bool UseFloatHover = true;
         public bool IsEnabled { get; protected set; } = true;
 
@@ -166,7 +165,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             Count.Modulate = c;
             FlashCountTween?.Kill();
             FlashCountTween = CreateTween();
-            FlashCountTween.TweenProperty(Count, "scale", Vector2.One, 0.25).SetEase(Tween.EaseType.Out);
+            FlashCountTween.TweenProperty(Count, "scale", NormalFontScale, 0.25).SetEase(Tween.EaseType.Out);
             FlashCountTween.Parallel().TweenProperty(Count, "modulate", new Color(1, 1, 1), 0.25).SetEase(Tween.EaseType.Out);
         }
         
@@ -210,7 +209,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
         {
             Modulate=new Color(1, 1, 1,TargetAlpha);
             SetCardTargetPosition(Vector2.Zero);
-            Count.Scale = Vector2.One;
+            Count.Scale = NormalFontScale;
             Count.GlobalPosition = NormalPos.GlobalPosition;
         }
         public void StopAnimations()

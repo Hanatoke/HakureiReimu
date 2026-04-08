@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://co2te2aykvh7u"]
+
+[ext_resource type="Script" uid="uid://chk1oohxifxe" path="res://HakureiReimuMod/Node/NHakureiReimuMerchant.cs" id="1_ucfl2"]
+[ext_resource type="Texture2D" uid="uid://cty1qgp0geali" path="res://HakureiReimu/images/char/HakureiReimu/Win/10.png" id="2_7kc3g"]
+[ext_resource type="Texture2D" uid="uid://blj2vun7bjwtr" path="res://HakureiReimu/images/effects/ball.png" id="2_oh8j5"]
+[ext_resource type="Texture2D" uid="uid://cyykv228s41to" path="res://HakureiReimu/images/char/HakureiReimu/Win/11.png" id="3_oh8j5"]
+[ext_resource type="Texture2D" uid="uid://b0483ooy3uty1" path="res://HakureiReimu/images/char/HakureiReimu/Win/12.png" id="4_5i1at"]
+
+[sub_resource type="Animation" id="Animation_gp6ix"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visual:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_oh8j5"), ExtResource("4_5i1at")]
+}
+
+[sub_resource type="Animation" id="Animation_v4x4u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visual:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_7kc3g")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imjbv"]
+_data = {
+&"Idle": SubResource("Animation_gp6ix"),
+&"RESET": SubResource("Animation_v4x4u")
+}
+
+[node name="ReimuMerchant" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_ucfl2")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.4509804)
+position = Vector2(5, -20)
+scale = Vector2(1.2, 0.3)
+texture = ExtResource("2_oh8j5")
+
+[node name="visual" type="Sprite2D" parent="."]
+position = Vector2(0, -130)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("2_7kc3g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_imjbv")
+}
+autoplay = "Idle"

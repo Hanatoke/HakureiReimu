@@ -5,15 +5,14 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
+using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
@@ -23,7 +22,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
@@ -72,7 +70,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     startPos = targetPos;
                     await vfx.HitTask;
                 }
-                var results=await CreatureCmd.Damage(choiceContext,target,DynamicVars.Damage,Owner.Creature, this);
+                IEnumerable<Creature> targets = Owner.Creature.HasPower<DiffusiveBoundaryPower>()?CombatState.HittableEnemies:[target];
+                var results=await CreatureCmd.Damage(choiceContext,targets,DynamicVars.Damage,Owner.Creature, this);
                 dummy.AddResultsInternal(results);
             }
             await Hook.AfterAttack(CombatState,dummy);

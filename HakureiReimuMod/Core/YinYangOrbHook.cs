@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Interface;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -30,6 +32,18 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 if (i is IYinYangOrbListener listener)
                 {
                     await listener.AfterEvokeOrb(choiceContext, orb, player, target, cardSource);
+                }
+            }
+        }
+
+        public static async Task AfterOrbHit(PlayerChoiceContext choiceContext,YinYangOrb orb,IEnumerable<DamageResult> damageResult)
+        {
+            IEnumerable<DamageResult> results = damageResult.ToList();
+            foreach (AbstractModel i in orb.CombatState.IterateHookListeners())
+            {
+                if (i is IYinYangOrbListener listener)
+                {
+                    await listener.AfterOrbHit(choiceContext, orb, results);
                 }
             }
         }

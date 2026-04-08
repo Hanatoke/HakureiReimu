@@ -9,7 +9,7 @@ namespace HakureiReimu.HakureiReimuMod.Character;
 public class HakureiReimuCardPool : CustomCardPoolModel {
     public override string Title => HakureiReimu.CharacterId; //This is not a display name.
 
-    public override string BigEnergyIconPath => "energy.png".CardItemPath();
+    public override string BigEnergyIconPath => "big_energy.png".CharacterUiPath();
     public override string TextEnergyIconPath => "text_energy.png".CharacterUiPath();
 
     public override float H => 1f; //Hue; changes the color.
@@ -35,7 +35,7 @@ public class HakureiReimuCardPool : CustomCardPoolModel {
     }
 
     //Color of small card icons
-    public override Color DeckEntryCardColor => new("ffffff");
+    public override Color DeckEntryCardColor => new("99100b");
 
     public override bool IsColorless => false;
 }

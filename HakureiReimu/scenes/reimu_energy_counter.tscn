@@ -1,0 +1,394 @@
+[gd_scene load_steps=30 format=3 uid="uid://dqerilmnjpl8k"]
+
+[ext_resource type="Script" uid="uid://5krcjqg8aa1" path="res://HakureiReimuMod/Node/NHakureiReimuEnergyCounter.cs" id="1_x8f0v"]
+[ext_resource type="Texture2D" uid="uid://cqycro5128ayw" path="res://HakureiReimu/images/charui/energy_orb_shine.png" id="2_af8nx"]
+[ext_resource type="Texture2D" uid="uid://dj86klud635kp" path="res://HakureiReimu/images/charui/energy_orb_burst.png" id="3_nf1qb"]
+[ext_resource type="Shader" uid="uid://ln1p2m55touy" path="res://HakureiReimu/shader/Energy.gdshader" id="3_p352e"]
+[ext_resource type="Script" uid="uid://uocx7eq0hbe5" path="res://HakureiReimuMod/Node/Dummy/MegaLabelDummy.cs" id="4_ddb00"]
+[ext_resource type="Texture2D" uid="uid://cxohwscknekvn" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer1.png" id="4_tltqa"]
+[ext_resource type="Texture2D" uid="uid://ckjeauv2peejr" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer2.png" id="5_vlgw0"]
+[ext_resource type="Texture2D" uid="uid://cs6i0dyngobid" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer3.png" id="6_qdnrn"]
+[ext_resource type="Shader" uid="uid://cgwwctu0vvxma" path="res://HakureiReimu/shader/Border.gdshader" id="7_ynuni"]
+[ext_resource type="Texture2D" uid="uid://o5e4hdmhvhvi" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer4.png" id="8_qeoia"]
+[ext_resource type="Texture2D" uid="uid://csfs6x7h1xo6w" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer5.png" id="9_rygi1"]
+[ext_resource type="Texture2D" uid="uid://cydf2882p8lwi" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer6.png" id="10_8nco5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cltj0"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_ns61i"]
+_data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_tkdgk"]
+offsets = PackedFloat32Array(0, 0.330526, 0.652632, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_p352e"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cb064"]
+shader = ExtResource("3_p352e")
+shader_parameter/speed = 1.25
+shader_parameter/frequency = 3.5
+shader_parameter/brightness = 2.0
+shader_parameter/modify = 0.8
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vq08"]
+shader = ExtResource("3_p352e")
+shader_parameter/speed = 1.25
+shader_parameter/frequency = 3.5
+shader_parameter/brightness = 2.0
+shader_parameter/modify = 0.8
+shader_parameter/offset = 2.000000095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x04ws"]
+shader = ExtResource("3_p352e")
+shader_parameter/speed = 1.25
+shader_parameter/frequency = 3.5
+shader_parameter/brightness = 2.0
+shader_parameter/modify = 0.8
+shader_parameter/offset = 2.000000095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hudd1"]
+shader = ExtResource("7_ynuni")
+shader_parameter/speed = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vu1dk"]
+shader = ExtResource("7_ynuni")
+shader_parameter/speed = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ob04"]
+shader = ExtResource("7_ynuni")
+shader_parameter/speed = 0.5
+
+[sub_resource type="Animation" id="Animation_ly8fn"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/Layer3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/Layer2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.566370614359172]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main/Layer4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -18.84955592153876]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/Layer5:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 25.132741228718345]
+}
+
+[sub_resource type="Animation" id="Animation_p352e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main/Layer3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main/Layer2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main/Layer4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/Layer5:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7rdkp"]
+_data = {
+&"Idle": SubResource("Animation_ly8fn"),
+&"RESET": SubResource("Animation_p352e")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_56wlg"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_e0ctn"]
+_data = [Vector2(0.00596422, 0.0309963), 0.0, 2.09119, 0, 0, Vector2(1, 0.995203), 0.241291, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tltqa"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FontVariation" id="FontVariation_x0k5t"]
+spacing_glyph = 2
+
+[node name="ReimuEnergyCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+script = ExtResource("1_x8f0v")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="BurstBack" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_cltj0")
+position = Vector2(65, 63)
+emitting = false
+amount = 1
+texture = ExtResource("2_af8nx")
+one_shot = true
+local_coords = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
+scale_amount_curve = SubResource("Curve_ns61i")
+color = Color(1, 0, 0, 0.6)
+color_ramp = SubResource("Gradient_tkdgk")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_p352e")
+
+[node name="Layers" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer1" type="TextureRect" parent="Main"]
+material = SubResource("ShaderMaterial_cb064")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_tltqa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer2" type="TextureRect" parent="Main"]
+modulate = Color(1, 1, 1, 0.2509804)
+material = SubResource("ShaderMaterial_6vq08")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("5_vlgw0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer3" type="TextureRect" parent="Main"]
+modulate = Color(1, 1, 1, 0.2509804)
+material = SubResource("ShaderMaterial_x04ws")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("6_qdnrn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer4" type="TextureRect" parent="Main"]
+modulate = Color(1, 1, 1, 0.2509804)
+material = SubResource("ShaderMaterial_hudd1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("8_qeoia")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer5" type="TextureRect" parent="Main"]
+modulate = Color(1, 1, 1, 0.2509804)
+material = SubResource("ShaderMaterial_vu1dk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("9_rygi1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer6" type="TextureRect" parent="Main"]
+material = SubResource("ShaderMaterial_4ob04")
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+texture = ExtResource("10_8nco5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_7rdkp")
+}
+autoplay = "Idle"
+
+[node name="BurstFront" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_56wlg")
+position = Vector2(65, 63)
+emitting = false
+amount = 1
+texture = ExtResource("3_nf1qb")
+lifetime = 0.5
+one_shot = true
+local_coords = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
+scale_amount_curve = SubResource("Curve_e0ctn")
+color = Color(1, 0, 0, 0.6)
+color_ramp = SubResource("Gradient_tkdgk")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_tltqa")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -29.0
+offset_right = -16.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.4311576, 3.6338718e-06, 0.2882948, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_x0k5t")
+theme_override_font_sizes/font_size = 36
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_ddb00")
+AutoSizeEnabled = null
+MinFontSize = null
+MaxFontSize = null

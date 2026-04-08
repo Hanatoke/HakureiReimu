@@ -31,7 +31,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 new PowerVar<Powers.SealPower>(6),
                 new RepeatVar(3)
             ];
-        
+
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
+
         public DreamSealingDivine(
             ) : base(0, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy) {
         }
