@@ -45,7 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         public override CounterType ActivateType => CounterType.Attack;
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
-            if (target==null) return;
+            if (target is not { IsHittable: true }) return;
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_slash")

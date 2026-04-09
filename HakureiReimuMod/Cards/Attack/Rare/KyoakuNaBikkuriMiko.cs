@@ -47,7 +47,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
 
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
-            if (target==null) return;
+            if (target is not { IsHittable: true }) return;
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedTimes"]).Calculate(target))

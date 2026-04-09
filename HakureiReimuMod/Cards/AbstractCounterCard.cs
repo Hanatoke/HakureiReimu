@@ -17,6 +17,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards
     public abstract class AbstractCounterCard(int cost, CardType type, CardRarity rarity, TargetType target) 
         :AbstractPersistCard(cost, type, rarity, target),ICounter
     {
+        public Creature CounterOwner => this.Owner.Creature;
+        public bool IsCounterEnable => InPersisting;
         public virtual bool IsImmediate=>false;
         public virtual CounterType ActivateType => CounterType.None;
 

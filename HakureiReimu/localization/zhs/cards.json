@@ -218,13 +218,17 @@
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.sign":"神灵",
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.title":"梦想封印 瞬",
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.description":"造成{Damage:diff()}点伤害。\n抽取所有[gold]攻击[/gold]牌。",
-
-
-
-
-
-
-
+  
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.sign":"神技",
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.title":"八方龙杀阵",
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.description":"造成{Damage:diff()}点伤害。\n发动所有[gold]反制[/gold]。",
+  
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  
+  
+  
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
