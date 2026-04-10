@@ -254,17 +254,45 @@
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  "HAKUREIREIMU-TrinityReligionFinale.title":"最后的三位一体",
-  "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复{Repeat:diff()}次。",
+  "HAKUREIREIMU-TRINITY_RELIGION_FINALE.title":"最后的三位一体",
+  "HAKUREIREIMU-TRINITY_RELIGION_FINALE.description":"获得{StrengthPower:diff()}点[gold]力量[/gold]。\n获得{StrengthPower:diff()}点[gold]敏捷[/gold]。\n获得{InhibitPower:diff()}层[gold]遏制[/gold]。",
 
+  "HAKUREIREIMU-DIVINE_MIGHT.title":"神威",
+  "HAKUREIREIMU-DIVINE_MIGHT.description":"[gold]移除[/gold]所有[red]负面[/red]效果。\n获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
+ 
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.sign":"宝具",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.title":"阴阳鬼神玉",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.description":"在你打出一张牌后，生成{YinYangKijinGyokuPower:diff()}个[gold]阴阳玉[/gold]。",
 
+  "HAKUREIREIMU-UNFETTERED_FORM.title":"悠哉形态",
+  "HAKUREIREIMU-UNFETTERED_FORM.description":"每回合开始时抽{UnfetteredFormPower:diff()}张牌。\n抽牌达到手牌[gold]上限[/gold]时，使随机手牌本回合费用变为0。",
+
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.title":"完全凭依与梦想封印",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"敌人每有{Div:diff()}层[gold]封印[/gold]，你造成的伤害便增加{KanzenHyoiToYumoFuinPower:diff()}点。",
+
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.sign":"御札",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.title":"梦幻的高速祈愿",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.description":"在你将[gold]反制[/gold]牌置入场上后，使其对随机敌人发动。",
+
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.sign":"梦境",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.title":"二重大结界",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.description":"在你打出一张[gold]反制[/gold]牌时，额外将一张[gold]临时[/gold]复制置入场上。",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.title":"梦想封印",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复{Repeat:diff()}次。",
 
+  "HAKUREIREIMU-HAKUREI_PHANTOM.sign":"灵符",
+  "HAKUREIREIMU-HAKUREI_PHANTOM.title":"博丽幻影",
+  "HAKUREIREIMU-HAKUREI_PHANTOM.description":"这张卡牌还没有设计好。",
+
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  "HAKUREIREIMU-MIRACLE.title":"奇迹",
+  "HAKUREIREIMU-MIRACLE.description":"获得{Energy:energyIcons()}。",
+  
   "HAKUREIREIMU-DANMAKU_BOUNDARY.sign":"结界",
   "HAKUREIREIMU-DANMAKU_BOUNDARY.title":"弹幕结界",
   "HAKUREIREIMU-DANMAKU_BOUNDARY.description":"[gold]反制攻击[/gold]{Counter:diff()}。\n[gold]立即[/gold]造成{Damage:diff()}点伤害。",

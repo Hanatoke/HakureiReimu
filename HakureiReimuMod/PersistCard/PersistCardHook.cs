@@ -17,6 +17,13 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
                     await s.OnStartPersistCard(slot);
                 }
             }
+            foreach (AbstractModel m in state.IterateHookListeners())
+            {
+                if (m is IPersistCardSubscriber s)
+                {
+                    await s.OnStartPersistCardLater(slot);
+                }
+            }
         }
 
         public static async Task OnStopPersistCard(CombatState combatState, AbstractPersistCardSlot slot)
@@ -27,6 +34,13 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
                 if (m is IPersistCardSubscriber s)
                 {
                     await s.OnStopPersistCard(slot);
+                }
+            }
+            foreach (AbstractModel m in combatState.IterateHookListeners())
+            {
+                if (m is IPersistCardSubscriber s)
+                {
+                    await s.OnStartPersistCardLater(slot);
                 }
             }
         }

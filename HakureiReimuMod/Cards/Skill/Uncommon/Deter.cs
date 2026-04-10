@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class Deter : AbstractCard
@@ -57,7 +58,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 }
                 if (Talk.Count>0)
                 {
-                    TalkCmd.Play(Talk[GD.RandRange(0,Talk.Count-1)],enemy);
+                    TalkCmd.Play(Talk[GD.RandRange(0,Talk.Count-1)],enemy,vfxColor:VfxColor.White);
                 }
             }
         }

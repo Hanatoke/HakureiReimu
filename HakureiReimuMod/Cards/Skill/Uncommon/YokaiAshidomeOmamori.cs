@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class YokaiAshidomeOmamori : AbstractCard
@@ -31,7 +32,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             }
             else
             {
-                TalkCmd.Play(Talk, Owner.Creature);
+                TalkCmd.Play(Talk, Owner.Creature,vfxColor:VfxColor.White);
             }
         }
         protected override void OnUpgrade() {

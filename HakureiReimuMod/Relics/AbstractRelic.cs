@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Character;
 using HakureiReimu.HakureiReimuMod.Extensions;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace HakureiReimu.HakureiReimuMod.Relics;
 
@@ -11,21 +12,21 @@ namespace HakureiReimu.HakureiReimuMod.Relics;
 public abstract class AbstractRelic : CustomRelicModel {
     public override string PackedIconPath {
         get {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}.png".RelicImagePath();
             return ResourceLoader.Exists(path) ? path : "relic.png".RelicImagePath();
         }
     }
 
     protected override string PackedIconOutlinePath {
         get {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
+            var path = "Default.png".RelicImagePath();
             return ResourceLoader.Exists(path) ? path : "relic_outline.png".RelicImagePath();
         }
     }
 
     protected override string BigIconPath {
         get {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+            var path = $"{StringHelper.Unslugify(Id.Entry.RemovePrefix())}.png".BigRelicImagePath();
             return ResourceLoader.Exists(path) ? path : "relic.png".BigRelicImagePath();
         }
     }

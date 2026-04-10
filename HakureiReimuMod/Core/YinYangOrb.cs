@@ -59,6 +59,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 Vector2 targetPos = targetNode.VfxSpawnPosition;
                 Vector2 v = Vector2.One.Rotated(GD.Randf() * Mathf.Tau) * 100;
                 FlyingVFX vfx=FlyingVFX.Create(new SteeringMover(startPos,targetPos,v));
+                vfx.Duration = 2;
                 vfx.OnHit = () =>
                 {
                     NDebugAudioManager.Instance?.Play("blunt_attack.mp3");

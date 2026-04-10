@@ -59,6 +59,26 @@
   "HAKUREIREIMU-RETAIN_ENERGY_POWER.description": "将你的[gold]能量[/gold]保留至下回合。",
   "HAKUREIREIMU-RETAIN_ENERGY_POWER.smartDescription": "在[blue]{Amount}[/blue]个回合内，保留[gold]{OwnerName}[/gold]的{energyPrefix:energyIcons(1)}至下回合。",
   
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.title": "无限阴阳玉",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.description": "在你打出牌后生成[gold]阴阳玉[/gold]。",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.smartDescription": "在[gold]{OwnerName}[/gold]打出一张牌后，生成[blue]{Amount}[/blue]个[gold]阴阳玉[/gold]。",
+  
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.title": "悠哉形态",
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.description": "每回合开始时额外抽牌。\n抽牌达到手牌[gold]上限[/gold]时，使随机手牌本回合费用变为0。",
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.smartDescription": "每回合开始时额外抽[blue]{Amount}[/blue]个[gold]阴阳玉[/gold]张牌。\n抽牌达到手牌[gold]上限[/gold]时，使随机手牌本回合费用变为0。",
+    
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.title": "完全凭依与梦想封印",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "敌人每有{Div:diff()}层[gold]封印[/gold]，你造成的伤害便增加。",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "敌人每有[blue]{Div:diff()}[/blue]层[gold]封印[/gold]，[gold]{OwnerName}[/gold]造成的伤害便增加[blue]{Amount}[/blue]点。\n当前已增加了[blue]{Total:diff()}[/blue]点。",
+  
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.title": "梦幻的高速祈愿",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.description": "在你将[gold]反制[/gold]牌置入场上后，使其对随机敌人发动。",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.smartDescription": "在[gold]{OwnerName}[/gold]将[gold]反制[/gold]牌置入场上后，使其对随机敌人发动[blue]{Amount}[/blue]次。",
+  
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.title": "二重大结界",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.description": "在你打出一张[gold]反制[/gold]牌时，额外将一张[gold]临时[/gold]复制置入场上。",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.smartDescription": "在[gold]{OwnerName}[/gold]打出一张[gold]反制[/gold]牌时，额外将[blue]{Amount}[/blue]张[gold]临时[/gold]复制置入场上。",
+  
   
   
   

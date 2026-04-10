@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x1t7xbkokreq"
-path="res://.godot/imported/UnfetteredForm84.png-e222e692455648bb25fc847d11dd0496.ctex"
+uid="uid://ckxmjb8c6pqy3"
+path="res://.godot/imported/KanzenHyoiToYumoFuinPower.png-bd5b6c144934d81329a31429dcc6a5a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/powers/UnfetteredForm84.png"
-dest_files=["res://.godot/imported/UnfetteredForm84.png-e222e692455648bb25fc847d11dd0496.ctex"]
+source_file="res://HakureiReimu/images/powers/KanzenHyoiToYumoFuinPower.png"
+dest_files=["res://.godot/imported/KanzenHyoiToYumoFuinPower.png-bd5b6c144934d81329a31429dcc6a5a2.ctex"]
 
 [params]
 

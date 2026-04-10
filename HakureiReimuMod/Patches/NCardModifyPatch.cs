@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Interface;
@@ -75,6 +74,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 {
                     try
                     {
+                        AccessTools.Method(typeof(NCard), "UnsubscribeFromModel").Invoke(__instance, [____model]);
                         NCard nc=NodePool.Get<NCard>();
                         if (nc.Body==null)
                         {
@@ -88,7 +88,9 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         ____model = nc.Model;
                         nc.QueueFreeSafelyNoPool();
                         SetUniqueNameToOwner(control, __instance);
-                        Info.Invoke(__instance,null);
+                        
+                        __instance._Ready();
+                        // Info.Invoke(__instance,null);
                     }
                     catch (Exception e)
                     {
@@ -99,7 +101,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             }
         }
 
-        private static readonly MethodInfo Info = AccessTools.Method(typeof(NCard), nameof(NCard._Ready));
+        // private static readonly MethodInfo Info = AccessTools.Method(typeof(NCard), nameof(NCard._Ready));
 
         private static void SetUniqueNameToOwner(Godot.Node node, Godot.Node parent)
         {

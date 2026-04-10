@@ -7,6 +7,7 @@ using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
 using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -22,10 +23,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         public CardModel Model => this;
         public AbstractPersistCardSlot InstanceSlot =>Slot=new CounterCardSlot(this,Duration);
         public abstract int Duration { get; }
-        public bool InPersisting { get; protected set; }
+        public virtual PileType TargetPersistPileType => CounterCardTable.PileType;
+        // public bool InPersisting => TargetPersistPileType.GetPile(Owner).Cards.IndexOf(this) >= 0;
+        public bool InPersisting{ get; protected set; }
         public AbstractPersistCardSlot Slot=null;
         public static readonly Dictionary<ModelId, int> CounterActivates = new();
-
+        
         public int ActivateThisTurn
         {
             get { return CounterActivates.GetValueOrDefault(Id, 0); }
@@ -46,7 +49,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         {
             if (Pile?.Type!=CounterCardTable.PileType)
             {
-                return CounterCardTable.PileType;
+                return TargetPersistPileType;
             }
             return base.GetResultPileType();
         }
@@ -68,7 +71,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             }
             return Task.CompletedTask;
         }
-
+        
         public Task OnStopPersistCard(AbstractPersistCardSlot slot)
         {
             if (slot.Card == this)

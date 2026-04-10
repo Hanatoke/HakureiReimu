@@ -13,28 +13,33 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         public static class CharacterIterateHookPatch
         {
             [HarmonyPostfix]
-            public static void Postfix(CombatState __instance,ref IEnumerable<AbstractModel>  __result)
+            public static IEnumerable<AbstractModel> Postfix(IEnumerable<AbstractModel>  __result,CombatState __instance)
             {
                 //TODO:在新版本中移除
-                List<AbstractModel> list = new(__result);
                 foreach (Player p in __instance.Players)
                 {
                     if (p.Character is Character.HakureiReimu c)
                     {
-                        list.Insert(0, c);
+                        yield return c;
                     }
-
+                
                     if (p.PlayerCombatState != null)
                     {
                         YinYangOrbManager m=YinYangOrbPatch.Managers[p.PlayerCombatState];
                         if (m != null)
                         {
-                            list.Add(m);
-                            list.AddRange(m.Orbs);
+                            yield return m;
+                            foreach (YinYangOrb orb in m.Orbs)
+                            {
+                                yield return orb;
+                            }
                         }
                     }
                 }
-                __result = list;
+                foreach (AbstractModel abstractModel in __result)
+                {
+                    yield return abstractModel;
+                }
             }
         }
     }

@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HakureiReimuMod\Cards\Power\Common\" />
-    <Folder Include="HakureiReimuMod\Cards\Power\Rare\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="HakureiReimuMod\Extensions\EnumExtensions.cs" />

@@ -116,7 +116,7 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
             Label sign=PreloadManager.Cache.GetScene(SignPath).Instantiate<Label>();
             MegaLabel title=traverse.Field<MegaLabel>("_titleLabel").Value;
             title.AddChildSafely(sign);
-            sign.AddThemeFontOverride(ThemeConstants.Label.font,title.GetThemeFont(ThemeConstants.Label.font));
+            sign.AddThemeFontOverride("font",title.GetThemeFont("font"));
             sign.SetText(Sign.GetFormattedText());
             sign.Position = new Vector2(0, -25); 
         }

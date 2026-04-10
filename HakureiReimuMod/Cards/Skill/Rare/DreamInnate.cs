@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Hooks;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
@@ -14,7 +15,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
-    public class DreamInnate : AbstractCounterCard {
+    public class DreamInnate : AbstractCounterCard,IHealAmountModifier {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [All,Immediate,CardKeyword.Exhaust];
 
         public DreamInnate(
@@ -59,13 +60,21 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
             return 1;
         }
-        public override decimal ModifyHealAmount(Creature creature, decimal amount)
+        // public override decimal ModifyHealAmount(Creature creature, decimal amount)
+        // {
+        //     if (InPersisting&&creature is {IsMonster:true})
+        //     {
+        //         return creature.IsDead ? 1 : 0;
+        //     }
+        //     return amount;
+        // }
+        public decimal ModifyHealMultiplicative(Creature creature, decimal amount)
         {
-            if (InPersisting&&creature is {IsMonster:true})
+            if (InPersisting && creature is { IsMonster: true })
             {
-                return creature.IsDead ? 1 : 0;
+                return creature.IsDead ? 1/amount : 0;
             }
-            return amount;
+            return 1;
         }
 
         public override bool TryModifyPowerAmountReceived(PowerModel canonicalPower, Creature target, decimal amount, Creature applier,

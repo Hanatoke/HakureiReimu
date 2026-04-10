@@ -96,8 +96,8 @@ namespace HakureiReimu.HakureiReimuMod.Node
         public virtual void TweenLayout()
         {
             this.Tween?.Kill();
-            this.Tween = this.CreateTween().SetParallel();
             if (Orbs.Count<=0) return;
+            this.Tween = this.CreateTween().SetParallel();
             float dist = 160 + Orbs.Count * 10;
             if (!IsLocal)
             {

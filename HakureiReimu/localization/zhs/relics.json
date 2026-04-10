@@ -1,3 +1,11 @@
 {
+  "HAKUREIREIMU-HAKUREI_GOHEI.title": "博丽的御币",
+  "HAKUREIREIMU-HAKUREI_GOHEI.flavor": "灵梦常用的御币，用来打人很痛。",
+  "HAKUREIREIMU-HAKUREI_GOHEI.description": "在每个回合开始时，[gold]生成[/gold][blue]{Orbs}[/blue]个[gold]阴阳玉[/gold]。",
+  
+  "HAKUREIREIMU-MORIYA_GOHEI.title": "守矢的御币",
+  "HAKUREIREIMU-MORIYA_GOHEI.flavor": "早苗的御币，怎么到了灵梦的手上?",
+  "HAKUREIREIMU-MORIYA_GOHEI.description": "这个遗物还没有做好"
+//  "HAKUREIREIMU-MORIYA_GOHEI.description": "每回合开始时，在手牌中增加[blue]{Cards}[/blue]张[gold]奇迹[/gold]。"
   
 }

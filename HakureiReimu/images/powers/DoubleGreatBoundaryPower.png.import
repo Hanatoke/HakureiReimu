@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o8yqy26q0g26"
-path="res://.godot/imported/HakureiPhantom.png-f872a1333b6f1810f52a0a78e7cbf021.ctex"
+uid="uid://do8po4sww1srv"
+path="res://.godot/imported/DoubleGreatBoundaryPower.png-8e9c080dff72a1690458193a4253ae79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/cards/HakureiPhantom.png"
-dest_files=["res://.godot/imported/HakureiPhantom.png-f872a1333b6f1810f52a0a78e7cbf021.ctex"]
+source_file="res://HakureiReimu/images/powers/DoubleGreatBoundaryPower.png"
+dest_files=["res://.godot/imported/DoubleGreatBoundaryPower.png-8e9c080dff72a1690458193a4253ae79.ctex"]
 
 [params]
 

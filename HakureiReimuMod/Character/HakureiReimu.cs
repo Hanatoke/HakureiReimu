@@ -12,9 +12,11 @@ using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Cards.Attack.Common;
 using HakureiReimu.HakureiReimuMod.Cards.Skill.Common;
 using HakureiReimu.HakureiReimuMod.Node;
+using HakureiReimu.HakureiReimuMod.Relics;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -44,7 +46,7 @@ public class HakureiReimu : PlaceholderCharacterModel {
     ];
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<BurningBlood>()
+        ModelDb.Relic<HakureiGohei>()
     ];
 
     public override CardPoolModel CardPool => ModelDb.CardPool<HakureiReimuCardPool>();

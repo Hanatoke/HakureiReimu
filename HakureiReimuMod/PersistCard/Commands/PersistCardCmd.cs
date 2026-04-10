@@ -163,8 +163,10 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     Vector2 local = nt.GetGlobalTransformWithCanvas().AffineInverse() * global;
                     holder.SetTargetPosition(local);
                     holder.Flash();
+                    holder.ZIndex = 10;
                     slot.PlaySfx(true);
                     await Cmd.Wait(duration);
+                    holder.ZIndex = 0;
                     nt.RefreshLayout();
                 }
             }

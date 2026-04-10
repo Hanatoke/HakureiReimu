@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o33xt76xmrtg"
-path="res://.godot/imported/UnfetteredForm32.png-0af5fee355bbd849c51da50d8d28566c.ctex"
+uid="uid://cysopcjp1ou4a"
+path="res://.godot/imported/Default.png-c6f48e027a2b86c3cb542223187b6695.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/powers/UnfetteredForm32.png"
-dest_files=["res://.godot/imported/UnfetteredForm32.png-0af5fee355bbd849c51da50d8d28566c.ctex"]
+source_file="res://HakureiReimu/images/relics/Default.png"
+dest_files=["res://.godot/imported/Default.png-c6f48e027a2b86c3cb542223187b6695.ctex"]
 
 [params]
 
