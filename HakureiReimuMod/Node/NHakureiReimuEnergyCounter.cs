@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
 
         public void OnEnergyChangedNew(int oldEnergy, int newEnergy)
         {
-            newEnergy=Math.Clamp(newEnergy,0,100);
+            newEnergy=Math.Clamp(newEnergy,0,10);
             AnimationPlayer.SpeedScale = newEnergy>0?newEnergy*0.5f:0.25f;
         }
 

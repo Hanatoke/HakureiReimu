@@ -15,5 +15,8 @@
   "HAKUREIREIMU-ALL.description":"包括[gold]攻击[/gold]、[gold]强化[/gold]与[gold]减益[/gold]。",
   
   "HAKUREIREIMU-IMMEDIATE.title":"立即",
-  "HAKUREIREIMU-IMMEDIATE.description":"在怪物的行为执行[gold]前[/gold]发动。"
+  "HAKUREIREIMU-IMMEDIATE.description":"在怪物的行为执行[gold]前[/gold]发动。",
+  
+  "HAKUREIREIMU-FREECOUNTER.title":"免费",
+  "HAKUREIREIMU-FREECOUNTER.description":"发动此次[gold]反制[/gold]将不消耗次数。"
 }

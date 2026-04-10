@@ -64,7 +64,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             SuperFlashNode=this.GetNode<TextureRect>("%SuperFlash");
             this.SuperFlashNode.Modulate = new Color(this.SuperFlashNode.Modulate.R, this.SuperFlashNode.Modulate.G, this.SuperFlashNode.Modulate.B, 0.0f);
             Count = this.GetNode<Label>("%Count");
-            CardSet.Scale = 1.25f * Vector2.One;
+            // CardSet.Scale = 1.25f * Vector2.One;
             Modulate=new Color(1f, 1f, 1f, TargetAlpha);
             UpdateCard();
             Hitbox.SetEnabled(false);
@@ -151,7 +151,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             NCardFlash f = NCardFlash.Create(c);
             CardPos.AddChildSafely(f);
             CardPos.MoveChildSafely(f,0);
-            f.Scale = 0.8f * Vector2.One;
+            // f.Scale = 0.8f * Vector2.One;
 
             CardPos.Scale = Vector2.One * 1.5f;
             FlashTween?.Kill();

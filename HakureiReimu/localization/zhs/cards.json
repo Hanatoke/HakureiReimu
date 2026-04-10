@@ -225,10 +225,39 @@
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.sign":"星灵符",
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.title":"洒星封印",
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.description":"将目标的[green]正面[/green]效果层数减半，[red]负面[/red]效果层数翻倍。",
+
+  //TODO:等待自定义战斗奖励接口
+  "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.title":"陷入富贵心",
+  "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.description":"花费{Gold:diff()}[gold]金币[/gold]，战斗结束后获得一个[gold]盲盒[/gold]奖励。",
   
+  "HAKUREIREIMU-REPEAT_CAST.title":"复颂",
+  "HAKUREIREIMU-REPEAT_CAST.description":"将本回合打出过的牌重新移回手牌。",
   
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.title":"友人之助",
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"获得{Energy:energyIcons()}。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]和{energyPrefix:energyIcons(1)}。",
+
+  "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"神签",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.title":"反则结界",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"本回合每打出一张牌，[gold]免费[/gold]发动相邻的[gold]反制[/gold]牌。",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"默认向打出的卡牌的目标发动反制。",
+
+  "HAKUREIREIMU-DREAM_INNATE.title":"梦想天生",
+  "HAKUREIREIMU-DREAM_INNATE.description":"在本回合[gold]反制所有[/gold]。\n[gold]立即[/gold]使其本次行动无效。",
   
+  "HAKUREIREIMU-GENSO_ICHIJO.sign":"梦符",
+  "HAKUREIREIMU-GENSO_ICHIJO.title":"幻想一重",
+  "HAKUREIREIMU-GENSO_ICHIJO.description":"{IfUpgraded:show:抽到时再抽一张牌。\n|}选择[gold]抽牌堆[/gold]的一张牌，将其与本牌交换。",
+  "HAKUREIREIMU-GENSO_ICHIJO.selectionScreenPrompt":"交换",
   
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-TrinityReligionFinale.title":"最后的三位一体",
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复{Repeat:diff()}次。",
+
+
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",

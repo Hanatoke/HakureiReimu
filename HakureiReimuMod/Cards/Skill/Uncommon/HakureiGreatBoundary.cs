@@ -68,7 +68,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&amount>0&&creature is {IsMonster:true})
             {
                 await Flash(true);
                 await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
@@ -90,7 +90,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
         {
-            if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t))
+            if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t)&&amount>0)
             {
                 await Flash(true);
                 if (PlayerUsefulPowers.Contains(power.GetType()))

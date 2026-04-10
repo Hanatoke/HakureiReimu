@@ -36,6 +36,17 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 if (nCard==null)
                 {
                     nCard=NCard.Create(card);
+                    if (NCombatRoom.Instance is {} room)
+                    {
+                        room.Ui.AddChildSafely(nCard);
+                        nCard.Position = room.Ui.GetViewportRect().GetCenter();
+                    }
+                }
+                else
+                {
+                    nCard.PlayPileTween?.Kill();
+                    // nCard.Scale = Vector2.One;
+                    nCard.Modulate=Colors.White;
                 }
 
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(card.Owner.Creature)
@@ -54,6 +65,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 CardModel card = slot.Card;
+                CombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
                     .PersistCardTable(table);
@@ -112,7 +124,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 }
                 
                 // await slot.Card.MoveToResultPileWithoutPlaying(new BlockingPlayerChoiceContext());
-                await PersistCardHook.OnStopPersistCard(slot.Card.CombatState, slot);
+                await PersistCardHook.OnStopPersistCard(state, slot);
             }
         }
 
@@ -146,7 +158,6 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 {
                     NPersistCardHolder holder=nt.GetCardHolder(slot.Card);
                     holder.StopAnimations();
-                    Vector2 origin = holder.Position;
                     Vector2 size = NCombatRoom.Instance.Ui.GetViewportRect().Size;
                     Vector2 global = NCombatRoom.Instance.Ui.GetGlobalTransformWithCanvas() * new Vector2(size.X*0.5f,size.Y*0.4f);
                     Vector2 local = nt.GetGlobalTransformWithCanvas().AffineInverse() * global;
@@ -154,7 +165,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     holder.Flash();
                     slot.PlaySfx(true);
                     await Cmd.Wait(duration);
-                    holder.SetTargetPosition(origin);
+                    nt.RefreshLayout();
                 }
             }
         }

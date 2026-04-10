@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
 using MegaCrit.Sts2.Core.Combat;
@@ -13,6 +14,13 @@ namespace HakureiReimu.HakureiReimuMod.Command
             await CounterManager.BeforeCounter(state,counter,target);
             await counter.Invoke(target, cost, instant);
             await CounterManager.AfterCounter(state,counter,target);
+        }
+        public static async Task InvokeCounter(CombatState state,IEnumerable<ICounter> counters,Creature target, bool cost = true, bool instant = false)
+        {
+            foreach (ICounter counter in counters)
+            {
+                await InvokeCounter(state,counter,target,cost,instant);
+            }
         }
     }
 }

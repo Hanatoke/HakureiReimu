@@ -17,7 +17,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class RanboNaSekaiNoSakemeguchi : AbstractCard
     {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            HoverTipFactory.FromKeyword(Counter)
+            HoverTipFactory.FromKeyword(Counter),
+            HoverTipFactory.FromKeyword(FreeCounter),
         ];
         protected override bool HasEnergyCostX => true;
 

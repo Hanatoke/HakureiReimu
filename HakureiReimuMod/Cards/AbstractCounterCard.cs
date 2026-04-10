@@ -25,10 +25,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true } &&
                                                                      command.DamageProps.IsCardOrMonsterMove_();
 
-        protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature applier, Creature target,out CounterType counterType)
+        protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature? applier, Creature target,out CounterType counterType)
         {
             PowerType type=power.GetTypeForAmount(modifiedAmount);
-            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
+            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>=0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
             {
                 counterType = CounterType.Buff;
                 return true;

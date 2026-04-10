@@ -55,6 +55,8 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     public static CardKeyword All;
     [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Immediate;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword FreeCounter;
     
     public virtual void OnReload(NCard card)
     {

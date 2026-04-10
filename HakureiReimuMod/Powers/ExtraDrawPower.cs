@@ -19,21 +19,20 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerType Type => PowerType.Buff;
 
         public override PowerStackType StackType => PowerStackType.Counter;
-        public readonly HashSet<PlayerChoiceContext> Context = new();
+        public readonly Dictionary<Player,HashSet<PlayerChoiceContext>> Context = new();
+        public class IgnoreExtraDrawContext:BlockingPlayerChoiceContext{}
         public async Task AfterDrawCardFinish(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
         {
-            if (player==Owner.Player)
+            if (player!=Owner.Player)return;
+            if (choiceContext is IgnoreExtraDrawContext)return;
+            if (Context.TryGetValue(player,out HashSet<PlayerChoiceContext> set))
             {
-                if (Context.Contains(choiceContext))
-                {
-                    Context.Remove(choiceContext);
-                    return;
-                }
-
-                BlockingPlayerChoiceContext ctx = new BlockingPlayerChoiceContext();
-                Context.Add(ctx);
+                set.Remove(choiceContext);
+            }
+            if (!Context.ContainsKey(player)||Context[player].Count<=0)
+            {
                 Flash();
-                await CardPileCmd.Draw(ctx,Amount,player);
+                await CardPileCmd.Draw(new IgnoreExtraDrawContext(),Amount,player);
             }
         }
 
@@ -41,9 +40,20 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         {
             if (card.Owner==Owner.Player)
             {
-                if (Context.Contains(choiceContext))
+                if (choiceContext is IgnoreExtraDrawContext)
                 {
                     await PowerCmd.Decrement(this);
+                }
+                else
+                {
+                    if (Context.TryGetValue(Owner.Player, out HashSet<PlayerChoiceContext> ctx))
+                    {
+                        ctx.Add(choiceContext);
+                    }
+                    else
+                    {
+                        Context.Add(Owner.Player,[choiceContext]);
+                    }
                 }
             }
         }

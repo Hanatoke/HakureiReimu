@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard.Extensions
@@ -43,6 +44,24 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Extensions
                     table.Clear();
                 }
             }
+        }
+
+        public static AbstractPersistCardSlot GetInstanceSlot(this CardModel card)
+        {
+            if (card is IPersistCard p)
+            {
+                return p.InstanceSlot;
+            }
+            if (card.Enchantment is IPersistCard e)
+            {
+                return e.InstanceSlot;
+            }
+            if (card.Affliction is IPersistCard a)
+            {
+                return a.InstanceSlot;
+            }
+            //TODO:未来可能会有的复数Modify
+            return new AbstractPersistCardSlot(card, 0);
         }
     }
 }

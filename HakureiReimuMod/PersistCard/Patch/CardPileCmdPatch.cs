@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
+using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 
@@ -57,27 +58,29 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
                         success = true,
                         oldPile = card.Pile
                     });
-                    AbstractPersistCardSlot slot = null;
+                    AbstractPersistCardSlot slot = card.GetInstanceSlot();
                     
-                    if (card is IPersistCard p)
-                    {
-                        slot = p.InstanceSlot;
-                    }
-                    else if (card.Enchantment is IPersistCard e)
-                    {
-                        slot = e.InstanceSlot;
-                    }else if (card.Affliction is IPersistCard a)
-                    {
-                        slot = a.InstanceSlot;
-                    }
-                    if (slot==null)
-                    {
-                        slot = new AbstractPersistCardSlot(card, 0);
-                    }
                     await PersistCardCmd.StartPersistCard(table, slot);
                     // await Hook.AfterCardChangedPiles(card.RunState, card.CombatState, card, card.Pile.Type, null);
                 }
                 return results;
+            }
+        }
+        [HarmonyPatch(typeof(Hook),nameof(Hook.AfterCardPlayed))]
+        public static class AfterCardPlayPatch
+        {
+            [HarmonyPostfix]
+            public static async Task Postfix(Task __result, CombatState combatState,
+                PlayerChoiceContext choiceContext,
+                CardPlay cardPlay)
+            {
+                await  __result;
+                if (cardPlay.PlayIndex>0&&cardPlay.PlayCount>1&&cardPlay.ResultPile.GetPile(cardPlay.Card.Owner) is AbstractPersistCardTable table)
+                {
+                    CardModel card = cardPlay.Card.CreateDupe();
+                    card.AddKeyword(CardKeyword.Exhaust);
+                    await PersistCardCmd.StartPersistCard(table,card.GetInstanceSlot());
+                }
             }
         }
     }
