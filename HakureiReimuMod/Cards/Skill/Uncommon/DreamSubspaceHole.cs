@@ -10,7 +10,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class DreamSubspaceHole : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(3)];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public DreamSubspaceHole(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
         }

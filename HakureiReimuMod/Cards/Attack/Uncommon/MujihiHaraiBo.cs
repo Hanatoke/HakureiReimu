@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             [
                 new DamageVar(10,ValueProp.Move)
             ];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseHeavy;
         public MujihiHaraiBo(
             ) : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

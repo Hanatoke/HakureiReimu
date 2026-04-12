@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromKeyword(Counter)
         ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseLight;
         public HappoOnibakuJin(
             ) : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

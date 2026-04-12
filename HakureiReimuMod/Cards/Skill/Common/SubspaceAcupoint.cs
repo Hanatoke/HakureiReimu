@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<Powers.SealPower>(6),new PowerVar<WeakPower>(1)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashLight;
         public SubspaceAcupoint(
             ) : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy) {
         }

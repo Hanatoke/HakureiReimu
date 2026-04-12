@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseLib;
 using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
-using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class RepeatCast : AbstractCard
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
 
         public RepeatCast(
             ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.None) {

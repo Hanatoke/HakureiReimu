@@ -17,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromKeyword(Counter)
         ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public NoIntervalBoundary(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
         }

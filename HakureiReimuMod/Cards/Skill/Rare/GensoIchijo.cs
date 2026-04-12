@@ -20,6 +20,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             ) : base(0, CardType.Skill, CardRarity.Rare, TargetType.None) {
         }
 
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
+
         public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {
             if (IsUpgraded&&card==this)

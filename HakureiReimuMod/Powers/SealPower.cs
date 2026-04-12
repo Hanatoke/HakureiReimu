@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -19,11 +18,20 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         public void ModifyDamage(ref decimal amount,ref ValueProp props, Creature dealer, CardModel cardSource, IEnumerable<Creature> targets)
         {
-            decimal n=Math.Min(amount, this.Amount);
-            amount =Math.Max(0,amount-n);
+            decimal total = 0;
+            foreach (Creature player in targets.ToList())
+            {
+                decimal d=Hook.ModifyDamage(CombatState.RunState, CombatState, player, dealer, amount, props, cardSource,
+                    ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
+                total = Math.Max(total, d);
+            }
+            if (total<=0)return;
+            
+            decimal n=Math.Min(total, this.Amount);
+            amount = Math.Max(0, amount - (amount * n / total));
+            
             Flash();
             PowerCmd.ModifyAmount(this, -n, null,null);
-            
             foreach (Creature p in targets.ToList())
             {
                 if (p.HasPower<KujiKoshinHoPower>())

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,11 +23,12 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             {
                 if (dealer!=null && dealer.IsAlive)
                 {
-                    foreach (PowerModel p in new List<PowerModel>(dealer.Powers))
+                    IEnumerable<Creature> t = targets.ToList();
+                    foreach (PowerModel p in dealer.Powers.ToList())
                     {
                         if (p is SealPower seal)
                         {
-                            seal.ModifyDamage(ref amount, ref props,dealer,cardSource,targets);
+                            seal.ModifyDamage(ref amount, ref props,dealer,cardSource,t);
                         }
                     }
                 }

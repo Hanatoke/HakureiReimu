@@ -16,6 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromKeyword(Counter)
         ];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
         public DoubleGreatBoundary(
             ) : base(3, CardType.Power, CardRarity.Rare, TargetType.Self) {
         }

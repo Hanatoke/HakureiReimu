@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         protected override IEnumerable<IHoverTip> ExtraHoverTips =>
             [HoverTipFactory.FromCard<DanmakuBoundary>(IsUpgraded)];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public DoubleDanmakuBoundary(
             ) : base(0, CardType.Skill, CardRarity.Common, TargetType.None) {
         }

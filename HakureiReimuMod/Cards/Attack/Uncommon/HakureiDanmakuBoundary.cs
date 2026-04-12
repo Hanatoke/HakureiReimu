@@ -3,15 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.MonsterMoves.Intents;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
@@ -19,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override IEnumerable<DynamicVar> CanonicalVars => 
             [new CounterVar(3),new DamageVar(7,ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [All];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public HakureiDanmakuBoundary(
             ) : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies) {
         }
@@ -33,6 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             List<Creature> targets = CombatState.HittableEnemies.ToList();
+            RunAnimation(Character.HakureiReimu.Animation.ShotA);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
                 .BeforeDamage(async () =>

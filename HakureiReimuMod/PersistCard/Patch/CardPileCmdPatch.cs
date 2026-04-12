@@ -79,6 +79,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
                 {
                     CardModel card = cardPlay.Card.CreateDupe();
                     card.AddKeyword(CardKeyword.Exhaust);
+                    await CardPileCmd.Add(card, PileType.Play, skipVisuals: true);
                     await PersistCardCmd.StartPersistCard(table,card.GetInstanceSlot());
                 }
             }

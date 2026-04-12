@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CounterVar(2),new CardsVar(2)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Debuff,CardKeyword.Exhaust];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public PaparatchiGekitaiKekkai(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
         }

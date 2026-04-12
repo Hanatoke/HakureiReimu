@@ -16,6 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1),new CounterVar(2)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [EnergyHoverTip];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
 
         public Sneak(
             ) : base(0, CardType.Skill, CardRarity.Common, TargetType.Self) {
@@ -28,6 +29,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         public override async Task InvokeCounter(Creature target, CounterType byType)
         {
+            if (!IsInCombat)
+            {
+                MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
+                return;
+            }
             if (CounterManager.InMonsterMove)
             {
                 if (byType==CounterType.Attack)

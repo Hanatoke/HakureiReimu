@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             [new CounterVar(1),new BlockVar(6,ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack,Immediate];
         public override bool GainsBlock => true;
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public UnconsciousTeleportation(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
         }

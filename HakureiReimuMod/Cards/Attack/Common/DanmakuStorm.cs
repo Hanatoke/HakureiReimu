@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DanmakuStorm : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3,ValueProp.Move),new RepeatVar(2)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public DanmakuStorm(
             ) : base(0, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {
         }

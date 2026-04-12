@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CounterVar(1)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Buff,CardKeyword.Exhaust];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public HakureiGreatBoundary(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
         }
@@ -51,6 +51,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         public override async Task InvokeCounter(Creature target, CounterType byType)
         {
+            if (!IsInCombat)
+            {
+                MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
+                return;
+            }
             if (!IsImmediate&&CounterManager.InMonsterMove)
             {
                 CounterManager.AddToLater(this,async  () =>

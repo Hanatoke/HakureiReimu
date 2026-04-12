@@ -41,6 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         }
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
+            RunAnimation(Character.HakureiReimu.Animation.Guard);
             await Flash(instant);
         }
         public override int ModifyAttackHitCount(AttackCommand attack, int hitCount)
@@ -80,7 +81,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public override bool TryModifyPowerAmountReceived(PowerModel canonicalPower, Creature target, decimal amount, Creature applier,
             out decimal modifiedAmount)
         {
-            if (IsImmediate&&CheckPower(canonicalPower,amount,applier,target,out CounterType _))
+            if (InPersisting&&CheckPower(canonicalPower,amount,applier,target,out CounterType _))
             {
                 modifiedAmount = 0;
                 return true;
@@ -105,9 +106,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
         }
 
-        public static bool ShouldCancelMonsterAction(CombatState state)
-        {
-            return state.IterateHookListeners().OfType<DreamInnate>().Any(d=>d.InPersisting);
-        }
+        // public static bool ShouldCancelMonsterAction(CombatState state)
+        // {
+        //     return state.IterateHookListeners().OfType<DreamInnate>().Any(d=>d.InPersisting);
+        // }
     }
 }

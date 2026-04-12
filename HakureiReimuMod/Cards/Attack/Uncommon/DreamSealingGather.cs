@@ -1,24 +1,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Godot;
 using HakureiReimu.HakureiReimuMod.Command;
-using HakureiReimu.HakureiReimuMod.Node.VFX;
-using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
-using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
     public class DreamSealingGather : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6,ValueProp.Move),new RepeatVar(3)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public DreamSealingGather(
             ) : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

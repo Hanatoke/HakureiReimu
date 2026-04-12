@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class SprinkleStarSeal : AbstractCard
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public SprinkleStarSeal(
             ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy) {
         }
@@ -22,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         ];
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            foreach (PowerModel p in cardPlay.Target.Powers)
+            foreach (PowerModel p in cardPlay.Target.Powers.ToList())
             {
                 if (!p.IsVisible)continue;
                 if (p.Type==PowerType.Buff&&!Special.Contains(p.GetType()))

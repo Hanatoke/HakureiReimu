@@ -11,6 +11,11 @@ namespace HakureiReimu.HakureiReimuMod.Command
     {
         public static async Task InvokeCounter(CombatState state,ICounter counter,Creature target, bool cost = true, bool instant = false)
         {
+            if (state == null || counter == null)
+            {
+                MainFile.Logger.Warn("尝试发动错误的反制:"+nameof(state)+":"+state+"  "+nameof(counter)+":"+counter);
+                return;
+            }
             await CounterManager.BeforeCounter(state,counter,target);
             await counter.Invoke(target, cost, instant);
             await CounterManager.AfterCounter(state,counter,target);

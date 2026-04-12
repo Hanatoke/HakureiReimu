@@ -13,6 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DanmakuChoja : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3,ValueProp.Move),new RepeatVar(1)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotB;
 
         public DanmakuChoja(
             ) : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {

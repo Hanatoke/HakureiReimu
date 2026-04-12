@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
             [new CounterVar(2),new BlockVar(7,ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack,Immediate];
         public override bool GainsBlock => true;
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public DoubleBoundary(
             ) : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) {
         }

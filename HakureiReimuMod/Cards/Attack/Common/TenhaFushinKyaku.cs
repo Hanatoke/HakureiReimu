@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class TenhaFushinKyaku : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4,ValueProp.Move),new RepeatVar(4)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashHeavy;
         public TenhaFushinKyaku(
             ) : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyAlly) {
         }

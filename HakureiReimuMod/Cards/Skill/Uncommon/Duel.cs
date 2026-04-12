@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new EnergyVar(3)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotB;
         public Duel(
             ) : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

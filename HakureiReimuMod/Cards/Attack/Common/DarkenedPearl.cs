@@ -13,7 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DarkenedPearl : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7,ValueProp.Move),new RepeatVar(2)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public DarkenedPearl(
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }

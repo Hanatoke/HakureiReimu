@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new CalculatedVar("CalculatedTimes").WithMultiplier((c,_)=>c.Owner.PlayerCombatState?.YinYangOrbManager()?.Orbs.Count??0)
             ];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public YinYangJadeMidare(
             ) : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

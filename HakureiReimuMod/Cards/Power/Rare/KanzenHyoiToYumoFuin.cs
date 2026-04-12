@@ -18,6 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
             new PowerVar<KanzenHyoiToYumoFuinPower>(1),
             new DynamicVar("Div",KanzenHyoiToYumoFuinPower.Div)
         ];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
         public KanzenHyoiToYumoFuin(
             ) : base(1, CardType.Power, CardRarity.Rare, TargetType.Self) {
         }

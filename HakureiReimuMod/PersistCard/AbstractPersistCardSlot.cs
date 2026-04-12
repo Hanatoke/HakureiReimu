@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HakureiReimu.HakureiReimuMod.PersistCard.Node;
-using MegaCrit.Sts2.Core.Audio.Debug;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
@@ -84,6 +81,11 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             {
                 SfxCmd.Play("event:/sfx/debuff");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(Card)}: {Card}, {nameof(Table)}: {Table}, {nameof(CombatState)}: {Card?.CombatState}";
         }
     }
 }

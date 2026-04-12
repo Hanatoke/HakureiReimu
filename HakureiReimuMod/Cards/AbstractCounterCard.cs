@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -92,6 +93,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public virtual async Task InvokeCounter(Creature? target,CounterType byType)
         {
+            if (!IsInCombat)
+            {
+                MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
+                return;
+            }
             if (!IsImmediate&&CounterManager.InMonsterMove)
             {
                 CounterManager.AddToLater(this,async  () => await CounterCmd.InvokeCounter(CombatState,this,target));

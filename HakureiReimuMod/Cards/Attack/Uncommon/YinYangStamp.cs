@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new DamageVar(6,ValueProp.Move),
                 new EnergyVar(2)
             ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseLight;
         protected override bool ShouldGlowGoldInternal =>CombatManager.Instance.History.Entries.OfType<PowerReceivedEntry>().Any(e =>
             e.HappenedThisTurn(CombatState) && e.Applier == Owner.Creature &&
             e.Power.GetTypeForAmount(e.Amount) == PowerType.Debuff);

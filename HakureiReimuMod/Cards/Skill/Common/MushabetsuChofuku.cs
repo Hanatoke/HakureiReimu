@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<Powers.SealPower>(7)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashLight;
         public MushabetsuChofuku(
             ) : base(1, CardType.Skill, CardRarity.Common, TargetType.AllAllies) {
         }

@@ -19,7 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new ExtraDamageVar(1),
                 new CalculatedDamageVar(ValueProp.Move).WithMultiplier((_,t)=>t?.GetPowerAmount<Powers.SealPower>() ?? 0)
             ];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotD;
         public PersuasionNeedle(
             ) : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

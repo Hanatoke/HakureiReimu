@@ -17,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             [new CounterVar(2)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Debuff,CardKeyword.Exhaust];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public MashoSenketsu(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None) {
         }

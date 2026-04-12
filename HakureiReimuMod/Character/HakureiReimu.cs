@@ -15,6 +15,7 @@ using HakureiReimu.HakureiReimuMod.Node;
 using HakureiReimu.HakureiReimuMod.Relics;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -76,6 +77,15 @@ public class HakureiReimu : PlaceholderCharacterModel {
 
     public override string CustomVisualPath => Path.Join("HakureiReimu","HakureiReimu.tscn").CharacterPath();
 //-------------------------------------------------------------------------------------------------------------------------
+
+    public static void RunAnimation(Player player,Animation animation)
+    {
+        NCreature nC = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        if (nC is {Visuals: HakureiReimuVisuals vn})
+        {
+            vn.Playback?.Travel(animation.Name());
+        }
+    }
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Character is HakureiReimu c)
@@ -89,6 +99,7 @@ public class HakureiReimu : PlaceholderCharacterModel {
                     if (card.Animation!=Animation.None)
                     {
                         playback?.Travel(card.Animation.Name());
+                        return Task.CompletedTask;
                     }
                 }
                 DefaultCardAnimation(cardPlay,playback);

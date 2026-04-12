@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
@@ -18,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<SealPower>(20)];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         public LocString Talk => LocString.GetIfExists("cards", Id.Entry + ".talk");
         public YokaiAshidomeOmamori(

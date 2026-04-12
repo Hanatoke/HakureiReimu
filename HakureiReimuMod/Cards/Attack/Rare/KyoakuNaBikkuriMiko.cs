@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 new CalculatedVar("CalculatedTimes").WithMultiplier((c,_)=>(c as KyoakuNaBikkuriMiko)?.ActivateTimes??0)
             ];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack,Immediate];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public KyoakuNaBikkuriMiko(
             ) : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) {
         }
@@ -48,6 +48,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             if (target is not { IsHittable: true }) return;
+            RunAnimation(Character.HakureiReimu.Animation.ShotA);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitCount((int)((CalculatedVar)DynamicVars["CalculatedTimes"]).Calculate(target))

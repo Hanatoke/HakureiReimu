@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 //TODO:在新版本中移除
                 foreach (Player p in __instance.Players)
                 {
-                    if (p.Character is Character.HakureiReimu c)
+                    if (p.Creature.CombatState!=null&&p.Character is Character.HakureiReimu c)
                     {
                         yield return c;
                     }
@@ -31,7 +31,10 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                             yield return m;
                             foreach (YinYangOrb orb in m.Orbs)
                             {
-                                yield return orb;
+                                if (!orb.HasBeenRemovedFromState && orb.Owner.IsActiveForHooks)
+                                {
+                                    yield return orb;
+                                }
                             }
                         }
                     }

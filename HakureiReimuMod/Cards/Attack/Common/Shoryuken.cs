@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             [new CounterVar(3),new DamageVar(4,ValueProp.Move),new PowerVar<VulnerablePower>(1)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Buff];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public Shoryuken(
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) {
         }
@@ -36,6 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             if (target is not { IsHittable: true }) return;
+            RunAnimation(Character.HakureiReimu.Animation.DamageLight);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_slash")

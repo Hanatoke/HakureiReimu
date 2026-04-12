@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override IEnumerable<DynamicVar> CanonicalVars => 
             [new CounterVar(3)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public MenreikiDaiChofuku(
             ) : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies) {
         }
@@ -39,6 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     d+=attackIntent.GetTotalDamage([Owner.Creature],target);
                 }
             }
+            RunAnimation(Character.HakureiReimu.Animation.AttackCloseRound);
             await Flash(instant);
             await DamageCmd.Attack(d).FromCard(this).TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_slash").BeforeDamage(async () =>

@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(6, ValueProp.Move), new PowerVar<Powers.SealPower>(3),new CardsVar(1)];
-        
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotD;
         public SealingNeedle(
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }

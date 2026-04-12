@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         [
             HoverTipFactory.FromKeyword(Counter),
         ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseRound;
         public HappoRyuSatsuJin(
             ) : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) {
         }

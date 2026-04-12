@@ -17,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
     public class MushoMyoju : AbstractCard,IYinYangOrbListener {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5,ValueProp.Move),new CardsVar(1)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotD;
         public MushoMyoju(
             ) : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

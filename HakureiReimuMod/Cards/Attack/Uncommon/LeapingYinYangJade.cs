@@ -35,7 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new RepeatVar(3),
                 new PowerVar<VulnerablePower>(1)
             ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public LeapingYinYangJade(
             ) : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy) {
         }

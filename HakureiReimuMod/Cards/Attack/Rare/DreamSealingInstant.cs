@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             [
                 new DamageVar(12, ValueProp.Move)
             ];
-
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
         public DreamSealingInstant(
             ) : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) {
         }

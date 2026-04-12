@@ -16,6 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromOrb<YinYangOrb>()
         ];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
         public YinYangKijinGyoku(
             ) : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) {
         }

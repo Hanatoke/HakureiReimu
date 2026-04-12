@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -11,14 +10,12 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 {
@@ -26,6 +23,17 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
     {
         public static async Task StartPersistCard(AbstractPersistCardTable table,AbstractPersistCardSlot slot)
         {
+            if (table==null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.StartPersistCard: table is null");
+                return;
+            }
+            if (slot?.Card?.CombatState == null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.StartPersistCard: slot.Card.combatState is null");
+                MainFile.Logger.Warn("slot:"+slot);
+                return;
+            }
             if (slot.Card.Pile!=table)
             {
                 CardModel card = slot.Card;
@@ -62,6 +70,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
         public static async Task StopPersistCard(AbstractPersistCardSlot slot,PileType? overridePile=null)
         {
+            if (slot?.Card?.CombatState == null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.StopPersistCard: slot.Card.combatState is null");
+                MainFile.Logger.Warn("slot:"+slot);
+                return;
+            }
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 CardModel card = slot.Card;
@@ -130,6 +144,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
         public static async Task IncreaseCount(AbstractPersistCardSlot slot,int amount)
         {
+            if (slot?.Card?.CombatState == null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.IncreaseCount: slot.Card.combatState is null");
+                MainFile.Logger.Warn("slot:"+slot);
+                return;
+            }
             int origin = slot.Count;
             if (PersistCardHook.AtIncreaseCount(slot.Card.CombatState,slot,origin,ref amount))
             {
@@ -140,6 +160,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
         public static async Task DecreaseCount(AbstractPersistCardSlot slot,int amount)
         {
+            if (slot?.Card?.CombatState == null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.DecreaseCount: slot.Card.combatState is null");
+                MainFile.Logger.Warn("slot:"+slot);
+                return;
+            }
             int origin = slot.Count;
             if (PersistCardHook.AtDecreaseCount(slot.Card.CombatState,slot,origin,ref amount))
             {
@@ -150,6 +176,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
         public static async Task FlashPersistCard(AbstractPersistCardSlot slot,float duration=0.8f)
         {
+            if (slot?.Card?.CombatState == null)
+            {
+                MainFile.Logger.Warn("PersistCardCmd.AbstractPersistCardSlot: slot.Card.combatState is null");
+                MainFile.Logger.Warn("slot:"+slot);
+                return;
+            }
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)

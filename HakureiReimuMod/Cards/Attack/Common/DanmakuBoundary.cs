@@ -15,6 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DanmakuBoundary : AbstractCounterCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new CounterVar(2),new DamageVar(6,ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack,Immediate,CardKeyword.Exhaust];
+        public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
 
         public DanmakuBoundary(
             ) : base(1, CardType.Attack, CardRarity.Token, TargetType.AllEnemies) {
@@ -46,6 +47,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             if (target is not { IsHittable: true }) return;
+            RunAnimation(Character.HakureiReimu.Animation.ShotA);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_slash")
