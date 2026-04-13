@@ -1,3 +1,315 @@
 {
-  
+  "HAKUREIREIMU-DANMAKU_STORM.title":"Danmaku Storm",
+  "HAKUREIREIMU-DANMAKU_STORM.description":"Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
+
+  "HAKUREIREIMU-DARKENED_PEARL.sign":"Jewel Sign",
+  "HAKUREIREIMU-DARKENED_PEARL.title":"Darkened Pearl",
+  "HAKUREIREIMU-DARKENED_PEARL.description":"Deal {Damage:diff()} damage.\n[gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orbs[/gold].",
+
+  "HAKUREIREIMU-DANMAKU_CHOJA.title":"Danmaku Rich",
+  "HAKUREIREIMU-DANMAKU_CHOJA.description":"Deal {Damage:diff()} damage.\n[gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orbs[/gold].\nAdd a copy of this card into your discard pile.",
+
+  "HAKUREIREIMU-DREAM_SEALING_SCATTER.sign":"Spirit Sign",
+  "HAKUREIREIMU-DREAM_SEALING_SCATTER.title":"Dream Seal -Scatter-",
+  "HAKUREIREIMU-DREAM_SEALING_SCATTER.description":"Deal {Damage:diff()} damage to ALL enemies.\nIf the enemy has [gold]Seal[/gold], apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+
+  "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.sign":"Divine Arts",
+  "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.title":"Sky-Conquering Wind God Kick",
+  "HAKUREIREIMU-TENHA_FUSHIN_KYAKU.description":"Deal {Damage:diff()} damage {Repeat:diff()} times.",
+
+  "HAKUREIREIMU-SEALING_NEEDLE.title":"Sealing Needle",
+  "HAKUREIREIMU-SEALING_NEEDLE.description":"Deal {Damage:diff()} damage.\nApply {SealPower:diff()} [gold]Seal[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
+
+  "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.sign":"Charm",
+  "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.title":"Anti-Youkai Houi-Yoke Prayer",
+  "HAKUREIREIMU-TAI_YOKAI_HOI_TAIJI.description":"Deal {CalculatedDamage:diff()} damage.\nDeal {ExtraDamage:diff()} extra damage for every [red]Debuff[/red] on the enemy.",
+
+  "HAKUREIREIMU-SHORYUKEN.title":"Shoryuken",
+  "HAKUREIREIMU-SHORYUKEN.description":"[gold]Counter Buff[/gold] {Counter:diff()}.\nDeal {Damage:diff()} damage, apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-DOUBLE_DANMAKU_BOUNDARY.sign":"Barrier",
+  "HAKUREIREIMU-DOUBLE_DANMAKU_BOUNDARY.title":"Duplex Danmaku Barrier",
+  "HAKUREIREIMU-DOUBLE_DANMAKU_BOUNDARY.description":"Add {Cards:diff()} [gold]{IfUpgraded:show:Danmaku Barrier+|Danmaku Barrier}[/gold] into your hand.",
+
+  "HAKUREIREIMU-YIN_YANG_PRECIOUS_JADE.sign":"Treasure Sign",
+  "HAKUREIREIMU-YIN_YANG_PRECIOUS_JADE.title":"Yin-Yang Precious Orb",
+  "HAKUREIREIMU-YIN_YANG_PRECIOUS_JADE.description":"[gold]Channel[/gold] [gold]Yin-Yang Orbs[/gold] to all slots.{InCombat:\n(Channel {CalculatedNum:diff()} orbs)|}",
+
+  "HAKUREIREIMU-SUBSPACE_ACUPOINT.title":"Dimensional Point Rift",
+  "HAKUREIREIMU-SUBSPACE_ACUPOINT.description":"Apply {SealPower:diff()} [gold]Seal[/gold] and {WeakPower:diff()} [gold]Weak[/gold].",
+
+  "HAKUREIREIMU-MUSHABETSU_CHOFUKU.title":"Indiscriminate Exorcism",
+  "HAKUREIREIMU-MUSHABETSU_CHOFUKU.description":"Apply {SealPower:diff()} [gold]Seal[/gold] to ALL enemies.",
+
+  "HAKUREIREIMU-DOUBLE_BOUNDARY.sign":"Dream Sign",
+  "HAKUREIREIMU-DOUBLE_BOUNDARY.title":"Double Barrier",
+  "HAKUREIREIMU-DOUBLE_BOUNDARY.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] Gain {Block:diff()} [gold]Block[/gold].",
+
+  "HAKUREIREIMU-SNEAK.title":"Sneak",
+  "HAKUREIREIMU-SNEAK.description":"[gold]Counter[/gold] NOT [gold]Attack[/gold] {Counter:diff()}.\nGain {Energy:energyIcons()}.",
+
+  "HAKUREIREIMU-GENSO_BAUNDARI_KURAKKU.sign":"Barrier",
+  "HAKUREIREIMU-GENSO_BAUNDARI_KURAKKU.title":"Fantasy Boundary Crack",
+  "HAKUREIREIMU-GENSO_BAUNDARI_KURAKKU.description":"Return a [gold]Counter[/gold] card from the battlefield into your hand.",
+  "HAKUREIREIMU-GENSO_BAUNDARI_KURAKKU.selectionScreenPrompt":"Retrieve",
+
+  "HAKUREIREIMU-BACK_FLIP.title":"Back Flip",
+  "HAKUREIREIMU-BACK_FLIP.description":"Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} cards.",
+
+  "HAKUREIREIMU-MAKE_NO_EXCEPTION.title":"Make No Exception",
+  "HAKUREIREIMU-MAKE_NO_EXCEPTION.description":" Applies target's [red]debuffs[/red] to ALL other enemies.",
+
+  "HAKUREIREIMU-DODGE.title":"Dodge",
+  "HAKUREIREIMU-DODGE.description":"Can only be played if you have not played any [gold]Attack[/gold] this turn.\nGain {Block:diff()} [gold]Block[/gold].",
+
+  "HAKUREIREIMU-STRENGTH.title":"Strength",
+  "HAKUREIREIMU-STRENGTH.description":"[gold]Counter Debuff[/gold] {Counter:diff()}.\n[gold]Upgrade[/gold] {Cards:diff()} cards from the top of draw pile.",
+
+  "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.title":"Paparazzi Exorcism",
+  "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.description":"Apply {InhibitPower:diff()} [gold]Inhibit[/gold] to ALL enemies.",
+
+  //---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-MENREIKI_DAI_CHOFUKU.title":"Menreiki Exorcism",
+  "HAKUREIREIMU-MENREIKI_DAI_CHOFUKU.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n{IfUpgraded:show:[gold]Preemptively[/gold] |}Deal the attacker’s Intent total damage to ALL enemies.",
+
+  "HAKUREIREIMU-PERSUASION_NEEDLE.title":"Persuasion Needle",
+  "HAKUREIREIMU-PERSUASION_NEEDLE.description":"Apply {SealPower:diff()} [gold]Seal[/gold].\nDeal damage equal to it's [gold]Seal[/gold].",
+
+  "HAKUREIREIMU-MUSHO_MYOJU.sign":"Spirit Sign",
+  "HAKUREIREIMU-MUSHO_MYOJU.title":"Dream Orb",
+  "HAKUREIREIMU-MUSHO_MYOJU.description":"Deal {Damage:diff()} damage.\nIf this triggers [gold]Yin-Yang Orbs[/gold], draw {Cards:diff()} cards.",
+
+  "HAKUREIREIMU-DREAM_SEALING_GATHER.sign":"Spirit Sign",
+  "HAKUREIREIMU-DREAM_SEALING_GATHER.title":"Dream Seal -Concentrate-",
+  "HAKUREIREIMU-DREAM_SEALING_GATHER.description":"Deal {Damage:diff()} damage {Repeat:diff()} times.\nReduce this card's cost by 1 this combat.",
+
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.sign":"Bewitched Weapon",
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.title":"Merciless Purification Rod",
+  "HAKUREIREIMU-MUJIHI_HARAI_BO.description":"Deal {Damage:diff()} damage.\nApply [gold]Seal[/gold] equal to unblocked damage dealt.",
+
+  "HAKUREIREIMU-YIN_YANG_STAMP.sign":"Spirit Sign",
+  "HAKUREIREIMU-YIN_YANG_STAMP.title":"Yin-Yang Sign",
+  "HAKUREIREIMU-YIN_YANG_STAMP.description":"Deal {Damage:diff()} damage.\nIf you have applied any [red]Debuff[/red] this turn, gain {Energy:energyIcons()}.",
+
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.sign":"Great Barrier",
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.title":"Hakurei Danmaku Barrier",
+  "HAKUREIREIMU-HAKUREI_DANMAKU_BOUNDARY.description":"[gold]Counter ALL[/gold] {Counter:diff()}.\nDeal {Damage:diff()} damage to ALL enemies.\nif only once enemy, don't lose counts.",
+
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.sign":"Dragon Kick Sign",
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.title":"Dragon’s Asuka’i Kick",
+  "HAKUREIREIMU-DORAGONZU_ASUKAI_KIKKU.description":"Deal {CalculatedDamage:diff()} damage.\nDeal {ExtraDamage:diff()} less damage for every other card in your hand.",
+
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.sign":"Treasure Sign",
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.title":"Dancing Yin Yang Orbs",
+  "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.description":"Deal {Damage:diff()} damage {Repeat:diff()} times.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] when hit.",
+
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.title":"Yin-Yang Dance",
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"Deal {Damage:diff()} damage and [gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orb[/gold] for every [gold]Yin-Yang Orb[/gold] you have currently.{InCombat:\n(Repeats {CalculatedTimes:diff()} times)|}",
+
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.sign":"Divine Arts",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.title":"Omnidirectional Demon Binding Circle",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"Deal {Damage:diff()} damage for each [gold]Counter[/gold] on the battlefield.{InCombat:\n(Deals {CalculatedTimes:diff()} times)|}",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-MASHO_SENKETSU.sign":"Sign III",
+  "HAKUREIREIMU-MASHO_SENKETSU.title":"Exorcising Border",
+  "HAKUREIREIMU-MASHO_SENKETSU.description":"[gold]Counter Debuff[/gold] {Counter:diff()}.\n Remove one of your [red]Debuff[/red], [gold]Exhaust[/gold] a [color=gray]Status[/color] or [purple]Curse[/purple] card.",
+
+  "HAKUREIREIMU-DANMAKU_SHASHIN_KINSHI.title":"Unauthorized Danmaku Photography",
+  "HAKUREIREIMU-DANMAKU_SHASHIN_KINSHI.description":"Gain {Block:diff()} [gold]Block[/gold] for each enemy intent to attack.\nApply {InhibitPower:diff()} [gold]Inhibit[/gold] to each enemy NOT intended to attack.\n{InCombat:\n(Gain [gold]Block[/gold] {CalculatedTimes:diff()} times)|}",
+
+  "HAKUREIREIMU-SORA_TOBU_FUSHIGI_NO_MIKO.sign":"Untitled",
+  "HAKUREIREIMU-SORA_TOBU_FUSHIGI_NO_MIKO.title":"Flying Mysterious Shrine Maiden",
+  "HAKUREIREIMU-SORA_TOBU_FUSHIGI_NO_MIKO.description":"Gain {DexterityPower:diff()} [gold]Dexterity[/gold] until next turn.",
+
+  "HAKUREIREIMU-KUJI_KOSHIN_HO.sign":"Main Two Religions",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO.title":"Nine-Syllable Self-Defense",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO.description":"Gain {Block:diff()} [gold]Block[/gold].\nALL enemy's attacks will not consume [gold]Seal[/gold] this turn.",
+
+  "HAKUREIREIMU-DUEL.title":"Duel",
+  "HAKUREIREIMU-DUEL.description":"Execute the enemy's [gold]Intent[/gold].\nGain {Energy:energyIcons()}.",
+
+  "HAKUREIREIMU-UNCONSCIOUS_TELEPORTATION.title":"Unconscious Teleportation",
+  "HAKUREIREIMU-UNCONSCIOUS_TELEPORTATION.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] gain {Block:diff()} [gold]Block[/gold].\n[gold]Block[/gold] is not removed at the start of your next turn.",
+
+  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.sign":"Dream Sign",
+  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.title":"Dream Dimensional Rift",
+  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.description":"Draw {Cards:diff()} [gold]Additional[/gold] cards the next time you draw any card.",
+
+  "HAKUREIREIMU-PAPARATCHI_GEKITAI_KEKKAI.sign":"Barrier",
+  "HAKUREIREIMU-PAPARATCHI_GEKITAI_KEKKAI.title":"Paparazzi-Repelling Barrier",
+  "HAKUREIREIMU-PAPARATCHI_GEKITAI_KEKKAI.description":"[gold]Counter Debuff[/gold] {Counter:diff()}.\nDraw {Cards:diff()} cards.",
+
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY.sign":"Barrier",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY.title":"Expanding Barrier",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY.description":"Until next turn, Your attacks deal damage to ALL enemies.",
+
+  "HAKUREIREIMU-HAKUREI_GREAT_BOUNDARY.sign":"Great Barrier",
+  "HAKUREIREIMU-HAKUREI_GREAT_BOUNDARY.title":"Hakurei Great Barrier",
+  "HAKUREIREIMU-HAKUREI_GREAT_BOUNDARY.description":"[gold]Counter Buff[/gold] {Counter:diff()}.\n You also gain ALL [green]Buffs[/green].",
+
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.sign":"Barrier",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.title":"Seams of the Tumultuous World",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.description":"Select a [gold]Counter[/gold] on the battlefield and [gold]Free[/gold] activate it {IfUpgraded:show:X+1|X} times.",
+  "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.selectionScreenPrompt":"Select",
+
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.sign":"Recollection",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.title":"Narrowing Barrier of Avici",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.description":"Shuffle {Cards:diff()} {Cards:plural:copy|copies} of all [gold]Counter[/gold] cards on the battlefield into your draw pile.",
+
+  "HAKUREIREIMU-DETER.title":"Deter",
+  "HAKUREIREIMU-DETER.description":"Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.\n[gold]Stun[/gold] the Minions.",
+  "HAKUREIREIMU-DETER.talk.1":"Nooo！",
+  "HAKUREIREIMU-DETER.talk.2":"Ahhh！",
+  "HAKUREIREIMU-DETER.talk.3":"Aa！",
+  "HAKUREIREIMU-DETER.talk.4":"Aayaa！",
+  "HAKUREIREIMU-DETER.talk.5":"Kugaaa！",
+
+  "HAKUREIREIMU-FANTASY_MOON.sign":"Dream Battle",
+  "HAKUREIREIMU-FANTASY_MOON.title":"Illusionary Moon",
+  "HAKUREIREIMU-FANTASY_MOON.description":"Halved all attack damage received until next turn.",
+
+  "HAKUREIREIMU-YAKUYOKE_KIGAN.sign":"Prayer",
+  "HAKUREIREIMU-YAKUYOKE_KIGAN.title":"Disaster-Dispelling Prayer",
+  "HAKUREIREIMU-YAKUYOKE_KIGAN.description":"[gold]Exhaust[/gold] a card.\nIf it is a [purple]Curse[/purple], permanently remove it from your deck.",
+  "HAKUREIREIMU-YAKUYOKE_KIGAN.selectionScreenPrompt":"Exhaust",
+
+  "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.sign":"Amulet",
+  "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.title":"Youkai Repelling Charm",
+  "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.description":"If the enemy has at least {SealPower:diff()} [gold]Seal[/gold], [gold]Stun[/gold] it.",
+  "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.talk":"Insufficient [gold]Seal[/gold] to repel the enemy",
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.sign":"Barrier",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.title":"The Home Where One Lays to Rest",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.description":"Whenever you place a [gold]Counter[/gold] onto the battlefield, draw {ItarudokoroNoAoyamaPower:diff()} cards.",
+
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION.title":"Barrier Strengthening",
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION.description":"[gold]Counter[/gold] placed onto the battlefield will have its activation counts increased by {BoundarySolidificationPower:diff()}.",
+
+  "HAKUREIREIMU-SUKIMA_NO_MIKO.title":"Shrine Maiden in That Gap!?",
+  "HAKUREIREIMU-SUKIMA_NO_MIKO.description":"Whenever you activate a [gold]Counter[/gold], gain {ParryPower:diff()} [gold]Block[/gold].",
+
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO.sign":"Power Sign",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO.title":"Yin-Yang King Piece",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO.description":"[gold]Yin-Yang Orbs[/gold] deal {YinYangGyokushoPower:diff()} additional damage.",
+
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I.sign":"Treasure",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I.title":"Yin-Yang Asuka’i",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I.description":"Whenever [gold]Yin-Yang Orbs[/gold] deal unblocked damage, apply {YinYangAsukaIPower:diff()} random [red]Debuff[/red].",
+
+  "HAKUREIREIMU-SEALING_FORMATION.sign":"Dream Sign",
+  "HAKUREIREIMU-SEALING_FORMATION.title":"Evil-Sealing Circle",
+  "HAKUREIREIMU-SEALING_FORMATION.description":"At the start of your turn, apply {SealingFormationPower:diff()} [gold]Seal[/gold] to ALL enemies.",
+
+  "HAKUREIREIMU-JINJA_HANJO_KIGAN.sign":"Charm",
+  "HAKUREIREIMU-JINJA_HANJO_KIGAN.title":"Shrine Prosperity Prayer Talismans",
+  "HAKUREIREIMU-JINJA_HANJO_KIGAN.description":"Whenever you [gold]Fatal[/gold] an enemy, gain {ProtectionFeePower:diff()} [gold]Gold[/gold].",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.title":"Most Evil Surprise Miko Orbs",
+  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] Deal {Damage:diff()} damage. Deals damage 1 more time for each reactivation within the same turn.{InCombat:\n(Deal{CalculatedTimes:diff()}Times)|}",
+
+  "HAKUREIREIMU-DREAM_SEALING_INSTANT.sign":"Divine Spirit",
+  "HAKUREIREIMU-DREAM_SEALING_INSTANT.title":"Dream Seal -Blink-",
+  "HAKUREIREIMU-DREAM_SEALING_INSTANT.description":"Deal {Damage:diff()} damage.\nDraw ALL [gold]Attack[/gold] cards.",
+
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.sign":"Divine Arts",
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.title":"Omnidirectional Dragon-Slaying Circle",
+  "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.description":"Deal {Damage:diff()} damage.\nActivate ALL [gold]Counter[/gold].",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.sign":"Star Spirit Sign",
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.title":"Sprinkle Star Seal",
+  "HAKUREIREIMU-SPRINKLE_STAR_SEAL.description":"Halve [gold]Buffs[/gold] and double [red]Debuffs[/red] on the target.",
+
+  //TODO:等待自定义战斗奖励接口
+  "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.title":"Rolling In Riches Heart",
+  "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.description":"Spend {Gold:diff()} [gold]Gold[/gold] to gain a [gold]Blind Box[/gold] at end of combat.",
+
+  "HAKUREIREIMU-REPEAT_CAST.title":"Repeated Cast",
+  "HAKUREIREIMU-REPEAT_CAST.description":"Return all other cards played this turn back into your hand in order.",
+
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.title":"Friends' help",
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"Gain {Energy:energyIcons()}.\n [gold]Retain[/gold] your hand and {energyPrefix:energyIcons(1)} this turn.",
+
+  "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"Mikuji",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.title":"Rule Violation Barrier",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"Whenever you play a card this turn, [gold]Free[/gold] activate adjacent [gold]Counter[/gold] effects.",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"Activate Counter effects towards the trigger card's target.",
+
+  "HAKUREIREIMU-DREAM_INNATE.title":"Innate Dream",
+  "HAKUREIREIMU-DREAM_INNATE.description":"[gold]Counter ALL[/gold] this turn only.\n[gold]Preemptively[/gold] invalidate their actions.",
+
+  "HAKUREIREIMU-GENSO_ICHIJO.sign":"Dream Sign",
+  "HAKUREIREIMU-GENSO_ICHIJO.title":"Fine Line Fantasy",
+  "HAKUREIREIMU-GENSO_ICHIJO.description":"{IfUpgraded:show:Draw a card when this card drawn.\n|}Swap a card from your draw pile with this card.",
+  "HAKUREIREIMU-GENSO_ICHIJO.selectionScreenPrompt":"Swap",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-TRINITY_RELIGION_FINALE.title":"Trinity Religion Finale",
+  "HAKUREIREIMU-TRINITY_RELIGION_FINALE.description":"Gain {StrengthPower:diff()} [gold]Strength[/gold].\nGain {StrengthPower:diff()} [gold]Dexterity[/gold].\nApply {InhibitPower:diff()} [red]Inhibit[/red].",
+
+  "HAKUREIREIMU-DIVINE_MIGHT.title":"Divine Might",
+  "HAKUREIREIMU-DIVINE_MIGHT.description":"[gold]Remove[/gold] ALL your [red]Debuffs[/red].\nGain {ArtifactPower:diff()} [gold]Artifact[/gold].",
+
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.sign":"Holy Relic",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.title":"Yin-Yang Kishin Orb",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU.description":"Whenever you play a card, [gold]Channel[/gold] {YinYangKijinGyokuPower:diff()} [gold]Yin-Yang Orb[/gold].",
+
+  "HAKUREIREIMU-UNFETTERED_FORM.title":"Unfettered Form",
+  "HAKUREIREIMU-UNFETTERED_FORM.description":"At the start of your turn, draw {UnfetteredFormPower:diff()} additional cards.\n Whenever your Hand becomes [gold]Full[/gold] from drawing, a random card costs 0 this turn.",
+
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.title":"Perfect Possession and Dream Seal",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"Every {Div:diff()} [gold]Seal[/gold] on ALL enemies increase your damage by {KanzenHyoiToYumoFuinPower:diff()}.",
+
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.sign":"Charm",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.title":"Fantastic High-Speed Prayer Talismans",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.description":"Whenever a [gold]Counter[/gold] is placed onto the battlefield, activate it against a random enemy.",
+
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.sign":"Dream Land",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.title":"Great Duplex Barrier",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.description":"Whenever a [gold]Counter[/gold] is played, place a copy of it with [gold]Exhaust[/gold] onto the battlefield.",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"Divine Spirit",
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.title":"Dream Seal",
+  "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"Deal {Damage:diff()} damage.\nApply {SealPower:diff()} [gold]Seal[/gold].\nRepeat {Repeat:diff()} times.",
+
+  "HAKUREIREIMU-HAKUREI_PHANTOM.sign":"Spirit Sign",
+  "HAKUREIREIMU-HAKUREI_PHANTOM.title":"Hakurei Phantom",
+  "HAKUREIREIMU-HAKUREI_PHANTOM.description":"Cards are played twice.\nWhenever you play a card, [gold]Exhaust[/gold] it.",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-MIRACLE.title":"Miracle",
+  "HAKUREIREIMU-MIRACLE.description":"Gain {Energy:energyIcons()}.",
+
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.sign":"Barrier",
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.title":"Danmaku Barrier",
+  "HAKUREIREIMU-DANMAKU_BOUNDARY.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] deal {Damage:diff()} damage.",
+
+  "HAKUREIREIMU-SEAL.title":"Seal",
+  "HAKUREIREIMU-SEAL.description":"Deal {Damage:diff()} damage.\nApply {SealPower:diff()} [gold]Seal[/gold].",
+
+  "HAKUREIREIMU-BOUNDARY_CREATION.title":"Barrier Creation",
+  "HAKUREIREIMU-BOUNDARY_CREATION.description":"Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]{IfUpgraded:show:Danmaku Boundary+|Danmaku Boundary}[/gold] to your hand.",
+
+  "HAKUREIREIMU-BASIC_STRIKE.title":"Strike",
+  "HAKUREIREIMU-BASIC_STRIKE.description":"Deal {Damage:diff()} damage.",
+
+  "HAKUREIREIMU-BASIC_DEFEND.title":"Defend",
+  "HAKUREIREIMU-BASIC_DEFEND.description":"Gain {Block:diff()} [gold]Block[/gold].",
+
+
+  "HAKUREIREIMU-PLACEHOLDER.title":"占位符",
+  "HAKUREIREIMU-PLACEHOLDER.description":"占位符。"
 }

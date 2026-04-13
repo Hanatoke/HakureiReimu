@@ -21,7 +21,7 @@
   
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "保留格挡",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "在回合开始时保留[gold]格挡[/gold]。",
-  "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "在回合开始时保留[gold]{OwnerName}[/gold]点[gold]格挡[/gold]。",
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "在回合开始时保留[gold]{OwnerName}[/gold][blue]{Amount}[/blue]点[gold]格挡[/gold]。",
       
   "HAKUREIREIMU-FLIGHT_POWER.title": "飞行",
   "HAKUREIREIMU-FLIGHT_POWER.description": "受到的攻击伤害减半。",
@@ -53,7 +53,7 @@
   
   "HAKUREIREIMU-PROTECTION_FEE_POWER.title": "保护费",
   "HAKUREIREIMU-PROTECTION_FEE_POWER.description": "每当你[gold]斩杀[/gold]敌人时获得[gold]金币[/gold]。",
-  "HAKUREIREIMU-PROTECTION_FEE_POWER.smartDescription": "每当你[gold]斩杀[/gold]敌人时获得[blue]{Amount}[/blue][gold]金币[/gold]。",
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.smartDescription": "每当[gold]{OwnerName}[/gold][gold]斩杀[/gold]敌人时获得[blue]{Amount}[/blue][gold]金币[/gold]。",
   
   "HAKUREIREIMU-RETAIN_ENERGY_POWER.title": "保留能量",
   "HAKUREIREIMU-RETAIN_ENERGY_POWER.description": "将你的[gold]能量[/gold]保留至下回合。",

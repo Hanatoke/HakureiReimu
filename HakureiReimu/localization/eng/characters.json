@@ -1,3 +1,16 @@
 {
-  
+  "HAKUREIREIMU-HAKUREI_REIMU.aromaPrinciple": "[sine][red]This must be set right...[/red][/sine]",
+  "HAKUREIREIMU-HAKUREI_REIMU.banter.alive.endTurnPing": "Hurry up.",
+  "HAKUREIREIMU-HAKUREI_REIMU.banter.dead.endTurnPing": "You're taking forever.",
+  "HAKUREIREIMU-HAKUREI_REIMU.cardsModifierDescription": "Hakurei Reimu cards will now appear in rewards and shops.",
+  "HAKUREIREIMU-HAKUREI_REIMU.cardsModifierTitle": "Hakurei Reimu Cards",
+  "HAKUREIREIMU-HAKUREI_REIMU.description": "The Shrine Maiden of Paradise.\nFights using barriers, danmaku, and yin-yang techniques.",
+  "HAKUREIREIMU-HAKUREI_REIMU.eventDeathPrevention": "My team still needs me.",
+  "HAKUREIREIMU-HAKUREI_REIMU.goldMonologue": "[sine]These coins belong in the saisen box...[/sine]",
+  "HAKUREIREIMU-HAKUREI_REIMU.possessiveAdjective": "Her",
+  "HAKUREIREIMU-HAKUREI_REIMU.pronounObject": "She",
+  "HAKUREIREIMU-HAKUREI_REIMU.pronounPossessive": "Her",
+  "HAKUREIREIMU-HAKUREI_REIMU.pronounSubject": "She",
+  "HAKUREIREIMU-HAKUREI_REIMU.title": "Hakurei Reimu",
+  "HAKUREIREIMU-HAKUREI_REIMU.titleObject": "Hakurei Reimu"
 }

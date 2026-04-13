@@ -1,3 +1,22 @@
 {
-  
+  "HAKUREIREIMU-COUNTER.title":"Counter",
+  "HAKUREIREIMU-COUNTER.description":"Counter activate when an enemy performs a matching [gold]Action[/gold].\nThe number shows how many [blue]Times[/blue] they can trigger before discard.",
+
+  "HAKUREIREIMU-ATTACK.title":"Attack",
+  "HAKUREIREIMU-ATTACK.description":"Intents that deals to the player is considered an attack.",
+
+  "HAKUREIREIMU-BUFF.title":"Buff",
+  "HAKUREIREIMU-BUFF.description":"Intents that gives [gold]Buff[/gold], [blue]Block[/blue], or [green]Healing[/green] is considered a buff.",
+
+  "HAKUREIREIMU-DEBUFF.title":"Debuff",
+  "HAKUREIREIMU-DEBUFF.description":"Intents that inflicts a [red]Negative[/red] effect or give [color=gray]Status[/color] cards is considered a debuff.",
+
+  "HAKUREIREIMU-ALL.title":"All",
+  "HAKUREIREIMU-ALL.description":"Any intents that are [gold]Attack[/gold], [gold]Buff[/gold] and [gold]Debuff[/gold].",
+
+  "HAKUREIREIMU-IMMEDIATE.title":"Preemptively",
+  "HAKUREIREIMU-IMMEDIATE.description":"Will be activated [gold]Before[/gold] the enemy's action is executed.",
+
+  "HAKUREIREIMU-FREECOUNTER.title":"Free",
+  "HAKUREIREIMU-FREECOUNTER.description":"This activation without reducing [gold]Counter[/gold] Card's counts."
 }

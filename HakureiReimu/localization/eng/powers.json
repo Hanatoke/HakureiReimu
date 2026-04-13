@@ -1,3 +1,96 @@
 {
-  
+  "HAKUREIREIMU-SEAL_POWER.title": "Seal",
+  "HAKUREIREIMU-SEAL_POWER.description": "Prevent it from dealing damage.",
+  "HAKUREIREIMU-SEAL_POWER.smartDescription": "Prevent [gold]{OwnerName}[/gold] from dealing [blue]{Amount}[/blue] damage.",
+
+  "HAKUREIREIMU-INHIBIT_POWER.title": "Inhibit",
+  "HAKUREIREIMU-INHIBIT_POWER.description": "[red]Negates[/red] [gold]Buffs[/gold].",
+  "HAKUREIREIMU-INHIBIT_POWER.smartDescription": "[red]Negates[/red] [blue]{Amount}[/blue] [gold]Buffs[/gold].",
+
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.title": "9-Syllable Self-Defense",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "ALL enemy attack to you will not consume [gold]Seal[/gold].",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "ALL enemy attack to you will not consume [gold]Seal[/gold] for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.title": "Extra Draw",
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.description": "Draw [gold]Additional[/gold] cards the next time you draw any card.",
+  "HAKUREIREIMU-EXTRA_DRAW_POWER.smartDescription": "Draw [blue]{Amount}[/blue] [gold]Additional[/gold] cards the next time you draw any card.",
+
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.title": "Expanding Barrier",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "Your [gold]attacks[/gold] deal damage to ALL enemies.",
+  "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "[gold]{OwnerName}[/gold]'s [gold]attacks[/gold] deal damage to ALL enemies for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "Retain Block",
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "At the start of your turn, retain [gold]Block[/gold].",
+  "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "At the start of [gold]{OwnerName}[/gold]'s turn, retain [blue]{Amount}[/blue] [gold]Block[/gold].",
+
+  "HAKUREIREIMU-FLIGHT_POWER.title": "Flight",
+  "HAKUREIREIMU-FLIGHT_POWER.description": "Receives 50% less attack damage.",
+  "HAKUREIREIMU-FLIGHT_POWER.smartDescription": "Receives [blue]{DamageDecrease:percentLess()}% less attack damage for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.title": "Lays to Rest",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.description": "Whenever a [gold]Counter[/gold] is placed onto the battlefield, draw card.",
+  "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold] place a [gold]Counter[/gold] onto on the battlefield, draw [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
+
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.title": "Barrier Strengthening",
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.description": "[gold]Counter[/gold] placed onto the battlefield will increase its counts.",
+  "HAKUREIREIMU-BOUNDARY_SOLIDIFICATION_POWER.smartDescription": "[gold]{OwnerName}[/gold]'s [gold]Counter[/gold] placed onto the battlefield will  have its counts increased by [blue]{Amount}[/blue].",
+
+  "HAKUREIREIMU-PARRY_POWER.title": "Parry",
+  "HAKUREIREIMU-PARRY_POWER.description": "Whenever [gold]Counter[/gold] is activated, gain [gold]Block[/gold].",
+  "HAKUREIREIMU-PARRY_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold]'s [gold]Counter[/gold] is activated, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.title": "Yin-Yang Orb Mastery",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.description": "[gold]Yin-Yang Orbs[/gold] deal additional damage.",
+  "HAKUREIREIMU-YIN_YANG_GYOKUSHO_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] deal [blue]{Amount}[/blue] additional damage.",
+
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.title": "Yin-Yang Asuka'i",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.description": "Whenever [gold]Yin-Yang Orbs[/gold] deal unblocked damage, apply a random [red]debuff[/red].",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I_POWER.smartDescription": "Whenever [gold]Yin-Yang Orbs[/gold] deal unblocked damage, apply a random [red]debuff[/red] [blue]{Amount}[/blue] {Amount:plural:time|times}.",
+
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.title": "Evil-Sealing Circle",
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.description": "At the start of your turn, apply [gold]Seal[/gold] to all enemies.",
+  "HAKUREIREIMU-SEALING_FORMATION_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Seal[/gold] to all enemies.",
+
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.title": "Protection Fee",
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.description": "Whenever you [gold]Fatal[/gold] an enemy, gain gold.",
+  "HAKUREIREIMU-PROTECTION_FEE_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold] Fatal an enemy, gain [blue]{Amount}[/blue] gold.",
+
+  "HAKUREIREIMU-RETAIN_ENERGY_POWER.title": "Retain Energy",
+  "HAKUREIREIMU-RETAIN_ENERGY_POWER.description": "Retain your energy next turn.",
+  "HAKUREIREIMU-RETAIN_ENERGY_POWER.smartDescription": "Retain [gold]{OwnerName}[/gold]'s {energyPrefix:energyIcons(1)} for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.title": "Infinite Yin-Yang Orb",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.description": "Whenever you play a card, channel a [gold]Yin-Yang Orb[/gold].",
+  "HAKUREIREIMU-YIN_YANG_KIJIN_GYOKU_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold] plays a card, channel [blue]{Amount}[/blue] [gold]Yin-Yang Orb[/gold].",
+
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.title": "Unfettered Form",
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.description": "At the start of your turn, draw additional cards.\nWhen your hand becomes full from drawing, a random card costs [blue]0[/blue] this turn.",
+  "HAKUREIREIMU-UNFETTERED_FORM_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] additional cards.\nWhen your hand becomes full from drawing, a random card costs [blue]0[/blue] this turn.",
+
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.title": "Perfect Possession",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "For every {Div:diff()} [gold]Seal[/gold] on enemies, your damage increases.",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "For every [blue]{Div:diff()}[/blue] [gold]Seal[/gold] on enemies, [gold]{OwnerName}[/gold] deals [blue]{Amount}[/blue] more damage.\nCurrently increased by [blue]{Total:diff()}[/blue].",
+
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.title": "High-Speed Prayer",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.description": "Whenever you place a [gold]Counter[/gold], it activates against a random enemy.",
+  "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold] places a [gold]Counter[/gold], it activates against a random enemy [blue]{Amount}[/blue] {Amount:plural:time|times}.",
+
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.title": "Great Duplex Barrier",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.description": "Whenever you play a [gold]Counter[/gold], place a copy with [gold]Exhaust[/gold] of it onto the battlefield.",
+  "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold] plays a [gold]Counter[/gold], place [blue]{Amount}[/blue] copies with [gold]Exhaust[/gold] of it onto the battlefield.",
+
+  "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.title": "Hakurei Phantom",
+  "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.description": "Cards are played an additional time.\nWhenever you play a card, Exhaust it.",
+  "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.smartDescription": "Cards are played [blue]{Amount}[/blue] additional times.\nWhenever [gold]{OwnerName}[/gold] plays a card, [gold]Exhaust[/gold] it.",
+
+
+
+
+
+
+
+
+  "PLACEHOLDER.title": "占位符",
+  "PLACEHOLDER.description": "[gold]小刀[/gold]造成额外伤害。",
+  "PLACEHOLDER.smartDescription": "[gold]小刀[/gold]造成[blue]{Amount}[/blue]点额外伤害。"
 }

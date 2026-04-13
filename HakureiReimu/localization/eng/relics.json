@@ -1,3 +1,46 @@
 {
-  
+  "HAKUREIREIMU-HAKUREI_GOHEI.title": "Hakurei's Gohei",
+  "HAKUREIREIMU-HAKUREI_GOHEI.flavor": "Reimu's usual gohei. Hurts alot when people are hit by it.",
+  "HAKUREIREIMU-HAKUREI_GOHEI.description": "At the start of your turn, [gold]Channel[/gold] [blue]{Orbs}[/blue] [gold]Yin-Yang Orb[/gold].",
+
+  "HAKUREIREIMU-MORIYA_GOHEI.title": "Moriya's Gohei",
+  "HAKUREIREIMU-MORIYA_GOHEI.flavor": "Sanae's gohei. How did it end up in here?",
+  "HAKUREIREIMU-MORIYA_GOHEI.description": "At the start of your turn, add [blue]{Cards}[/blue] [gold]Miracle[/gold] into your hand.",
+
+  "HAKUREIREIMU-SAISEN_BOX.title": "Saisen Box",
+  "HAKUREIREIMU-SAISEN_BOX.flavor": "The saisen box has no money in it!",
+  "HAKUREIREIMU-SAISEN_BOX.description": "Every [blue]{Gold}[/blue] [gold]Gold[/gold] lost will heal [green]{Heal}[/green] HP.",
+
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.title": "Ultramarine Orb Elixir",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.flavor": "Is it the past or the future that you see?",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.description": "Upon pickup, select a card from the latest [gold]victorious[/gold] deck to obtain.",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.selectionScreenPrompt": "Select card to add to your deck",
+
+  "HAKUREIREIMU-WOODEN_FISH.title": "Wooden Fish",
+  "HAKUREIREIMU-WOODEN_FISH.flavor": "You can seems to hear a faint echo coming from it.",
+  "HAKUREIREIMU-WOODEN_FISH.description": "You permanently have [gold]Counter Attack[/gold]: Draw [blue]{Cards}[/blue] Card.",
+
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.title": "Old Miko Costume",
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.flavor": "It remains spotless even after a long time has pass.",
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.description": "At the start of each combat, place a [gold]Duplex Barrier[/gold] with [gold]Exhaust[/gold] onto the battlefield.",
+
+  "HAKUREIREIMU-BOUNDARY_SENSOR.title": "Boundary Sensor",
+  "HAKUREIREIMU-BOUNDARY_SENSOR.flavor": "Can discover boundaries that are difficult to perceive.",
+  "HAKUREIREIMU-BOUNDARY_SENSOR.description": "At the start of each combat, draw [blue]{Cards}[/blue] additional cards with [gold]Counter[/gold].",
+
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.title": "Unlucky Talisman",
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.flavor": "Suffering from the invasion of an unknown power. It will bring forth the power misfortune.",
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.description": "Whenever an enemy dies, transfer any [gold]Seal[/gold] it has to ALL other enemies.",
+
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.title": "Auto Yin-Yang Orb Defense",
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.flavor": "This Yin-Yang Orb craves the enemy's blood.",
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.description": "Whenever [gold]Counter[/gold] is activated, Channel [blue]{Orbs}[/blue] [gold]Yin-Yang Orb[/gold].",
+
+
+
+
+
+
+  "HAKUREIREIMU-PLACEHOLDER.title":"占位符",
+  "HAKUREIREIMU-PLACEHOLDER.description":"占位符。"
 }
