@@ -19,10 +19,10 @@ namespace HakureiReimu.HakureiReimuMod.Core
 {
     public static class CounterManager
     {
-        public static bool InMonsterMove=false;
-        public static readonly Dictionary<CardModel, Func<Task>> Later = new();
-        public static bool AlreadyForceAttackAnimation=false;
-
+        public static readonly Dictionary<ICounter, Func<Task>> Later = new();
+        public static bool InMonsterMove { get; internal set; } = false;
+        public static bool AlreadyForceAttackAnimation { get; internal set; }=false;
+        public static bool InInvokeCounter { get; internal set; }= false;
         public static List<CardModel> GetAllCounterCards(this Player player)
         {
             AbstractPersistCardTable table = player.PlayerCombatState?.PersistCardTable(CounterCardTable.PileType);
@@ -51,16 +51,16 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
             //TODO:未来版本可能添加的复数Modifier
         }
-        public static void AddToLater(CardModel card, Func<Task> func)
+        public static void AddToLater(ICounter counter, Func<Task> func)
         {
-            Later.TryAdd(card, func);
+            Later.TryAdd(counter, func);
         }
 
-        public static void CancelLater(CardModel card)
+        public static void CancelLater(ICounter counter)
         {
-            if (Later.ContainsKey(card))
+            if (Later.ContainsKey(counter))
             {
-                Later[card] = null;
+                Later[counter] = null;
             }
         }
         public static async Task RunLater()

@@ -34,10 +34,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
                 MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
                 return;
             }
+            if (CounterManager.InInvokeCounter)return;
             if (CounterManager.InMonsterMove)
             {
                 if (byType==CounterType.Attack)
                 {
+                    CounterManager.AddToLater(this, () => Task.CompletedTask);
                     CounterManager.CancelLater(this);
                 }
                 else

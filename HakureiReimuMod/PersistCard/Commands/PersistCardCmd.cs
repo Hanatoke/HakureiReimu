@@ -123,7 +123,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                             default:
                                 tween.TweenCallback(Callable.From((Action) (() =>
                                 {
-                                    Godot.Node node = card.Pile.Type != PileType.Deck ?  NCombatRoom.Instance.CombatVfxContainer : NRun.Instance.GlobalUi.TopBar.TrailContainer;
+                                    Godot.Node node = NCombatRoom.Instance?.CombatVfxContainer ;
+                                    if (node==null)
+                                    {
+                                        nc.QueueFreeSafely();
+                                        return;
+                                    };
                                     nc.ReparentSafely(node);
                                     NCardFlyVfx child = NCardFlyVfx.Create(nc, card.Pile.Type.GetTargetPosition(nc), true, card.Owner.Character.TrailPath);
                                     node.AddChildSafely( child);

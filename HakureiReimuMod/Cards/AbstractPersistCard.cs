@@ -54,6 +54,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             return base.GetResultPileType();
         }
 
+        public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
+            ResourceInfo resources, PileType pileType, CardPilePosition position)
+        {
+            if (card==this&&Pile?.Type!=CounterCardTable.PileType)
+            {
+                return (TargetPersistPileType, position);
+            }
+            return (pileType, position);
+        }
+
         public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
             if (player==Owner)

@@ -3,7 +3,6 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,9 +16,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Character;
@@ -191,7 +190,19 @@ public class HakureiReimu : PlaceholderCharacterModel {
         }
         return Task.CompletedTask;
     }
-    
+
+    public override Task AfterCombatVictory(CombatRoom room)
+    {
+        foreach (Player player in room.CombatState.Players)
+        {
+            if (player.Character is HakureiReimu)
+            {
+                RunAnimation(player,Animation.Win);
+            }
+        }
+        return Task.CompletedTask;
+    }
+
     public enum Animation
     {
         None,

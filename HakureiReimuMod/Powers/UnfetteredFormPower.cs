@@ -25,9 +25,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return player.Creature != Owner ? count : count + Amount;
         }
 
-        public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+        public override Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {
-            if (card.Owner.Creature!=Owner)return;
+            if (card.Owner.Creature!=Owner)return Task.CompletedTask;
             Player player = card.Owner;
             if (player.PlayerCombatState.Hand.Cards.Count >= CardPile.maxCardsInHand ||
                 player.PlayerCombatState.DrawPile.Cards.Count <= 0 &&
@@ -35,6 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             {
                 Trigger(player);
             }
+            return Task.CompletedTask;
         }
 
         public void Trigger(Player player)

@@ -7,6 +7,35 @@
   "HAKUREIREIMU-MORIYA_GOHEI.flavor": "早苗的御币，怎么到了灵梦的手上?",
   "HAKUREIREIMU-MORIYA_GOHEI.description": "每回合开始时，增加[blue]{Cards}[/blue]张[gold]奇迹[/gold]到手牌中。",
   
+  "HAKUREIREIMU-SAISEN_BOX.title": "塞钱箱",
+  "HAKUREIREIMU-SAISEN_BOX.flavor": "塞钱箱里根本没有钱!",
+  "HAKUREIREIMU-SAISEN_BOX.description": "每累计失去[blue]{Gold}[/blue][gold]金币[/gold]，便回复[green]{Heal}[/green]点生命值。",
+  
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.title": "绀珠之药",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.flavor": "看见的到底是过去还是未来?",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.description": "拾取时，从上次[gold]胜利[/gold]的游戏卡组中选择一张获得。",
+  "HAKUREIREIMU-ULTRAMARINE_ORB_ELIXIR.selectionScreenPrompt": "选择要获取的卡牌",
+  
+  "HAKUREIREIMU-WOODEN_FISH.title": "木鱼",
+  "HAKUREIREIMU-WOODEN_FISH.flavor": "似乎能听到残响。",
+  "HAKUREIREIMU-WOODEN_FISH.description": "[gold]反制攻击[/gold]：抽[blue]{Cards}[/blue]张牌。",
+  
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.title": "老旧的巫女服",
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.flavor": "即时经过长久的时光，依然一尘不染。",
+  "HAKUREIREIMU-OLD_MIKO_COSTUME.description": "战斗开始时，将一张具有[gold]消耗[/gold]的[gold]二重结界[/gold]置入场上。",
+  
+  "HAKUREIREIMU-BOUNDARY_SENSOR.title": "境界探测仪",
+  "HAKUREIREIMU-BOUNDARY_SENSOR.flavor": "能发现难以感知的境界。",
+  "HAKUREIREIMU-BOUNDARY_SENSOR.description": "在每场战斗开始时，额外抽[blue]{Cards}[/blue]张[gold]反制[/gold]牌。",
+  
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.title": "厄运护符",
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.flavor": "遭受未知力量的侵染，将要带来不幸。",
+  "HAKUREIREIMU-UNLUCKY_TALISMAN.description": "每当有敌人死去时，将其身上的[gold]封印[/gold]层数转移给其他敌人。",
+  
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.title": "自作主张的阴阳玉",
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.flavor": "这个阴阳玉渴望敌人的鲜血。",
+  "HAKUREIREIMU-AUTONOMOUS_YIN_YANG_JADE.description": "每当你发动[gold]反制[/gold]时，生成[blue]{Orbs}[/blue]个[gold]阴阳玉[/gold]。",
+  
   
   
   

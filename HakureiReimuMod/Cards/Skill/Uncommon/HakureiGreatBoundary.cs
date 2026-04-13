@@ -56,6 +56,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
                 return;
             }
+            if (CounterManager.InInvokeCounter)return;
             if (!IsImmediate&&CounterManager.InMonsterMove)
             {
                 CounterManager.AddToLater(this,async  () =>

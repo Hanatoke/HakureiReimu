@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
 
         public override PowerStackType StackType => PowerStackType.Counter;
 
-        public override async Task BeforeAttack(AttackCommand command)
+        public override Task BeforeAttack(AttackCommand command)
         {
             if (command.Attacker==Owner)
             {
@@ -35,6 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 traverse.Property<CombatSide>("TargetSide").Value =
                     Owner.Side == CombatSide.Enemy ? CombatSide.Player : CombatSide.Enemy;
             }
+            return Task.CompletedTask;
         }
 
         public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)

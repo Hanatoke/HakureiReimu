@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
 using HakureiReimu.HakureiReimuMod.Command;
@@ -9,8 +10,8 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards
@@ -28,6 +29,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature? applier, Creature target,out CounterType counterType)
         {
+            if (IgnorePower.Contains(power.GetType()))
+            {
+                counterType = CounterType.None;
+                return false;
+            }
             PowerType type=power.GetTypeForAmount(modifiedAmount);
             if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>=0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
             {
@@ -98,6 +104,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 MainFile.Logger.Warn("尝试发动不在战斗中的反制卡? "+this.GetType().Name);
                 return;
             }
+            if (CounterManager.InInvokeCounter)return;
+            
             if (!IsImmediate&&CounterManager.InMonsterMove)
             {
                 CounterManager.AddToLater(this,async  () => await CounterCmd.InvokeCounter(CombatState,this,target));
@@ -108,6 +116,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             }
         }
 
+        public static readonly HashSet<Type> IgnorePower = [
+            typeof(SandpitPower),
+        ];
         [Flags]
         public enum CounterType
         {

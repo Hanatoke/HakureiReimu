@@ -16,13 +16,14 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             public static IEnumerable<AbstractModel> Postfix(IEnumerable<AbstractModel>  __result,CombatState __instance)
             {
                 //TODO:在新版本中移除
+                bool alreadyFind = false;
                 foreach (Player p in __instance.Players)
                 {
-                    if (p.Creature.CombatState!=null&&p.Character is Character.HakureiReimu c)
+                    if (!alreadyFind&&p.Creature.CombatState!=null&&p.Character is Character.HakureiReimu c)
                     {
+                        alreadyFind = true;
                         yield return c;
                     }
-                
                     if (p.PlayerCombatState != null)
                     {
                         YinYangOrbManager m=YinYangOrbPatch.Managers[p.PlayerCombatState];
