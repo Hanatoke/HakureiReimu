@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -34,6 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 MainFile.Logger.Warn("slot:"+slot);
                 return;
             }
+            if (CombatManager.Instance.IsOverOrEnding)return;
             if (slot.Card.Pile!=table)
             {
                 CardModel card = slot.Card;
@@ -58,7 +58,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 }
 
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(card.Owner.Creature)
-                    .PersistCardTable(table);
+                    ?.PersistCardTable(table);
                 if (nt!=null)
                 {
                     NPersistCardHolder holder=nt.AddCard(nCard);
@@ -76,18 +76,19 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 MainFile.Logger.Warn("slot:"+slot);
                 return;
             }
+            if (CombatManager.Instance.IsOverOrEnding)return;
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 CardModel card = slot.Card;
                 CombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
-                    .PersistCardTable(table);
+                    ?.PersistCardTable(table);
                 NPersistCardHolder holder = null;
                 if (nt!=null)
                 {
                     holder = nt.GetCardHolder(slot.Card);
-                    holder.SetEnabled(false);
+                    holder?.SetEnabled(false);
                     // nt.RemoveCardHolder(holder);
                 }
                 if (!overridePile.HasValue&&slot.Card.IsDupe)
@@ -155,6 +156,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 MainFile.Logger.Warn("slot:"+slot);
                 return;
             }
+            if (CombatManager.Instance.IsOverOrEnding)return;
             int origin = slot.Count;
             if (PersistCardHook.AtIncreaseCount(slot.Card.CombatState,slot,origin,ref amount))
             {
@@ -171,6 +173,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 MainFile.Logger.Warn("slot:"+slot);
                 return;
             }
+            if (CombatManager.Instance.IsOverOrEnding)return;
             int origin = slot.Count;
             if (PersistCardHook.AtDecreaseCount(slot.Card.CombatState,slot,origin,ref amount))
             {
@@ -187,13 +190,15 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 MainFile.Logger.Warn("slot:"+slot);
                 return;
             }
+            if (CombatManager.Instance.IsOverOrEnding)return;
             if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
-                    .PersistCardTable(table);
+                    ?.PersistCardTable(table);
                 if (nt != null)
                 {
                     NPersistCardHolder holder=nt.GetCardHolder(slot.Card);
+                    if (holder==null)return;
                     holder.StopAnimations();
                     Vector2 size = NCombatRoom.Instance.Ui.GetViewportRect().Size;
                     Vector2 global = NCombatRoom.Instance.Ui.GetGlobalTransformWithCanvas() * new Vector2(size.X*0.5f,size.Y*0.4f);
@@ -211,7 +216,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
         public static void TweenExhaustCard(NPersistCardHolder holder,NPersistCardTable table)
         {
-            if (holder!=null)
+            if (holder!=null&&NCombatRoom.Instance!=null)
             {
                 table.ReparentCardHolder(holder,NCombatRoom.Instance.Ui);
                 NCard nc = holder.CardNode;

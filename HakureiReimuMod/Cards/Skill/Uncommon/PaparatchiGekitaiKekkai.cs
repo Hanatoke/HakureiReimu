@@ -6,14 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class PaparatchiGekitaiKekkai : AbstractCounterCard {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CounterVar(2),new CardsVar(2)];
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [Debuff,CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [Debuff];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
         public PaparatchiGekitaiKekkai(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {

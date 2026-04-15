@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Interface;
@@ -14,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
     {
         public static decimal ModifyOrbValue(YinYangOrb orb,decimal result)
         {
-            result+=orb.Owner.Creature.GetPowerAmount<StrengthPower>();
+            result+=Math.Max(0,orb.Owner.Creature.GetPowerAmount<StrengthPower>());
             foreach (AbstractModel i in orb.CombatState.IterateHookListeners())
             {
                 if (i is IYinYangOrbListener listener)

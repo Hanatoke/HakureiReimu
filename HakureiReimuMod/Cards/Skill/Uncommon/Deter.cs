@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         public Deter(
-            ) : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies) {
+            ) : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies) {
         }
 
         private static List<LocString> _talk;

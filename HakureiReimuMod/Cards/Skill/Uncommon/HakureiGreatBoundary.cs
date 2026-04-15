@@ -99,7 +99,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t)&&amount>0)
             {
                 await Flash(true);
-                if (PlayerUsefulPowers.Contains(power.GetType()))
+                if (PowerHelper.Mutually.Contains(power.GetType()))
                 {
                     await PowerCmd.Apply((PowerModel)power.ClonePreservingMutability(),Owner.Creature, amount, Owner.Creature, this);
                 }
@@ -110,21 +110,5 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 await InvokeCounter(applier,t);
             }
         }
-        public static readonly HashSet<Type> PlayerUsefulPowers = [
-            typeof(ArtifactPower),
-            typeof(BarricadePower),
-            typeof(BufferPower),
-            typeof(CurlUpPower),
-            typeof(EnragePower),
-            typeof(HighVoltagePower),
-            typeof(IntangiblePower),
-            typeof(PlatingPower),
-            typeof(RegenPower),
-            typeof(RitualPower),
-            typeof(ThornsPower),
-            typeof(VigorPower),
-            typeof(StrengthPower),
-            typeof(DexterityPower),
-        ];
     }
 }

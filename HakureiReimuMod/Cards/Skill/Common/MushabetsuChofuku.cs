@@ -17,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
             [new PowerVar<Powers.SealPower>(7)];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashLight;
         public MushabetsuChofuku(
-            ) : base(1, CardType.Skill, CardRarity.Common, TargetType.AllAllies) {
+            ) : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

@@ -81,7 +81,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public override bool TryModifyPowerAmountReceived(PowerModel canonicalPower, Creature target, decimal amount, Creature applier,
             out decimal modifiedAmount)
         {
-            if (InPersisting&&CheckPower(canonicalPower,amount,applier,target,out CounterType _))
+            if (InPersisting&&CheckPower(canonicalPower,amount,applier,target,out CounterType _)&&!PowerHelper.DontBlock.Contains(canonicalPower.GetType()))
             {
                 modifiedAmount = 0;
                 return true;

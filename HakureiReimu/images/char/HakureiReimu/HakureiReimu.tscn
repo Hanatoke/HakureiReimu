@@ -10231,7 +10231,7 @@ flip_v = true
 
 [node name="00" type="Sprite2D" parent="Visuals/Skeleton"]
 position = Vector2(-128.91566, 190.36145)
-texture = ExtResource("107_who6h")
+texture = ExtResource("104_4wkq3")
 centered = false
 offset = Vector2(0, -192)
 flip_v = true
@@ -10331,7 +10331,7 @@ unique_name_in_owner = true
 position = Vector2(-2, -362)
 
 [node name="OrbPos" type="Marker2D" parent="."]
-position = Vector2(0, -300)
+position = Vector2(0, -275)
 
 [node name="TalkPos" type="Marker2D" parent="."]
 position = Vector2(100, -300)

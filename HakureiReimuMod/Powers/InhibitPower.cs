@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -23,7 +24,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             Creature _,
             out decimal modifiedAmount)
         {
-            if (canonicalPower!=this&&target ==Owner&&canonicalPower.GetTypeForAmount(amount)==PowerType.Buff&&canonicalPower.IsVisible)
+            if (canonicalPower != this && target == Owner &&
+                canonicalPower.GetTypeForAmount(amount) == PowerType.Buff && canonicalPower.IsVisible &&
+                !PowerHelper.DontBlock.Contains(canonicalPower.GetType()))
             {
                 modifiedAmount = 0;
                 return true;

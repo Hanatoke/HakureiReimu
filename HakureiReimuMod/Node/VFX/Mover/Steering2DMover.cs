@@ -25,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
         }
         public bool IsHit(FlyingVFX node, float time, float delta)
         {
-            return node.GlobalPosition.DistanceTo(Target) < 20f;
+            return node.GlobalPosition.DistanceTo(Target) < 10+Speed/50f;
         }
         public Vector2 CurrentPosition(FlyingVFX node, float time, float delta)
         {

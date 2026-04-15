@@ -11,7 +11,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4,ValueProp.Move),new RepeatVar(4)];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashHeavy;
         public TenhaFushinKyaku(
-            ) : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyAlly) {
+            ) : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
             

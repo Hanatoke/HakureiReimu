@@ -19,7 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
         public virtual AbstractPersistCardTable Table=>Card.Pile as AbstractPersistCardTable;
 
         public virtual NPersistCardTable NTable =>
-            NCombatRoom.Instance?.GetCreatureNode(Card.Owner.Creature).PersistCardTable(Table);
+            NCombatRoom.Instance?.GetCreatureNode(Card.Owner.Creature)?.PersistCardTable(Table);
 
         public AbstractPersistCardSlot(CardModel card, int count)
         {
@@ -49,21 +49,21 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
 
         public virtual void FlashCount(Color color)
         {
-            NTable.GetCardHolder(Card)?.FlashCount(color);
+            NTable?.GetCardHolder(Card)?.FlashCount(color);
         }
 
         public virtual bool ShouldDisplayCount => Count != 0;
 
         public virtual void UpdateDisplayCount()
         {
-            NTable.GetCardHolder(Card)?.SetCount(Count,ShouldDisplayCount);
+            NTable?.GetCardHolder(Card)?.SetCount(Count,ShouldDisplayCount);
         }
 
         public virtual async Task OnStart()
         {
             await Cmd.Wait(0.25f);
             PlaySfx(true);
-            NTable.GetCardHolder(Card)?.Flash(NeutralColor);
+            NTable?.GetCardHolder(Card)?.Flash(NeutralColor);
         }
         public virtual Task OnEnd()
         {

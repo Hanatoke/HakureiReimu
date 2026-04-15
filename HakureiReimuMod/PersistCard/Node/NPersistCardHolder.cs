@@ -175,6 +175,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             HoverTip?.QueueFreeSafely();
             if (CardNode?.Model!=null)
             {
+                if (!IsInstanceValid(CardNode)||!CardNode.IsInsideTree())return;
                 HoverTip = NCard.Create(CardNode.Model);
                 if (HoverTip!=null)
                 {

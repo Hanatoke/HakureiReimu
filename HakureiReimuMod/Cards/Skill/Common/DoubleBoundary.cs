@@ -32,7 +32,13 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             await Flash(instant);
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block,null,true);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block,new CardPlay
+            {
+                Card =  this,IsAutoPlay = false,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo
+                {
+                    EnergySpent = 0,EnergyValue = 0,StarValue = 0,StarsSpent = 0
+                },ResultPile = PileType.None,Target = Owner.Creature
+            },true);
             if (cost)
             {
                 await Decrement();
