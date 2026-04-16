@@ -45,7 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
                         NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                         AddVFXOnTarget(NDanmakuImpact.Create(scale, color), vfx.GlobalPosition);
                     };
-                    vfx.AddChildSafely(NDanmaku.Create(scale, color));
+                    vfx.AddChildSafely(NDanmaku.Create(scale, color,100));
                     NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
                     tasks.Add(vfx.HitTask);
                 }
@@ -70,7 +70,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
                     NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                     AddVFXOnTarget(NDanmakuImpact.Create(scale, c), vfx.GlobalPosition);
                 };
-                vfx.AddChildSafely(NDanmaku.Create(scale, c));
+                vfx.AddChildSafely(NDanmaku.Create(scale, c,100));
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
                 await vfx.HitTask;
             }

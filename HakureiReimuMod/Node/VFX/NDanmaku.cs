@@ -11,15 +11,19 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 		public Node2D Visual;
 		public Node2D ColorAble;
 		public Node2D Fixed;
+		public Node2D Trails;
 		public GpuParticles2D ColorTrails;
 		public GpuParticles2D WhiteTrails;
+		public Trail TrailOuter;
+		public Trail TrailInner;
 
-		public static NDanmaku Create(float scale=1f,Color? color=null)
+		public static NDanmaku Create(float scale=1f,Color? color=null,int? trailLength=null)
 		{
 			NDanmaku d = PreloadManager.Cache.GetScene(Path).Instantiate<NDanmaku>();
 			color ??= Color.FromHsv((float)GD.RandRange(0, 1f), 1, 1);
 			d.SetColor(color.Value);
 			d.Scale=Vector2.One * scale;
+			d.SetTrailLength(trailLength??30);
 			return d;
 		}
 
@@ -30,6 +34,9 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 			Fixed = Visual.GetNode<Node2D>("Fixed");
 			ColorTrails = ColorAble.GetNode<GpuParticles2D>("Core");
 			WhiteTrails = Fixed.GetNode<GpuParticles2D>("Core");
+			Trails=ColorAble.GetNode<Node2D>("Trails");
+			TrailOuter = Trails.GetNode<Trail>("TrailOuter");
+			TrailInner = Trails.GetNode<Trail>("TrailInner");
 		}
 
 		public override void _Process(double delta)
@@ -48,6 +55,16 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 				_Ready();
 			}
 			ColorAble.Modulate = color;
+		}
+
+		public void SetTrailLength(int length)
+		{
+			if (TrailInner == null || TrailOuter == null)
+			{
+				_Ready();
+			}
+			TrailInner.MaxSegments=length;
+			TrailOuter.MaxSegments=length;
 		}
 	}
 }

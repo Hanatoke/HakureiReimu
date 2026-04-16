@@ -57,11 +57,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     FlyingVFX vfx = FlyingVFX.Create(
                         new SteeringMover(startPos.VfxSpawnPosition, targetPos.VfxSpawnPosition, Vector2.One * 1000,
                             turnSpeed: 720f));
-                    Node2D orb = PreloadManager.Cache.GetScene(YinYangOrb.ScenePath).Instantiate<Node2D>();
-                    vfx.AddChildSafely(orb);
+                    vfx.AddChildSafely(NYinYangOrbFlying.Create());
                     vfx.Scale *= 2;
                     NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
-                    vfx.UpdateMethod = (_,d) => orb.RotationDegrees += (float)(1000 * d);
                     vfx.OnHit = (() =>
                     {
                         NDebugAudioManager.Instance?.Play("blunt_attack.mp3");

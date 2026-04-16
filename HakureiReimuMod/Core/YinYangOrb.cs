@@ -65,7 +65,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                     VfxCmd.PlayOnCreatureCenter(target,"vfx/vfx_attack_blunt");
                 };
-                vfx.AddChildSafely(CreateCustomSprite());
+                vfx.AddChildSafely(NYinYangOrbFlying.Create());
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             }
             IEnumerable<DamageResult> results=await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);

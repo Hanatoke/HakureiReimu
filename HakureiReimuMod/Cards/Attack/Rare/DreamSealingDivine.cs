@@ -71,7 +71,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                         NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                         FlyingVFXCmd.AddVFXOnTarget(NDanmakuImpact.Create(4,c),vfx.GlobalPosition);
                     };
-                    vfx.AddChildSafely(NDanmaku.Create(color:c));
+                    vfx.AddChildSafely(NDanmaku.Create(color:c,trailLength:50));
                     NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
                     tasks.Add(vfx.HitTask);
                     await Cmd.Wait(0.1f);

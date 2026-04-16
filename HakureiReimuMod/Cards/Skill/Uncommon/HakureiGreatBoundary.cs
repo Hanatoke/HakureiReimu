@@ -96,17 +96,18 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
         {
-            if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t)&&amount>0)
+            if (InPersisting&&PowerHelper.Mutually.Contains(power.GetType())&&amount>0&&CheckPower(power,amount,applier,power.Owner,out CounterType t))
             {
                 await Flash(true);
-                if (PowerHelper.Mutually.Contains(power.GetType()))
-                {
-                    await PowerCmd.Apply((PowerModel)power.ClonePreservingMutability(),Owner.Creature, amount, Owner.Creature, this);
-                }
-                else
-                {
-                    await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, this);
-                }
+                await PowerCmd.Apply((PowerModel)power.ClonePreservingMutability(),Owner.Creature, amount, Owner.Creature, this);
+                // if (PowerHelper.Mutually.Contains(power.GetType()))
+                // {
+                //     
+                // }
+                // else
+                // {
+                //     await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, this);
+                // }
                 await InvokeCounter(applier,t);
             }
         }
