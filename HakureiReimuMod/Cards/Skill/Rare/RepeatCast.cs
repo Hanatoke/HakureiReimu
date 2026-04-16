@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             int count = CardPile.maxCardsInHand-hand.Cards.Count;
             if (count <= 0)return;
             List<CardModel> cards = CombatManager.Instance.History.CardPlaysFinished.Where(p =>
-                    p.HappenedThisTurn(CombatState)&& p.Actor==Owner.Creature && p.CardPlay.Card is not RepeatCast &&
+                    p.HappenedThisTurn(CombatState)&& p.Actor==Owner.Creature && p.CardPlay.Card is not RepeatCast &&p.CardPlay.Card.Owner==Owner&&
                     p.CardPlay.Card.Type != CardType.Status && p.CardPlay.Card.Type != CardType.Curse&&!hand.Cards.Contains(p.CardPlay.Card))
                 .Select(p => p.CardPlay.Card).Reverse().Distinct().ToList();
             foreach (CardModel c in cards)

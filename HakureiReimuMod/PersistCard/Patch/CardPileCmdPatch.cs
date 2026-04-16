@@ -76,6 +76,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
             {
                 await  __result;
                 if (cardPlay?.Card.Owner.PlayerCombatState==null)return;
+                if (CombatManager.Instance.IsOverOrEnding)return;
                 if (cardPlay.PlayIndex>0&&cardPlay.PlayCount>1&&cardPlay.ResultPile.GetPile(cardPlay.Card.Owner) is AbstractPersistCardTable table)
                 {
                     CardModel card = cardPlay.Card.CreateDupe();

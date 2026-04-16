@@ -15,13 +15,13 @@ namespace HakureiReimu.HakureiReimuMod.Extensions
             return YinYangOrbPatch.Managers[state];
         }
 
-        public static NYinYangOrbManager YinYangOrbManager(this NCreature creature,YinYangOrbManager manager)
+        public static NYinYangOrbManager NYinYangOrbManager(this NCreature creature,YinYangOrbManager manager)
         {
             if (manager == null)return null;
             NYinYangOrbManager m=creature.GetNodeOrNull<NYinYangOrbManager>("%"+manager.GetType().Name);
             if (m == null)
             {
-                m = NYinYangOrbManager.Create(creature, LocalContext.IsMe(creature.Entity));
+                m = Node.NYinYangOrbManager.Create(creature, LocalContext.IsMe(creature.Entity));
                 creature.AddChildSafely(m);
                 m.Name=manager.GetType().Name;
                 m.UniqueNameInOwner = true;

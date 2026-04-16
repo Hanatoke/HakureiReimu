@@ -52,7 +52,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             {
                 await PowerCmd.Apply<WeakPower>(enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
                 await PowerCmd.Apply<VulnerablePower>(enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
-                if (enemy.Powers.Any(p=>!p.ShouldOwnerDeathTriggerFatal()))
+                if (enemy.Powers.Any(p=>p is MinionPower))
                 {
                     await CreatureCmd.Stun(enemy);
                 }

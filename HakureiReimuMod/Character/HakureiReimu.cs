@@ -159,7 +159,7 @@ public class HakureiReimu : PlaceholderCharacterModel {
                 if (result.WasFullyBlocked)
                 {
                     playback?.Travel(Animation.Guard.Name());
-                }else if (result.WasBlockBroken)
+                }else if (result.WasBlockBroken&&result.UnblockedDamage>0)
                 {
                     playback?.Travel(Animation.Broken.Name());
                 }

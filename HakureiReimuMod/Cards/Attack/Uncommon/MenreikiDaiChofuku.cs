@@ -42,7 +42,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             RunAnimation(Character.HakureiReimu.Animation.AttackCloseRound);
             await Flash(instant);
             await DamageCmd.Attack(d).FromCard(this).TargetingAllOpponents(CombatState)
-                .WithHitFx("vfx/vfx_attack_slash").BeforeDamage(async () =>
+                .WithHitFx("vfx/vfx_giant_horizontal_slash", tmpSfx: "slash_attack.mp3").BeforeDamage(async () =>
                 {
                     NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NSweepingBeamVfx.Create(Owner.Creature,CombatState.HittableEnemies.ToList()));
                     await Cmd.Wait(0.25f);

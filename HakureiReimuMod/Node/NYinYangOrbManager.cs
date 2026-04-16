@@ -37,6 +37,10 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             Vector2 offset = CreatureNode.Visuals.OrbPosition.Position;
             this.Position = offset/2;
+            if (!IsLocal)
+            {
+                Scale *= 0.85f;
+            }
         }
 
         public override void _EnterTree()

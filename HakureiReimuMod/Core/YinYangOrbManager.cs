@@ -45,7 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature dealer, DamageResult result, ValueProp props,
             Creature target, CardModel cardSource)
         {
-            if (dealer==Player.Creature&&props.IsPoweredAttack_()&&cardSource!=null)
+            if (this.Orbs.Count > 0 && dealer == Player.Creature && props.IsPoweredAttack_() && cardSource != null) 
             {
                 await YinYangOrbCmd.Evoke(choiceContext, Player, target,cardSource);
             }

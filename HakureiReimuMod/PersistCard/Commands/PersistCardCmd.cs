@@ -7,6 +7,7 @@ using HakureiReimu.HakureiReimuMod.PersistCard.Node;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -59,7 +60,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
 
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(card.Owner.Creature)
                     ?.PersistCardTable(table);
-                if (nt!=null)
+                if (nt!=null&&GodotObject.IsInstanceValid(nt))
                 {
                     NPersistCardHolder holder=nt.AddCard(nCard);
                     holder.SetCount(slot.Count,slot.ShouldDisplayCount);
@@ -82,10 +83,11 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 CardModel card = slot.Card;
                 CombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
+                bool isLocal = LocalContext.IsMe(card.Owner);
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
                     ?.PersistCardTable(table);
                 NPersistCardHolder holder = null;
-                if (nt!=null)
+                if (nt!=null&&GodotObject.IsInstanceValid(nt))
                 {
                     holder = nt.GetCardHolder(slot.Card);
                     holder?.SetEnabled(false);
@@ -106,7 +108,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 {
                     await CardPileCmd.Add(slot.Card, targetPile,skipVisuals:true);
                     NCard nc = holder?.CardNode;
-                    if (nc != null)
+                    if (nc != null&&isLocal)
                     {
                         nc.ReparentSafely(NCombatRoom.Instance.Ui);
                         Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
@@ -195,19 +197,21 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
             {
                 NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
                     ?.PersistCardTable(table);
-                if (nt != null)
+                if (nt != null&&GodotObject.IsInstanceValid(nt))
                 {
                     NPersistCardHolder holder=nt.GetCardHolder(slot.Card);
-                    if (holder==null)return;
+                    if (holder==null||!GodotObject.IsInstanceValid(holder))return;
                     holder.StopAnimations();
                     Vector2 size = NCombatRoom.Instance.Ui.GetViewportRect().Size;
                     Vector2 global = NCombatRoom.Instance.Ui.GetGlobalTransformWithCanvas() * new Vector2(size.X*0.5f,size.Y*0.4f);
                     Vector2 local = nt.GetGlobalTransformWithCanvas().AffineInverse() * global;
+                    holder.Modulate = Colors.White;
                     holder.SetTargetPosition(local);
                     holder.Flash();
                     holder.ZIndex = 10;
                     slot.PlaySfx(true);
                     await Cmd.Wait(duration);
+                    holder.Modulate = new Color(1, 1, 1, holder.TargetAlpha);
                     holder.ZIndex = 0;
                     nt.RefreshLayout();
                 }

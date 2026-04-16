@@ -37,7 +37,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
                 Card =  this,IsAutoPlay = false,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo
                 {
                     EnergySpent = 0,EnergyValue = 0,StarValue = 0,StarsSpent = 0
-                },ResultPile = PileType.None,Target = Owner.Creature
+                },ResultPile = TargetPersistPileType,Target = Owner.Creature
             },true);
             if (cost)
             {

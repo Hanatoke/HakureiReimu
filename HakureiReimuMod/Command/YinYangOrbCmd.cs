@@ -31,7 +31,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             YinYangOrb orb=ModelDb.Orb<YinYangOrb>().ToMutable() as YinYangOrb;
             if (orb == null)return;
             orb.Owner = player;
-            YinYangOrbManager manager = player.PlayerCombatState.YinYangOrbManager();
+            YinYangOrbManager manager = player.PlayerCombatState?.YinYangOrbManager();
             if (manager != null)
             {
                 if (manager.Orbs.Count>=manager.Capacity)
@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
                 CombatManager.Instance.History.OrbChanneled(player.Creature.CombatState, orb);
                 manager.Add(orb);
                 NYinYangOrbManager nm = NCombatRoom.Instance?.GetCreatureNode(player.Creature)
-                    .YinYangOrbManager(manager);
+                    ?.NYinYangOrbManager(manager);
                 if (nm != null)
                 {
                     nm.AddOrb([orb]);
@@ -52,14 +52,13 @@ namespace HakureiReimu.HakureiReimuMod.Command
         public static async Task Evoke(PlayerChoiceContext choiceContext, Player player, Creature target = null,
             CardModel cardSource = null)
         {
-            if (CombatManager.Instance.IsOverOrEnding)
-                return;
-            YinYangOrbManager manager = player.PlayerCombatState.YinYangOrbManager();
+            if (CombatManager.Instance.IsOverOrEnding) return;
+            YinYangOrbManager manager = player.PlayerCombatState?.YinYangOrbManager();
             if (manager != null&&manager.Orbs.Count>0)
             {
                 YinYangOrb orb = manager.Pop();
                 Vector2 pos=Vector2.Zero;
-                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.YinYangOrbManager(manager).PopOrb(out pos);
+                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.NYinYangOrbManager(manager)?.PopOrb(out pos);
                 choiceContext.PushModel(orb);
                 await orb.Attack(choiceContext,target,nOrb,pos);
                 choiceContext.PopModel(orb);
