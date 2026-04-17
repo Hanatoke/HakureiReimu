@@ -42,6 +42,7 @@ point_count = 3
 curve = SubResource("Curve_0abrb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15kvu"]
+resource_local_to_scene = true
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_vy4u8")
@@ -153,6 +154,7 @@ point_count = 3
 curve = SubResource("Curve_abrd5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vn1xk"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_mv1k6")

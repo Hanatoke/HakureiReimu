@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
@@ -20,7 +21,14 @@ namespace HakureiReimu.HakureiReimuMod.Command
             
             CounterManager.InInvokeCounter = true;
             await CounterManager.BeforeCounter(state,counter,target);
-            await counter.Invoke(target, cost, instant);
+            try
+            {
+                await counter.Invoke(target, cost, instant);
+            }
+            catch (Exception e)
+            {
+                MainFile.Logger.Warn(e.ToString());
+            }
             await CounterManager.AfterCounter(state,counter,target);
             CounterManager.InInvokeCounter = false;
         }

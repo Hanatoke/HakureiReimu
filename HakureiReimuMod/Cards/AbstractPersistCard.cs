@@ -74,7 +74,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             return Task.CompletedTask;
         }
 
-        public Task OnStartPersistCard(AbstractPersistCardSlot slot)
+        public virtual Task OnStartPersistCard(AbstractPersistCardSlot slot)
         {
             if (slot.Card==this)
             {
@@ -83,7 +83,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             return Task.CompletedTask;
         }
         
-        public Task OnStopPersistCard(AbstractPersistCardSlot slot)
+        public virtual Task OnStopPersistCard(AbstractPersistCardSlot slot)
         {
             if (slot.Card == this)
             {
@@ -92,7 +92,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             return Task.CompletedTask;
         }
 
-        public async Task AfterModifyPersistCount(AbstractPersistCardSlot slot, int result)
+        public virtual async Task AfterModifyPersistCount(AbstractPersistCardSlot slot, int result)
         {
             if (slot.Card == this&&result<=0)
             {
