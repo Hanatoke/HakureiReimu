@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Assets;
@@ -17,13 +18,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 		public Trail TrailOuter;
 		public Trail TrailInner;
 
-		public static NDanmaku Create(float scale=1f,Color? color=null,int? trailLength=null)
+		public static NDanmaku Create(float scale=1f,Color? color=null,int? trailLength=null,bool glow=true)
 		{
 			NDanmaku d = PreloadManager.Cache.GetScene(Path).Instantiate<NDanmaku>();
 			color ??= Color.FromHsv((float)GD.RandRange(0, 1f), 1, 1);
 			d.SetColor(color.Value);
 			d.Scale=Vector2.One * scale;
 			d.SetTrailLength(trailLength??30);
+			if (!glow)d.SetGlow(false);
 			return d;
 		}
 
@@ -65,6 +67,29 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 			}
 			TrailInner.MaxSegments=length;
 			TrailOuter.MaxSegments=length;
+		}
+		public void SetGlow(bool glow)
+		{
+			if (ColorAble == null || Fixed == null)
+			{
+				_Ready();
+			}
+
+			foreach (GpuParticles2D p in ColorAble.GetChildren().OfType<GpuParticles2D>())
+			{
+				if (p!=ColorTrails)
+				{
+					p.Visible=glow;
+				}
+			}
+			foreach (GpuParticles2D p in Fixed.GetChildren().OfType<GpuParticles2D>())
+			{
+				if (p!=WhiteTrails)
+				{
+					p.Visible=glow;
+				}
+			}
+			
 		}
 	}
 }
