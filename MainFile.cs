@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using System.Linq;
 using BaseLib.Abstracts;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Command;
+using HakureiReimu.HakureiReimuMod.Core;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves;
@@ -26,5 +31,34 @@ public partial class MainFile : Node
         // {
         //     SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
         // }
+        ModHelper.SubscribeForCombatStateHooks(ModId,CombatHookSubscription );
+    }
+
+    public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)
+    {
+        bool alreadyFind = false;
+        foreach (Player p in state.Players)
+        {
+            if (!alreadyFind && p.Creature.CombatState != null && p.Character is HakureiReimuMod.Character.HakureiReimu c)
+            {
+                alreadyFind = true;
+                yield return c;
+            }
+            if (p.PlayerCombatState != null)
+            {
+                YinYangOrbManager m=YinYangOrbPatch.Managers[p.PlayerCombatState];
+                if (m != null)
+                {
+                    yield return m;
+                    foreach (YinYangOrb orb in m.Orbs)
+                    {
+                        if (!orb.HasBeenRemovedFromState && orb.Owner.IsActiveForHooks)
+                        {
+                            yield return orb;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

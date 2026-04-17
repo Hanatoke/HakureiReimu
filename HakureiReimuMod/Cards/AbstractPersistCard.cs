@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Node;
@@ -112,7 +113,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 };
                 if (instant) delay = 0;
                 ActivateThisTurn++;
-                await PersistCardCmd.FlashPersistCard(Slot, delay);
+                try
+                {
+                    await PersistCardCmd.FlashPersistCard(Slot, delay);
+                }
+                catch (Exception e)
+                {
+                    MainFile.Logger.Warn(e.ToString());
+                }
             }
         }
 

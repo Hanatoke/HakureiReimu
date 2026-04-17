@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://dqerilmnjpl8k"]
+[gd_scene load_steps=40 format=3 uid="uid://dqerilmnjpl8k"]
 
 [ext_resource type="Script" uid="uid://5krcjqg8aa1" path="res://HakureiReimuMod/Node/NHakureiReimuEnergyCounter.cs" id="1_x8f0v"]
 [ext_resource type="Texture2D" uid="uid://cqycro5128ayw" path="res://HakureiReimu/images/charui/energy_orb_shine.png" id="2_af8nx"]
+[ext_resource type="Script" uid="uid://cmhqixyhftkpc" path="res://HakureiReimuMod/Node/Dummy/NParticlesContainerDummy.cs" id="2_tltqa"]
 [ext_resource type="Texture2D" uid="uid://dj86klud635kp" path="res://HakureiReimu/images/charui/energy_orb_burst.png" id="3_nf1qb"]
 [ext_resource type="Shader" uid="uid://ln1p2m55touy" path="res://HakureiReimu/shader/Energy.gdshader" id="3_p352e"]
 [ext_resource type="Script" uid="uid://uocx7eq0hbe5" path="res://HakureiReimuMod/Node/Dummy/MegaLabelDummy.cs" id="4_ddb00"]
@@ -13,21 +14,48 @@
 [ext_resource type="Texture2D" uid="uid://csfs6x7h1xo6w" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer5.png" id="9_rygi1"]
 [ext_resource type="Texture2D" uid="uid://cydf2882p8lwi" path="res://HakureiReimu/images/char/defaultCharacter/orb/layer6.png" id="10_8nco5"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cltj0"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tltqa"]
 blend_mode = 1
 
-[sub_resource type="Curve" id="Curve_ns61i"]
-_data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_vlgw0"]
+_data = [Vector2(0, 0), 0.0, 6.7902308, 0, 0, Vector2(0.49683544, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.106536, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_tkdgk"]
-offsets = PackedFloat32Array(0, 0.330526, 0.652632, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="CurveTexture" id="CurveTexture_qdnrn"]
+curve = SubResource("Curve_vlgw0")
 
-[sub_resource type="Curve" id="Curve_p352e"]
+[sub_resource type="Curve" id="Curve_ynuni"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qeoia"]
+curve = SubResource("Curve_ynuni")
+
+[sub_resource type="Curve" id="Curve_rygi1"]
+_data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8nco5"]
+curve = SubResource("Curve_rygi1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cltj0"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 260.0
+angular_velocity_min = 29.999983
+angular_velocity_max = 29.999983
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 9.999997
+scale_min = 0.45
+scale_max = 0.45
+scale_curve = SubResource("CurveTexture_8nco5")
+color = Color(1, 1, 1, 0.5019608)
+alpha_curve = SubResource("CurveTexture_qdnrn")
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+hue_variation_curve = SubResource("CurveTexture_qeoia")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cb064"]
 shader = ExtResource("3_p352e")
@@ -175,17 +203,48 @@ _data = {
 &"RESET": SubResource("Animation_p352e")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_56wlg"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cb064"]
 blend_mode = 1
 
-[sub_resource type="Curve" id="Curve_e0ctn"]
+[sub_resource type="Curve" id="Curve_6vq08"]
+_data = [Vector2(0, 0), 0.0, 5.505115, 0, 0, Vector2(0.49683544, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.759016, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_x04ws"]
+curve = SubResource("Curve_6vq08")
+
+[sub_resource type="Curve" id="Curve_hudd1"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vu1dk"]
+curve = SubResource("Curve_hudd1")
+
+[sub_resource type="Curve" id="Curve_4ob04"]
 _data = [Vector2(0.00596422, 0.0309963), 0.0, 2.09119, 0, 0, Vector2(1, 0.995203), 0.241291, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_tltqa"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="CurveTexture" id="CurveTexture_ly8fn"]
+curve = SubResource("Curve_4ob04")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eff63"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 260.0
+angular_velocity_min = 29.999983
+angular_velocity_max = 29.999983
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 9.999997
+scale_min = 0.45
+scale_max = 0.45
+scale_curve = SubResource("CurveTexture_ly8fn")
+color = Color(1, 1, 1, 0.5019608)
+alpha_curve = SubResource("CurveTexture_x04ws")
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+hue_variation_curve = SubResource("CurveTexture_vu1dk")
 
 [sub_resource type="FontVariation" id="FontVariation_x0k5t"]
 spacing_glyph = 2
@@ -200,28 +259,21 @@ script = ExtResource("1_x8f0v")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="BurstBack" type="CPUParticles2D" parent="."]
+[node name="EnergyVfxBack" type="Node2D" parent="." node_paths=PackedStringArray("_particles")]
 unique_name_in_owner = true
-material = SubResource("CanvasItemMaterial_cltj0")
-position = Vector2(65, 63)
+position = Vector2(64, 64)
+script = ExtResource("2_tltqa")
+_particles = []
+
+[node name="Glow" type="GPUParticles2D" parent="EnergyVfxBack"]
+material = SubResource("CanvasItemMaterial_tltqa")
 emitting = false
 amount = 1
 texture = ExtResource("2_af8nx")
 one_shot = true
+fixed_fps = 60
 local_coords = true
-gravity = Vector2(0, 0)
-angular_velocity_min = 30.0
-angular_velocity_max = 30.0
-radial_accel_max = 10.0
-angle_max = 260.0
-scale_amount_min = 0.45
-scale_amount_max = 0.45
-scale_amount_curve = SubResource("Curve_ns61i")
-color = Color(1, 0, 0, 0.6)
-color_ramp = SubResource("Gradient_tkdgk")
-hue_variation_min = -1.0
-hue_variation_max = 1.0
-hue_variation_curve = SubResource("Curve_p352e")
+process_material = SubResource("ParticleProcessMaterial_cltj0")
 
 [node name="Layers" type="Control" parent="."]
 unique_name_in_owner = true
@@ -342,28 +394,22 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="BurstFront" type="CPUParticles2D" parent="."]
+[node name="EnergyVfxFront" type="Node2D" parent="." node_paths=PackedStringArray("_particles")]
 unique_name_in_owner = true
-material = SubResource("CanvasItemMaterial_56wlg")
-position = Vector2(65, 63)
+position = Vector2(64, 64)
+script = ExtResource("2_tltqa")
+_particles = []
+
+[node name="Ring" type="GPUParticles2D" parent="EnergyVfxFront"]
+material = SubResource("CanvasItemMaterial_cb064")
 emitting = false
 amount = 1
 texture = ExtResource("3_nf1qb")
 lifetime = 0.5
 one_shot = true
+fixed_fps = 60
 local_coords = true
-gravity = Vector2(0, 0)
-angular_velocity_min = 30.0
-angular_velocity_max = 30.0
-radial_accel_max = 10.0
-angle_max = 260.0
-scale_amount_min = 0.45
-scale_amount_max = 0.45
-scale_amount_curve = SubResource("Curve_e0ctn")
-color = Color(1, 0, 0, 0.6)
-color_ramp = SubResource("Gradient_tkdgk")
-hue_variation_max = 1.0
-hue_variation_curve = SubResource("Curve_tltqa")
+process_material = SubResource("ParticleProcessMaterial_eff63")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

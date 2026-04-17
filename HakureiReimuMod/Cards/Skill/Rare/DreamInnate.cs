@@ -71,9 +71,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         // }
         public decimal ModifyHealMultiplicative(Creature creature, decimal amount)
         {
-            if (InPersisting && creature is { IsMonster: true })
+            if (InPersisting && creature is { IsMonster: true})
             {
-                return creature.IsDead ? 1/amount : 0;
+                if (creature.IsDead)
+                {
+                    Flash();
+                    CreatureCmd.Kill(creature);
+                }
+                return 0;
             }
             return 1;
         }

@@ -12,7 +12,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
 		public override void _Ready()
 		{
 			base._Ready();
-			AnimationTree = Body.GetNode<AnimationTree>("AnimationTree");
+			AnimationTree = GetCurrentBody().GetNode<AnimationTree>("AnimationTree");
 			Playback = (AnimationNodeStateMachinePlayback)AnimationTree?.Get("parameters/playback");
 		}
 	}
