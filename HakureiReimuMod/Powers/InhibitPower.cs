@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             Creature _,
             out decimal modifiedAmount)
         {
-            if (canonicalPower != this && target == Owner && amount>0 &&
+            if (canonicalPower != this && target == Owner &&
                 canonicalPower.GetTypeForAmount(amount) == PowerType.Buff && canonicalPower.IsVisible &&
                 !PowerHelper.DontBlock.Contains(canonicalPower.GetType()))
             {

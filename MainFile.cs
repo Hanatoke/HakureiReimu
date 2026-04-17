@@ -11,8 +11,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace HakureiReimu;
@@ -34,8 +32,6 @@ public partial class MainFile : Node
         //     SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
         // }
         ModHelper.SubscribeForCombatStateHooks(ModId,CombatHookSubscription );
-        CombatManager.Instance.CombatSetUp += _ => FollowDanmakuManager.Clear();
-        CombatManager.Instance.CombatEnded += _ => FollowDanmakuManager.Clear();
     }
 
     public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)

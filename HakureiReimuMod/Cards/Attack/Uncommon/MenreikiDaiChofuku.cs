@@ -5,15 +5,11 @@ using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
     public class MenreikiDaiChofuku : AbstractCounterCard {
@@ -40,7 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             {
                 if (nextMoveIntent is AttackIntent attackIntent)
                 {
-                    d +=(int)CalculateIntentDamage(attackIntent, target, Owner);
+                    d+=attackIntent.GetTotalDamage([Owner.Creature],target);
                 }
             }
             RunAnimation(Character.HakureiReimu.Animation.AttackCloseRound);
@@ -56,14 +52,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             {
                 await Decrement();
             }
-        }
-
-        public static decimal CalculateIntentDamage(AttackIntent intent,Creature owner,Player target)
-        {
-            decimal d = intent.DamageCalc?.Invoke() ?? 0;
-            d = Hook.ModifyDamage(target.RunState, target.Creature.CombatState, target.Creature, owner, d, ValueProp.Move, null,
-                ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
-            return d * intent.Repeats;
         }
     }
 }

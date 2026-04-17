@@ -25,7 +25,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             await Task.WhenAny(waits);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(DynamicVars.Repeat.IntValue)
                 .FromCard(this).Targeting(cardPlay.Target)
-                .WithHitFx("vfx/vfx_attack_blunt")
                 .Execute(choiceContext);
             EnergyCost.AddThisCombat(-1);
         }
