@@ -63,6 +63,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 
         public static decimal AfterModifyDamage(decimal amount,CombatState state, ValueProp props, Creature dealer, Creature target)
         {
+            if (state==null)return amount;
             foreach (AbstractModel l in state.IterateHookListeners())
             {
                 if (l is SealPower seal)

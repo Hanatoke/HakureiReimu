@@ -94,7 +94,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                     }
                     catch (Exception e)
                     {
-                        MainFile.Logger.Info(e.ToString());
+                        HakureiReimuMain.Logger.Info(e.ToString());
                     }
                 }
                 return true;

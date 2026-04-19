@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
-using BaseLib.Abstracts;
 using Godot;
-using HakureiReimu.HakureiReimuMod.Cards;
-using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
@@ -11,14 +7,11 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Runs;
-using MegaCrit.Sts2.Core.Saves;
 
 namespace HakureiReimu;
 
 [ModInitializer(nameof(Initialize))]
-public partial class MainFile : Node
+public partial class HakureiReimuMain : Node
 {
     public const string ModId = "HakureiReimu"; //Used for resource filepath
 
@@ -28,7 +21,7 @@ public partial class MainFile : Node
     {
         Harmony harmony = new(ModId);
         harmony.PatchAll();
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(MainFile).Assembly);
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HakureiReimuMain).Assembly);
         // foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
         // {
         //     SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);

@@ -13,20 +13,26 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         
         public void CreateEffect(int amount)
         {
+            if (!FollowDanmakuManager.CanAddFollow)return;
             for (var i = 0; i < amount; i++)
             {
                 CreateEffect();
             }
         }
-        public virtual void CreateEffect()
+        public virtual void CreateEffect(bool ignoreMaxLimit=false)
         {
-            this.AddFollow(CreateInstance);
+            this.AddFollow(CreateInstance,ignoreMaxLimit:ignoreMaxLimit);
         }
         public virtual T UseEffect()
         {
             if (this.TryGetFollow(out T danmaku))
             {
                 return danmaku;
+            }
+            CreateEffect(true);
+            if (this.TryGetFollow(out T temp))
+            {
+                return temp;
             }
             return null;
         }

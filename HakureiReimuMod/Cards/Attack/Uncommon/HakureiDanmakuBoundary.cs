@@ -28,9 +28,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         public override CounterType ActivateType => CounterType.All;
         protected override NDanmaku CreateInstance =>NDanmaku.Create((float)GD.RandRange(0.9, 1.1), glow: false);
-        public override void CreateEffect()
+        public override void CreateEffect(bool ignoreMaxLimit=false)
         {
-            this.AddFollow(CreateInstance,(float)GD.RandRange(200f, 400f),(float)GD.RandRange(150f, 300f));
+            this.AddFollow(CreateInstance,(float)GD.RandRange(200f, 400f),(float)GD.RandRange(150f, 300f),ignoreMaxLimit:ignoreMaxLimit);
         }
 
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)

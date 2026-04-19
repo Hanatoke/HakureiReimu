@@ -59,7 +59,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 int index = table.Cards.IndexOf(this);
                 if (index < 0)
                 {
-                    MainFile.Logger.Warn("出现了超出预期流程的情况:"+this.Title+":"+cardPlay.Card.Title);
+                    HakureiReimuMain.Logger.Warn("出现了超出预期流程的情况:"+this.Title+":"+cardPlay.Card.Title);
                     return;
                 }
                 CardModel left = index - 1 >= 0 ? table.Cards[index - 1] : null;

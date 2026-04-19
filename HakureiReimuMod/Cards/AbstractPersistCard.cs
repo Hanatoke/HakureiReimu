@@ -119,7 +119,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 }
                 catch (Exception e)
                 {
-                    MainFile.Logger.Warn(e.ToString());
+                    HakureiReimuMain.Logger.Warn(e.ToString());
                 }
             }
         }

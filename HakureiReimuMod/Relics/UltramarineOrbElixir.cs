@@ -96,7 +96,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             List<CardModel> cards = TryGetCards(Owner.RunState,Owner);
             if (cards == null || cards.Count == 0)
             {
-                MainFile.Logger.Info("绀珠之药获得时没有返回任何卡牌? 这是不应该出现的情况");
+                HakureiReimuMain.Logger.Info("绀珠之药获得时没有返回任何卡牌? 这是不应该出现的情况");
                 return;
             }
             CardSelectorPrefs prefs = new(SelectionScreenPrompt, 1)

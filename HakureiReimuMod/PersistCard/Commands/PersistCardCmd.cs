@@ -25,13 +25,13 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         {
             if (table==null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.StartPersistCard: table is null");
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.StartPersistCard: table is null");
                 return;
             }
             if (slot?.Card?.CombatState == null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.StartPersistCard: slot.Card.combatState is null");
-                MainFile.Logger.Warn("slot:"+slot);
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.StartPersistCard: slot.Card.combatState is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
@@ -73,8 +73,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         {
             if (slot?.Card?.CombatState == null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.StopPersistCard: slot.Card.combatState is null");
-                MainFile.Logger.Warn("slot:"+slot);
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.StopPersistCard: slot.Card.combatState is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
@@ -154,8 +154,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         {
             if (slot?.Card?.CombatState == null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.IncreaseCount: slot.Card.combatState is null");
-                MainFile.Logger.Warn("slot:"+slot);
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.IncreaseCount: slot.Card.combatState is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
@@ -171,8 +171,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         {
             if (slot?.Card?.CombatState == null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.DecreaseCount: slot.Card.combatState is null");
-                MainFile.Logger.Warn("slot:"+slot);
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.DecreaseCount: slot.Card.combatState is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
@@ -188,8 +188,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         {
             if (slot?.Card?.CombatState == null)
             {
-                MainFile.Logger.Warn("PersistCardCmd.AbstractPersistCardSlot: slot.Card.combatState is null");
-                MainFile.Logger.Warn("slot:"+slot);
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.AbstractPersistCardSlot: slot.Card.combatState is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;

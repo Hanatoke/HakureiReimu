@@ -4,6 +4,7 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -13,7 +14,10 @@ namespace HakureiReimu.HakureiReimuMod.Core
 {
     public static class FollowDanmakuManager
     {
+        public static readonly int MaxFollows = 100;
         public static readonly Dictionary<CardModel,List<Node2D>> DanmakuNodes = new();
+        public static int CurrentFollows =>DanmakuNodes.Values.Where(l=>l!=null).Sum(l=>l.Count);
+        public static bool CanAddFollow=>CurrentFollows < MaxFollows;
 
         public static List<Node2D> GetFollows(this CardModel card)
         {
@@ -25,9 +29,11 @@ namespace HakureiReimu.HakureiReimuMod.Core
             return list;
         }
 
-        public static void AddFollow(this CardModel card, Node2D node,float? a=null, float? b=null,float? revolutionSpeed=null,float? orbitalRotationSpeed=null)
+        public static void AddFollow(this CardModel card, Node2D node, float? a = null, float? b = null,
+            float? revolutionSpeed = null, float? orbitalRotationSpeed = null, bool ignoreMaxLimit = false)
         {
             if (NCombatRoom.Instance==null||CombatManager.Instance.IsOverOrEnding)return;
+            if (!ignoreMaxLimit&&!CanAddFollow)return;
             NCombatRoom room = NCombatRoom.Instance;
             NCreature owner = room.GetCreatureNode(card.Owner.Creature);
             if (!GodotObject.IsInstanceValid(owner))return;
@@ -75,7 +81,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 keyValuePair.Key.ClearFollows();
             }
             DanmakuNodes.Clear();
-            MainFile.Logger.Info(nameof(FollowDanmakuManager)+" cleared");
+            HakureiReimuMain.Logger.Info(nameof(FollowDanmakuManager)+" cleared");
         }
     }
 }

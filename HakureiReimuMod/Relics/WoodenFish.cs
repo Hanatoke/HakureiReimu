@@ -37,7 +37,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
         {
             if (Owner.PlayerCombatState==null)
             {
-                MainFile.Logger.Warn("尝试发动不在战斗中的反制? "+this.GetType().Name);
+                HakureiReimuMain.Logger.Warn("尝试发动不在战斗中的反制? "+this.GetType().Name);
                 return;
             }
             if (CounterManager.InInvokeCounter)return;

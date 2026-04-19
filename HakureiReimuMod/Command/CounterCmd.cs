@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
         {
             if (state == null || counter == null)
             {
-                MainFile.Logger.Warn("尝试发动错误的反制:"+nameof(state)+":"+state+"  "+nameof(counter)+":"+counter);
+                HakureiReimuMain.Logger.Warn("尝试发动错误的反制:"+nameof(state)+":"+state+"  "+nameof(counter)+":"+counter);
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             }
             catch (Exception e)
             {
-                MainFile.Logger.Warn(e.ToString());
+                HakureiReimuMain.Logger.Warn(e.ToString());
             }
             await CounterManager.AfterCounter(state,counter,target);
             CounterManager.InInvokeCounter = false;
