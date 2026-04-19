@@ -6,6 +6,7 @@ using BaseLib.Extensions;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -24,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         public virtual bool IsImmediate=>false;
         public virtual CounterType ActivateType => CounterType.None;
 
-        protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true } &&
+        protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true ,Side: CombatSide.Enemy} &&
                                                                      command.DamageProps.IsCardOrMonsterMove_();
 
         protected virtual bool CheckPower(PowerModel power, decimal modifiedAmount, Creature? applier, Creature target,out CounterType counterType)
@@ -35,12 +36,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 return false;
             }
             PowerType type=power.GetTypeForAmount(modifiedAmount);
-            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>=0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true }&&target is{IsMonster:true})
+            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>=0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true ,Side:CombatSide.Enemy}&&target is{IsMonster:true,Side:CombatSide.Enemy})
             {
                 counterType = CounterType.Buff;
                 return true;
             }
-            if (power.IsVisible&&type == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true }&&target is{IsPlayer:true})
+            if (power.IsVisible&&type == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true ,Side:CombatSide.Enemy}&&target is{IsPlayer:true})
             {
                 counterType = CounterType.Debuff;
                 return true;
@@ -68,7 +69,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         //------------------------------------------------------------------------------------------------------
         public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&creature is {IsMonster:true,Side:CombatSide.Enemy})
             {
                 await InvokeCounter(creature,CounterType.Buff);
             }
@@ -76,7 +77,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&delta>0&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&delta>0&&creature is {IsMonster:true,Side:CombatSide.Enemy})
             {
                 await InvokeCounter(creature,CounterType.Buff);
             }

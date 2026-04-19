@@ -15,8 +15,6 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerType Type => PowerType.Debuff;
 
         public override PowerStackType StackType => PowerStackType.Counter;
-
-        public override bool ShouldScaleInMultiplayer => true;
         public override bool TryModifyPowerAmountReceived(
             PowerModel canonicalPower,
             Creature target,

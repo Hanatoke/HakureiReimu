@@ -24,11 +24,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            foreach (Creature t in CombatState.HittableEnemies)
-            {
-                await PowerCmd.Apply<InhibitPower>(t, DynamicVars[InhibitPower.ID].BaseValue,
-                    Owner.Creature, this);
-            }
+            await PowerCmd.Apply<InhibitPower>(CombatState.HittableEnemies, DynamicVars[InhibitPower.ID].BaseValue,
+                Owner.Creature, this);
         }
         protected override void OnUpgrade() {
             DynamicVars[InhibitPower.ID].UpgradeValueBy(1);

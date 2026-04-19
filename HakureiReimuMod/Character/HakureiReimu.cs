@@ -72,6 +72,8 @@ public class HakureiReimu : PlaceholderCharacterModel {
     public override Color EnergyLabelOutlineColor => new Color("6e004a");
     public override string CustomEnergyCounterPath => "reimu_energy_counter.tscn".ScenePath();
 
+    public override string CustomArmPointingTexturePath => "hand_point.png".CharacterUiPath();
+
     //角色模型实例路径
 
     public override string CustomVisualPath => Path.Join("HakureiReimu","HakureiReimu.tscn").CharacterPath();

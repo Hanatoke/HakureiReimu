@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -74,7 +75,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&amount>0&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&amount>0&&creature is {IsMonster:true,Side:CombatSide.Enemy})
             {
                 await Flash(true);
                 await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
@@ -87,7 +88,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&delta>0&&creature is {IsMonster:true})
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Buff)&&delta>0&&creature is {IsMonster:true,Side:CombatSide.Enemy})
             {
                 await Flash(true);
                 await CreatureCmd.Heal(Owner.Creature,delta);

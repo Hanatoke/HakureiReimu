@@ -5,10 +5,13 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
@@ -37,30 +40,41 @@ namespace HakureiReimu.HakureiReimuMod.Relics
                 List<CardModel> list = [];
                 foreach (SerializableCard s in p.Deck)
                 {
-                    if (s.Id != null)
+                    CardModel card=CreateCard(player, s);
+                    if (card != null&&card.Rarity!=CardRarity.Event)
                     {
-                        CardModel card = ModelDb.GetByIdOrNull<CardModel>(s.Id);
-                        if (card != null&&card.Rarity!=CardRarity.Event)
-                        {
-                            list.Add(card=runState.CreateCard(card,player));
-                            for (var i = 0; i < s.CurrentUpgradeLevel; i++)
-                            {
-                                CardCmd.Upgrade(card);
-                            }
-                            if (s.Enchantment?.Id!=null)
-                            {
-                                EnchantmentModel enchantment = ModelDb.GetByIdOrNull<EnchantmentModel>(s.Enchantment.Id)?.ToMutable();
-                                if (enchantment != null)
-                                {
-                                    CardCmd.Enchant(enchantment, card, s.Enchantment.Amount);
-                                }
-                            }
-                        }
+                        list.Add(card);
                     }
                 }
                 if (list.Count>0)
                 {
                     return Cards=list;
+                }
+            }
+            return null;
+        }
+
+        public static CardModel CreateCard(Player owner, SerializableCard s)
+        {
+            if (s.Id != null)
+            {
+                CardModel card = ModelDb.GetByIdOrNull<CardModel>(s.Id);
+                if (card != null&&card.Rarity!=CardRarity.Event)
+                {
+                    card = owner.RunState.CreateCard(card, owner);
+                    for (var i = 0; i < s.CurrentUpgradeLevel; i++)
+                    {
+                        CardCmd.Upgrade(card);
+                    }
+                    if (s.Enchantment?.Id!=null)
+                    {
+                        EnchantmentModel enchantment = ModelDb.GetByIdOrNull<EnchantmentModel>(s.Enchantment.Id)?.ToMutable();
+                        if (enchantment != null)
+                        {
+                            CardCmd.Enchant(enchantment, card, s.Enchantment.Amount);
+                        }
+                    }
+                    return card;
                 }
             }
             return null;
@@ -78,6 +92,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
 
         public override async Task AfterObtained()
         {
+            if (!LocalContext.IsMe(Owner))return;
             List<CardModel> cards = TryGetCards(Owner.RunState,Owner);
             if (cards == null || cards.Count == 0)
             {
@@ -91,7 +106,66 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             CardModel c=(await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(), cards, Owner, prefs)).FirstOrDefault();
             if (c != null)
             {
-                CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(c, PileType.Deck), 2);
+                if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
+                {
+                    CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(c, PileType.Deck), 2);
+                }
+                else
+                {
+                    RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+                        new CardObtainAction(Owner,c));
+                }
+            }
+        }
+        private struct NetCardObtainAction :INetAction, IPacketSerializable
+        {
+            public SerializableCard Card;
+            
+            public void Serialize(PacketWriter writer)
+            {
+                Card.Serialize(writer);
+            }
+
+            public void Deserialize(PacketReader reader)
+            {
+                Card = new SerializableCard();
+                Card.Deserialize(reader);
+            }
+
+            public GameAction ToGameAction(Player player)
+            {
+                return new CardObtainAction(player, CreateCard(player,Card));
+            }
+        }
+        private class CardObtainAction :GameAction
+        {
+            public override ulong OwnerId =>Player.NetId;
+            public override GameActionType ActionType => GameActionType.Any;
+            public Player Player;
+            public CardModel Card;
+
+            public CardObtainAction(Player player, CardModel card)
+            {
+                Player = player;
+                Card = card;
+            }
+
+            protected override async Task ExecuteAction()
+            {
+                
+                var result=await CardPileCmd.Add(Card,PileType.Deck);
+                if (LocalContext.IsMe(Player))
+                {
+                    CardCmd.PreviewCardPileAdd(result,2f);
+                }
+            }
+
+            public override INetAction ToNetAction()
+            {
+                return new NetCardObtainAction()
+                {
+                    Card = Card.ToSerializable(),
+                };
             }
         }
     }

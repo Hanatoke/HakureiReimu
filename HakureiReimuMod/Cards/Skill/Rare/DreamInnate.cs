@@ -55,7 +55,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public override decimal ModifyBlockMultiplicative(Creature target, decimal block, ValueProp props, CardModel cardSource,
             CardPlay cardPlay)
         {
-            if (InPersisting&&target is {IsMonster:true})
+            if (InPersisting&&target is {IsMonster:true,Side:CombatSide.Enemy})
             {
                 return 0;
             }
@@ -71,7 +71,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         // }
         public decimal ModifyHealMultiplicative(Creature creature, decimal amount)
         {
-            if (InPersisting && creature is { IsMonster: true})
+            if (InPersisting && creature is { IsMonster: true,Side:CombatSide.Enemy})
             {
                 if (creature.IsDead)
                 {

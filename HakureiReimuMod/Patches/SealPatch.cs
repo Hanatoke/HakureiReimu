@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
+using System.Reflection.Emit;
+using BaseLib.Utils.Patching;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
@@ -19,64 +18,59 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 {
     public class SealPatch
     {
-        public static bool IsInRealDamage=false;
-        [HarmonyPatch(typeof(CreatureCmd),nameof(CreatureCmd.Damage),typeof(PlayerChoiceContext),typeof(IEnumerable<Creature>),typeof(decimal),typeof(ValueProp),
-            typeof(Creature),typeof(CardModel))]
+        [HarmonyPatch(typeof(CreatureCmd),nameof(CreatureCmd.Damage),[typeof(PlayerChoiceContext),typeof(IEnumerable<Creature>),typeof(decimal),typeof(ValueProp),
+            typeof(Creature),typeof(CardModel)])]
+        [HarmonyPatch(MethodType.Async)]
         public static class DamageCmdPatch
         {
-            // [HarmonyPrefix]
-            // public static bool Prefix(PlayerChoiceContext choiceContext, IEnumerable<Creature> targets,
-            //     ref decimal amount, ref ValueProp props, Creature dealer, CardModel cardSource)
-            // {
-            //     if (dealer!=null && dealer.IsAlive)
-            //     {
-            //         IEnumerable<Creature> t = targets.ToList();
-            //         foreach (PowerModel p in dealer.Powers.ToList())
-            //         {
-            //             if (p is SealPower seal)
-            //             {
-            //                 seal.ModifyDamages(ref amount, ref props,dealer,cardSource,t);
-            //             }
-            //         }
-            //     }
-            //     return true;
-            // }
-            [HarmonyPrefix]
-            public static bool Prefix()
+            [HarmonyTranspiler,HarmonyPriority(Priority.First)]
+            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                IsInRealDamage = true;
-                return true;
-            }
-
-            [HarmonyPostfix]
-            public static void Postfix()
-            {
-                IsInRealDamage=false;
+                return (List<CodeInstruction>)new InstructionPatcher(instructions)
+                    .MatchStart().Match(new InstructionMatcher().ldarg_0().ldfld(null).PredicateMatch(o =>
+                {
+                    FieldInfo f=o as FieldInfo;
+                    return f!=null && f.Name.Contains("combatState");
+                })).CopyMatch(out List<CodeInstruction> combatStateMatch)
+                    .MatchStart().Match(new InstructionMatcher().ldarg_0().ldfld(null).PredicateMatch(o =>
+                {
+                    FieldInfo f=o as FieldInfo;
+                    return f!=null && f.Name.Contains("props");
+                })).CopyMatch(out List<CodeInstruction> propsMatch)
+                    .MatchStart().Match(new InstructionMatcher().ldarg_0().ldfld(null).PredicateMatch(o =>
+                {
+                    FieldInfo f=o as FieldInfo;
+                    return f!=null && f.Name.Contains("dealer");
+                })).CopyMatch(out List<CodeInstruction> dealerMatch)
+                    .MatchStart().Match(new InstructionMatcher().ldarg_0().ldfld(null).PredicateMatch(o =>
+                {
+                    FieldInfo f=o as FieldInfo;
+                    return f!=null && f.Name.Contains("originalTarget");
+                })).CopyMatch(out List<CodeInstruction> originalTargetMatch)
+                    .Match(new InstructionMatcher().stfld(null).PredicateMatch(o =>
+                {
+                    FieldInfo f=o as FieldInfo;
+                    return f!=null && f.Name.Contains("modifiedAmount");
+                })).Step(-1)
+                    .Insert(combatStateMatch)
+                    .Insert(propsMatch)
+                    .Insert(dealerMatch)
+                    .Insert(originalTargetMatch)
+                    .Insert(CodeInstruction.Call(typeof(SealPatch),nameof(AfterModifyDamage)))
+                    ;
             }
         }
-        [HarmonyPatch(typeof(Hook),nameof(Hook.ModifyDamage))]
-        public static class DamageHookPatch
+
+        public static decimal AfterModifyDamage(decimal amount,CombatState state, ValueProp props, Creature dealer, Creature target)
         {
-            [HarmonyPostfix,HarmonyPriority(Priority.Last)]
-            public static void Postfix(ref decimal __result,IRunState runState,
-                CombatState? combatState,
-                Creature? target,
-                Creature? dealer,
-                decimal damage,
-                ValueProp props,
-                CardModel? cardSource)
+            foreach (AbstractModel l in state.IterateHookListeners())
             {
-                if (IsInRealDamage&& dealer != null && dealer.IsAlive) 
+                if (l is SealPower seal)
                 {
-                    foreach (PowerModel p in dealer.Powers.ToList())
-                    {
-                        if (p is SealPower seal)
-                        {
-                            seal.ModifyDamage(ref __result, ref props,dealer, cardSource,target);
-                        }
-                    }
+                    seal.ModifyDamage(ref amount, props, dealer, target);
                 }
             }
+            return amount;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -25,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
 
         public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
         {
-            if (Owner.IsPlayer&&!wasRemovalPrevented&&creature.IsMonster&&creature.Powers.All(p=>p.ShouldOwnerDeathTriggerFatal()))
+            if (Owner.IsPlayer&&!wasRemovalPrevented&&creature.IsMonster&&creature.Side==CombatSide.Enemy&&creature.Powers.All(p=>p.ShouldOwnerDeathTriggerFatal()))
             {
                 if (_vfxPosition != null)
                 {

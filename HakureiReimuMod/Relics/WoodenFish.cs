@@ -5,6 +5,7 @@ using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -26,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
         public Creature CounterOwner => Owner.Creature;
         public override async Task AfterAttack(AttackCommand command)
         {
-            if (command.Attacker is { IsMonster: true } &&
+            if (command.Attacker is { IsMonster: true ,Side:CombatSide.Enemy} &&
                 command.DamageProps.IsCardOrMonsterMove_())
             {
                 await InvokeCounter(command.Attacker);
