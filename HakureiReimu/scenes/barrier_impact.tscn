@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2hmtxv7nh6jq"]
+
+[ext_resource type="Script" uid="uid://hqqhqyqpi878" path="res://HakureiReimuMod/Node/VFX/NVfxParticleOneShot.cs" id="1_lvbqw"]
+[ext_resource type="Texture2D" uid="uid://08ly77femt0x" path="res://HakureiReimu/images/effects/barrier/borderCrash.png" id="2_lvbqw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7wqrd"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_lvbqw"]
+_data = [Vector2(0, 0.2643581), 0.0, 0.0, 0, 0, Vector2(1, 0.7804054), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7wqrd"]
+curve = SubResource("Curve_lvbqw")
+
+[sub_resource type="Curve" id="Curve_sev6m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6925676), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gb1su"]
+curve = SubResource("Curve_sev6m")
+
+[sub_resource type="Curve" id="Curve_3q5be"]
+_data = [Vector2(0, 1), 0.0, -0.23526077, 0, 0, Vector2(0.87250996, 0.16554058), 0.0, 0.0, 0, 0, Vector2(1, 0.17652023), 0.13123347, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gl7d4"]
+curve = SubResource("Curve_3q5be")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ya8ua"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+spread = 0.0
+angular_velocity_min = -360.0
+angular_velocity_max = -360.0
+angular_velocity_curve = SubResource("CurveTexture_gb1su")
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_gl7d4")
+alpha_curve = SubResource("CurveTexture_7wqrd")
+
+[node name="BarrierImpact" type="Node2D"]
+script = ExtResource("1_lvbqw")
+
+[node name="Barrier" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_7wqrd")
+emitting = false
+amount = 1
+texture = ExtResource("2_lvbqw")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ya8ua")

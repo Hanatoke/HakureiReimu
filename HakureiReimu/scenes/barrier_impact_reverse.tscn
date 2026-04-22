@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://1p6k3s8ls7vk"]
+
+[ext_resource type="Script" uid="uid://b0q7ni3yy4r2h" path="res://HakureiReimuMod/Node/VFX/NBarrierImpactReverse.cs" id="1_tofk5"]
+[ext_resource type="Texture2D" uid="uid://08ly77femt0x" path="res://HakureiReimu/images/effects/barrier/borderCrash.png" id="2_lvbqw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tofk5"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_31a60"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asfkg"]
+curve = SubResource("Curve_31a60")
+
+[sub_resource type="Curve" id="Curve_4tvxd"]
+_data = [Vector2(0, 0.5498311), 0.0, 0.0, 0, 0, Vector2(0.17529881, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.879223), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_15xs0"]
+curve = SubResource("Curve_4tvxd")
+
+[sub_resource type="Curve" id="Curve_si5ew"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7y1cj"]
+curve = SubResource("Curve_si5ew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r1fa4"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+spread = 0.0
+angular_velocity_min = 179.99998
+angular_velocity_max = 179.99998
+angular_velocity_curve = SubResource("CurveTexture_15xs0")
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_7y1cj")
+alpha_curve = SubResource("CurveTexture_asfkg")
+
+[node name="BarrierImpact" type="Node2D"]
+script = ExtResource("1_tofk5")
+
+[node name="Barrier" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_tofk5")
+emitting = false
+amount = 1
+texture = ExtResource("2_lvbqw")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_r1fa4")
