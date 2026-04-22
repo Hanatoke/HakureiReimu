@@ -223,6 +223,11 @@
   "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.title":"八方龙杀阵",
   "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.description":"造成{Damage:diff()}点伤害。\n发动所有[gold]反制[/gold]。",
   
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.sign":"符之一",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"梦想妙珠连",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"本回合该敌人每受到过一次伤害，便造成{Damage:diff()}点伤害一次。{IsTargeting:\n（造成{CalculatedTimes:diff()}次）|}",
+  
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-SPRINKLE_STAR_SEAL.sign":"星灵符",

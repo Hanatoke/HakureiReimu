@@ -1,0 +1,12 @@
+{
+  "HAKUREIREIMU-SEALING_TALISMAN.title": "封魔符",
+  "HAKUREIREIMU-SEALING_TALISMAN.description": "去除所有[gold]人工制品[/gold]。\n给予[blue]{SealPower}[/blue]层[gold]封印[/gold]。",
+  
+  "HAKUREIREIMU-BOTTLED_BOUNDARY.title": "瓶装结界",
+  "HAKUREIREIMU-BOTTLED_BOUNDARY.description": "从[blue]3[/blue]张随机[gold]反制[/gold]牌中选择[blue]1[/blue]张加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+  
+  
+  
+  "HAKUREIREIMU-PLACEHOLDER.description": "给予[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
+  "HAKUREIREIMU-PLACEHOLDER.title": "虚弱药水"
+}

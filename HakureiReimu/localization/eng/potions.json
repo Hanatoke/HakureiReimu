@@ -1,0 +1,12 @@
+{
+  "HAKUREIREIMU-SEALING_TALISMAN.title": "Sealing Talisman",
+  "HAKUREIREIMU-SEALING_TALISMAN.description": "Remove ALL [gold]Artifact[/gold].\nApply [blue]{SealPower}[/blue] [gold]Seal[/gold].",
+
+  "HAKUREIREIMU-BOTTLED_BOUNDARY.title": "Bottled Barrier",
+  "HAKUREIREIMU-BOTTLED_BOUNDARY.description": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Counter[/gold] cards to add into your [gold]Hand[/gold]. It's free to play this turn.",
+
+
+
+  "HAKUREIREIMU-PLACEHOLDER.description": "给予[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
+  "HAKUREIREIMU-PLACEHOLDER.title": "虚弱药水"
+}

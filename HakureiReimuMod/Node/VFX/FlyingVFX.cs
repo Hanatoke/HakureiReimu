@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace HakureiReimu.HakureiReimuMod.Node.VFX
 {
@@ -41,7 +42,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
             {
                 OnHit?.Invoke();
                 _hitTcs.TrySetResult();
-                QueueFree();
+                this.QueueFreeSafelyNoPool();
             }
         }
         protected virtual void UpdateRotation(Vector2 pos)

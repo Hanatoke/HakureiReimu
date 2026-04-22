@@ -39,20 +39,23 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            NCreature s = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);
-            NCreature t = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
-            if (s != null && t != null)
+            NCreature source = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);
+            NCreature target = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
+            if (source != null && target != null)
             {
                 List<Task> tasks = [];
                 int num = 8;
+                Vector2 sourcePos = source.VfxSpawnPosition;
+                Vector2 targetPos = target.VfxSpawnPosition;
                 for (var i = 0; i < num; i++)
                 {
+                    if (NCombatRoom.Instance == null)break;
                     var index = i;
                     Color c = Color.FromHsv(GD.Randf(), 1, 1);
                     Vector2 v = Vector2.Left.Rotated(Mathf.DegToRad(Mathf.Lerp(180, 0, (float)i / num))) * 500f;
                     FlyingVFX vfx=FlyingVFX.Create(
-                        new SteeringMover(s.VfxSpawnPosition,
-                            t.VfxSpawnPosition+FlyingVFXCmd.RandomOffset(4),
+                        new SteeringMover(sourcePos,
+                            targetPos+FlyingVFXCmd.RandomOffset(4),
                             v,0,500));
                     vfx.Duration = 3;
                     vfx.UpdateMethod = (time, _) =>

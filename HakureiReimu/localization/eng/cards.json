@@ -223,6 +223,11 @@
   "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.title":"Omnidirectional Dragon-Slaying Circle",
   "HAKUREIREIMU-HAPPO_RYU_SATSU_JIN.description":"Deal {Damage:diff()} damage.\nActivate ALL [gold]Counter[/gold].",
 
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.sign":"Sign I",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"Dream Orb String",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"For each time target has taken damage this turn, deal {Damage:diff()} damage once.{IsTargeting:\n(deal {CalculatedTimes:diff()} times)|}",
+
+
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-SPRINKLE_STAR_SEAL.sign":"Star Spirit Sign",

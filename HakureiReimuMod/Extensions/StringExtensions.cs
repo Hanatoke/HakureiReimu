@@ -38,6 +38,9 @@ public static class StringExtensions {
     public static string BigRelicImagePath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "images", "relics", path);
     }
+    public static string PotionsImagePath(this string path) {
+        return Path.Join(HakureiReimuMain.ModId, "images", "potions", path);
+    }
     public static string CharacterPath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "images", "char", path);
     }
