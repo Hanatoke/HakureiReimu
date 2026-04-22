@@ -11,12 +11,6 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         [HarmonyPatch(typeof(MonsterModel),nameof(MonsterModel.PerformMove))]
         public static class MonsterPerformMovePatch
         {
-            // [HarmonyPrefix]
-            // public static bool Prefix(MonsterModel __instance)
-            // {
-            //     CounterManager.InMonsterMove = true;
-            //     return true;
-            // }
             [HarmonyPostfix]
             public static async Task Postfix(Task __result,MonsterModel __instance)
             {
@@ -30,14 +24,15 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         [HarmonyPatch(typeof(ThornsPower),nameof(ThornsPower.BeforeDamageReceived))]
         public static class IgnoreThornsPatch
         {
-            [HarmonyPostfix]
-            public static async Task Postfix(Task __result,ThornsPower __instance,CardModel cardSource)
+            [HarmonyPrefix]
+            public static bool Prefix(ThornsPower __instance,CardModel cardSource,ref Task __result)
             {
                 if (cardSource!=null&&cardSource.HasCounter())
                 {
-                    return;
+                    __result = Task.CompletedTask;
+                    return false;
                 }
-                await __result;
+                return true;
             }
         }
     }

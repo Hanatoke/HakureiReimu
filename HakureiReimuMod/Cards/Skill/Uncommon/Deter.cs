@@ -48,6 +48,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
+            VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_scream");
             foreach (Creature enemy in CombatState.HittableEnemies)
             {
                 await PowerCmd.Apply<WeakPower>(enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);

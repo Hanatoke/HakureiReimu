@@ -42,27 +42,6 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 return true;
             }
         }
-        // [HarmonyPatch(typeof(NInspectCardScreen),"SetCard")]
-        // public static class SetCardPatch
-        // {
-        //     [HarmonyPrefix]
-        //     public static bool Prefix(NInspectCardScreen __instance,ref NCard ____card,Vector2 ____cardPosition)
-        //     {
-        //         if (____card.Model is INCardModify modify)
-        //         {
-        //             Godot.Node parent = ____card.GetParent();
-        //             int index = ____card.GetIndex();
-        //             ____card.QueueFreeSafelyNoPool();
-        //             NCard nc=NodePool.Get<NCard>();
-        //             parent.AddChildSafely(nc);
-        //             parent.MoveChild(nc, index);
-        //             nc.Position = ____cardPosition;
-        //             ____card = nc;
-        //         }
-        //         return  true;
-        //     }
-        //
-        // }
         [HarmonyPatch(typeof(NCard),nameof(NCard.Model), MethodType.Setter)]
         public static class NCardModelSetPatch
         {
@@ -90,7 +69,6 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         SetUniqueNameToOwner(control, __instance);
                         
                         __instance._Ready();
-                        // Info.Invoke(__instance,null);
                     }
                     catch (Exception e)
                     {
@@ -100,8 +78,6 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 return true;
             }
         }
-
-        // private static readonly MethodInfo Info = AccessTools.Method(typeof(NCard), nameof(NCard._Ready));
 
         private static void SetUniqueNameToOwner(Godot.Node node, Godot.Node parent)
         {

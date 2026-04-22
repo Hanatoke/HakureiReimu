@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             typeof(FlutterPower),
             typeof(HardenedShellPower),
             typeof(HardToKillPower),
-            typeof(SandpitPower),
+            // typeof(SandpitPower),
             typeof(EscapeArtistPower),
             typeof(PainfulStabsPower),
             typeof(PaperCutsPower),
@@ -43,7 +43,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             typeof(EscapeArtistPower),
             typeof(HardenedShellPower),
             typeof(HardToKillPower),
-            typeof(SandpitPower),
+            // typeof(SandpitPower),
         ];
         public static readonly HashSet<Type> DontBlock = [
             typeof(FlutterPower),
@@ -57,19 +57,19 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public static HashSet<Type> Add(this HashSet<Type> a, HashSet<Type> b)
         {
             HashSet<Type> result = new(a);
-            a.UnionWith(b);
+            result.UnionWith(b);
             return result;
         }
         public static HashSet<Type> Sub(this HashSet<Type> a, HashSet<Type> b)
         {
             HashSet<Type> result = new(a);
-            a.ExceptWith(b);
+            result.ExceptWith(b);
             return result;
         }
         public static HashSet<Type> And(this HashSet<Type> a, HashSet<Type> b)
         {
             HashSet<Type> result = new(a);
-            a.IntersectWith(b);
+            result.IntersectWith(b);
             return result;
         }
     }

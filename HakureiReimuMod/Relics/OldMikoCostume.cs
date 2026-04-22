@@ -6,6 +6,7 @@ using HakureiReimu.HakureiReimuMod.Cards.Skill.Common;
 using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -48,7 +49,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
                 DoubleBoundary card = (DoubleBoundary)player.Creature.CombatState.CreateCard<DoubleBoundary>(Owner).CreateDupe();
                 card.AddKeyword(CardKeyword.Exhaust);
                 await CardPileCmd.Add(card, PileType.Play, skipVisuals: true);
-                if (NCombatRoom.Instance is {} room)
+                if (LocalContext.IsMe(Owner)&&NCombatRoom.Instance is {} room)
                 {
                     NCard nCard=NCard.Create(card);
                     room.Ui.AddChildSafely(nCard);

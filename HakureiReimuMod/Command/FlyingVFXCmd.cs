@@ -118,7 +118,10 @@ namespace HakureiReimu.HakureiReimuMod.Command
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(source);
             source.GlobalPosition = position;
         }
-        
-        
+        public static void AddVFXOnCreature(Node2D source, Creature target)
+        {
+            NCreature t= NCombatRoom.Instance?.GetCreatureNode(target);
+            if (t != null)AddVFXOnTarget(source, t.VfxSpawnPosition);
+        }
     }
 }

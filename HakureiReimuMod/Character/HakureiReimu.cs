@@ -169,7 +169,11 @@ public class HakureiReimu : PlaceholderCharacterModel {
                 {
                     if (!result.Props.HasFlag(ValueProp.SkipHurtAnim)&&result.Props.IsCardOrMonsterMove_())
                     {
-                        if (result.UnblockedDamage>target.CurrentHp*0.25f)
+                        if (result.UnblockedDamage<=0)
+                        {
+                            playback?.Travel(Animation.Guard.Name());
+                        }
+                        else if (result.UnblockedDamage>target.CurrentHp*0.25f)
                         {
                             playback?.Travel(Animation.DamageHeavy.Name());
                         }
