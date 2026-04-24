@@ -18,8 +18,9 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 namespace HakureiReimu.HakureiReimuMod.Cards;
 
 [Pool(typeof(HakureiReimuCardPool))]
-public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, TargetType target)
-    : CustomCardModel(cost, type, rarity, target),
+public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, TargetType target,bool showInCardLibrary = true, 
+    bool autoAdd = true)
+    : CustomCardModel(cost, type, rarity, target,showInCardLibrary, autoAdd),
         INCardModify
 {
     public const float EnergyScale = 1.5f;

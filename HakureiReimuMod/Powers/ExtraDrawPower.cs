@@ -16,7 +16,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public readonly HashSet<PlayerChoiceContext> Context = new();
-        public class IgnoreExtraDrawContext:BlockingPlayerChoiceContext{}
+
+        public class IgnoreExtraDrawContext : BlockingPlayerChoiceContext;
+
         public async Task AfterDrawCardFinish(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
         {
             if (player==null||player!=Owner.Player)return;
@@ -26,11 +28,10 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 if (Context.Count<=0)
                 {
                     Flash();
-                    await CardPileCmd.Draw(new IgnoreExtraDrawContext(),Amount,player);
+                    await CardPileCmd.Draw(new IgnoreExtraDrawContext(), Amount, player);
                 }
             }
         }
-
         public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {
             if (card.Owner==Owner.Player)
@@ -45,7 +46,6 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 }
             }
         }
-
         public override Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
         {
             if (player.Creature==Owner)

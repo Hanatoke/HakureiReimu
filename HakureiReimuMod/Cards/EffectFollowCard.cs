@@ -6,7 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace HakureiReimu.HakureiReimuMod.Cards
 {
-    public abstract class EffectFollowCard<T>(int cost, CardType type, CardRarity rarity, TargetType target) :AbstractCounterCard(cost, type, rarity, target)
+    public abstract class EffectFollowCard<T>(int cost, CardType type, CardRarity rarity, TargetType target,bool showInCardLibrary = true,
+        bool autoAdd = true) :AbstractCounterCard(cost, type, rarity, target,showInCardLibrary, autoAdd)
         where T : Node2D
     {
         protected abstract T CreateInstance { get; }

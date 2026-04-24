@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
@@ -32,7 +33,21 @@ namespace HakureiReimu.HakureiReimuMod.Core
             {
                 if (i is IYinYangOrbListener listener)
                 {
+                    choiceContext.PushModel(i);
                     await listener.AfterEvokeOrb(choiceContext, orb, player, target, cardSource);
+                    i.InvokeExecutionFinished();
+                    choiceContext.PopModel(i);
+                }
+            }
+        }
+
+        public static void ModifyOrbDamage(PlayerChoiceContext choiceContext, YinYangOrb orb,
+            List<Creature> targets, ref decimal damage, ref ValueProp props)
+        {
+            foreach (AbstractModel i in orb.CombatState.IterateHookListeners()){
+                if (i is IYinYangOrbListener listener)
+                {
+                    listener.ModifyOrbDamage(choiceContext, orb, targets, ref damage, ref props);
                 }
             }
         }
@@ -44,7 +59,10 @@ namespace HakureiReimu.HakureiReimuMod.Core
             {
                 if (i is IYinYangOrbListener listener)
                 {
+                    choiceContext.PushModel(i);
                     await listener.AfterOrbHit(choiceContext, orb, results);
+                    i.InvokeExecutionFinished();
+                    choiceContext.PopModel(i);
                 }
             }
         }

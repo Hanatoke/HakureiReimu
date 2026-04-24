@@ -282,6 +282,10 @@
   "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.sign":"Dream Land",
   "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.title":"Great Duplex Barrier",
   "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.description":"Whenever a [gold]Counter[/gold] is played, place a copy of it with [gold]Exhaust[/gold] onto the battlefield.",
+  
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.sign":"Orb Sign",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.title":"Rainbow Dragon Yin-Yang Orbs",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.description":"Choose 1 of 3 [gold]Yin-Yang Orbs[/gold] buffs to obtain for this combat.",
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -294,6 +298,15 @@
   "HAKUREIREIMU-HAKUREI_PHANTOM.description":"Cards are played twice.\nWhenever you play a card, [gold]Exhaust[/gold] it.",
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"Fire Water Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [gold]Block[/gold] and defensive powers.",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"Storm Mountain Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to unblocked damage dealt.",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.title":"Wind Thunder Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.description":"[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
 
   "HAKUREIREIMU-MIRACLE.title":"Miracle",
   "HAKUREIREIMU-MIRACLE.description":"Gain {Energy:energyIcons()}.",

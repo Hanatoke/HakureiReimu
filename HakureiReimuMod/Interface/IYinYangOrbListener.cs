@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Interface
 {
@@ -12,6 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Interface
     {
         decimal ModifyEvokeVal(YinYangOrb orb,decimal result){return result;}
         Task AfterEvokeOrb(PlayerChoiceContext choiceContext,YinYangOrb orb,Player player,Creature target,CardModel cardSource){return Task.CompletedTask;}
+        void ModifyOrbDamage(PlayerChoiceContext choiceContext,YinYangOrb orb,List<Creature> targets,ref decimal damage,ref ValueProp props){}
         Task AfterOrbHit(PlayerChoiceContext choiceContext,YinYangOrb orb,IEnumerable<DamageResult> damageResult){return Task.CompletedTask;}
     }
 }

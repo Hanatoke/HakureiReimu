@@ -16,8 +16,9 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace HakureiReimu.HakureiReimuMod.Cards
 {
-    public abstract class AbstractPersistCard(int cost, CardType type, CardRarity rarity, TargetType target) 
-        :AbstractCard(cost, type, rarity, target),IPersistCard,IPersistCardSubscriber
+    public abstract class AbstractPersistCard(int cost, CardType type, CardRarity rarity, TargetType target,bool showInCardLibrary = true,
+        bool autoAdd = true) 
+        :AbstractCard(cost, type, rarity, target,showInCardLibrary, autoAdd),IPersistCard,IPersistCardSubscriber
     {
         // public Vector2 PersistIconOffset = new Vector2(115, -120);
         public Vector2 PersistIconOffset = new Vector2(-150, -210);

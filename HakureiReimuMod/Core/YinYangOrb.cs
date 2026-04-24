@@ -53,6 +53,11 @@ namespace HakureiReimu.HakureiReimuMod.Core
                  target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
             }
             if (target == null) return;
+            List<Creature> targets = [target];
+            decimal damage = EvokeVal;
+            ValueProp props = ValueProp.Unpowered;
+            YinYangOrbHook.ModifyOrbDamage(playerChoiceContext,this,targets,ref damage,ref props);
+            
             NCreature targetNode = NCombatRoom.Instance?.GetCreatureNode(target);
             if (targetNode!=null)
             {
@@ -68,7 +73,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 vfx.AddChildSafely(NYinYangOrbFlying.Create());
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             }
-            IEnumerable<DamageResult> results=await CreatureCmd.Damage(playerChoiceContext, target, EvokeVal, ValueProp.Unpowered, Owner.Creature);
+            
+            IEnumerable<DamageResult> results=await CreatureCmd.Damage(playerChoiceContext, targets, damage, props, Owner.Creature);
             await YinYangOrbHook.AfterOrbHit(playerChoiceContext,this,results);
         }
     }

@@ -18,6 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common
         protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [EnergyHoverTip];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
+        public override bool CanBeGeneratedInCombat => false;
 
         public Miracle() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self)
         {

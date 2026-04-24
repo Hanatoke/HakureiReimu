@@ -25,12 +25,12 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         public static class DrawCardPatch
         {
             [HarmonyPostfix]
-            public static async Task<IEnumerable<CardModel>> Postfix(Task<IEnumerable<CardModel>> __result,PlayerChoiceContext choiceContext,
+            public static async Task Postfix(Task __result,PlayerChoiceContext choiceContext,
                 decimal count,
                 Player player,
                 bool fromHandDraw)
             {
-                var r=await __result;
+                await __result;
                 CombatState combatState = player.Creature.CombatState;
                 if (combatState != null)
                 {
@@ -42,7 +42,6 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         }
                     }
                 }
-                return r;
             }
         }
     }

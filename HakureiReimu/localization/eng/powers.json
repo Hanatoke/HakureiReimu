@@ -83,6 +83,18 @@
   "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.description": "Cards are played an additional time.\nWhenever you play a card, Exhaust it.",
   "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.smartDescription": "Cards are played [blue]{Amount}[/blue] additional times.\nWhenever [gold]{OwnerName}[/gold] plays a card, [gold]Exhaust[/gold] it.",
 
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.title": "Fire Water Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.description": "[gold]Yin-Yang Orbs[/gold] ignore [gold]Block[/gold] and defensive powers.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] ignore [gold]Block[/gold] and defensive powers.",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.title": "Storm Mountain Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.description": "[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to unblocked damage dealt.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to unblocked damage dealt.",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.title": "Wind Thunder Orb",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.description": "[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
+
 
 
 

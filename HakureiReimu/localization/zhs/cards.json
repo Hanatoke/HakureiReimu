@@ -283,6 +283,10 @@
   "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.title":"二重大结界",
   "HAKUREIREIMU-DOUBLE_GREAT_BOUNDARY.description":"在你打出一张[gold]反制[/gold]牌时，额外将一张[gold]临时[/gold]复制置入场上。",
   
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.sign":"玉符",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.title":"虹龙阴阳玉",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS.description":"从三种[gold]阴阳玉[/gold]强化中，选择一种在本场战斗中获得。",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
@@ -295,6 +299,15 @@
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"水火玉",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[gold]格挡[/gold]和防御能力。",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"山雨玉",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得等量[gold]格挡[/gold]。",
+
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.title":"风雷玉",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.description":"[gold]阴阳玉[/gold]同时对[gold]所有[/gold]敌人造成伤害。",
+
   "HAKUREIREIMU-MIRACLE.title":"奇迹",
   "HAKUREIREIMU-MIRACLE.description":"获得{Energy:energyIcons()}。",
   

@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
 {
     public static class FollowDanmakuManager
     {
-        public static readonly int MaxFollows = 100;
+        public static readonly int MaxFollows = 20;
         public static readonly Dictionary<CardModel,List<Node2D>> DanmakuNodes = new();
         public static int CurrentFollows =>DanmakuNodes.Values.Where(l=>l!=null).Sum(l=>l.Count);
         public static bool CanAddFollow=>CurrentFollows < MaxFollows;
