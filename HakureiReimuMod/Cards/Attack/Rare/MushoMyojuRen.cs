@@ -44,12 +44,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 .WithHitCount(n).Execute(choiceContext);
         }
 
-        protected Task StartVfx(int count, Creature source, Creature target)
+        protected async Task StartVfx(int count, Creature source, Creature target)
         {
-            if (count <= 0||source==null||target==null)return Task.CompletedTask;
+            if (count <= 0||source==null||target==null)return;
             TaskCompletionSource ctx = new ();
             _ = Vfx(count, source, target,ctx);
-            return ctx.Task;
+            await Task.WhenAny([ctx.Task, Cmd.Wait(3f)]);
         }
 
         protected async Task Vfx(int count, Creature source, Creature target,TaskCompletionSource ctx)

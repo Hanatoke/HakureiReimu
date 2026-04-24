@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HarmonyLib;
@@ -23,15 +24,24 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             if (command.Attacker==Owner)
             {
                 Flash();
-                
+                bool isAoe = command.IsMultiTargeted;
                 Traverse traverse = Traverse.Create(command);
                 // FlyingVFXCmd.AddVFXOnCreature(NBarrierImpactReverse.Create(),traverse.Field<Creature>("_singleTarget").Value);
                 traverse.Field<Creature>("_singleTarget").Value = null;
                 traverse.Field<CombatState>("_combatState").Value = CombatState;
                 traverse.Property<bool>("IsRandomlyTargeted").Value=false;
-                traverse.Property<CombatSide>("TargetSide").Value =
+                CombatSide targetSide=traverse.Property<CombatSide>("TargetSide").Value =
                     Owner.Side == CombatSide.Enemy ? CombatSide.Player : CombatSide.Enemy;
-                
+                if (isAoe) return Task.CompletedTask;
+                Func<Task> old = traverse.Field<Func<Task>>("_beforeDamage").Value;
+                traverse.Field<Func<Task>>("_beforeDamage").Value = async () =>
+                {
+                    if (old != null)
+                    {
+                        await old();
+                    }
+                    VfxCmd.PlayOnSide(targetSide,"vfx/vfx_giant_horizontal_slash",CombatState);
+                };
             }
             return Task.CompletedTask;
         }

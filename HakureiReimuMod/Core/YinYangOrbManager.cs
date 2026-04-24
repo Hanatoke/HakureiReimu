@@ -26,6 +26,12 @@ namespace HakureiReimu.HakureiReimuMod.Core
         //     Player = player;
         //     Orbs = new List<YinYangOrb>(Capacity);
         // }
+        protected override void DeepCloneFields()
+        {
+            base.DeepCloneFields();
+            Orbs = new List<YinYangOrb>(Capacity);
+        }
+
         public void Clear()=> Orbs.Clear();
 
         public void Add(YinYangOrb orb)
