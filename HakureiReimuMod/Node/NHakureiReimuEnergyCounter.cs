@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using HakureiReimu.HakureiReimuMod.Core;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -13,6 +14,16 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             this.AnimationPlayer = this.GetNode<AnimationPlayer>("%AnimationPlayer");
             base._Ready();
+            if (ModConfig.UseStaticEnergyCounter)
+            {
+                foreach (Godot.Node child in GetNode<Control>("Main").GetChildren())
+                {
+                    if (child is Control node2D&&node2D.Material is ShaderMaterial material)
+                    {
+                        material.SetShaderParameter("speed",0);
+                    }
+                }
+            }
         }
         public override void _EnterTree()
         {

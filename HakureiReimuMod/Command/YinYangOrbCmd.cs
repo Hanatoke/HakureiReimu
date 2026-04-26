@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -59,10 +60,10 @@ namespace HakureiReimu.HakureiReimuMod.Command
                 Vector2 pos=Vector2.Zero;
                 NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.NYinYangOrbManager(manager)?.PopOrb(out pos);
                 choiceContext.PushModel(orb);
-                await orb.Attack(choiceContext,target,nOrb,pos);
+                IEnumerable<DamageResult> results=await orb.Attack(choiceContext,target,nOrb,pos);
                 choiceContext.PopModel(orb);
                 orb.RemoveInternal();
-                await YinYangOrbHook.AfterEvokeOrb(choiceContext,orb, player, target, cardSource);
+                await YinYangOrbHook.AfterEvokeOrb(choiceContext,orb, player, target, cardSource,results);
             }
         }
     }

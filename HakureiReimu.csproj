@@ -22,4 +22,8 @@
     <Compile Remove="HakureiReimuMod\Extensions\EnumExtensions.cs" />
     <Compile Remove="HakureiReimuMod\PersistCard\IPersistCardSlot.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="HakureiReimu\localization\eng\settings_ui.json" />
+    <Content Include="HakureiReimu\localization\zhs\settings_ui.json" />
+  </ItemGroup>
 </Project>

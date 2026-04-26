@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             return Task.FromResult<IEnumerable<Creature>>(new List<Creature>());
         }
-        public virtual async Task Attack(PlayerChoiceContext playerChoiceContext,Creature target,NOrb nOrb,Vector2 startPos)
+        public virtual async Task<IEnumerable<DamageResult>> Attack(PlayerChoiceContext playerChoiceContext,Creature target,NOrb nOrb,Vector2 startPos)
         {
             if (target is { IsHittable: false })
             {
@@ -52,7 +52,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     .Where(e => e.IsHittable).ToList();
                  target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
             }
-            if (target == null) return;
+            if (target == null) return [];
             List<Creature> targets = [target];
             decimal damage = EvokeVal;
             ValueProp props = ValueProp.Unpowered;
@@ -74,8 +74,9 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             }
             
-            IEnumerable<DamageResult> results=await CreatureCmd.Damage(playerChoiceContext, targets, damage, props, Owner.Creature);
+            List<DamageResult> results=(await CreatureCmd.Damage(playerChoiceContext, targets, damage, props, Owner.Creature)).ToList();
             await YinYangOrbHook.AfterOrbHit(playerChoiceContext,this,results);
+            return results;
         }
     }
 }

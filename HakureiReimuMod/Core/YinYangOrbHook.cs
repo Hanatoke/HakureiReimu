@@ -27,14 +27,15 @@ namespace HakureiReimu.HakureiReimuMod.Core
             return result;
         }
 
-        public static async Task AfterEvokeOrb(PlayerChoiceContext choiceContext,YinYangOrb orb,Player player,Creature target,CardModel cardSource)
+        public static async Task AfterEvokeOrb(PlayerChoiceContext choiceContext,YinYangOrb orb,Player player,Creature target,CardModel cardSource,IEnumerable<DamageResult> results)
         {
+            IEnumerable<DamageResult> damageResults = results.ToList();
             foreach (AbstractModel i in orb.CombatState.IterateHookListeners())
             {
                 if (i is IYinYangOrbListener listener)
                 {
                     choiceContext.PushModel(i);
-                    await listener.AfterEvokeOrb(choiceContext, orb, player, target, cardSource);
+                    await listener.AfterEvokeOrb(choiceContext, orb, player, target, cardSource,damageResults);
                     i.InvokeExecutionFinished();
                     choiceContext.PopModel(i);
                 }

@@ -227,6 +227,10 @@
   "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"Dream Orb String",
   "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"For each time target has taken damage this turn, deal {Damage:diff()} damage once.{IsTargeting:\n(deal {CalculatedTimes:diff()} times)|}",
 
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.sign":"Sign II",
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.title":"Yin-Yang Scattering",
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.description":"Deal {Damage:diff()} damage to ALL enemies.\nIf this triggers [gold]Yin-Yang Orbs[/gold], gain bonus damage equal to their damage dealt, and Return this card to your [gold]Hand[/gold].",
+
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

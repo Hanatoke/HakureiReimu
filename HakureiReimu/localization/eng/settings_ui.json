@@ -1,0 +1,18 @@
+﻿{
+  "HAKUREIREIMU.mod_title": "Hakurei Reimu",
+
+  "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.title": "Maximum Following Danmaku Count",
+  "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.hover.desc": "Determines how many following danmaku effects can exist on the field at the same time.\nIf you experience lag, try [gold]reducing[/gold] this value.",
+
+  "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.title": "Use Static Energy Icon",
+  "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.hover.desc": "When enabled, the card's energy icon will not glow dynamically over time.",
+
+  "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.title": "Use Static Energy Counter",
+  "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.hover.desc": "When enabled, the character's energy counter will not glow dynamically over time.",
+  
+  
+  
+  
+  
+  "HAKUREIREIMU-PlaceHolder.title": "Explosion Size"
+}

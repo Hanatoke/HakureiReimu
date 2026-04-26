@@ -33,7 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         public decimal ModifyEvokeVal(YinYangOrb orb, decimal result) => result;
 
         public async Task AfterEvokeOrb(PlayerChoiceContext choiceContext, YinYangOrb orb, Player player, Creature target,
-            CardModel cardSource)
+            CardModel cardSource,IEnumerable<DamageResult> results)
         {
             if (cardSource==this)
             {

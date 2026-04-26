@@ -1,6 +1,6 @@
 shader_type canvas_item;
 // 时间控制参数，单位为秒
-uniform float speed : hint_range(0.1, 5.0) = 1.25;
+uniform float speed : hint_range(0, 5.0) = 1.25;
 // 彩虹颜色密度调节
 uniform float frequency : hint_range(0.1, 10.0) = 3.5;
 uniform float brightness : hint_range(0.1, 10.0) = 2;

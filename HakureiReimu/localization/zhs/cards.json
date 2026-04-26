@@ -227,6 +227,10 @@
   "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"梦想妙珠连",
   "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"本回合该敌人每受到过一次伤害，便造成{Damage:diff()}点伤害一次。{IsTargeting:\n（造成{CalculatedTimes:diff()}次）|}",
   
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.sign":"符之二",
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.title":"阴阳散华",
+  "HAKUREIREIMU-YIN_YANG_SCATTERING.description":"对所有敌人造成{Damage:diff()}点伤害。\n如果这张牌触发了[gold]阴阳玉[/gold]，增加等同于[gold]阴阳玉[/gold]的造成的伤害并返回你的[gold]手牌[/gold]。",
+  
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   

@@ -7,7 +7,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
     {
         [Export]
         public float Lifetime = 1;
-        protected void StartVfx(Godot.Node node)
+        protected static void StartVfx(Godot.Node node)
         {
             if (node is GpuParticles2D particles2D)
             {

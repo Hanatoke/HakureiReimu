@@ -1,0 +1,19 @@
+﻿{
+  "HAKUREIREIMU.mod_title": "博丽灵梦",
+  
+  "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.title": "最大弹幕环绕数量",
+  "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.hover.desc": "决定场上同时能存在多少个弹幕环绕特效。\n如果感觉到卡顿,请尝试[gold]降低[/gold]这个数值。",
+  
+  "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.title": "使用静态能量图标",
+  "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.hover.desc": "开启后，卡牌的能量图标将不会随时间变化发光。",
+  
+  "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.title": "使用静态能量计数器",
+  "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.hover.desc": "开启后，角色的能量计数器将不会随时间变化发光",
+  
+  
+  
+  
+  
+  
+  "HAKUREIREIMU-PlaceHolder.title": "Explosion Size"
+}

@@ -12,7 +12,7 @@ namespace HakureiReimu.HakureiReimuMod.Interface
     public interface IYinYangOrbListener
     {
         decimal ModifyEvokeVal(YinYangOrb orb,decimal result){return result;}
-        Task AfterEvokeOrb(PlayerChoiceContext choiceContext,YinYangOrb orb,Player player,Creature target,CardModel cardSource){return Task.CompletedTask;}
+        Task AfterEvokeOrb(PlayerChoiceContext choiceContext,YinYangOrb orb,Player player,Creature target,CardModel cardSource,IEnumerable<DamageResult> results){return Task.CompletedTask;}
         void ModifyOrbDamage(PlayerChoiceContext choiceContext,YinYangOrb orb,List<Creature> targets,ref decimal damage,ref ValueProp props){}
         Task AfterOrbHit(PlayerChoiceContext choiceContext,YinYangOrb orb,IEnumerable<DamageResult> damageResult){return Task.CompletedTask;}
     }

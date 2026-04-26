@@ -5,6 +5,7 @@ using BaseLib.Patches.Content;
 using BaseLib.Utils;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Character;
+using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Interface;
 using HarmonyLib;
@@ -114,6 +115,10 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         ShaderMaterial material = new();
         material.Shader = shader;
         material.SetShaderParameter("offset",(float)EnergyOffsetRandom.NextDouble()*7);
+        if (ModConfig.UseStaticEnergyIcon)
+        {
+            material.SetShaderParameter("speed",0);
+        }
         energyIcon.Material=material;
         energyIcon.Scale = new Vector2(EnergyScale,EnergyScale);
     }
