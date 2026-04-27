@@ -1,0 +1,12 @@
+﻿{
+  
+  
+  "HAKUREIREIMU-LIGHT.title": "轻盈",
+  "HAKUREIREIMU-LIGHT.description": "你第一次抽到这张牌时，获得{Amount:energyIcons()}。",
+  "HAKUREIREIMU-LIGHT.extraCardText": "抽到时获得{Amount:energyIcons()}。",
+  
+  
+  "HAKUREIREIMU-PlaceHolder.title": "迅速",
+  "HAKUREIREIMU-PlaceHolder.description": "你第一次打出这张牌时，抽[blue]{Amount}[/blue]张牌。",
+  "HAKUREIREIMU-PlaceHolder.extraCardText": "第一次打出时抽{Amount}张牌。"
+}

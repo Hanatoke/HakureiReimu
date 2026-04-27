@@ -50,6 +50,9 @@ public static class StringExtensions {
     public static string EffectsPath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "images", "effects", path);
     }
+    public static string EnchantmentPath(this string path) {
+        return Path.Join(HakureiReimuMain.ModId, "images", "enchantments", path);
+    }
     public static string ShaderPath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "shader", path);
     }

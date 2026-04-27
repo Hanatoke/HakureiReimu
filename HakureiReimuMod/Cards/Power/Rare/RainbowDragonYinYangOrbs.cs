@@ -1,16 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 // ReSharper disable ClassNeverInstantiated.Global
@@ -45,9 +44,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
 
         public async Task ChooseWrapper(CardModel card,PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            if (AccessTools.Method(typeof(CardModel), "OnPlay")?.Invoke(card, [choiceContext, cardPlay]) is Task invoke)
+            try
             {
-                await invoke;
+                if (AccessTools.Method(typeof(CardModel), "OnPlay")?.Invoke(card, [choiceContext, cardPlay]) is Task invoke)
+                {
+                    await invoke;
+                }
+            }
+            catch (Exception e)
+            {
+                HakureiReimuMain.Logger.Info(e.ToString());
             }
             // await CardCmd.AutoPlay(choiceContext, card, Owner.Creature);
         }

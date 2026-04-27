@@ -23,7 +23,9 @@
     <Compile Remove="HakureiReimuMod\PersistCard\IPersistCardSlot.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HakureiReimu\localization\eng\enchantments.json" />
     <Content Include="HakureiReimu\localization\eng\settings_ui.json" />
+    <Content Include="HakureiReimu\localization\zhs\enchantments.json" />
     <Content Include="HakureiReimu\localization\zhs\settings_ui.json" />
   </ItemGroup>
 </Project>

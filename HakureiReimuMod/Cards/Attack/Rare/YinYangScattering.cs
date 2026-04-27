@@ -25,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(8, ValueProp.Move),
+            new DamageVar(6, ValueProp.Move),
         ];
 
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
