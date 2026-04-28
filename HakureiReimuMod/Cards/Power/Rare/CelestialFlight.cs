@@ -25,10 +25,17 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
             int n = 20;
             foreach (CardModel c in cards)
             {
-                if (c.Enchantment is Light light)
+                if (c.Enchantment!=null)
                 {
-                    light.Amount++;
-                    light.ModifyCard();
+                    if (c.Enchantment is Light light)
+                    {
+                        light.Amount++;
+                        light.ModifyCard();
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {

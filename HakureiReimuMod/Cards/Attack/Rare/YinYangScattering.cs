@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
+using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Interface;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
@@ -41,6 +42,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 .WithHitFx(VfxCmd.bluntPath)
                 .Execute(choiceContext);
         }
+
+        protected override bool ShouldGlowGoldInternal => Owner.PlayerCombatState?.YinYangOrbManager()?.Orbs.Count > 0;
 
         // protected override PileType GetResultPileType()
         // {

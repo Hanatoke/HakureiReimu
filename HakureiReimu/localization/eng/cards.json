@@ -182,6 +182,10 @@
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.title":"Youkai Repelling Charm",
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.description":"If the enemy has at least {SealPower:diff()} [gold]Seal[/gold], [gold]Stun[/gold] it.",
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.talk":"Insufficient [gold]Seal[/gold] to repel the enemy",
+
+  "HAKUREIREIMU-BARRIER_REVERSAL.title":"Barrier Reversal",
+  "HAKUREIREIMU-BARRIER_REVERSAL.description":"For every {Num:diff()} cards in your [gold]Discard Pile[/gold], gain {Energy:energyIcons()}.\nThen Shuffle your [gold]Discard Pile[/gold] into your [gold]Draw Pile[/gold].{InCombat:{CalculatedEnergy:cond:>0?\n(Gain{CalculatedEnergy:cond:>3? {CalculatedEnergy:diff()}{energyPrefix:energyIcons(1)}|{CalculatedEnergy:energyIcons()}}.)|}|}",
+
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.sign":"Barrier",

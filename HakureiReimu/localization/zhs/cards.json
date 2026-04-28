@@ -182,6 +182,10 @@
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.title":"妖怪拘禁符",
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.description":"如果目标至少有{SealPower:diff()}层[gold]封印[/gold]，将其[gold]击晕[/gold]。",
   "HAKUREIREIMU-YOKAI_ASHIDOME_OMAMORI.talk":"[gold]封印[/gold]的力量还不足",
+  
+  "HAKUREIREIMU-BARRIER_REVERSAL.title":"境界反转",
+  "HAKUREIREIMU-BARRIER_REVERSAL.description":"你的[gold]弃牌堆[/gold]每有{Num:diff()}张牌，便获得{Energy:energyIcons()}。\n然后将[gold]弃牌堆[/gold]洗入[gold]抽牌堆[/gold]。{InCombat:{CalculatedEnergy:cond:>0?\n（获得{CalculatedEnergy:cond:>3?{CalculatedEnergy:diff()}{energyPrefix:energyIcons(1)}|{CalculatedEnergy:energyIcons()}}。）|}|}",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.sign":"结界",
