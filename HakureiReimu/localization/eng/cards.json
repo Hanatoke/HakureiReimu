@@ -235,6 +235,10 @@
   "HAKUREIREIMU-YIN_YANG_SCATTERING.title":"Yin-Yang Scattering",
   "HAKUREIREIMU-YIN_YANG_SCATTERING.description":"Deal {Damage:diff()} damage to ALL enemies.\nIf this triggers [gold]Yin-Yang Orbs[/gold], gain bonus damage equal to their damage dealt, and Return this card to your [gold]Hand[/gold].",
 
+  "HAKUREIREIMU-COMBO.title":"Combo",
+  "HAKUREIREIMU-COMBO.description":"Deal {Damage:diff()} damage.\nPlay the last [gold]Attack[/gold] card (regardless of where it is).{HasLastAttack:\n(Play {IsSelf:[gold]{LastAttack}[/gold]|[blue]{Owner}[/blue]'s [gold]{LastAttack}[/gold]})|}",
+  "HAKUREIREIMU-COMBO.tip":"The extra card played does not include this card itself, but can include cards played by allies.",
+
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
