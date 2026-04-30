@@ -246,10 +246,10 @@
   "HAKUREIREIMU-SPRINKLE_STAR_SEAL.title":"Sprinkle Star Seal",
   "HAKUREIREIMU-SPRINKLE_STAR_SEAL.description":"Halve [gold]Buffs[/gold] and double [red]Debuffs[/red] on the target.",
 
-  //TODO:等待自定义战斗奖励接口
   "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.title":"Rolling In Riches Heart",
   "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.description":"Spend {Gold:diff()} [gold]Gold[/gold] to gain a [gold]Blind Box[/gold] at end of combat.",
-
+  "HAKUREIREIMU-ROLLING_IN_RICHES_HEART.talk":"I have [red]No[/red] enough [gold]Gold[/gold]!",
+  
   "HAKUREIREIMU-REPEAT_CAST.title":"Repeated Cast",
   "HAKUREIREIMU-REPEAT_CAST.description":"Return all other cards played this turn back into your hand in order.",
 

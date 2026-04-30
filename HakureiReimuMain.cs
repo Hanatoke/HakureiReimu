@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BaseLib.Config;
 using Godot;
+using HakureiReimu.HakureiReimuMod.CombatReward;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
@@ -32,6 +33,11 @@ public partial class HakureiReimuMain : Node
         ModHelper.SubscribeForCombatStateHooks(ModId,CombatHookSubscription );
         CombatManager.Instance.CombatSetUp += _ => FollowDanmakuManager.Clear();
         CombatManager.Instance.CombatEnded += _ => FollowDanmakuManager.Clear();
+        
+        CustomRewardPatch.CustomRewards.Add(BlindBoxReward.Type,(s,p)=>new BlindBoxReward(p));
+        CustomRewardPatch.CustomRewards.Add(UpgradeReward.Type,(s,p)=>new UpgradeReward(p));
+        CustomRewardPatch.CustomRewards.Add(TransformReward.Type,(s,p)=>new TransformReward(p));
+        CustomRewardPatch.CustomRewards.Add(CloneReward.Type,(s,p)=>new CloneReward(p));
     }
 
     public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)
