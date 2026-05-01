@@ -1,0 +1,12 @@
+﻿{
+  "HAKUREIREIMU-BLIND_BOX_REWARD.description": "Open the Blind Box!",
+  "HAKUREIREIMU-UPGRADE_REWARD.description": "Upgrade a card!",
+  "HAKUREIREIMU-TRANSFORM_REWARD.description": "Transfer a card!",
+  "HAKUREIREIMU-CLONE_REWARD.description": "Clone a card!",
+  "HAKUREIREIMU-ENCHANT_REWARD.description": "Select a card to Enchant [purple]{EnchantName}[/purple] {Amount}!",
+  
+  
+  
+  
+  "HAKUREIREIMU-PlaceHolder.title": "占位符"
+}

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Patches;
@@ -13,6 +14,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -29,10 +32,14 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
 
         protected override async Task<bool> OnSelect()
         {
-            CardModel card = (await CardSelectCmd.FromDeckGeneric(Player, new CardSelectorPrefs(Description, 1)
-            {
-                Cancelable = true
-            })).FirstOrDefault();
+            List<CardModel> list = PileType.Deck.GetPile(Player).Cards.ToList();
+            NDeckCardSelectScreen screen = NDeckCardSelectScreen.Create(list, new CardSelectorPrefs(Description, 1));
+            NOverlayStack.Instance?.Push(screen);
+            CardModel card = (await screen.CardsSelected()).FirstOrDefault();
+            // CardModel card = (await CardSelectCmd.FromDeckGeneric(Player, new CardSelectorPrefs(Description, 1)
+            // {
+            //     Cancelable = true
+            // })).FirstOrDefault();
             if (card != null)
             {
                 if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)

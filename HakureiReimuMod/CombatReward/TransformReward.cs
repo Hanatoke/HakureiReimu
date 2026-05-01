@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Patches;
@@ -13,6 +15,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -25,14 +28,20 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         public override int RewardsSetIndex => 11;
         public override bool IsPopulated => true;
         public override Task Populate()=>Task.CompletedTask;
-        // protected override string IconPath =>ImageHelper.GetImagePath($"ui/rest_site/option_{"SMITH".ToLowerInvariant()}.png");
 
         protected override async Task<bool> OnSelect()
         {
-            CardModel card = (await CardSelectCmd.FromDeckForTransformation(Player, new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1)
-            {
-                Cancelable = true
-            })).FirstOrDefault();
+            List<CardModel> list = PileType.Deck.GetPile(Player).Cards.Where((Func<CardModel, bool>) (c => c.Type != CardType.Quest && c.IsTransformable)).ToList();
+            CardModel card = (await NDeckTransformSelectScreen.ShowScreen(list,c=>new CardTransformation(c),
+                new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1)
+                {
+                    Cancelable = true
+                }).CardsSelected()).FirstOrDefault();
+            if (list.Count <= 0) return true;
+            // CardModel card = (await CardSelectCmd.FromDeckForTransformation(Player, new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1)
+            // {
+            //     Cancelable = true
+            // })).FirstOrDefault();
             if (card != null)
             {
                 if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)

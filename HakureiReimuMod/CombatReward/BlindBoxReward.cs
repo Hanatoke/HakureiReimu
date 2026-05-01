@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using HakureiReimu.HakureiReimuMod.Enchant;
 using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
@@ -59,9 +61,44 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
             (5,p=>new RelicReward(RelicRarity.Uncommon,p),null),
             (2,p=>new RelicReward(RelicRarity.Rare,p),null),
             (30,p=>new UpgradeReward(p),p=>p.Deck.Cards.Any(c=>c.IsUpgradable)),
-            (15,p=>new TransformReward(p),p=>p.Deck.Cards.Any(c=>c.IsRemovable)),
+            (15,p=>new TransformReward(p),p=>p.Deck.Cards.Any(c=>c.Type!=CardType.Quest&&c.IsTransformable)),
             (5,p=>new CardRemovalReward(p),p=>p.Deck.Cards.Any(c=>c.IsRemovable)),
             (2,p=>new CloneReward(p),p=>p.Deck.Cards.Any()),
+            (2,p=>new EnchantReward(p,ModelDb.Enchantment<Glam>().Id),p=>
+            {//华彩
+                EnchantmentModel e = ModelDb.Enchantment<Glam>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (10,p=>new EnchantReward(p,ModelDb.Enchantment<Sharp>().Id,p.PlayerRng.Rewards.NextInt(2,5)),p=>
+            {//锋利
+                EnchantmentModel e = ModelDb.Enchantment<Sharp>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (10,p=>new EnchantReward(p,ModelDb.Enchantment<Nimble>().Id,p.PlayerRng.Rewards.NextInt(2,5)),p=>
+            {//灵巧
+                EnchantmentModel e = ModelDb.Enchantment<Nimble>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (5,p=>new EnchantReward(p,ModelDb.Enchantment<Vigorous>().Id,p.PlayerRng.Rewards.NextInt(5,10)),p=>
+            {//活力
+                EnchantmentModel e = ModelDb.Enchantment<Vigorous>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (10,p=>new EnchantReward(p,ModelDb.Enchantment<Swift>().Id,p.PlayerRng.Rewards.NextInt(1,3)),p=>
+            {//迅速
+                EnchantmentModel e = ModelDb.Enchantment<Swift>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (5,p=>new EnchantReward(p,ModelDb.Enchantment<Steady>().Id),p=>
+            {//稳定
+                EnchantmentModel e = ModelDb.Enchantment<Steady>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
+            (3,p=>new EnchantReward(p,ModelDb.Enchantment<Light>().Id,p.PlayerRng.Rewards.NextInt(1,2)),p=>
+            {//轻盈
+                EnchantmentModel e = ModelDb.Enchantment<Light>();
+                return p.Deck.Cards.Any(e.CanEnchant);
+            }),
         ];
 
         public Reward RollRewards(Rng rng)

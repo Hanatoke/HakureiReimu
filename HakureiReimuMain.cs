@@ -38,6 +38,7 @@ public partial class HakureiReimuMain : Node
         CustomRewardPatch.CustomRewards.Add(UpgradeReward.Type,(s,p)=>new UpgradeReward(p));
         CustomRewardPatch.CustomRewards.Add(TransformReward.Type,(s,p)=>new TransformReward(p));
         CustomRewardPatch.CustomRewards.Add(CloneReward.Type,(s,p)=>new CloneReward(p));
+        CustomRewardPatch.CustomRewards.Add(EnchantReward.Type,(s,p)=>new EnchantReward(p,s.PredeterminedModelId,s.OptionCount));
     }
 
     public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)

@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HakureiReimu\localization\eng\enchantments.json" />
+    <Content Include="HakureiReimu\localization\eng\gameplay_ui.json" />
     <Content Include="HakureiReimu\localization\eng\settings_ui.json" />
     <Content Include="HakureiReimu\localization\zhs\enchantments.json" />
     <Content Include="HakureiReimu\localization\zhs\gameplay_ui.json" />

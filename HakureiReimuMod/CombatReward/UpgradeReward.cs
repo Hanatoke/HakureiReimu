@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Patches;
@@ -13,6 +14,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -29,10 +31,17 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
 
         protected override async Task<bool> OnSelect()
         {
-            CardModel card = (await CardSelectCmd.FromDeckForUpgrade(Player, new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 1)
-            {
-                Cancelable = true
-            })).FirstOrDefault();
+            List<CardModel> list = PileType.Deck.GetPile(Player).Cards.Where(c=>c.IsUpgradable).ToList();
+            CardModel card = (await NDeckUpgradeSelectScreen.ShowScreen(list,
+                new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 1)
+                {
+                    Cancelable = true
+                },Player.RunState).CardsSelected()).FirstOrDefault();
+            if (list.Count <= 0) return true;
+            // CardModel card = (await CardSelectCmd.FromDeckForUpgrade(Player, new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 1)
+            // {
+            //     Cancelable = true
+            // })).FirstOrDefault();
             if (card != null)
             {
                 if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
