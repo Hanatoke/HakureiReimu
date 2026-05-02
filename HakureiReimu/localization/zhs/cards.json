@@ -239,6 +239,9 @@
   "HAKUREIREIMU-COMBO.description":"造成{Damage:diff()}点伤害。\n对其打出上一张[gold]攻击[/gold]牌（无论它在哪）。{HasLastAttack:\n（打出{IsSelf:[gold]{LastAttack}[/gold]|[blue]{Owner}[/blue]的[gold]{LastAttack}[/gold]}）|}",
   "HAKUREIREIMU-COMBO.tip":"额外打出的牌不包括此牌本身，但包括队友打出的牌。",
   
+  "HAKUREIREIMU-JUMP_THE_GUN.title":"偷跑",
+  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]战斗开始自动打出[/gold]。\n造成{Damage:diff()}点伤害。\n获得{StrengthPower:diff()}[gold]力量[/gold]。",
+  
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   

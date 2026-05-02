@@ -239,6 +239,9 @@
   "HAKUREIREIMU-COMBO.description":"Deal {Damage:diff()} damage.\nPlay the last [gold]Attack[/gold] card (regardless of where it is).{HasLastAttack:\n(Play {IsSelf:[gold]{LastAttack}[/gold]|[blue]{Owner}[/blue]'s [gold]{LastAttack}[/gold]})|}",
   "HAKUREIREIMU-COMBO.tip":"The extra card played does not include this card itself, but can include cards played by allies.",
 
+  "HAKUREIREIMU-JUMP_THE_GUN.title":"Jump The Gun",
+  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]Play automatically at the start of combat[/gold].\nDeal {Damage:diff()} damage.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
+
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

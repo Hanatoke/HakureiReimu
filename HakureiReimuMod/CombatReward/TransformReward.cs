@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -28,6 +29,7 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         public override int RewardsSetIndex => 11;
         public override bool IsPopulated => true;
         public override Task Populate()=>Task.CompletedTask;
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Transform)];
 
         protected override async Task<bool> OnSelect()
         {

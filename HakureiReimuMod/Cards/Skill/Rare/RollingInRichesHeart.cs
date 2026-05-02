@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class RollingInRichesHeart : AbstractCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new GoldVar(50)];
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal,CardKeyword.Exhaust];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
 
         public RollingInRichesHeart(

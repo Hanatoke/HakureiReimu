@@ -1,8 +1,8 @@
 ﻿{
   "HAKUREIREIMU-BLIND_BOX_REWARD.description": "随机的盲盒奖励!",
-  "HAKUREIREIMU-UPGRADE_REWARD.description": "升级一张牌!",
-  "HAKUREIREIMU-TRANSFORM_REWARD.description": "变化一张牌!",
-  "HAKUREIREIMU-CLONE_REWARD.description": "复制一张牌!",
+  "HAKUREIREIMU-UPGRADE_REWARD.description": "[gold]升级[/gold]一张牌!",
+  "HAKUREIREIMU-TRANSFORM_REWARD.description": "[gold]变化[/gold]一张牌!",
+  "HAKUREIREIMU-CLONE_REWARD.description": "[gold]复制[/gold]一张牌!",
   "HAKUREIREIMU-ENCHANT_REWARD.description": "选择一张牌附魔[purple]{EnchantName}[/purple]{Amount}!",
   
   

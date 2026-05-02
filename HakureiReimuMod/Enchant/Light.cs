@@ -15,6 +15,10 @@ namespace HakureiReimu.HakureiReimuMod.Enchant
         public override bool ShowAmount => Amount > 1;
         public override bool HasExtraCardText => true;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Energy)];
+        public override bool CanEnchant(CardModel card)
+        {
+            return card.Enchantment == null || this.IsStackable && !(card.Enchantment.GetType() != this.GetType());
+        }
 
         public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {

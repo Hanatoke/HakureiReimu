@@ -35,7 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 .Execute(choiceContext);
             foreach (AbstractModel abstractModel in CombatState.IterateHookListeners())
             {
-                if (abstractModel is ICounter{IsCounterEnable:true} counter)
+                if (abstractModel is ICounter{IsCounterEnable:true} counter && counter.CounterOwner==Owner.Creature)
                 {
                     await CounterCmd.InvokeCounter(CombatState, counter, cardPlay.Target, true, true);
                 }

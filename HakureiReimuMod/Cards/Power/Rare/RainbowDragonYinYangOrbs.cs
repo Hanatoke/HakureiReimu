@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
@@ -9,8 +10,11 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 // ReSharper disable ClassNeverInstantiated.Global
 
@@ -35,7 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
                 await ChooseWrapper(choose[0], choiceContext, cardPlay);
                 return;
             }
-            CardModel card = await CardSelectCmd.FromChooseACardScreen(choiceContext, choose, Owner);
+            CardModel card = await CardSelectCmd.FromChooseACardScreen(new BlockingPlayerChoiceContext(), choose, Owner);
             if (card != null)
             {
                 await ChooseWrapper(card, choiceContext, cardPlay);
