@@ -1,6 +1,6 @@
 {
   "HAKUREIREIMU-SEAL_POWER.title": "封印",
-  "HAKUREIREIMU-SEAL_POWER.description": "阻止来自其拥有者造成伤害。",
+  "HAKUREIREIMU-SEAL_POWER.description": "阻止来自其拥有者造成伤害。{IsMultiplayerRun:\n\n根据当前玩家人数，封印的效果减少至[blue]{Scaling}[/blue]%。|}",
   "HAKUREIREIMU-SEAL_POWER.smartDescription": "阻止来自[gold]{OwnerName}[/gold]造成的[blue]{Amount}[/blue]点伤害。",
   
   "HAKUREIREIMU-INHIBIT_POWER.title": "遏制",

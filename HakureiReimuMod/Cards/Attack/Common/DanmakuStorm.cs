@@ -5,6 +5,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Godot;
+using HakureiReimu.HakureiReimuMod.Command;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DanmakuStorm : AbstractCard {
@@ -17,7 +20,19 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             SfxCmd.Play("event:/sfx/characters/silent/silent_dagger_spray");
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(DynamicVars.Repeat.IntValue)
                 .FromCard(this).TargetingAllOpponents(CombatState)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .BeforeDamage(async delegate
+                {
+                    List<Task> tasks = [];
+                    foreach (Creature target in CombatState.HittableEnemies)
+                    {
+                        tasks.Add(FlyingVFXCmd.DanmakuLineToTarget(Owner.Creature,target,(float)GD.RandRange(0.6,0.8),0.3f));
+                    }
+
+                    if (tasks.Count>0)
+                    {
+                        await Task.WhenAny(tasks);
+                    }
+                })
                 .Execute(choiceContext);
         }
         protected override void OnUpgrade() {

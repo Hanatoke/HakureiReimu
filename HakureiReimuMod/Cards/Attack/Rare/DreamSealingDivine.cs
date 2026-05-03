@@ -79,7 +79,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                     tasks.Add(vfx.HitTask);
                     await Cmd.Wait(0.1f);
                 }
-                await Task.WhenAny(tasks);
+
+                if (tasks.Count>0)
+                {
+                    await Task.WhenAny(tasks);
+                }
             }
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).WithHitCount(DynamicVars.Repeat.IntValue)
                 .Execute(choiceContext);

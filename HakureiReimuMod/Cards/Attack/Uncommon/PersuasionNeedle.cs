@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Command;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,6 +29,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
             await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target)
+                .BeforeDamage(async delegate
+                {
+                    await FlyingVFXCmd.NeedleLineToTarget(Owner.Creature,cardPlay.Target);
+                })
                 .Execute(choiceContext);
         }
         protected override void OnUpgrade() {

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
@@ -16,6 +19,22 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerType Type => PowerType.Debuff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public int NeedToCost=0;
+        public static decimal MultiplayerScaling(int playerCount)=>2m/(1+playerCount);
+
+        public override LocString Description
+        {
+            get
+            {
+                LocString locString = base.Description;
+                bool isMultiplayerRun=RunManager.Instance.IsInProgress&&!RunManager.Instance.IsSinglePlayerOrFakeMultiplayer;
+                locString.Add("IsMultiplayerRun",isMultiplayerRun);
+                if (isMultiplayerRun&&CombatManager.Instance.DebugOnlyGetState() is {} state)
+                {
+                    locString.Add("Scaling",(MultiplayerScaling(state.RunState.Players.Count(p=>p.Creature.IsAlive))*100).ToString("F1"));
+                }
+                return locString;
+            }
+        }
 
         public void ModifyDamage(ref decimal amount,ValueProp props, Creature dealer, Creature target)
         {

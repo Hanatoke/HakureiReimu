@@ -67,5 +67,12 @@ public partial class HakureiReimuMain : Node
                 }
             }
         }
+        if (ScalingModel!=null)
+        {
+            yield return ScalingModel;
+        }
     }
+
+    private static ReimuMultiplayerScalingModel _scalingModel;
+    public static ReimuMultiplayerScalingModel ScalingModel=>_scalingModel??=ModelDb.GetById<ReimuMultiplayerScalingModel>(ModelDb.GetId<ReimuMultiplayerScalingModel>());
 }

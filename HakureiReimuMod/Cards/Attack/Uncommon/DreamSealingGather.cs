@@ -22,7 +22,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 waits.Add(FlyingVFXCmd.DanmakuCurveToTarget(Owner.Creature, cardPlay.Target, 3));
                 await Cmd.Wait(0.25f);
             }
-            await Task.WhenAny(waits);
+            if (waits.Count>0)
+            {
+                await Task.WhenAny(waits);
+            }
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(DynamicVars.Repeat.IntValue)
                 .FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_blunt")

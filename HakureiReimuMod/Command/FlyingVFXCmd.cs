@@ -4,6 +4,7 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using MegaCrit.Sts2.Core.Audio.Debug;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -41,7 +42,10 @@ namespace HakureiReimu.HakureiReimuMod.Command
             {
                 tasks.Add(DanmakuCurveToTarget(source, target, scale, speedScale, color));
             }
-            await Task.WhenAny(tasks);
+            if (tasks.Count>0)
+            {
+                await Task.WhenAny(tasks);
+            }
         }
 
         public static async Task DanmakuCurveToTarget(Vector2 source, Vector2 target, float scale = 1,
@@ -109,7 +113,36 @@ namespace HakureiReimu.HakureiReimuMod.Command
             NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             await vfx.HitTask;
         }
+//----------------------------------------------------------------------------------------------------------
+        public static async Task NeedleLineToTarget(Creature source, Creature target, float scale = 1,
+            float duration = 0.5f)
+        {
+            NCreature s = NCombatRoom.Instance?.GetCreatureNode(source);
+            NCreature t = NCombatRoom.Instance?.GetCreatureNode(target);
+            if (s != null && t != null)
+            {
+                await NeedleLineToTarget(s.VfxSpawnPosition, t.VfxSpawnPosition, scale, duration);
+            }
+        }
+        public static async Task NeedleLineToTarget(Vector2 source, Vector2 target, float scale = 1,
+            float duration = 0.3f)
+        {
+            if (NCombatRoom.Instance==null)return;
+            FlyingVFX vfx = FlyingVFX.Create(new LineMover(source,
+                target + RandomOffset(scale)));
+            NNeedle needle = NNeedle.Create(scale);
+            vfx.Duration = duration;
+            vfx.OnHit = () =>
+            {
+                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath);
+            };
+            
+            vfx.AddChildSafely(needle);
+            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+            await vfx.HitTask;
+        }
 
+//-----------------------------------------------------------------------------------------------------------------
         public static Vector2 RandomOffset(float scale = 1) =>
             new Vector2(GD.RandRange(-25, 25), GD.RandRange(-25, 25)) * scale;
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using MegaCrit.Sts2.Core.Helpers;
 
@@ -10,15 +12,19 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
     {
         private float _time;
         public float Duration = 0.5f;
+        public float DestroyDuration = 0f;
+        public bool IsHit ;
 
         private float _curveLength;
         private Vector2 _lastPos;
         public IMover Mover;
-        public Action<float,double> UpdateMethod;
-        public Func<float, float> EaseFunc;
+        public OnUpdate UpdateMethod;
+        public Ease EaseFunc;
         public Action OnHit;
         private TaskCompletionSource _hitTcs = new();
         public Task HitTask => _hitTcs.Task;
+        public delegate void OnUpdate(float time,double delta);
+        public delegate float Ease(float time);
 
         public static FlyingVFX Create(IMover mover)
         {
@@ -29,7 +35,16 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
         public override void _Process(double delta)
         {
             float dt = (float)delta;
-
+            if (IsHit)
+            {
+                DestroyDuration -= dt;
+                if (DestroyDuration <= 0)
+                {
+                    this.QueueFreeSafelyNoPool();
+                }
+                return;
+            }
+            
             _time += dt;
 
             float t = Mathf.Clamp(_time / Duration, 0f, 1f);
@@ -40,9 +55,13 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
             UpdateMethod?.Invoke(t,delta);
             if (Mover.IsHit(this,t,(float)delta)||t>=1)
             {
-                OnHit?.Invoke();
                 _hitTcs.TrySetResult();
-                this.QueueFreeSafelyNoPool();
+                OnHit?.Invoke();
+                if (DestroyDuration<=0)
+                {
+                    this.QueueFreeSafelyNoPool();
+                }
+                IsHit = true;
             }
         }
         protected virtual void UpdateRotation(Vector2 pos)

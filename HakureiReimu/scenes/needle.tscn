@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://k4wjgg2sdtgs"]
+
+[ext_resource type="Texture2D" uid="uid://bxsh1l6f3oak7" path="res://HakureiReimu/images/effects/needle.png" id="1_eay43"]
+[ext_resource type="Script" uid="uid://doe01d7f2l157" path="res://HakureiReimuMod/Node/VFX/NNeedle.cs" id="1_q628c"]
+[ext_resource type="Texture2D" uid="uid://dpx0a35eguge" path="res://HakureiReimu/images/effects/danmaku/circle.png" id="4_q628c"]
+[ext_resource type="Shader" uid="uid://cgm17a4xeunyo" path="res://HakureiReimu/shader/DistortionSide.gdshader" id="5_tfr3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yrn7"]
+shader = ExtResource("5_tfr3u")
+shader_parameter/amplitude = 0.03
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 5.0
+shader_parameter/width = 0.3
+shader_parameter/direction = Vector2(-1, 0)
+
+[sub_resource type="Curve" id="Curve_cmh3r"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_augd0"]
+curve = SubResource("Curve_cmh3r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hmq80"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = -0.5
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_augd0")
+
+[node name="Needle" type="Node2D"]
+script = ExtResource("1_q628c")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Needle" type="Sprite2D" parent="Visual"]
+texture = ExtResource("1_eay43")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Wave" type="GPUParticles2D" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_7yrn7")
+position = Vector2(30, 0)
+amount = 32
+texture = ExtResource("4_q628c")
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hmq80")

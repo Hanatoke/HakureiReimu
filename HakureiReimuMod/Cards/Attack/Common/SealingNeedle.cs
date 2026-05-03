@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Command;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
@@ -21,6 +22,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+                .BeforeDamage(async delegate
+                {
+                    await FlyingVFXCmd.NeedleLineToTarget(Owner.Creature,cardPlay.Target);
+                })
                 .Execute(choiceContext);
             await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);

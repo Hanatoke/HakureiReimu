@@ -1,6 +1,6 @@
 {
   "HAKUREIREIMU-SEAL_POWER.title": "Seal",
-  "HAKUREIREIMU-SEAL_POWER.description": "Prevent it from dealing damage.",
+  "HAKUREIREIMU-SEAL_POWER.description": "Prevent it from dealing damage.{IsMultiplayerRun:\n\nBased on the number of players, the effectiveness of Seal is reduced to [blue]{Scaling}[/blue]%.|}",
   "HAKUREIREIMU-SEAL_POWER.smartDescription": "Prevent [gold]{OwnerName}[/gold] from dealing [blue]{Amount}[/blue] damage.",
 
   "HAKUREIREIMU-INHIBIT_POWER.title": "Inhibit",
