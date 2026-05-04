@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class SprinkleStarSeal : AbstractCard
@@ -30,11 +29,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             {
                 if (!p.IsVisible||p.Type==PowerType.None)continue;
                 decimal n=0;
-                if (p.Type==PowerType.Buff&&HalfBuff.Contains(p.GetType()))
+                PowerType type = p.TypeForCurrentAmount;
+                if (type==PowerType.Buff&&HalfBuff.Contains(p.GetType()))
                 {
                     n = -(int)MathF.Floor(p.Amount / 2f);
                 }
-                else if (p.Type==PowerType.Debuff||DoubleBuff.Contains(p.GetType()))
+                else if (type==PowerType.Debuff||DoubleBuff.Contains(p.GetType()))
                 {
                     n = p.Amount;
                 }

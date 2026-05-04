@@ -19,6 +19,10 @@
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，[gold]{OwnerName}[/gold]的[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
   
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.title": "扩散灵符",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.description": "每当你给予[red]负面[/red]效果时，给予其他敌人等量效果。",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，每当[gold]{OwnerName}[/gold]给予[red]负面[/red]效果时，给予其他敌人等量效果。",
+  
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "保留格挡",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "在回合开始时保留[gold]格挡[/gold]。",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "在回合开始时保留[gold]{OwnerName}[/gold][blue]{Amount}[/blue]点[gold]格挡[/gold]。",

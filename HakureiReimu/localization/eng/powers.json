@@ -19,6 +19,10 @@
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "Your [gold]attacks[/gold] deal damage to ALL enemies.",
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "[gold]{OwnerName}[/gold]'s [gold]attacks[/gold] deal damage to ALL enemies for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
 
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.title": "Expanding Spirit Charm",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.description": "Whenever you apply a [red]debuff[/red], apply the same amount to all other enemies.",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.smartDescription": "Until next [blue]{Amount}[/blue] {Amount:plural:turn|turns}, whenever [gold]{OwnerName}[/gold] apply a [red]debuff[/red], apply the same amount to all other enemies.",
+
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "Retain Block",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "At the start of your turn, retain [gold]Block[/gold].",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "At the start of [gold]{OwnerName}[/gold]'s turn, retain [blue]{Amount}[/blue] [gold]Block[/gold].",

@@ -271,6 +271,10 @@
   "HAKUREIREIMU-GENSO_ICHIJO.title":"幻想一重",
   "HAKUREIREIMU-GENSO_ICHIJO.description":"{IfUpgraded:show:抽到时再抽一张牌。\n|}选择[gold]抽牌堆[/gold]的一张牌，将其与本牌交换。",
   "HAKUREIREIMU-GENSO_ICHIJO.selectionScreenPrompt":"交换",
+
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.sign":"结界",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.title":"扩散灵符",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description":"直到下一回合，每当你给予[red]负面[/red]效果时，同时给予其他敌人等量效果。",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

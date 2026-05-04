@@ -272,6 +272,11 @@
   "HAKUREIREIMU-GENSO_ICHIJO.description":"{IfUpgraded:show:Draw a card when this card drawn.\n|}Swap a card from your draw pile with this card.",
   "HAKUREIREIMU-GENSO_ICHIJO.selectionScreenPrompt":"Swap",
 
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.sign":"Barrier",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.title":"Expanding Spirit Charm",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description":"Until next turn, whenever you apply a [red]debuff[/red], apply the same amount to all other enemies.",
+
+
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-TRINITY_RELIGION_FINALE.title":"Trinity Religion Finale",

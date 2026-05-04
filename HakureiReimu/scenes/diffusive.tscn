@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://m2dgnleg8jv4"]
+
+[ext_resource type="Script" uid="uid://hqqhqyqpi878" path="res://HakureiReimuMod/Node/VFX/NVfxParticleOneShot.cs" id="1_75wmv"]
+[ext_resource type="Texture2D" uid="uid://08ly77femt0x" path="res://HakureiReimu/images/effects/barrier/borderCrash.png" id="1_hor82"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_75wmv"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_6ue4e"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.49003986, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.8407102, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sqf51"]
+curve = SubResource("Curve_6ue4e")
+
+[sub_resource type="Curve" id="Curve_23ij0"]
+_data = [Vector2(0, 0), 0.0, 3.2361314, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_djst8"]
+curve = SubResource("Curve_23ij0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhs7h"]
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+angular_velocity_min = -180.00002
+angular_velocity_max = -180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_djst8")
+alpha_curve = SubResource("CurveTexture_sqf51")
+
+[node name="Diffusive" type="Node2D"]
+script = ExtResource("1_75wmv")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Visual"]
+material = SubResource("CanvasItemMaterial_75wmv")
+emitting = false
+amount = 1
+texture = ExtResource("1_hor82")
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hhs7h")

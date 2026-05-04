@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -28,9 +29,18 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 LocString locString = base.Description;
                 bool isMultiplayerRun=RunManager.Instance.IsInProgress&&!RunManager.Instance.IsSinglePlayerOrFakeMultiplayer;
                 locString.Add("IsMultiplayerRun",isMultiplayerRun);
-                if (isMultiplayerRun&&CombatManager.Instance.DebugOnlyGetState() is {} state)
+                if (isMultiplayerRun)
                 {
-                    locString.Add("Scaling",(MultiplayerScaling(state.RunState.Players.Count(p=>p.Creature.IsAlive))*100).ToString("F1"));
+                    int count=1;
+                    if (CombatManager.Instance.DebugOnlyGetState() is {} state)
+                    {
+                        count = state.RunState.Players.Count(p=>p.Creature.IsAlive);
+                    }
+                    else if (RunManager.Instance.DebugOnlyGetState() is { } runState)
+                    {
+                        count = runState.Players.Count;
+                    }
+                    locString.Add("Scaling",(MultiplayerScaling(count)*100).ToString("F1"));
                 }
                 return locString;
             }
