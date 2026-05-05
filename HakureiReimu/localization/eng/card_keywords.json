@@ -18,5 +18,8 @@
   "HAKUREIREIMU-IMMEDIATE.description":"Will be activated [gold]Before[/gold] the enemy's action is executed.",
 
   "HAKUREIREIMU-FREECOUNTER.title":"Free",
-  "HAKUREIREIMU-FREECOUNTER.description":"This activation without reducing [gold]Counter[/gold] Card's counts."
+  "HAKUREIREIMU-FREECOUNTER.description":"This activation without reducing [gold]Counter[/gold] Card's counts.",
+
+  "HAKUREIREIMU-IGNOREDEFENSE.title":"Exorcism",
+  "HAKUREIREIMU-IGNOREDEFENSE.description":"Deal damage ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.\n[gold]Defensive[/gold] powers: Such as various types of damage reduction."
 }

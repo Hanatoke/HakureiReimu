@@ -67,7 +67,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     await vfx.HitTask;
                 }
                 IEnumerable<Creature> targets = Owner.Creature.HasPower<DiffusiveBoundaryPower>()?CombatState.HittableEnemies:[target];
-                var results=await CreatureCmd.Damage(choiceContext,targets,DynamicVars.Damage,Owner.Creature, this);
+                var results=await CreatureCmd.Damage(choiceContext,targets,DynamicVars.Damage.BaseValue,dummy.DamageProps,Owner.Creature, this);
                 dummy.AddResultsInternal(results);
             }
             await Hook.AfterAttack(CombatState,dummy);

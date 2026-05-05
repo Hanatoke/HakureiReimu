@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://kkh52wyrmly3"]
+
+[ext_resource type="Script" uid="uid://cmpu37yqjh2ru" path="res://HakureiReimuMod/Node/VFX/Trail.cs" id="1_2jnqx"]
+[ext_resource type="Script" uid="uid://cufpje0vmkoce" path="res://HakureiReimuMod/Node/VFX/NTalisman.cs" id="1_dn74o"]
+[ext_resource type="Texture2D" uid="uid://buo8opf7grb1c" path="res://HakureiReimu/images/effects/ooiri.png" id="1_w3tp2"]
+[ext_resource type="Texture2D" uid="uid://b5ou2l6sogah6" path="res://HakureiReimu/images/effects/danmaku/star.png" id="2_hunjy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dn74o"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_pcfyr"]
+_data = [Vector2(0, 0), 1.04147, 0.616773, 0, 0, Vector2(0.799007, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2jnqx"]
+offsets = PackedFloat32Array(0, 0.99726)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.7411765)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hunjy"]
+load_path = "res://.godot/imported/trail_faded.png-def68a218db5969d57c291572a063ddd.ctex"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ujxve"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_xqrbp"]
+_data = [Vector2(0, 0), 0.0, 2.70461, 0, 0, Vector2(0.401985, 0.739504), 1.04147, 1.04147, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_irc3r"]
+offsets = PackedFloat32Array(0, 0.99726)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.7411765)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_46lb5"]
+load_path = "res://.godot/imported/trail.png-c9ada49c0ef9f192559bde850f38ff4a.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dn74o"]
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+inherit_velocity_ratio = 0.1
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.04
+scale_max = 0.06
+color = Color(1, 0.92580837, 0.65996546, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcfyr"]
+particle_flag_disable_z = true
+angle_min = -360.0
+angle_max = 360.00003
+inherit_velocity_ratio = 0.1
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.04
+scale_max = 0.06
+color = Color(1, 0, 0, 1)
+
+[node name="Talisman" type="Node2D"]
+script = ExtResource("1_dn74o")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Trails" type="Node2D" parent="Visual"]
+modulate = Color(1, 0, 0, 1)
+
+[node name="TrailOuter" type="Line2D" parent="Visual/Trails"]
+material = SubResource("CanvasItemMaterial_dn74o")
+width = 40.0
+width_curve = SubResource("Curve_pcfyr")
+gradient = SubResource("Gradient_2jnqx")
+texture = SubResource("CompressedTexture2D_hunjy")
+texture_mode = 2
+begin_cap_mode = 2
+antialiased = true
+script = ExtResource("1_2jnqx")
+_maxSegments = null
+
+[node name="TrailInner" type="Line2D" parent="Visual/Trails"]
+material = SubResource("CanvasItemMaterial_ujxve")
+width = 20.0
+width_curve = SubResource("Curve_xqrbp")
+gradient = SubResource("Gradient_irc3r")
+texture = SubResource("CompressedTexture2D_46lb5")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+antialiased = true
+script = ExtResource("1_2jnqx")
+_maxSegments = null
+
+[node name="Effect" type="Node2D" parent="Visual"]
+
+[node name="Yellow" type="GPUParticles2D" parent="Visual/Effect"]
+position = Vector2(31.565, 0)
+amount = 40
+texture = ExtResource("2_hunjy")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_dn74o")
+
+[node name="Red" type="GPUParticles2D" parent="Visual/Effect"]
+position = Vector2(31.565, 0)
+amount = 40
+texture = ExtResource("2_hunjy")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_pcfyr")
+
+[node name="Main" type="Sprite2D" parent="Visual"]
+texture = ExtResource("1_w3tp2")

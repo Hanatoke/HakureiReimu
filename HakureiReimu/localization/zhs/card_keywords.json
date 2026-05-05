@@ -18,5 +18,8 @@
   "HAKUREIREIMU-IMMEDIATE.description":"在怪物的行为执行[gold]前[/gold]发动。",
   
   "HAKUREIREIMU-FREECOUNTER.title":"免费",
-  "HAKUREIREIMU-FREECOUNTER.description":"发动此次[gold]反制[/gold]将不消耗次数。"
+  "HAKUREIREIMU-FREECOUNTER.description":"发动此次[gold]反制[/gold]将不消耗次数。",
+  
+  "HAKUREIREIMU-IGNOREDEFENSE.title":"退魔",
+  "HAKUREIREIMU-IGNOREDEFENSE.description":"造成的伤害无视[blue]格挡[/blue]和[gold]防御[/gold]能力。\n[gold]防御[/gold]能力：如各类伤害减免。"
 }

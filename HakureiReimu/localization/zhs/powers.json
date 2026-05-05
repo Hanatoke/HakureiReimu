@@ -88,8 +88,8 @@
   "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.smartDescription": "所有卡牌额外打出[blue]{Amount}[/blue]次。\n每当[gold]{OwnerName}[/gold]打出一张牌时，将其[gold]消耗[/gold]。",
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.title": "水火玉",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.description": "[gold]阴阳玉[/gold]无视[gold]格挡[/gold]和防御能力。",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.smartDescription": "[gold]阴阳玉[/gold]无视[gold]格挡[/gold]和防御能力。",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.description": "[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.smartDescription": "[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.title": "山雨玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.description": "[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得等量[gold]格挡[/gold]。",

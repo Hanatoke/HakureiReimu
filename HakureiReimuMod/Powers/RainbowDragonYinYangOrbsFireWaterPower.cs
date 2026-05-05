@@ -24,15 +24,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         {
             if (orb.Owner.Creature==Owner)
             {
-                if (!props.HasFlag(ValueProp.Unblockable))
-                {
-                    props |= ValueProp.Unblockable;
-                }
-
-                if (!props.HasFlag(IgnoreDamageImmunityPatch.IgnoreDamageImmunity))
-                {
-                    props |= IgnoreDamageImmunityPatch.IgnoreDamageImmunity;
-                }
+                props |= ValueProp.Unblockable;
+                props |= DamagePropsPatch.IgnoreDamageImmunity;
+                props |= DamagePropsPatch.IgnoreDamageResponse;
             }
         }
     }

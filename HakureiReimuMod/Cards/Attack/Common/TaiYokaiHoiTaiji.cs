@@ -6,20 +6,40 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Command;
+using HakureiReimu.HakureiReimuMod.Node.VFX;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class TaiYokaiHoiTaiji : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => 
             [new CalculationBaseVar(11),new ExtraDamageVar(3),
                 new CalculatedDamageVar(ValueProp.Move).WithMultiplier((c,t)=>t!=null?t.Powers.Count(p => p is { Type: PowerType.Debuff, IsVisible: true }):0)];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [IgnoreDefense];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseLight;
         public TaiYokaiHoiTaiji(
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
             await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .BeforeDamage(async delegate
+                {
+                    NCreature s = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);
+                    NCreature t = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
+                    if (s != null && t != null)
+                    {
+                        await FlyingVFXCmd.NodeLineToTarget(NTalisman.Create(), s.VfxSpawnPosition, t.VfxSpawnPosition,onHit:
+                            vfx =>
+                            {
+                                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath);
+                                NDebugAudioManager.Instance?.Play("slash_attack.mp3");
+                            });
+                    }
+                })
                 .Execute(choiceContext);
         }
         protected override void OnUpgrade() {

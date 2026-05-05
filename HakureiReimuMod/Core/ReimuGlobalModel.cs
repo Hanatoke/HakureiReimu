@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using HakureiReimu.HakureiReimuMod.Cards;
+using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
-    public class ReimuMultiplayerScalingModel : SingletonModel
+    public class ReimuGlobalModel : SingletonModel
     {
         public override bool ShouldReceiveCombatHooks => true;
 
@@ -23,6 +29,15 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 return d > 1 ? Math.Floor(d) : Math.Ceiling(d);
             }
             return amount;
+        }
+
+        public override Task BeforeAttack(AttackCommand command)
+        {
+            if (command.ModelSource is CardModel card && card.Keywords.Contains(AbstractCard.IgnoreDefense))
+            {
+                command.AddDamageProps(ValueProp.Unblockable|DamagePropsPatch.IgnoreDamageImmunity|DamagePropsPatch.IgnoreDamageResponse);
+            }
+            return Task.CompletedTask;
         }
     }
 }

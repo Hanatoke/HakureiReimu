@@ -241,6 +241,10 @@
 
   "HAKUREIREIMU-JUMP_THE_GUN.title":"Jump The Gun",
   "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]Play automatically at the start of combat[/gold].\nDeal {Damage:diff()} damage.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
+  
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.sign":"Dream Sign",
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.title":"Wild Exorcism Dance",
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.description":"Deal {Damage:diff()} damage and apply {SealPower:diff()} [gold]Seal[/gold] to ALL enemies.\nRepeat X times.",
 
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -324,7 +328,7 @@
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"Fire Water Orb",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [gold]Block[/gold] and defensive powers.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"Storm Mountain Orb",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to unblocked damage dealt.",

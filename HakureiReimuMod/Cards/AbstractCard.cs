@@ -59,6 +59,9 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     public static CardKeyword Immediate;
     [CustomEnum,KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword FreeCounter;
+    [CustomEnum,KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword IgnoreDefense;
+    
 
     public void RunAnimation(Character.HakureiReimu.Animation animation)
     {

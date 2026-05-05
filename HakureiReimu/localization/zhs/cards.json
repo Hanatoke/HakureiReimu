@@ -241,6 +241,10 @@
   
   "HAKUREIREIMU-JUMP_THE_GUN.title":"偷跑",
   "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]战斗开始自动打出[/gold]。\n造成{Damage:diff()}点伤害。\n获得{StrengthPower:diff()}[gold]力量[/gold]。",
+
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.sign":"梦符",
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.title":"退魔符乱舞",
+  "HAKUREIREIMU-WILD_EXORCISM_DANCE.description":"对所有敌人造成{Damage:diff()}点伤害，\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复X次。",
   
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -322,7 +326,7 @@
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"水火玉",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[gold]格挡[/gold]和防御能力。",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"山雨玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得等量[gold]格挡[/gold]。",

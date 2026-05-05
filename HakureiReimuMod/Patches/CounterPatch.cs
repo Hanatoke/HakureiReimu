@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             [HarmonyPrefix]
             public static bool Prefix(ThornsPower __instance,CardModel cardSource,ref Task __result)
             {
-                if (cardSource!=null&&cardSource.HasCounter())
+                if (cardSource != null && cardSource.HasCounter()) 
                 {
                     __result = Task.CompletedTask;
                     return false;

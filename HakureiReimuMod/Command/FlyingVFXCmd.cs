@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
@@ -138,6 +139,27 @@ namespace HakureiReimu.HakureiReimuMod.Command
             };
             
             vfx.AddChildSafely(needle);
+            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+            await vfx.HitTask;
+        }
+
+        public static async Task NodeLineToTarget(Godot.Node node, Vector2 source, Vector2 target, float scale = 1,
+            float duration = 0.5f,FlyingVFX.OnUpdate update=null,Action<FlyingVFX> onHit = null)
+        {
+            if (NCombatRoom.Instance == null)
+            {
+                node.QueueFreeSafely();
+                return;
+            }
+            FlyingVFX vfx = FlyingVFX.Create(new LineMover(source,
+                target + RandomOffset(scale)));
+            vfx.Duration = duration;
+            vfx.UpdateMethod = update;
+            vfx.OnHit = () =>
+            {
+                onHit?.Invoke(vfx);
+            };
+            vfx.AddChildSafely(node);
             NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             await vfx.HitTask;
         }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using BaseLib.Config;
 using Godot;
+using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.CombatReward;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Patches;
@@ -9,6 +11,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Saves;
 using ModConfig = HakureiReimu.HakureiReimuMod.Core.ModConfig;
 
 namespace HakureiReimu;
@@ -26,10 +29,7 @@ public partial class HakureiReimuMain : Node
         harmony.PatchAll();
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HakureiReimuMain).Assembly);
         ModConfigRegistry.Register(ModId,new ModConfig());
-        // foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
-        // {
-        //     SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
-        // }
+        
         ModHelper.SubscribeForCombatStateHooks(ModId,CombatHookSubscription );
         CombatManager.Instance.CombatSetUp += _ => FollowDanmakuManager.Clear();
         CombatManager.Instance.CombatEnded += _ => FollowDanmakuManager.Clear();
@@ -39,6 +39,14 @@ public partial class HakureiReimuMain : Node
         CustomRewardPatch.CustomRewards.Add(TransformReward.Type,(s,p)=>new TransformReward(p));
         CustomRewardPatch.CustomRewards.Add(CloneReward.Type,(s,p)=>new CloneReward(p));
         CustomRewardPatch.CustomRewards.Add(EnchantReward.Type,(s,p)=>new EnchantReward(p,s.PredeterminedModelId,s.OptionCount));
+    }
+    public static void AfterGameInit(Harmony harmony)
+    {
+        foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
+        {
+            SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
+        }
+        DamagePropsPatch.PatchAll(harmony,ModelDb.AllPowers.Select(p => p.GetType()).ToList());
     }
 
     public static IEnumerable<AbstractModel> CombatHookSubscription(CombatState state)
@@ -67,12 +75,12 @@ public partial class HakureiReimuMain : Node
                 }
             }
         }
-        if (ScalingModel!=null)
+        if (GlobalModel!=null)
         {
-            yield return ScalingModel;
+            yield return GlobalModel;
         }
     }
 
-    private static ReimuMultiplayerScalingModel _scalingModel;
-    public static ReimuMultiplayerScalingModel ScalingModel=>_scalingModel??=ModelDb.GetById<ReimuMultiplayerScalingModel>(ModelDb.GetId<ReimuMultiplayerScalingModel>());
+    private static ReimuGlobalModel _globalModel;
+    public static ReimuGlobalModel GlobalModel=>_globalModel??=ModelDb.GetById<ReimuGlobalModel>(ModelDb.GetId<ReimuGlobalModel>());
 }

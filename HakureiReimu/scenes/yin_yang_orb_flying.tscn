@@ -1,12 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhu37k47m3u85"]
+[gd_scene load_steps=19 format=3 uid="uid://dhu37k47m3u85"]
 
 [ext_resource type="Script" uid="uid://cmpu37yqjh2ru" path="res://HakureiReimuMod/Node/VFX/Trail.cs" id="1_8h6kb"]
 [ext_resource type="Script" uid="uid://bbqt7g1vqllai" path="res://HakureiReimuMod/Node/VFX/NYinYangOrbFlying.cs" id="1_mdlhi"]
 [ext_resource type="Texture2D" uid="uid://bdw6kx2u1fyhv" path="res://HakureiReimu/images/effects/YinYangOrb_Shadow.png" id="1_x6enu"]
 [ext_resource type="Texture2D" uid="uid://b3m8hacooynvj" path="res://HakureiReimu/images/effects/YinYangOrb.png" id="2_8h6kb"]
 [ext_resource type="Texture2D" uid="uid://b5ou2l6sogah6" path="res://HakureiReimu/images/effects/danmaku/star.png" id="2_k3geg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3geg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mdlhi"]
 blend_mode = 1
@@ -113,7 +111,6 @@ script = ExtResource("1_mdlhi")
 
 [node name="Trails" type="Node2D" parent="Visual/Fixed"]
 modulate = Color(1, 0, 0, 1)
-material = SubResource("ShaderMaterial_k3geg")
 
 [node name="TrailOuter" type="Line2D" parent="Visual/Fixed/Trails"]
 material = SubResource("CanvasItemMaterial_mdlhi")
