@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -16,6 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new GoldVar(50)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal,CardKeyword.Exhaust];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [BlindBoxReward.HoverTip];
 
         public RollingInRichesHeart(
             ) : base(0, CardType.Skill, CardRarity.Rare, TargetType.None) {

@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class UnconsciousTeleportation : AbstractCounterCard {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new CounterVar(1),new BlockVar(6,ValueProp.Move)];
+            [new CounterVar(1),new BlockVar(5,ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [Attack,Immediate];
         public override bool GainsBlock => true;
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongA;
