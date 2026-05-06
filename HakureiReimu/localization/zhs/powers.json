@@ -98,14 +98,19 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.title": "风雷玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.description": "[gold]阴阳玉[/gold]同时对[gold]所有[/gold]敌人造成伤害。",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.smartDescription": "[gold]阴阳玉[/gold]同时对[gold]所有[/gold]敌人造成伤害。",
-  
-  
-  
-  
-  
-  
-  
-  
+
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.title": "弹币红包",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "该玩家的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "直到下[blue]{Amount}[/blue]回合，[gold]{OwnerName}[/gold]的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "由于[gold]{Applier}[/gold]，直到下[blue]{Amount}[/blue]回合，[gold]{OwnerName}[/gold]的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+
+
+
+
+
+
+
+
   "PLACEHOLDER.title": "占位符",
   "PLACEHOLDER.description": "[gold]小刀[/gold]造成额外伤害。",
   "PLACEHOLDER.smartDescription": "[gold]小刀[/gold]造成[blue]{Amount}[/blue]点额外伤害。"

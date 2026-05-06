@@ -78,9 +78,7 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         ModifyEnergy(card, traverse);
         ModifyTitle(card, traverse);
     }
-
-    // private static Vector2? OldSize = null;
-    // private static Vector2? OldPosition = null;
+    
     protected virtual void ModifyBackground(NCard card,Traverse traverse)
     {
         TextureRect control = traverse.Field<TextureRect>("_frame").Value;

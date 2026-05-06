@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -32,13 +33,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             await Flash(instant);
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block,new CardPlay
+            CardPlay dummyPlay = new()
             {
                 Card =  this,IsAutoPlay = false,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo
                 {
                     EnergySpent = 0,EnergyValue = 0,StarValue = 0,StarsSpent = 0
                 },ResultPile = TargetPersistPileType,Target = Owner.Creature
-            },true);
+            };
+            decimal amount = Hook.ModifyBlock(CombatState, Owner.Creature, DynamicVars.Block.BaseValue, ValueProp.Move,
+                this, dummyPlay, out _);
+            await CreatureCmd.GainBlock(Owner.Creature,amount,ValueProp.Unpowered,null,true);
             await PowerCmd.Apply<BlurPower>(Owner.Creature, 1,Owner.Creature,this);
             if (cost)
             {

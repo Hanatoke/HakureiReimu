@@ -75,7 +75,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 }
                 return true;
             }
-
+            [HarmonyPriority(Priority.Last)]
             public static bool DamageTaskPrefix(ValueProp props, ref Task __result)
             {
                 if (props.HasFlag(IgnoreDamageImmunity))
@@ -88,6 +88,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         }
         public static class IgnoreDamageResponsePatch
         {
+            [HarmonyPriority(Priority.Last)]
             public static bool DamageTaskPrefix(ValueProp props, ref Task __result)
             {
                 if (props.HasFlag(IgnoreDamageResponse))

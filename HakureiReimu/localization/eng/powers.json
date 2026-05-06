@@ -99,6 +99,11 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.description": "[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
 
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.title": "Bullet Money Bonus Packets",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "This player's [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "Until the [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]{OwnerName}[/gold]'s [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "Due to [gold]{Applier}[/gold], Until the [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]{OwnerName}[/gold]'s [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
+
 
 
 

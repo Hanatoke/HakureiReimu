@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using BaseLib.Config;
 using Godot;
-using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.CombatReward;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Patches;
@@ -11,7 +10,6 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Saves;
 using ModConfig = HakureiReimu.HakureiReimuMod.Core.ModConfig;
 
 namespace HakureiReimu;
@@ -42,10 +40,10 @@ public partial class HakureiReimuMain : Node
     }
     public static void AfterGameInit(Harmony harmony)
     {
-        foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
-        {
-            SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
-        }
+        // foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
+        // {
+        //     SaveManager.Instance.Progress.MarkCardAsSeen(c.Id);
+        // }
         DamagePropsPatch.PatchAll(harmony,ModelDb.AllPowers.Select(p => p.GetType()).ToList());
     }
 

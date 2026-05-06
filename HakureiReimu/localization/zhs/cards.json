@@ -315,6 +315,14 @@
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
+  "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.title":"库存全部阴阳玉",
+  "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.description":"所有玩家[gold]生成[/gold]{Repeat:diff()}个[gold]阴阳玉[/gold]。",
+
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"满员御礼",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"弹币红包",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"直到下一回合，使另一名玩家[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+  
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.title":"梦想封印",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"造成{Damage:diff()}点伤害。\n给予{SealPower:diff()}层[gold]封印[/gold]。\n重复{Repeat:diff()}次。",

@@ -317,6 +317,15 @@
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+  "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.title":"Every Yin-Yang Orb In Stock",
+  "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.description":"[gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orbs[/gold] for each players.",
+
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"Full House Amulets",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"Bullet Money Bonus Packets",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"Until the next turn, [gold]Double[/gold] the hits count of another player's [gold]Attack[/gold] cards.",
+
+  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"Divine Spirit",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.title":"Dream Seal",
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.description":"Deal {Damage:diff()} damage.\nApply {SealPower:diff()} [gold]Seal[/gold].\nRepeat {Repeat:diff()} times.",
