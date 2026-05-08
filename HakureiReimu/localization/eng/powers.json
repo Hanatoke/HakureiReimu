@@ -19,10 +19,6 @@
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "Your [gold]attacks[/gold] deal damage to ALL enemies.",
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "[gold]{OwnerName}[/gold]'s [gold]attacks[/gold] deal damage to ALL enemies for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
 
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.title": "Expanding Spirit Charm",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.description": "Whenever you apply a [red]debuff[/red], apply the same amount to all other enemies.",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.smartDescription": "Until next [blue]{Amount}[/blue] {Amount:plural:turn|turns}, whenever [gold]{OwnerName}[/gold] apply a [red]debuff[/red], apply the same amount to all other enemies.",
-
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "Retain Block",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "At the start of your turn, retain [gold]Block[/gold].",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "At the start of [gold]{OwnerName}[/gold]'s turn, retain [blue]{Amount}[/blue] [gold]Block[/gold].",
@@ -100,10 +96,9 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",
 
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.title": "Bullet Money Bonus Packets",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "This player's [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "Until the [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]{OwnerName}[/gold]'s [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "Due to [gold]{Applier}[/gold], Until the [blue]{Amount}[/blue] {Amount:plural:turn|turns}, [gold]{OwnerName}[/gold]'s [gold]Attack[/gold] cards have their hit count [gold]Doubled[/gold].",
-
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "Swap back your [gold]hand[/gold] at the end of the turn.",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "At the end of the turn, your [gold]hand[/gold] will be swapped back.\nCards to be [red]Lost[/red]: {Replace}\nCards to be [gold]Returned[/gold]: {Origin}",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "At the end of the turn, [gold]{OwnerName}[/gold]'s [gold]hand[/gold] will be swapped back.",
 
 
 

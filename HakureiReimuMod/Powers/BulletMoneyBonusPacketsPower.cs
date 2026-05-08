@@ -1,60 +1,115 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Cards.Skill.Rare;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Platform;
-using MegaCrit.Sts2.Core.Runs;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
     public class BulletMoneyBonusPacketsPower : AbstractPower
     {
         public static readonly string ID = nameof(BulletMoneyBonusPacketsPower);
-
         public override PowerType Type => PowerType.Buff;
-
-        public override PowerStackType StackType => PowerStackType.Counter;
+        public override PowerStackType StackType => PowerStackType.Single;
         public override bool IsInstanced => true;
+        public List<CardModel> Origin = [];
+        public List<CardModel> Replace = [];
 
         protected override IEnumerable<IHoverTip> ExtraHoverTips =>
             [HoverTipFactory.FromCard<BulletMoneyBonusPackets>()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [
-            new StringVar("Applier")
+            new StringVar("Replace"),
+            new StringVar("Origin"),
         ];
+
+        public void FormatReplace()
+        {
+            StringBuilder sb = new();
+            for (var i = 0; i < Replace.Count; i++)
+            {
+                CardModel card = Replace[i];
+                sb.Append($"\n[blue]{i + 1}[/blue]. ");
+                if (card.Pile is not {Type:PileType.Hand})
+                {
+                    sb.Append($"[color=595959]{card.Title}[/color]");
+                }
+                else
+                {
+                    sb.Append(card.Title);
+                }
+            }
+            ((StringVar)this.DynamicVars["Replace"]).StringValue = sb.ToString();
+        }
+
+        public void FormatOrigin()
+        {
+            StringBuilder sb = new();
+            for (var i = 0; i < Origin.Count; i++)
+            {
+                sb.Append($"\n[blue]{i + 1}[/blue]. {Origin[i].Title}");
+            }
+            ((StringVar)this.DynamicVars["Origin"]).StringValue = sb.ToString();
+        }
 
         public override Task AfterApplied(Creature applier, CardModel cardSource)
         {
-            ((StringVar) this.DynamicVars["Applier"]).StringValue = PlatformUtil.GetPlayerName(RunManager.Instance.NetService.Platform, this.Applier.Player.NetId);
+            FormatReplace();
+            FormatOrigin();
             return Task.CompletedTask;
         }
 
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
         {
-            if (side==Owner.Side)
+            if (Replace.Contains(cardPlay.Card))
             {
-                await PowerCmd.TickDownDuration(this);
+                Replace.Remove(cardPlay.Card);
+                FormatReplace();
+            }
+            return Task.CompletedTask;
+        }
+
+        public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel source)
+        {
+            if (Replace.Contains(card))
+            {
+                FormatReplace();
+            }
+            return Task.CompletedTask;
+        }
+
+        public override async Task BeforeTurnEndVeryEarly(PlayerChoiceContext choiceContext, CombatSide side)
+        {
+            if (side == Owner.Side && Owner.IsPlayer)
+            {
+                Flash();
+                await PowerCmd.Remove(this);
+
+                List<CardModel> toRemove = Replace.Where(c=>c.Pile is {Type:PileType.Hand}).ToList();
+                await CardPileCmd.RemoveFromCombat(toRemove);
+                //换回
+                foreach (CardModel card in Origin)
+                {
+                    card.HasBeenRemovedFromState = false;
+                    await CardPileCmd.Add(card, PileType.Hand);
+                }
             }
         }
 
-        public override int ModifyAttackHitCount(AttackCommand attack, int hitCount)
+        protected override void DeepCloneFields()
         {
-            if (attack.Attacker == Owner && attack.DamageProps.HasFlag(ValueProp.Move)) 
-            {
-                Flash();
-                return hitCount * 2;
-            }
-            return hitCount;
+            base.DeepCloneFields();
+            Origin = Origin.ToList();
+            Replace = Replace.ToList();
         }
     }
 }

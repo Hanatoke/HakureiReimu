@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 if (Context.Count<=0)
                 {
                     Flash();
-                    await CardPileCmd.Draw(new IgnoreExtraDrawContext(), Amount, player);
+                    await CardPileCmd.Draw(new IgnoreExtraDrawContext(), Amount, player, fromHandDraw);
                 }
             }
         }

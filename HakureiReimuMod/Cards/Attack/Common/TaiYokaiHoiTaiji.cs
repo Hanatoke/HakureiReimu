@@ -12,13 +12,12 @@ using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class TaiYokaiHoiTaiji : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => 
             [new CalculationBaseVar(11),new ExtraDamageVar(3),
-                new CalculatedDamageVar(ValueProp.Move).WithMultiplier((c,t)=>t!=null?t.Powers.Count(p => p is { Type: PowerType.Debuff, IsVisible: true }):0)];
+                new CalculatedDamageVar(ValueProp.Move|IgnoreDefenseProps).WithMultiplier((c,t)=>t!=null?t.Powers.Count(p => p is { Type: PowerType.Debuff, IsVisible: true }):0)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [IgnoreDefense];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackCloseLight;
         public TaiYokaiHoiTaiji(

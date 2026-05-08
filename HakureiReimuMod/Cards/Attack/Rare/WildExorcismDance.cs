@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [
-                new DamageVar(7, ValueProp.Move),
+                new DamageVar(7, ValueProp.Move|IgnoreDefenseProps),
                 new PowerVar<SealPower>(3)
             ];
 

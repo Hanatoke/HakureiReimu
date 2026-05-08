@@ -3,13 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Extensions;
-using HakureiReimu.HakureiReimuMod.Patches;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
@@ -35,7 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             if (command.ModelSource is CardModel card && card.Keywords.Contains(AbstractCard.IgnoreDefense))
             {
-                command.AddDamageProps(ValueProp.Unblockable|DamagePropsPatch.IgnoreDamageImmunity|DamagePropsPatch.IgnoreDamageResponse);
+                command.AddDamageProps(AbstractCard.IgnoreDefenseProps);
             }
             return Task.CompletedTask;
         }

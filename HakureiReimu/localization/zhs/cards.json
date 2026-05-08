@@ -278,7 +278,8 @@
 
   "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.sign":"结界",
   "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.title":"扩散灵符",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description":"直到下一回合，每当你给予[red]负面[/red]效果时，同时给予其他敌人等量效果。",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description":"选择手牌中的一张[gold]攻击[/gold]牌，将其他手牌全部变形成它的[gold]复制[/gold]。",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.selectionScreenPrompt":"选择变化目标",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -320,7 +321,8 @@
 
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"满员御礼",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"弹币红包",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"直到下一回合，使另一名玩家[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"将你的[gold]手牌[/gold]替换为另一名玩家的[gold]复制[/gold]。\n在本回合结束时换回。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.tip":"回合结束时，只有在手牌中且未被打出过的卡牌复制，才会被移除。",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",

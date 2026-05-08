@@ -19,10 +19,6 @@
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.description": "[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
   "HAKUREIREIMU-DIFFUSIVE_BOUNDARY_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，[gold]{OwnerName}[/gold]的[gold]单体攻击[/gold]同时对所有敌人造成伤害。",
   
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.title": "扩散灵符",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.description": "每当你给予[red]负面[/red]效果时，给予其他敌人等量效果。",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，每当[gold]{OwnerName}[/gold]给予[red]负面[/red]效果时，给予其他敌人等量效果。",
-  
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.title": "保留格挡",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.description": "在回合开始时保留[gold]格挡[/gold]。",
   "HAKUREIREIMU-RETAIN_BLOCK_POWER.smartDescription": "在回合开始时保留[gold]{OwnerName}[/gold][blue]{Amount}[/blue]点[gold]格挡[/gold]。",
@@ -100,9 +96,9 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER_POWER.smartDescription": "[gold]阴阳玉[/gold]同时对[gold]所有[/gold]敌人造成伤害。",
 
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.title": "弹币红包",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "该玩家的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "直到下[blue]{Amount}[/blue]回合，[gold]{OwnerName}[/gold]的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "由于[gold]{Applier}[/gold]，直到下[blue]{Amount}[/blue]回合，[gold]{OwnerName}[/gold]的[gold]攻击[/gold]牌的攻击次数[gold]翻倍[/gold]。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "回合结束时将[gold]手牌[/gold]换回。",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "回合结束时，你的[gold]手牌[/gold]将会换回。\n将要[red]失去[/red]的卡牌:{Replace}\n将要[gold]返回[/gold]的卡牌:{Origin}",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "回合结束时，[gold]{OwnerName}[/gold]的[gold]手牌[/gold]将会换回。",
 
 
 

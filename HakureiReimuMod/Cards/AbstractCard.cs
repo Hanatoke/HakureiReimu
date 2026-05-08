@@ -8,6 +8,7 @@ using HakureiReimu.HakureiReimuMod.Character;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Interface;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
@@ -15,6 +16,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards;
 
@@ -61,6 +63,10 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     public static CardKeyword FreeCounter;
     [CustomEnum,KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword IgnoreDefense;
+
+    public static readonly ValueProp IgnoreDefenseProps = ValueProp.Unblockable |
+                                                          DamagePropsPatch.IgnoreDamageImmunity |
+                                                          DamagePropsPatch.IgnoreDamageResponse;
     
 
     public void RunAnimation(Character.HakureiReimu.Animation animation)

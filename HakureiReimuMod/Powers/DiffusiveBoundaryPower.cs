@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Command;
-using HakureiReimu.HakureiReimuMod.Node.VFX;
+using HakureiReimu.HakureiReimuMod.Extensions;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,6 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
     public class DiffusiveBoundaryPower : AbstractPower
     {
         public static readonly string ID = nameof(DiffusiveBoundaryPower);
+        public static string Path = "diffusive.tscn".ScenePath();
 
         public override PowerType Type => PowerType.Buff;
 

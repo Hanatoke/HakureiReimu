@@ -278,7 +278,8 @@
 
   "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.sign":"Barrier",
   "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.title":"Expanding Spirit Charm",
-  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description":"Until next turn, whenever you apply a [red]debuff[/red], apply the same amount to all other enemies.",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.description": "Choose an [gold]Attack[/gold] card from your hand. All other cards in your hand are transformed into its [gold]copies[/gold].",
+  "HAKUREIREIMU-DIFFUSIVE_SPIRIT_CHARM.selectionScreenPrompt": "Select a card to transform",
 
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -322,8 +323,9 @@
 
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"Full House Amulets",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"Bullet Money Bonus Packets",
-  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"Until the next turn, [gold]Double[/gold] the hits count of another player's [gold]Attack[/gold] cards.",
-
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"Replace your [gold]hand[/gold] with [gold]copies[/gold] of another player's hand.\nSwap them back at the end of this turn.",
+  "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.tip":"At the end of the turn, only copied cards that remain in your hand and have not been played will be removed.",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"Divine Spirit",

@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Command;
-using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -42,7 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         protected override void OnUpgrade() {
             DynamicVars.Strength.UpgradeValueBy(1);
         }
-
+        
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
         {
             if (combatState.RoundNumber<=1&&side==Owner.Creature.Side&&Pile is { Type: PileType.Draw or PileType.Hand or PileType.Discard })

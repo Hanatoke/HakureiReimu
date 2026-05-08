@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -71,7 +72,14 @@ namespace HakureiReimu.HakureiReimuMod.Relics
                         EnchantmentModel enchantment = ModelDb.GetByIdOrNull<EnchantmentModel>(s.Enchantment.Id)?.ToMutable();
                         if (enchantment != null)
                         {
-                            CardCmd.Enchant(enchantment, card, s.Enchantment.Amount);
+                            try
+                            {
+                                CardCmd.Enchant(enchantment, card, s.Enchantment.Amount);
+                            }
+                            catch (InvalidOperationException e)
+                            {
+                                HakureiReimuMain.Logger.Info("无法进行附魔,已跳过:"+e.Message);
+                            }
                         }
                     }
                     return card;
