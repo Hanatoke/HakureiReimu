@@ -43,6 +43,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
         public float TipScale => 1/Scale.X*1f;
         public bool UseFloatHover = true;
         public bool IsEnabled { get; protected set; } = true;
+        public bool IsValid => IsInstanceValid(CardNode);
 
         public static NPersistCardHolder Create(NCard card)
         {

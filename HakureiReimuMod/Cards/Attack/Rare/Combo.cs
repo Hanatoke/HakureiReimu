@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using HakureiReimu.HakureiReimuMod.PersistCard;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -47,7 +48,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             CardModel card = LastAttack;
             if (card != null)
             {
-                if (card.Owner != this.Owner)
+                if (card.Owner != this.Owner ||card.Pile is AbstractPersistCardTable)
                 {
                     Player originalOwner = card.Owner;
                     card = card.CreateDupe();

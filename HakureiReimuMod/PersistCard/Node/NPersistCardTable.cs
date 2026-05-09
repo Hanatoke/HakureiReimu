@@ -205,8 +205,24 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
 
         public virtual void RefreshLayout()
         {
+            RemoveInvalid();
             TweenLayout();
             UpdateControllerNavigation();
+        }
+
+        public virtual void RemoveInvalid()
+        {
+            CardHolders.RemoveAll(holder =>
+            {
+                if (!holder.IsValid)
+                {
+                    holder.Clear();
+                    holder.GetParent().RemoveChildSafely(holder);
+                    holder.QueueFreeSafely();
+                    return true;
+                }
+                return false;
+            });
         }
         public virtual void AddCardHolder(NPersistCardHolder holder, int index)
         {

@@ -73,6 +73,7 @@ public class HakureiReimu : PlaceholderCharacterModel {
     public override string CustomEnergyCounterPath => "reimu_energy_counter.tscn".ScenePath();
 
     public override string CustomArmPointingTexturePath => "hand_point.png".CharacterUiPath();
+    public override string CustomTrailPath => "card_trail_reimu.tscn".ScenePath();
 
     //角色模型实例路径
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -69,7 +70,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
             }
         }
 
-        public static async Task StopPersistCard(AbstractPersistCardSlot slot,PileType? overridePile=null)
+        public static async Task StopPersistCard(AbstractPersistCardSlot slot,PileType? overridePile=null,bool skipVisuals=false)
         {
             if (slot?.Card?.CombatState == null)
             {
@@ -78,75 +79,136 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
-            if (slot.Card.Pile is AbstractPersistCardTable table)
+            if (slot.Card.Pile is AbstractPersistCardTable)
             {
                 CardModel card = slot.Card;
                 CombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
-                bool isLocal = LocalContext.IsMe(card.Owner);
-                NPersistCardTable nt = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
-                    ?.PersistCardTable(table);
-                NPersistCardHolder holder = null;
-                if (nt!=null&&GodotObject.IsInstanceValid(nt))
-                {
-                    holder = nt.GetCardHolder(slot.Card);
-                    holder?.SetEnabled(false);
-                    // nt.RemoveCardHolder(holder);
-                }
                 if (!overridePile.HasValue&&slot.Card.IsDupe)
                 {
+                    if (!skipVisuals)
+                    {
+                        StopPersistCardVisual(slot, PileType.None);
+                    }
                     await CardPileCmd.RemoveFromCombat(slot.Card,skipVisuals:true);
-                    TweenExhaustCard(holder,nt);
                 }
                 else if (!overridePile.HasValue&&(slot.Card.ExhaustOnNextPlay||slot.Card.Keywords.Contains(CardKeyword.Exhaust)))
                 {
+                    if (!skipVisuals)
+                    {
+                        StopPersistCardVisual(slot, PileType.Exhaust);
+                    }
                     await CardCmd.Exhaust(new BlockingPlayerChoiceContext(),slot.Card,skipVisuals:true);
                     card.Pile?.InvokeCardAddFinished();
-                    TweenExhaustCard(holder,nt);
                 }
                 else
                 {
+                    if (!skipVisuals)
+                    {
+                        StopPersistCardVisual(slot, targetPile);
+                    }
                     await CardPileCmd.Add(slot.Card, targetPile,skipVisuals:true);
-                    NCard nc = holder?.CardNode;
-                    if (nc != null&&isLocal)
-                    {
-                        nc.ReparentSafely(NCombatRoom.Instance.Ui);
-                        Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
-                        switch (targetPile)
-                        {
-                            case PileType.Hand:
-                                AccessTools.Method(typeof(CardPileCmd), "AppendPileLerpTween", [
-                                    typeof(Tween),
-                                    typeof(NCard),
-                                    typeof(PileType),
-                                    typeof(CardPile)
-                                ]).Invoke(null, [tween, nc, targetPile, null]);
-                                tween.Parallel().TweenCallback(Callable.From(() => NCombatRoom.Instance.Ui.Hand.Add(nc)));
-                                break;
-                            default:
-                                tween.TweenCallback(Callable.From((Action) (() =>
-                                {
-                                    Godot.Node node = NCombatRoom.Instance?.CombatVfxContainer ;
-                                    if (node==null)
-                                    {
-                                        nc.QueueFreeSafely();
-                                        return;
-                                    };
-                                    nc.ReparentSafely(node);
-                                    NCardFlyVfx child = NCardFlyVfx.Create(nc, card.Pile.Type.GetTargetPosition(nc), true, card.Owner.Character.TrailPath);
-                                    node.AddChildSafely( child);
-                                })));
-                                break;
-                        }
-                    }
-                    if (holder!=null)
-                    {
-                        nt?.RemoveCardHolder(holder);
-                    }
                 }
-                
-                // await slot.Card.MoveToResultPileWithoutPlaying(new BlockingPlayerChoiceContext());
                 await PersistCardHook.OnStopPersistCard(state, slot);
+            }
+        }
+
+        private static MethodInfo _appendPlayPileLerpTween;
+        private static MethodInfo AppendPlayPileLerpTween => _appendPlayPileLerpTween ??=
+            AccessTools.Method(typeof(CardPileCmd), "AppendPlayPileLerpTween",
+                [typeof(Tween), typeof(NCard), typeof(CardPile)]);
+        private static MethodInfo _appendPileLerpTween;
+        private static MethodInfo AppendPileLerpTween => _appendPileLerpTween ??= AccessTools.Method(
+            typeof(CardPileCmd), "AppendPileLerpTween", [
+                typeof(Tween),
+                typeof(NCard),
+                typeof(PileType),
+                typeof(CardPile)
+            ]);
+
+        public static void StopPersistCardVisual(AbstractPersistCardSlot slot, PileType targetPile)
+        {
+            if (slot?.Card == null)
+            {
+                HakureiReimuMain.Logger.Warn("PersistCardCmd.StopPersistCardVisual: slot.Card is null");
+                HakureiReimuMain.Logger.Warn("slot:"+slot);
+                return;
+            }
+            if (CombatManager.Instance.IsOverOrEnding)return;
+            if (slot.Card.Pile is AbstractPersistCardTable table)
+            {
+                CardModel card = slot.Card;
+                bool isLocal = LocalContext.IsMe(card.Owner);
+                //获取table
+                NPersistCardTable nTable = NCombatRoom.Instance?.GetCreatureNode(slot.Card.Owner.Creature)
+                    ?.PersistCardTable(table);
+                //获取holder
+                NPersistCardHolder holder = null;
+                if (nTable!=null&&GodotObject.IsInstanceValid(nTable))
+                {
+                    holder = nTable.GetCardHolder(slot.Card);
+                    holder?.SetEnabled(false);
+                }
+                //获取NCard
+                NCard nCard = holder?.CardNode;
+                switch (targetPile)
+                {
+                    case PileType.None:
+                        TweenExhaustCard(holder,nTable);
+                        break;
+                    case PileType.Exhaust:
+                        card.Pile?.InvokeCardAddFinished();
+                        TweenExhaustCard(holder,nTable);
+                        break;
+                    case PileType.Play:
+                        if (nCard!=null)
+                        {
+                            nCard.ReparentSafely(NCombatRoom.Instance.Ui);
+                            Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
+                            AppendPlayPileLerpTween.Invoke(null, [tween, nCard, null]);
+                        }
+                        if (holder!=null)
+                        {
+                            nTable?.RemoveCardHolder(holder);
+                        }
+                        break;
+                    case PileType.Hand:
+                        if (nCard != null&&isLocal)
+                        {
+                            nCard.ReparentSafely(NCombatRoom.Instance.Ui);
+                            Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
+                            AppendPileLerpTween.Invoke(null, [tween, nCard, targetPile, null]);
+                            tween.Parallel().TweenCallback(Callable.From(() => NCombatRoom.Instance.Ui.Hand.Add(nCard)));
+                        }
+                        if (holder!=null)
+                        {
+                            nTable?.RemoveCardHolder(holder);
+                        }
+                        break;
+                    default:
+                        if (nCard != null&&isLocal)
+                        {
+                            nCard.ReparentSafely(NCombatRoom.Instance.Ui);
+                            Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
+                            tween.TweenCallback(Callable.From((Action) (() =>
+                            {
+                                Godot.Node node = NCombatRoom.Instance?.CombatVfxContainer ;
+                                if (node==null)
+                                {
+                                    nCard.QueueFreeSafely();
+                                    return;
+                                };
+                                nCard.ReparentSafely(node);
+                                NCardFlyVfx child = NCardFlyVfx.Create(nCard, card.Pile.Type.GetTargetPosition(nCard), true, card.Owner.Character.TrailPath);
+                                node.AddChildSafely( child);
+                            })));
+                        }
+                        if (holder!=null)
+                        {
+                            nTable?.RemoveCardHolder(holder);
+                        }
+                        break;
+                }
             }
         }
 
