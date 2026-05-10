@@ -107,6 +107,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 {
                     await CounterCmd.InvokeCounter(CombatState, this, null);
                 }
+                if (card.Pile is not { IsCombatPile: true })return;
                 await CardPileCmd.RemoveFromCombat(card);
             }
         }
