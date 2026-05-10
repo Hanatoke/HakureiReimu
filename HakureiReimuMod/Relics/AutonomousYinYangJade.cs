@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             HoverTipFactory.FromOrb<YinYangOrb>()
         ];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Orbs", 1)];
-        public async Task AfterCounter(CombatState state, ICounter counter, Creature target)
+        public async Task AfterCounter(ICombatState state, ICounter counter, Creature target)
         {
             if (counter.CounterOwner==Owner.Creature)
             {
