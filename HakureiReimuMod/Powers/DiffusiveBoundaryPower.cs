@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 Traverse traverse = Traverse.Create(command);
                 // FlyingVFXCmd.AddVFXOnCreature(NBarrierImpactReverse.Create(),traverse.Field<Creature>("_singleTarget").Value);
                 traverse.Field<Creature>("_singleTarget").Value = null;
-                traverse.Field<CombatState>("_combatState").Value = CombatState;
+                traverse.Field<ICombatState>("_combatState").Value = CombatState;
                 traverse.Property<bool>("IsRandomlyTargeted").Value=false;
                 CombatSide targetSide=traverse.Property<CombatSide>("TargetSide").Value =
                     Owner.Side == CombatSide.Enemy ? CombatSide.Player : CombatSide.Enemy;
@@ -46,7 +46,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return Task.CompletedTask;
         }
 
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Side)
             {

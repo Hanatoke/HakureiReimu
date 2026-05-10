@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
         public override RelicRarity Rarity => RelicRarity.Ancient;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromCardWithCardHoverTips<Miracle>();
         protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar( 1)];
-        public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+        public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
         {
             if (player!=Owner) return;
             Flash();
@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             {
                 cards.Add(combatState.CreateCard<Miracle>(Owner));
             }
-            await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
         }
     }
 }

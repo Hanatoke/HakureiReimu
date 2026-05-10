@@ -37,7 +37,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             {
                 if (e.HasPower<Powers.SealPower>())
                 {
-                    await PowerCmd.Apply<VulnerablePower>(e, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
+                    await PowerCmd.Apply<VulnerablePower>(choiceContext,e, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
                 }
             }
         }

@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<ItarudokoroNoAoyamaPower>(Owner.Creature,
+            await PowerCmd.Apply<ItarudokoroNoAoyamaPower>(choiceContext, Owner.Creature,
                 DynamicVars[ItarudokoroNoAoyamaPower.ID].BaseValue, Owner.Creature, this);
         }
 

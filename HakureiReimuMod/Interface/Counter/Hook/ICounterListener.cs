@@ -7,7 +7,7 @@ namespace HakureiReimu.HakureiReimuMod.Interface.Counter.Hook
 {
     public interface ICounterListener
     {
-        Task BeforeCounter(CombatState state,ICounter counter,Creature target){return Task.CompletedTask;}
-        Task AfterCounter(CombatState state,ICounter counter,Creature target){return Task.CompletedTask;}
+        Task BeforeCounter(ICombatState state,ICounter counter,Creature target){return Task.CompletedTask;}
+        Task AfterCounter(ICombatState state,ICounter counter,Creature target){return Task.CompletedTask;}
     }
 }

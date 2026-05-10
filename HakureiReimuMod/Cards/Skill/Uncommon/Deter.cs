@@ -50,8 +50,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_scream");
             foreach (Creature enemy in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<WeakPower>(enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
-                await PowerCmd.Apply<VulnerablePower>(enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
+                await PowerCmd.Apply<WeakPower>(choiceContext, enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
+                await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, DynamicVars.Weak.IntValue, Owner.Creature, this);
                 if (enemy.Powers.Any(p=>p is MinionPower))
                 {
                     await CreatureCmd.Stun(enemy);

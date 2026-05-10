@@ -62,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
             // await CardCmd.AutoPlay(choiceContext, card, Owner.Creature);
         }
 
-        public static List<CardModel> GetChoose(Player  player,CombatState state)
+        public static List<CardModel> GetChoose(Player  player,ICombatState state)
         {
             List<CardModel> choose = [];
             if (!player.Creature.HasPower<RainbowDragonYinYangOrbsFireWaterPower>())
@@ -98,7 +98,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<RainbowDragonYinYangOrbsFireWaterPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<RainbowDragonYinYangOrbsFireWaterPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
     }
 
@@ -114,7 +114,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<RainbowDragonYinYangOrbsStormMountainPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<RainbowDragonYinYangOrbsStormMountainPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
     }
 
@@ -127,7 +127,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<RainbowDragonYinYangOrbsWindThunderPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<RainbowDragonYinYangOrbsWindThunderPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
     }
 }

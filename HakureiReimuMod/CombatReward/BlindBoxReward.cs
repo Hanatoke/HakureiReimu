@@ -31,7 +31,7 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         
         public override bool IsPopulated => Rewards!=null;
         
-        public override Task Populate()
+        public override void Populate()
         {
             Rewards = [];
             for (var i = 0; i < 1; i++)
@@ -39,7 +39,6 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
                 Reward reward = RollRewards(Player.PlayerRng.Rewards);
                 if (reward != null)Rewards.Add(reward);
             }
-            return Task.CompletedTask;
         }
         public override void MarkContentAsSeen(){}
         public List<Reward> Rewards = null;
@@ -161,7 +160,7 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
 
 
         public static SpireField<Reward, BlindBoxReward> Parent = new(_=>null);
-        [HarmonyPatch(typeof(Reward), nameof(OnSelectWrapper))]
+        [HarmonyPatch(typeof(Reward), nameof(SelectUnsynchronized))]
         public static class RewardsPatch
         {
             [HarmonyPostfix]

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     vfx.OnHit = (() =>
                     {
                         NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
-                        VfxCmd.PlayVfx(targetPos.VfxSpawnPosition,"vfx/vfx_attack_blunt");
+                        VfxCmd.PlayVfx(targetPos.VfxSpawnPosition,"vfx/vfx_attack_blunt",NCombatRoom.Instance?.CombatVfxContainer);
                     });
                     startPos = targetPos;
                     await vfx.HitTask;
@@ -70,8 +71,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 var results=await CreatureCmd.Damage(choiceContext,targets,DynamicVars.Damage.BaseValue,dummy.DamageProps,Owner.Creature, this);
                 dummy.AddResultsInternal(results);
             }
-            await Hook.AfterAttack(CombatState,dummy);
-            CombatManager.Instance.History.CreatureAttacked(CombatState, Owner.Creature, dummy.Results.ToList());
+            await Hook.AfterAttack(CombatState,choiceContext,dummy);
+            CombatManager.Instance.History.CreatureAttacked(CombatState, Owner.Creature, dummy.Results.SelectMany((r => r)).ToList());
         }
 
         public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature dealer, DamageResult result, ValueProp props,
@@ -79,7 +80,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         {
             if (cardSource==this)
             {
-                await PowerCmd.Apply<VulnerablePower>(target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<VulnerablePower>(choiceContext, target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
             }
         }
 

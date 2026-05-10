@@ -39,7 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             {
                 if (t.Monster is { IntendsToAttack: false })
                 {
-                    await PowerCmd.Apply<InhibitPower>(t, DynamicVars[InhibitPower.ID].IntValue, Owner.Creature, this);
+                    await PowerCmd.Apply<InhibitPower>(choiceContext,t, DynamicVars[InhibitPower.ID].IntValue, Owner.Creature, this);
                 }
             }
         }

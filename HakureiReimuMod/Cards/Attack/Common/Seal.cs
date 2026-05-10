@@ -22,7 +22,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .Execute(choiceContext);
-            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(choiceContext,cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
         }
         protected override void OnUpgrade() {

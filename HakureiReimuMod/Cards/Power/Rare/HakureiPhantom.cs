@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<HakureiPhantomPower>(Owner.Creature, DynamicVars["HakureiPhantomPower"].BaseValue,
+            await PowerCmd.Apply<HakureiPhantomPower>(choiceContext, Owner.Creature, DynamicVars["HakureiPhantomPower"].BaseValue,
                 Owner.Creature, this);
         }
 

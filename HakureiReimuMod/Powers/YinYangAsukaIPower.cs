@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                             PowerModel p=RollPower?.MutableClone() as PowerModel;
                             if (p != null)
                             {
-                                await PowerCmd.Apply(p, result.Receiver, 1, Owner, null);
+                                await PowerCmd.Apply(choiceContext,p, result.Receiver, 1, Owner, null);
                             }
                         }
                     }

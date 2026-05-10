@@ -43,7 +43,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             decimal amount = Hook.ModifyBlock(CombatState, Owner.Creature, DynamicVars.Block.BaseValue, ValueProp.Move,
                 this, dummyPlay, out _);
             await CreatureCmd.GainBlock(Owner.Creature,amount,ValueProp.Unpowered,null,true);
-            await PowerCmd.Apply<BlurPower>(Owner.Creature, 1,Owner.Creature,this);
+            await PowerCmd.Apply<BlurPower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1,Owner.Creature,this);
             if (cost)
             {
                 await Decrement();

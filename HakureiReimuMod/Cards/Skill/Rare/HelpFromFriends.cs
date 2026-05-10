@@ -34,8 +34,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-            await PowerCmd.Apply<RetainHandPower>(Owner.Creature, DynamicVars["Retain"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<RetainEnergyPower>(Owner.Creature, DynamicVars["Retain"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RetainHandPower>(choiceContext,Owner.Creature, DynamicVars["Retain"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RetainEnergyPower>(choiceContext,Owner.Creature, DynamicVars["Retain"].BaseValue, Owner.Creature, this);
         }
         protected override void OnUpgrade() {
             DynamicVars.Energy.UpgradeValueBy(1);

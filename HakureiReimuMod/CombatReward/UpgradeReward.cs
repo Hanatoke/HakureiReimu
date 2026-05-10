@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         protected override RewardType RewardType=>Type;
         public override int RewardsSetIndex => 10;
         public override bool IsPopulated => true;
-        public override Task Populate()=>Task.CompletedTask;
+        public override void Populate() { }
         protected override string IconPath =>ImageHelper.GetImagePath($"ui/rest_site/option_{"SMITH".ToLowerInvariant()}.png");
 
         protected override async Task<bool> OnSelect()

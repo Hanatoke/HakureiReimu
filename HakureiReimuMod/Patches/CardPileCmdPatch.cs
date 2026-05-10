@@ -31,7 +31,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 bool fromHandDraw)
             {
                 IEnumerable<CardModel> r=await __result;
-                CombatState combatState = player.Creature.CombatState;
+                ICombatState combatState = player.Creature.CombatState;
                 if (combatState != null)
                 {
                     foreach (AbstractModel i in combatState.IterateHookListeners())

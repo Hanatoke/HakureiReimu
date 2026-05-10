@@ -25,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             ) : base(1, CardType.Attack, CardRarity.Token, TargetType.AllEnemies) {
         }
 
-        public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count,CombatState state)
+        public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count,ICombatState state)
         {
             if (count == 0) return [];
             if (CombatManager.Instance.IsOverOrEnding) return [];
@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             {
                 cards.Add(state.CreateCard<DanmakuBoundary>(owner));
             }
-            await CardPileCmd.AddGeneratedCardsToCombat(cards,PileType.Hand,true);
+            await CardPileCmd.AddGeneratedCardsToCombat(cards,PileType.Hand,owner);
             return cards;
         }
         protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {

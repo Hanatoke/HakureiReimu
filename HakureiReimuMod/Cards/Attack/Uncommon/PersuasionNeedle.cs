@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(choiceContext, cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
             await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target)
                 .BeforeDamage(async delegate

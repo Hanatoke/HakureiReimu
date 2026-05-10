@@ -30,9 +30,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
         }
 
-        protected override PileType GetResultPileType()
+        protected override PileType GetResultPileTypeForCardPlay()
         {
-            PileType type=base.GetResultPileType();
+            PileType type=base.GetResultPileTypeForCardPlay();
             if (type==PileType.Discard)
             {
                 return TargetSelectCards.Count>0 ? PileType.Draw : type;

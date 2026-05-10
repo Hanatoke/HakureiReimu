@@ -29,7 +29,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         {
             if (card.Owner.Creature!=Owner)return Task.CompletedTask;
             Player player = card.Owner;
-            if (player.PlayerCombatState.Hand.Cards.Count >= CardPile.maxCardsInHand ||
+            if (player.PlayerCombatState.Hand.Cards.Count >= CardPile.MaxCardsInHand ||
                 player.PlayerCombatState.DrawPile.Cards.Count <= 0 &&
                 player.PlayerCombatState.DiscardPile.Cards.Count <= 0) 
             {

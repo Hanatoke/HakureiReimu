@@ -135,7 +135,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             vfx.Duration = duration;
             vfx.OnHit = () =>
             {
-                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath);
+                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath,NCombatRoom.Instance?.CombatVfxContainer);
             };
             
             vfx.AddChildSafely(needle);

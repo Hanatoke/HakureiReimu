@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(null);
-            await PowerCmd.Apply<VulnerablePower>(target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
             if (cost)
             {
                 await Decrement();

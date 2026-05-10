@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             EnergyCost.UpgradeBy(-1);
         }
         public override int Duration => 0;
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Creature.Side&&InPersisting&&Slot!=null)
             {

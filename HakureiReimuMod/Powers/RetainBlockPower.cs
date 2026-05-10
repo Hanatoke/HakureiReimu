@@ -35,7 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 await PowerCmd.Remove(this);
             }
         }
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Side)
             {

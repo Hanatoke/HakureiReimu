@@ -22,7 +22,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<YinYangKijinGyokuPower>(Owner.Creature,
+            await PowerCmd.Apply<YinYangKijinGyokuPower>(choiceContext, Owner.Creature,
                 DynamicVars[YinYangKijinGyokuPower.ID].BaseValue, Owner.Creature, this);
         }
 

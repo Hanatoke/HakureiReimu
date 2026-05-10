@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             {
                 List<Creature> targets = creature.CombatState.HittableEnemies.ToList();
                 Flash(targets);
-                await PowerCmd.Apply<SealPower>(targets, amount, Owner.Creature,null);
+                await PowerCmd.Apply<SealPower>(choiceContext, targets, amount, Owner.Creature,null);
             }
         }
     }

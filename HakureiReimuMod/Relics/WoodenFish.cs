@@ -25,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
         ];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
         public Creature CounterOwner => Owner.Creature;
-        public override async Task AfterAttack(AttackCommand command)
+        public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
         {
             if (command.Attacker is { IsMonster: true ,Side:CombatSide.Enemy} &&
                 command.DamageProps.IsCardOrMonsterMove_())

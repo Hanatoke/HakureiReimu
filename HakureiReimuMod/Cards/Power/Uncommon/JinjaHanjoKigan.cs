@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<ProtectionFeePower>(Owner.Creature,
+            await PowerCmd.Apply<ProtectionFeePower>(choiceContext, Owner.Creature,
                 DynamicVars[ProtectionFeePower.ID].BaseValue, Owner.Creature, this);
         }
 

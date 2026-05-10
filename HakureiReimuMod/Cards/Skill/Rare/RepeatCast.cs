@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             CardPile hand = Owner.PlayerCombatState.Hand;
-            int count = CardPile.maxCardsInHand-hand.Cards.Count;
+            int count = CardPile.MaxCardsInHand-hand.Cards.Count;
             if (count <= 0)return;
             List<CardModel> cards = CombatManager.Instance.History.CardPlaysFinished.Where(p =>
                     p.HappenedThisTurn(CombatState)&& p.Actor==Owner.Creature && p.CardPlay.Card is not RepeatCast &&p.CardPlay.Card.Owner==Owner&&
@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 }
                 else if (c.Type==CardType.Power)
                 {
-                    await CardPileCmd.AddGeneratedCardToCombat(c.CreateClone(), PileType.Hand, true);
+                    await CardPileCmd.AddGeneratedCardToCombat(c.CreateClone(), PileType.Hand, Owner);
                 }
                 else
                 {

@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<ExtraDrawPower>(Owner.Creature, DynamicVars.Cards.IntValue, Owner.Creature, this);
+            await PowerCmd.Apply<ExtraDrawPower>(choiceContext, Owner.Creature, DynamicVars.Cards.IntValue, Owner.Creature, this);
         }
         protected override void OnUpgrade() {
             DynamicVars.Cards.UpgradeValueBy(1);

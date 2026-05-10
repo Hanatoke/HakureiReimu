@@ -34,13 +34,12 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         public int Amount=amount;
         public EnchantmentModel Enchantment=null;
         public override bool IsPopulated => Enchantment!=null;
-        public override Task Populate()
+        public override void Populate()
         {
             Enchantment = ModelDb.GetByIdOrNull<EnchantmentModel>(EnchantId)?.ToMutable();
             if (Enchantment == null)throw new ArgumentException("enchantment not found");
             Enchantment.Amount=Amount;
             Enchantment.RecalculateValues();
-            return Task.CompletedTask;
         }
 
         protected override string IconPath => Enchantment?.IconPath;

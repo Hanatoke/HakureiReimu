@@ -33,14 +33,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
-            await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade() {
             DynamicVars.Strength.UpgradeValueBy(1);
         }
         
-        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
         {
             if (combatState.RoundNumber<=1&&side==Owner.Creature.Side&&Pile is { Type: PileType.Draw or PileType.Hand or PileType.Discard })
             {

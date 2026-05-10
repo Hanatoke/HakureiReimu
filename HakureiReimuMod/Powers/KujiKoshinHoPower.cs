@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
 
         public override PowerStackType StackType => PowerStackType.Counter;
         public Dictionary<Creature, decimal> NeedAddToLater = new();
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Side)
             {
@@ -34,12 +34,12 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             }
         }
 
-        public override async Task AfterAttack(AttackCommand command)
+        public override async Task AfterAttack(PlayerChoiceContext context,AttackCommand command)
         {
             foreach (var keyValuePair in NeedAddToLater)
             {
                 Flash();
-                await PowerCmd.Apply<SealPower>(keyValuePair.Key, keyValuePair.Value,keyValuePair.Key,null);
+                await PowerCmd.Apply<SealPower>(new BlockingPlayerChoiceContext(), keyValuePair.Key, keyValuePair.Value,keyValuePair.Key,null);
             }
             NeedAddToLater.Clear();
         }

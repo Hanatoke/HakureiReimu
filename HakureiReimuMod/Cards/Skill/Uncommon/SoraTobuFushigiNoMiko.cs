@@ -19,7 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<SoraTobuFushigiNoMikoPower>(Owner.Creature, DynamicVars.Dexterity.IntValue,
+            await PowerCmd.Apply<SoraTobuFushigiNoMikoPower>(choiceContext, Owner.Creature, DynamicVars.Dexterity.IntValue,
                 Owner.Creature, this);
         }
         protected override void OnUpgrade() {

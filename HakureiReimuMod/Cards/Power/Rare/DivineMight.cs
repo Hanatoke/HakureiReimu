@@ -31,7 +31,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
                     await PowerCmd.Remove(p);
                 }
             }
-            await PowerCmd.Apply<ArtifactPower>(Owner.Creature,
+            await PowerCmd.Apply<ArtifactPower>(choiceContext, Owner.Creature,
                 DynamicVars[nameof(ArtifactPower)].BaseValue, Owner.Creature, this);
         }
 

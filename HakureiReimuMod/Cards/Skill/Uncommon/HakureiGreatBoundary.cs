@@ -81,7 +81,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 await CreatureCmd.GainBlock(Owner.Creature, amount, ValueProp.Unpowered, null);
                 if (Owner.Creature.Side!=Owner.Creature.CombatState.CurrentSide)
                 {
-                    await PowerCmd.Apply<RetainBlockPower>(Owner.Creature, amount, Owner.Creature, this);
+                    await PowerCmd.Apply<RetainBlockPower>(new BlockingPlayerChoiceContext(),Owner.Creature, amount, Owner.Creature, this);
                 }
                 await InvokeCounter(creature,CounterType.Buff);
             }
@@ -95,19 +95,20 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 await InvokeCounter(creature,CounterType.Buff);
             }
         }
-        public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
+        public override async Task AfterPowerAmountChanged(PlayerChoiceContext context, PowerModel power,
+            decimal amount, Creature applier, CardModel cardSource)
         {
             if (InPersisting&&PowerHelper.Mutually.Contains(power.GetType())&&amount>0&&CheckPower(power,amount,applier,power.Owner,out CounterType t))
             {
                 await Flash(true);
-                await PowerCmd.Apply((PowerModel)power.ClonePreservingMutability(),Owner.Creature, amount, Owner.Creature, this);
+                await PowerCmd.Apply(context,(PowerModel)power.ClonePreservingMutability(),Owner.Creature, amount, Owner.Creature, this);
                 // if (PowerHelper.Mutually.Contains(power.GetType()))
                 // {
                 //     
                 // }
                 // else
                 // {
-                //     await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1, Owner.Creature, this);
+                //     await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
                 // }
                 await InvokeCounter(applier,t);
             }

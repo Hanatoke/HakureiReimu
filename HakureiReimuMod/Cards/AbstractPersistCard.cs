@@ -47,13 +47,13 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         }
         //-------------------------------------------------------------------------------------------------
 
-        protected override PileType GetResultPileType()
+        protected override PileType GetResultPileTypeForCardPlay()
         {
             if (Pile?.Type!=CounterCardTable.PileType)
             {
                 return TargetPersistPileType;
             }
-            return base.GetResultPileType();
+            return base.GetResultPileTypeForCardPlay();
         }
 
         public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,

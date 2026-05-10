@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public static readonly string ID = nameof(BulletMoneyBonusPacketsPower);
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Single;
-        public override bool IsInstanced => true;
+        public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
         public List<CardModel> Origin = [];
         public List<CardModel> Replace = [];
 

@@ -20,9 +20,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(choiceContext, cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
-            await PowerCmd.Apply<WeakPower>(cardPlay.Target,DynamicVars.Weak.BaseValue,
+            await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target,DynamicVars.Weak.BaseValue,
                 Owner.Creature, this);
         }
         protected override void OnUpgrade() {

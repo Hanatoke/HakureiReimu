@@ -94,7 +94,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         {
             if (cardSource==this)
             {
-                await PowerCmd.Apply<SealPower>(target, DynamicVars[SealPower.ID].BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<SealPower>(choiceContext, target, DynamicVars[SealPower.ID].BaseValue, Owner.Creature, this);
             }
         }
 

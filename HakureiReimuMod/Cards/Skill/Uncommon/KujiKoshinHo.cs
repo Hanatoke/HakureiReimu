@@ -19,7 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-            await PowerCmd.Apply<KujiKoshinHoPower>(Owner.Creature, DynamicVars[KujiKoshinHoPower.ID].IntValue,
+            await PowerCmd.Apply<KujiKoshinHoPower>(choiceContext, Owner.Creature, DynamicVars[KujiKoshinHoPower.ID].IntValue,
                 Owner.Creature,
                 this);
         }

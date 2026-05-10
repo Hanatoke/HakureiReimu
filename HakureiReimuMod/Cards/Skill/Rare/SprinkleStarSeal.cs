@@ -38,13 +38,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 {
                     n = p.Amount;
                 }
-                if (p.IsInstanced&&p.StackType==PowerStackType.Counter)
+                PowerModel instance = PowerCmd.FindExistingInstanceForStacking(p, cardPlay.Target, p.Applier);
+                if (instance!=null&&p.StackType==PowerStackType.Counter)
                 {
-                    await PowerCmd.ModifyAmount(p, n, Owner.Creature, this);
+                    await PowerCmd.ModifyAmount(choiceContext,instance, n, Owner.Creature, this);
                 }
                 else
                 {
-                    await PowerCmd.Apply((PowerModel)p.ClonePreservingMutability(), cardPlay.Target, n, Owner.Creature,
+                    await PowerCmd.Apply(choiceContext,(PowerModel)p.ClonePreservingMutability(), cardPlay.Target, n, Owner.Creature,
                         this);
                 }
             }

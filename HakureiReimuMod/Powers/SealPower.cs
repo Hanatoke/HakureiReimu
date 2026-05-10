@@ -63,7 +63,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 int n = NeedToCost;
                 NeedToCost = 0;
                 Flash();
-                await PowerCmd.ModifyAmount(this,-n,null,null);
+                await PowerCmd.ModifyAmount(choiceContext,this,-n,null,null);
                 foreach (Creature p in CombatState.GetOpponentsOf(Owner).ToList())
                 {
                     if (p.HasPower<KujiKoshinHoPower>())
@@ -75,7 +75,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                         }
                         else
                         {
-                            await PowerCmd.Apply<SealPower>(Owner,n, Owner, null);
+                            await PowerCmd.Apply<SealPower>(choiceContext, Owner,n, Owner, null);
                         }
                         return;
                     }

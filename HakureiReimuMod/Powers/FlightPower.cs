@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             new DynamicVar("DamageDecrease",0.5m)
         ];
 
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Side)
             {

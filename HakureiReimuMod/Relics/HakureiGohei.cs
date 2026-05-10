@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
         public override RelicRarity Rarity => RelicRarity.Starter;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Orbs", 1)];
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side != Owner.Creature.Side) return;
             Flash();

@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<YinYangGyokushoPower>(Owner.Creature,
+            await PowerCmd.Apply<YinYangGyokushoPower>(choiceContext, Owner.Creature,
                 DynamicVars[YinYangGyokushoPower.ID].BaseValue, Owner.Creature, this);
         }
 

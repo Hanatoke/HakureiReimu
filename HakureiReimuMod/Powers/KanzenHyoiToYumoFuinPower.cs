@@ -44,8 +44,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 return Mathf.FloorToInt((float)total/Div)*Amount;
             }
         }
-
-        public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
+        public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext,PowerModel power, decimal amount, Creature applier, CardModel cardSource)
         {
             if (power is SealPower)
             {

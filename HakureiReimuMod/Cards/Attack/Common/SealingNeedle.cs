@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
                     await FlyingVFXCmd.NeedleLineToTarget(Owner.Creature,cardPlay.Target);
                 })
                 .Execute(choiceContext);
-            await PowerCmd.Apply<Powers.SealPower>(cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
+            await PowerCmd.Apply<Powers.SealPower>(choiceContext, cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
         }

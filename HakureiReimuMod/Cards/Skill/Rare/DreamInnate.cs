@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -31,8 +32,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         }
         public override bool IsImmediate => true;
         public override CounterType ActivateType => CounterType.All;
-        
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Creature.Side&&InPersisting&&Slot!=null)
             {
@@ -95,9 +95,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             return false;
         }
 
-        public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        public override async Task AfterCardGeneratedForCombat(CardModel card, Player creator)
         {
-            if (InPersisting&&!addedByPlayer&&card.Type is CardType.Curse or CardType.Status)
+            if (InPersisting&&creator==null&&card.Type is CardType.Curse or CardType.Status)
             {
                 if (CounterManager.InMonsterMove)
                 {

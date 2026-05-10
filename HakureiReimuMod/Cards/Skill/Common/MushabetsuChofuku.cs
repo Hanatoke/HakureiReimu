@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         {
             foreach (Creature t in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<Powers.SealPower>(t, DynamicVars[Powers.SealPower.ID].BaseValue,
+                await PowerCmd.Apply<Powers.SealPower>(choiceContext, t, DynamicVars[Powers.SealPower.ID].BaseValue,
                     Owner.Creature, this);
             }
         }

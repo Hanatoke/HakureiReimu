@@ -17,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<DiffusiveBoundaryPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<DiffusiveBoundaryPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
         protected override void OnUpgrade() {
             EnergyCost.UpgradeBy(-1);

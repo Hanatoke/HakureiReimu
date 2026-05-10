@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<DoubleGreatBoundaryPower>(Owner.Creature,
+            await PowerCmd.Apply<DoubleGreatBoundaryPower>(choiceContext, Owner.Creature,
                 DynamicVars[DoubleGreatBoundaryPower.ID].BaseValue, Owner.Creature, this);
         }
 

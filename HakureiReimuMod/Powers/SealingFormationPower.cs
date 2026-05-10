@@ -29,7 +29,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 Flash();
                 foreach (Creature t in CombatState.HittableEnemies)
                 {
-                    await PowerCmd.Apply<SealPower>(t, Amount, Owner, null);
+                    await PowerCmd.Apply<SealPower>(choiceContext, t, Amount, Owner, null);
                 }
             }
         }

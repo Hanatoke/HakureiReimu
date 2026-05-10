@@ -10,7 +10,9 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -60,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             }
         }
 
-        public override async Task AfterAttack(AttackCommand command)
+        public override async Task AfterAttack(PlayerChoiceContext context,AttackCommand command)
         {
             if (InPersisting&&!IsImmediate&&CheckAttack(command))
             {
@@ -83,7 +85,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 await InvokeCounter(creature,CounterType.Buff);
             }
         }
-        public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature applier, CardModel cardSource)
+        public override async Task AfterPowerAmountChanged(PlayerChoiceContext context, PowerModel power,
+            decimal amount, Creature? applier, CardModel? cardSource)
         {
             if (InPersisting&&CheckPower(power,amount,applier,power.Owner,out CounterType t))
             {
@@ -91,9 +94,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             }
         }
 
-        public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Debuff)&&!addedByPlayer&&card.Type is CardType.Curse or CardType.Status)
+            if (InPersisting&&ActivateType.HasFlag(CounterType.Debuff)&&creator==null&&card.Type is CardType.Curse or CardType.Status)
             {
                 await InvokeCounter(null,CounterType.Debuff);
             }

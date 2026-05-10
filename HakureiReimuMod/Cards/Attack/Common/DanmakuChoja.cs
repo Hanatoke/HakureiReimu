@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue, this);
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(this.CreateClone(), PileType.Discard, true), 2f);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(this.CreateClone(), PileType.Discard, Owner), 2f);
         }
         protected override void OnUpgrade() {
             DynamicVars.Damage.UpgradeValueBy(3);

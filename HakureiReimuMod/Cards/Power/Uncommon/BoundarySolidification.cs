@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<BoundarySolidificationPower>(Owner.Creature,
+            await PowerCmd.Apply<BoundarySolidificationPower>(choiceContext, Owner.Creature,
                 DynamicVars[BoundarySolidificationPower.ID].BaseValue, Owner.Creature, this);
         }
 

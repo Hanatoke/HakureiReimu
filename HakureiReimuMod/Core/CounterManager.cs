@@ -91,7 +91,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
         }
 
-        public static async Task BeforeCounter(CombatState state,ICounter counter,Creature target)
+        public static async Task BeforeCounter(ICombatState state,ICounter counter,Creature target)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {
@@ -102,7 +102,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
         }
 
-        public static async Task AfterCounter(CombatState state,ICounter counter,Creature target)
+        public static async Task AfterCounter(ICombatState state,ICounter counter,Creature target)
         {
             foreach (AbstractModel l in state.IterateHookListeners())
             {

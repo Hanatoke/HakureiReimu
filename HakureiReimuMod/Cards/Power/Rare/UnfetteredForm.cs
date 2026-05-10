@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<UnfetteredFormPower>(Owner.Creature,
+            await PowerCmd.Apply<UnfetteredFormPower>(choiceContext, Owner.Creature,
                 DynamicVars[UnfetteredFormPower.ID].BaseValue, Owner.Creature, this);
         }
         protected override void OnUpgrade() 

@@ -16,7 +16,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<FlightPower>(Owner.Creature, 1, Owner.Creature, this);
+            await PowerCmd.Apply<FlightPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

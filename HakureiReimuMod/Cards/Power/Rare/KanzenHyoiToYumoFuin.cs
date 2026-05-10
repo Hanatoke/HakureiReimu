@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<KanzenHyoiToYumoFuinPower>(Owner.Creature,
+            await PowerCmd.Apply<KanzenHyoiToYumoFuinPower>(choiceContext, Owner.Creature,
                 DynamicVars[KanzenHyoiToYumoFuinPower.ID].BaseValue, Owner.Creature, this);
         }
         protected override void OnUpgrade() 

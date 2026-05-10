@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -26,11 +27,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         {
             AttackCommand command=await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .Execute(choiceContext);
-            foreach (DamageResult result in command.Results)
+            foreach (DamageResult result in command.Results.SelectMany(r=>r).ToList())
             {
                 if (result.Receiver is{IsHittable:true}&&result.UnblockedDamage>0)
                 {
-                    await PowerCmd.Apply<Powers.SealPower>(result.Receiver, result.UnblockedDamage,Owner.Creature,this);
+                    await PowerCmd.Apply<Powers.SealPower>(choiceContext, result.Receiver, result.UnblockedDamage,Owner.Creature,this);
                 }
             }
         }

@@ -62,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
             }
             else
             {
-                await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, 1, Owner.Creature, this);
+                await PowerCmd.Apply<EnergyNextTurnPower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
             }
             if (cost)
             {

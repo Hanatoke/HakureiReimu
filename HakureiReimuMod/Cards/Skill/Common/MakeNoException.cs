@@ -27,17 +27,17 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
                 {
                     foreach (PowerModel p in originalDebuffs)
                     {
-                        PowerModel powerById = enemy.GetPowerById(p.Id);
-                        if (powerById != null && !powerById.IsInstanced)
+                        PowerModel instanceForStacking = PowerCmd.FindExistingInstanceForStacking(p, enemy, p.Applier);
+                        if (instanceForStacking != null)
                         {
-                            DoHackyThingsForSpecificPowers(powerById);
-                            await PowerCmd.ModifyAmount(powerById, p.Amount, Owner.Creature, this);
+                            DoHackyThingsForSpecificPowers(instanceForStacking);
+                            await PowerCmd.ModifyAmount(choiceContext,instanceForStacking, p.Amount, Owner.Creature, this);
                         }
                         else
                         {
                             PowerModel power =(PowerModel)p.ClonePreservingMutability();
                             DoHackyThingsForSpecificPowers(power);
-                            await PowerCmd.Apply(power, enemy,p.Amount, Owner.Creature, this);
+                            await PowerCmd.Apply(choiceContext,power, enemy,p.Amount, Owner.Creature, this);
                         }
                     }
                 }

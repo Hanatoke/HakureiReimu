@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         public override bool IsImmediate => true;
         public override CounterType ActivateType => CounterType.Attack;
         public int ActivateTimes = 0;
-        public override Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side==Owner.Creature.Side)
             {

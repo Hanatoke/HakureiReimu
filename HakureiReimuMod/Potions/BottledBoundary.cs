@@ -35,7 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Potions
             if (card!=null)
             {
                 card.SetToFreeThisCombat();
-                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
             }
         }
     }

@@ -82,7 +82,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
             if (slot.Card.Pile is AbstractPersistCardTable)
             {
                 CardModel card = slot.Card;
-                CombatState state = card.CombatState;
+                ICombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
                 if (!overridePile.HasValue&&slot.Card.IsDupe)
                 {

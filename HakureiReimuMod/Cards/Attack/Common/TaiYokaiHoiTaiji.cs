@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
                         await FlyingVFXCmd.NodeLineToTarget(NTalisman.Create(), s.VfxSpawnPosition, t.VfxSpawnPosition,onHit:
                             vfx =>
                             {
-                                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath);
+                                VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath,NCombatRoom.Instance?.CombatVfxContainer);
                                 NDebugAudioManager.Instance?.Play("slash_attack.mp3");
                             });
                     }

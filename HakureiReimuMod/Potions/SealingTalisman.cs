@@ -33,7 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.Potions
             {
                 await PowerCmd.Remove<ArtifactPower>(target);
             }
-            await PowerCmd.Apply<SealPower>(target, DynamicVars[SealPower.ID].BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<SealPower>(choiceContext, target, DynamicVars[SealPower.ID].BaseValue, Owner.Creature, null);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             {
                 if (_vfxPosition != null)
                 {
-                    VfxCmd.PlayVfx(_vfxPosition.Value, "vfx/vfx_coin_explosion_regular");
+                    VfxCmd.PlayVfx(_vfxPosition.Value, "vfx/vfx_coin_explosion_regular",NCombatRoom.Instance?.CombatVfxContainer);
                 }
                 await PlayerCmd.GainGold(Amount, Owner.Player);
             }

@@ -7,7 +7,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
 {
     public static class PersistCardHook
     {
-        public static async Task OnStartPersistCard(CombatState state,AbstractPersistCardSlot slot)
+        public static async Task OnStartPersistCard(ICombatState state,AbstractPersistCardSlot slot)
         {
             await slot.OnStart();
             foreach (AbstractModel m in state.IterateHookListeners())
@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             }
         }
 
-        public static async Task OnStopPersistCard(CombatState combatState, AbstractPersistCardSlot slot)
+        public static async Task OnStopPersistCard(ICombatState combatState, AbstractPersistCardSlot slot)
         {
             await slot.OnEnd();
             foreach (AbstractModel m in combatState.IterateHookListeners())
@@ -45,7 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             }
         }
 
-        public static bool AtIncreaseCount(CombatState state, AbstractPersistCardSlot slot,int origin,ref int result)
+        public static bool AtIncreaseCount(ICombatState state, AbstractPersistCardSlot slot,int origin,ref int result)
         {
             bool r = true;
             foreach (AbstractModel m in state.IterateHookListeners())
@@ -58,7 +58,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             return r;
         }
 
-        public static bool AtDecreaseCount(CombatState state, AbstractPersistCardSlot slot,int origin,ref int result)
+        public static bool AtDecreaseCount(ICombatState state, AbstractPersistCardSlot slot,int origin,ref int result)
         {
             bool r = true;
             foreach (AbstractModel m in state.IterateHookListeners())
@@ -71,7 +71,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             return r;
         }
 
-        public static async Task AfterModifyPersistCount(CombatState combatState, AbstractPersistCardSlot slot,int result)
+        public static async Task AfterModifyPersistCount(ICombatState combatState, AbstractPersistCardSlot slot,int result)
         {
             foreach (AbstractModel m in combatState.IterateHookListeners())
             {

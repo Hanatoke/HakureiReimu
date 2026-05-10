@@ -30,7 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 {
                     cards.Add(c.CreateClone());
                 }
-                CardCmd.PreviewCardPileAdd(await  CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Draw, true,CardPilePosition.Random));
+                CardCmd.PreviewCardPileAdd(await  CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Draw, Owner,CardPilePosition.Random));
             }
         }
         protected override void OnUpgrade() {

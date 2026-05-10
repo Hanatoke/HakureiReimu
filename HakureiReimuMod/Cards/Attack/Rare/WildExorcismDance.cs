@@ -44,7 +44,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState).WithHitCount(count)
                 .BeforeDamage(async delegate
                 {
-                    await PowerCmd.Apply<SealPower>(CombatState.HittableEnemies, seal, Owner.Creature, this);
+                    await PowerCmd.Apply<SealPower>(choiceContext, CombatState.HittableEnemies, seal, Owner.Creature, this);
                 })
             .Execute(choiceContext);
         }
@@ -104,7 +104,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                     vfx.OnHit = () =>
                     {
                         NDebugAudioManager.Instance?.Play("slash_attack.mp3");
-                        VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath);
+                        VfxCmd.PlayVfx(vfx.GlobalPosition,VfxCmd.slashPath,NCombatRoom.Instance?.CombatVfxContainer);
                     };
                     vfx.AddChildSafely(NTalisman.Create(scale));
                     NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);

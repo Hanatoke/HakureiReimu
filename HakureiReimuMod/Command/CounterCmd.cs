@@ -10,7 +10,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
 {
     public static class CounterCmd
     {
-        public static async Task InvokeCounter(CombatState state,ICounter counter,Creature target, bool cost = true, bool instant = false)
+        public static async Task InvokeCounter(ICombatState state,ICounter counter,Creature target, bool cost = true, bool instant = false)
         {
             if (state == null || counter == null)
             {
@@ -32,7 +32,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             await CounterManager.AfterCounter(state,counter,target);
             CounterManager.InInvokeCounter = false;
         }
-        public static async Task InvokeCounter(CombatState state,IEnumerable<ICounter> counters,Creature target, bool cost = true, bool instant = false)
+        public static async Task InvokeCounter(ICombatState state,IEnumerable<ICounter> counters,Creature target, bool cost = true, bool instant = false)
         {
             foreach (ICounter counter in counters)
             {
