@@ -1,3 +1,4 @@
+using System;
 using BaseLib.Abstracts;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -5,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
 using HakureiReimu.HakureiReimuMod.Cards;
@@ -74,10 +76,25 @@ public class HakureiReimu : PlaceholderCharacterModel {
 
     public override string CustomArmPointingTexturePath => "hand_point.png".CharacterUiPath();
     public override string CustomTrailPath => "card_trail_reimu.tscn".ScenePath();
+    //TODO:CustomYummyCookie
 
     //角色模型实例路径
 
     public override string CustomVisualPath => Path.Join("HakureiReimu","HakureiReimu.tscn").CharacterPath();
+    
+    public override List<string> GetArchitectAttackVfx()
+    {
+        int num = 5;
+        List<string> list = new List<string>(num);
+        CollectionsMarshal.SetCount(list, num);
+        Span<string> span = CollectionsMarshal.AsSpan(list);
+        span[0] = "vfx/vfx_attack_blunt";
+        span[1] = "vfx/vfx_heavy_blunt";
+        span[2] = "vfx/vfx_attack_slash";
+        span[3] = "vfx/vfx_bloody_impact";
+        span[4] = "vfx/vfx_rock_shatter";
+        return list;
+    }
 //-------------------------------------------------------------------------------------------------------------------------
 
     public static void RunAnimation(Player player,Animation animation)

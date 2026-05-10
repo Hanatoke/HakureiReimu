@@ -2,10 +2,10 @@
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
-    [HoverTipsByDefault]
+    [ConfigHoverTipsByDefault]
     public class ModConfig :SimpleModConfig
     {
-        [SliderRange(0,100)]
+        [ConfigSlider(0,100)]
         public static int MaxFollowDanmakuCount
         {
             get => FollowDanmakuManager.MaxFollows;
