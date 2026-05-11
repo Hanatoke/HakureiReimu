@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -41,7 +42,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(null);
-            await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
+            VulnerablePower power=await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
+            if (CombatState is { CurrentSide: CombatSide.Enemy } && power != null)
+            {
+                power.SkipNextDurationTick = true;
+            }
             if (cost)
             {
                 await Decrement();
