@@ -168,20 +168,21 @@ namespace HakureiReimu.HakureiReimuMod.Command
         public static Vector2 RandomOffset(float scale = 1) =>
             new Vector2(GD.RandRange(-25, 25), GD.RandRange(-25, 25)) * scale;
 
-        public static void AddVFXOnTarget(Node2D source, Vector2 position)
+        public static void AddVFXOnTarget(Node2D source, Vector2 position,Godot.Node container=null)
         {
-            if (NCombatRoom.Instance==null)
+            container??=NCombatRoom.Instance?.CombatVfxContainer;
+            if (container==null)
             {
                 source.QueueFreeSafely();
                 return;
             }
-            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(source);
+            container.AddChildSafely(source);
             source.GlobalPosition = position;
         }
         public static void AddVFXOnCreature(Node2D source, Creature target)
         {
-            NCreature t= NCombatRoom.Instance?.GetCreatureNode(target);
-            if (t != null)AddVFXOnTarget(source, t.VfxSpawnPosition);
+            NCreature t= target?.GetCreatureNode();
+            if (t != null)AddVFXOnTarget(source, t.VfxSpawnPosition,target.GetVfxContainer());
         }
     }
 }

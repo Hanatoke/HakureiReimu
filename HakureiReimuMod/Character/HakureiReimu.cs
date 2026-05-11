@@ -62,7 +62,8 @@ public class HakureiReimu : PlaceholderCharacterModel {
     public override Color MapDrawingColor => new Color("e13ba1");
     public override Color RemoteTargetingLineColor => new Color("E15847FF");
     public override Color RemoteTargetingLineOutline => new Color("801212FF");
-    public override string CustomIconTexturePath => "character_icon.png".CharacterUiPath();
+    public override string CustomIconTexturePath => "character_icon_small.png".CharacterUiPath();
+    public override string CustomIconOutlineTexturePath => "character_icon_outline_small.png".CharacterUiPath();
     public override string CustomIconPath =>"Reimu_icon.tscn".ScenePath();
     public override string CustomMapMarkerPath => "character_icon.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();

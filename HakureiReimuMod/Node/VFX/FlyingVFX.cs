@@ -32,6 +32,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
             vfx.Mover = mover;
             return vfx;
         }
+
+        public FlyingVFX Reset(IMover mover, float time = 0.5f)
+        {
+            this.Mover = mover;
+            _time = 0;
+            Duration = time;
+            return this;
+        }
         public override void _Process(double delta)
         {
             float dt = (float)delta;
@@ -49,11 +57,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 
             float t = Mathf.Clamp(_time / Duration, 0f, 1f);
             if (EaseFunc != null) t = EaseFunc(t);
-            Vector2 pos = Mover.CurrentPosition(this, t,(float)delta);
-            GlobalPosition = pos;
-            UpdateRotation(pos);
+            if (Mover != null)
+            {
+                Vector2 pos = Mover.CurrentPosition(this, t,(float)delta);
+                GlobalPosition = pos;
+                UpdateRotation(pos);
+            }
             UpdateMethod?.Invoke(t,delta);
-            if (Mover.IsHit(this,t,(float)delta)||t>=1)
+            if (Mover?.IsHit(this,t,(float)delta)==true||t>=1)
             {
                 _hitTcs.TrySetResult();
                 OnHit?.Invoke();

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnwypqpxuimfr"]
+
+[ext_resource type="Texture2D" uid="uid://cb5422xnswrvj" path="res://HakureiReimu/images/effects/array/bulletGa000.png" id="1_0p4si"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tebnt"]
+blend_mode = 1
+
+[node name="BulletGa000" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_tebnt")
+texture = ExtResource("1_0p4si")
