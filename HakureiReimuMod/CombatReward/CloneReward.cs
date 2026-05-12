@@ -1,23 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Patches;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
-using MegaCrit.Sts2.Core.GameActions;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Multiplayer.Serialization;
-using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
-using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace HakureiReimu.HakureiReimuMod.CombatReward
 {
@@ -33,30 +23,31 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
 
         protected override async Task<bool> OnSelect()
         {
-            List<CardModel> list = PileType.Deck.GetPile(Player).Cards.ToList();
-            NDeckCardSelectScreen screen = NDeckCardSelectScreen.Create(list, new CardSelectorPrefs(Description, 1));
-            NOverlayStack.Instance?.Push(screen);
-            CardModel card = (await screen.CardsSelected()).FirstOrDefault();
-            // CardModel card = (await CardSelectCmd.FromDeckGeneric(Player, new CardSelectorPrefs(Description, 1)
-            // {
-            //     Cancelable = true
-            // })).FirstOrDefault();
+            // List<CardModel> list = PileType.Deck.GetPile(Player).Cards.ToList();
+            // NDeckCardSelectScreen screen = NDeckCardSelectScreen.Create(list, new CardSelectorPrefs(Description, 1));
+            // NOverlayStack.Instance?.Push(screen);
+            // CardModel card = (await screen.CardsSelected()).FirstOrDefault();
+            CardModel card = (await CardSelectCmd.FromDeckGeneric(Player, new CardSelectorPrefs(Description, 1)
+            {
+                Cancelable = true
+            })).FirstOrDefault();
             if (card != null)
             {
-                if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
-                {
-                    CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(Player.RunState.CloneCard(card),PileType.Deck));
-                }
-                else
-                {
-                    RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new CloneAction()
-                    {
-                        Player =  Player,
-                        ModelId =  card.Id,
-                        PileType = card.Pile?.Type??PileType.None,
-                        Index = card.Pile?.Cards.IndexOf(card)??-1
-                    });
-                }
+                CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(Player.RunState.CloneCard(card),PileType.Deck));
+                // if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
+                // {
+                //     CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(Player.RunState.CloneCard(card),PileType.Deck));
+                // }
+                // else
+                // {
+                //     RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new CloneAction()
+                //     {
+                //         Player =  Player,
+                //         ModelId =  card.Id,
+                //         PileType = card.Pile?.Type??PileType.None,
+                //         Index = card.Pile?.Cards.IndexOf(card)??-1
+                //     });
+                // }
             }
             return card != null;
         }
@@ -65,66 +56,66 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
         {
             
         }
-        private struct NetCloneAction :INetAction
-        {
-            public int Index;
-            public ModelId Id;
-            public PileType PileType;
-            public void Serialize(PacketWriter writer)
-            {
-                writer.WriteInt(Index);
-                writer.WriteModelEntry(Id);
-                writer.WriteEnum(PileType);
-            }
-
-            public void Deserialize(PacketReader reader)
-            {
-                Index = reader.ReadInt();
-                Id = reader.ReadModelIdAssumingType<CardModel>();
-                PileType = reader.ReadEnum<PileType>();
-            }
-
-            public GameAction ToGameAction(Player player)
-            {
-                return new CloneAction()
-                {
-                    Player = player,
-                    Index = Index,
-                    ModelId = Id,
-                    PileType = PileType
-                };
-            }
-        }
-        private class CloneAction:GameAction
-        {
-            public Player Player;
-            public int Index;
-            public ModelId ModelId;
-            public PileType PileType;
-            protected override async Task ExecuteAction()
-            {
-                CardModel card = PileType.GetPile(Player).Cards[Index];
-                if (card.Id==ModelId)
-                {
-                    CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(Player.RunState.CloneCard(card),PileType.Deck));
-                }
-                else
-                {
-                    throw new SerializationException("ModelId " + ModelId + " with "+Index+" is not matched");
-                }
-            }
-
-            public override INetAction ToNetAction()
-            {
-                return new NetCloneAction()
-                {
-                    Index = Index,
-                    Id = ModelId,
-                    PileType =  PileType
-                };
-            }
-            public override ulong OwnerId => Player.NetId;
-            public override GameActionType ActionType => GameActionType.Any;
-        }
+        // private struct NetCloneAction :INetAction
+        // {
+        //     public int Index;
+        //     public ModelId Id;
+        //     public PileType PileType;
+        //     public void Serialize(PacketWriter writer)
+        //     {
+        //         writer.WriteInt(Index);
+        //         writer.WriteModelEntry(Id);
+        //         writer.WriteEnum(PileType);
+        //     }
+        //
+        //     public void Deserialize(PacketReader reader)
+        //     {
+        //         Index = reader.ReadInt();
+        //         Id = reader.ReadModelIdAssumingType<CardModel>();
+        //         PileType = reader.ReadEnum<PileType>();
+        //     }
+        //
+        //     public GameAction ToGameAction(Player player)
+        //     {
+        //         return new CloneAction()
+        //         {
+        //             Player = player,
+        //             Index = Index,
+        //             ModelId = Id,
+        //             PileType = PileType
+        //         };
+        //     }
+        // }
+        // private class CloneAction:GameAction
+        // {
+        //     public Player Player;
+        //     public int Index;
+        //     public ModelId ModelId;
+        //     public PileType PileType;
+        //     protected override async Task ExecuteAction()
+        //     {
+        //         CardModel card = PileType.GetPile(Player).Cards[Index];
+        //         if (card.Id==ModelId)
+        //         {
+        //             CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(Player.RunState.CloneCard(card),PileType.Deck));
+        //         }
+        //         else
+        //         {
+        //             throw new SerializationException("ModelId " + ModelId + " with "+Index+" is not matched");
+        //         }
+        //     }
+        //
+        //     public override INetAction ToNetAction()
+        //     {
+        //         return new NetCloneAction()
+        //         {
+        //             Index = Index,
+        //             Id = ModelId,
+        //             PileType =  PileType
+        //         };
+        //     }
+        //     public override ulong OwnerId => Player.NetId;
+        //     public override GameActionType ActionType => GameActionType.Any;
+        // }
     }
 }
