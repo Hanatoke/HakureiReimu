@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class BulletMoneyBonusPackets : AbstractCard
     {
-        private static LocString _tip;
+        private LocString _tip;
         public LocString Tip => _tip ??= new LocString("cards", this.Id.Entry + ".tip");
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

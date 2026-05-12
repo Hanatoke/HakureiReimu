@@ -30,6 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         public bool InPersisting{ get; protected set; }
         public AbstractPersistCardSlot Slot=null;
         public static readonly Dictionary<ModelId, int> CounterActivates = new();
+        public static float FlashDelayScale = 1;
         
         public int ActivateThisTurn
         {
@@ -112,6 +113,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                     2 => 0.25f,
                     _ => 0
                 };
+                delay *= FlashDelayScale;
                 if (instant) delay = 0;
                 ActivateThisTurn++;
                 try

@@ -79,7 +79,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             if (s==null||t == null || container == null) return;
             float rotate = 360f / InnerCount;
             Vector2 sourcePosition = s.VfxSpawnPosition;
-            Vector2 targetPosition = t.VfxSpawnPosition;
+            Vector2 targetPosition = t.VfxSpawnPosition + FlyingVFXCmd.RandomOffset();
             List<(List<FlyingVFX>,FlyingVFX)> list = [];
             //内环
             for (int i = 0; i < Math.Min(count,InnerCount); i++)

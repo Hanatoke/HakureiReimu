@@ -205,6 +205,7 @@
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.sign":"宝具",
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.title":"阴阳飞鸟井",
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，给予随机[red]负面[/red]效果{YinYangAsukaIPower:diff()}次。",
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I.tip":"随机[red]负面[/red]效果:{Desc}",
   
   "HAKUREIREIMU-SEALING_FORMATION.sign":"梦符",
   "HAKUREIREIMU-SEALING_FORMATION.title":"封魔阵",

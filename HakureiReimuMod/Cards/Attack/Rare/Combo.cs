@@ -33,7 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             ) : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) {
         }
 
-        private static LocString _tipLoc;
+        private LocString _tipLoc;
         public LocString TipLoc => _tipLoc ??= new LocString("cards", this.Id.Entry + ".tip");
 
         public static CardModel LastAttack=>CombatManager.Instance.History.CardPlaysFinished.Reverse()

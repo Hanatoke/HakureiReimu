@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             ) : base(0, CardType.Skill, CardRarity.Rare, TargetType.None) {
         }
 
-        private static LocString _talk;
+        private LocString _talk;
         public LocString Talk => _talk ??= new LocString("cards", this.Id.Entry + ".talk");
         protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

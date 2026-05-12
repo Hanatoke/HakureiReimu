@@ -1,5 +1,8 @@
 ﻿{
   "HAKUREIREIMU.mod_title": "Hakurei Reimu",
+  
+  "HAKUREIREIMU-COUNTER_CARD_FLASH_DELAY_SCALE.title": "Counter Card Animation Duration Scale",
+  "HAKUREIREIMU-COUNTER_CARD_FLASH_DELAY_SCALE.hover.desc": "Adjusts the duration of the counter card flash animation.\nSetting it to 0 will completely skip the animation.",
 
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.title": "Maximum Following Danmaku Count",
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.hover.desc": "Determines how many following danmaku effects can exist on the field at the same time.\nIf you experience lag, try [gold]reducing[/gold] this value.",

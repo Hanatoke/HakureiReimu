@@ -6,23 +6,19 @@ using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface.Counter;
 using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
-using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
     public class CheatBoundary : AbstractPersistCard
     {
-        private static LocString _exTip;
+        private LocString _exTip;
         public LocString ExTip => _exTip ??= LocString.GetIfExists("cards", this.Id.Entry + ".tip");
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [

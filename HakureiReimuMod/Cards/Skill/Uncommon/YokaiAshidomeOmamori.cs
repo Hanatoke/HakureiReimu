@@ -19,7 +19,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             [new PowerVar<SealPower>(20)];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellFastA;
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-        public LocString Talk => LocString.GetIfExists("cards", Id.Entry + ".talk");
+        private LocString _talk ;
+        public LocString Talk => _talk??=LocString.GetIfExists("cards", Id.Entry + ".talk");
         public YokaiAshidomeOmamori(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }

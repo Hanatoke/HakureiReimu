@@ -1,6 +1,9 @@
 ﻿{
   "HAKUREIREIMU.mod_title": "博丽灵梦",
   
+  "HAKUREIREIMU-COUNTER_CARD_FLASH_DELAY_SCALE.title": "反制卡动画时长缩放",
+  "HAKUREIREIMU-COUNTER_CARD_FLASH_DELAY_SCALE.hover.desc": "调整反制卡的闪烁动画时长。\n设置为0将会完全跳过动画。",
+  
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.title": "最大弹幕环绕数量",
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.hover.desc": "决定场上同时能存在多少个弹幕环绕特效。\n如果感觉到卡顿,请尝试[gold]降低[/gold]这个数值。",
   

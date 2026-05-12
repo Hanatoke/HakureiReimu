@@ -205,7 +205,8 @@
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.sign":"Treasure",
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.title":"Yin-Yang Asuka’i",
   "HAKUREIREIMU-YIN_YANG_ASUKA_I.description":"Whenever [gold]Yin-Yang Orbs[/gold] deal unblocked damage, apply {YinYangAsukaIPower:diff()} random [red]Debuff[/red].",
-
+  "HAKUREIREIMU-YIN_YANG_ASUKA_I.tip":"Possible random [red]Debuffs[/red]:{Desc}",
+  
   "HAKUREIREIMU-SEALING_FORMATION.sign":"Dream Sign",
   "HAKUREIREIMU-SEALING_FORMATION.title":"Evil-Sealing Circle",
   "HAKUREIREIMU-SEALING_FORMATION.description":"At the start of your turn, apply {SealingFormationPower:diff()} [gold]Seal[/gold] to ALL enemies.",

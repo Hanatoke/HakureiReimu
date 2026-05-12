@@ -1,10 +1,17 @@
 ﻿using BaseLib.Config;
+using HakureiReimu.HakureiReimuMod.Cards;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
     [ConfigHoverTipsByDefault]
     public class ModConfig :SimpleModConfig
     {
+        [ConfigSlider(0,1,0.01,Format = "{0:P0}")]
+        public static float CounterCardFlashDelayScale
+        {
+            get=>AbstractPersistCard.FlashDelayScale;
+            set=>AbstractPersistCard.FlashDelayScale=value;
+        }
         [ConfigSlider(0,100)]
         public static int MaxFollowDanmakuCount
         {
