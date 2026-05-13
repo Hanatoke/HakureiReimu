@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://capjum2ymeo4n"]
+[gd_scene load_steps=52 format=3 uid="uid://capjum2ymeo4n"]
 
 [ext_resource type="Texture2D" uid="uid://bgo6ubkwqwulx" path="res://HakureiReimu/images/effects/danmaku/Light.png" id="1_15kvu"]
 [ext_resource type="Script" uid="uid://biujk4ayqjwyi" path="res://HakureiReimuMod/Node/VFX/NDanmaku.cs" id="1_xckx7"]
@@ -10,15 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://b6jqdu2rjxlss" path="res://HakureiReimu/images/effects/trail.png" id="4_yyde1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b6b6h"]
-blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_kxrvl"]
 _data = [Vector2(0, 0), 1.04147, 0.616773, 0, 0, Vector2(0.799007, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_ggb22"]
-offsets = PackedFloat32Array(0, 0.99726)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.7411765)
+offsets = PackedFloat32Array(0, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_22ony"]
 blend_mode = 1
@@ -27,6 +26,9 @@ blend_mode = 1
 _data = [Vector2(0, 0), 0.0, 2.70461, 0, 0, Vector2(0.401985, 0.739504), 1.04147, 1.04147, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yyde1"]
+blend_mode = 1
+
 [sub_resource type="Curve" id="Curve_vy4u8"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 point_count = 2
@@ -34,20 +36,23 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_15kvu"]
 curve = SubResource("Curve_vy4u8")
 
-[sub_resource type="Curve" id="Curve_0abrb"]
-_data = [Vector2(0, 0.54574335), 0.0, 6.6434093, 0, 0, Vector2(0.1107595, 1), -0.49977052, -0.49977052, 0, 0, Vector2(1, 0.050190568), -1.1957761, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_vn1xk"]
+_data = [Vector2(0, 0.75), 0.0, 6.6434093, 0, 0, Vector2(0.111, 1.5), -0.49977052, -0.49977052, 0, 0, Vector2(1, 0), -1.1957761, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_vy4u8"]
-curve = SubResource("Curve_0abrb")
+[sub_resource type="CurveTexture" id="CurveTexture_wo1s0"]
+curve = SubResource("Curve_vn1xk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15kvu"]
-resource_local_to_scene = true
+particle_flag_disable_z = true
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_vy4u8")
+scale_curve = SubResource("CurveTexture_wo1s0")
 color = Color(1, 1, 1, 0.2509804)
 alpha_curve = SubResource("CurveTexture_15kvu")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_meqpm"]
+blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_a5rg3"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 1, Vector2(1, 0.5), 0.0, 0.0, 1, 0]
@@ -98,7 +103,7 @@ curve = SubResource("Curve_bol1o")
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_261gk")
-color = Color(1, 1, 1, 0.2509804)
+color = Color(1, 1, 1, 0.1254902)
 alpha_curve = SubResource("CurveTexture_n211j")
 
 [sub_resource type="Curve" id="Curve_yyde1"]
@@ -139,6 +144,9 @@ scale_min = 0.049999997
 scale_max = 0.099999994
 scale_curve = SubResource("CurveXYZTexture_vn1xk")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mb7h3"]
+blend_mode = 1
+
 [sub_resource type="Curve" id="Curve_15kvu"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 point_count = 2
@@ -154,10 +162,10 @@ point_count = 3
 curve = SubResource("Curve_abrd5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vn1xk"]
-resource_local_to_scene = true
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_mv1k6")
+color = Color(1, 1, 1, 0.1882353)
 alpha_curve = SubResource("CurveTexture_ipenm")
 
 [sub_resource type="Curve" id="Curve_ipenm"]
@@ -217,6 +225,7 @@ alpha_curve = SubResource("CurveTexture_bol1o")
 script = ExtResource("1_xckx7")
 
 [node name="Visual" type="Node2D" parent="."]
+position = Vector2(5, -2)
 
 [node name="ColorAble" type="Node2D" parent="Visual"]
 scale = Vector2(2.5, 2.5)
@@ -231,6 +240,7 @@ gradient = SubResource("Gradient_ggb22")
 texture = ExtResource("2_meqpm")
 texture_mode = 2
 begin_cap_mode = 2
+round_precision = 16
 antialiased = true
 script = ExtResource("3_mb7h3")
 _maxSegments = null
@@ -244,26 +254,30 @@ texture = ExtResource("4_yyde1")
 texture_mode = 1
 joint_mode = 2
 begin_cap_mode = 2
+round_precision = 16
 antialiased = true
 script = ExtResource("3_mb7h3")
 _maxSegments = null
 
 [node name="Core" type="GPUParticles2D" parent="Visual/ColorAble"]
+material = SubResource("CanvasItemMaterial_yyde1")
 amount = 20
-texture = ExtResource("2_ipenm")
-lifetime = 2.0
-speed_scale = 8.0
+texture = ExtResource("3_xckx7")
+lifetime = 0.25
+fixed_fps = 60
 trail_lifetime = 5.0
 trail_sections = 16
 process_material = SubResource("ParticleProcessMaterial_15kvu")
 
 [node name="Light" type="GPUParticles2D" parent="Visual/ColorAble"]
+material = SubResource("CanvasItemMaterial_meqpm")
 amount = 16
 texture = ExtResource("1_15kvu")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_yyde1")
 
 [node name="wave" type="GPUParticles2D" parent="Visual/ColorAble"]
+material = SubResource("CanvasItemMaterial_meqpm")
 texture = ExtResource("2_ipenm")
 lifetime = 4.0
 preprocess = 1.0
@@ -283,17 +297,21 @@ process_material = SubResource("ParticleProcessMaterial_abrd5")
 scale = Vector2(2, 2)
 
 [node name="Core" type="GPUParticles2D" parent="Visual/Fixed"]
+material = SubResource("CanvasItemMaterial_mb7h3")
 amount = 20
 texture = ExtResource("3_xckx7")
-speed_scale = 8.0
+lifetime = 0.13
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_vn1xk")
 
 [node name="Light" type="GPUParticles2D" parent="Visual/Fixed"]
+material = SubResource("CanvasItemMaterial_meqpm")
 texture = ExtResource("1_15kvu")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_u2sqg")
 
 [node name="wave" type="GPUParticles2D" parent="Visual/Fixed"]
+material = SubResource("CanvasItemMaterial_meqpm")
 texture = ExtResource("2_ipenm")
 lifetime = 4.0
 preprocess = 1.0

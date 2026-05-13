@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
 
-uniform float amplitude : hint_range(0.01, 1.0)= 0.03;
+uniform float amplitude : hint_range(0, 1.0)= 0.03;
 uniform float frequency : hint_range(1, 20.0)= 10.0;
 uniform float speed : hint_range(0, 10.0)= 5.0;
 uniform vec2 direction = vec2(1.0, 0.0);

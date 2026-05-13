@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -17,13 +18,17 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 		public GpuParticles2D WhiteTrails;
 		public Trail TrailOuter;
 		public Trail TrailInner;
+		protected bool IsDuplicated;
 
 		public static NDanmaku Create(float scale=1f,Color? color=null,int? trailLength=null,bool glow=true)
 		{
 			NDanmaku d = PreloadManager.Cache.GetScene(Path).Instantiate<NDanmaku>();
 			color ??= Color.FromHsv((float)GD.RandRange(0, 1f), 1, 1);
+			if (Math.Abs(scale - 1) > 0.001f)
+			{
+				d.SetScale(scale);
+			}
 			d.SetColor(color.Value);
-			d.Scale=Vector2.One * scale;
 			d.SetTrailLength(trailLength??30);
 			if (!glow)d.SetGlow(false);
 			return d;
@@ -40,16 +45,6 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 			TrailOuter = Trails.GetNode<Trail>("TrailOuter");
 			TrailInner = Trails.GetNode<Trail>("TrailInner");
 		}
-
-		public override void _Process(double delta)
-		{
-			ParticleProcessMaterial material = ColorTrails.ProcessMaterial as ParticleProcessMaterial;
-			material.Scale=GlobalScale;
-			material = WhiteTrails.ProcessMaterial as ParticleProcessMaterial;
-			material.Scale=GlobalScale;
-		}
-
-
 		public void SetColor(Color color)
 		{
 			if (Visual==null)
@@ -57,6 +52,25 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 				_Ready();
 			}
 			ColorAble.Modulate = color;
+		}
+
+		public void SetScale(float scale)
+		{
+			if (ColorAble==null||Fixed==null)
+			{
+				_Ready();
+			}
+			this.Scale = Vector2.One * scale;
+			GpuParticles2D c = ColorAble.GetNode<GpuParticles2D>("Core");
+			GpuParticles2D f = Fixed.GetNode<GpuParticles2D>("Core");
+			if (!IsDuplicated)
+			{
+				IsDuplicated=true;
+				c.ProcessMaterial = (ParticleProcessMaterial)c.ProcessMaterial.Duplicate();
+				f.ProcessMaterial = (ParticleProcessMaterial)f.ProcessMaterial.Duplicate();
+			}
+			((ParticleProcessMaterial)c.ProcessMaterial).Scale=this.Scale;
+			((ParticleProcessMaterial)f.ProcessMaterial).Scale=this.Scale;
 		}
 
 		public void SetTrailLength(int length)

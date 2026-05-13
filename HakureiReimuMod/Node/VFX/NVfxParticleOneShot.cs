@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
             StartVfx(this);
             this.GetTree().CreateTimer(this.Lifetime).Connect(SceneTreeTimer.SignalName.Timeout, Callable.From(this.AfterExpired));
         }
-        private void AfterExpired()
+        protected virtual void AfterExpired()
         {
             if (!IsInstanceValid(this))
                 return;

@@ -1,17 +1,12 @@
 ﻿using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Core;
-using HakureiReimu.HakureiReimuMod.Interface.Counter;
-using HakureiReimu.HakureiReimuMod.Interface.Counter.Hook;
-using HakureiReimu.HakureiReimuMod.PersistCard;
-using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
-using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
-using MegaCrit.Sts2.Core.Combat;
+using Godot;
+using HakureiReimu.HakureiReimuMod.Command;
+using HakureiReimu.HakureiReimuMod.Node.VFX;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
@@ -26,6 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         {
             if (Owner.IsPlayer&&Owner.Player==player)
             {
+                FlyingVFXCmd.AddVFXOnCreature(NNova.Create(3,Colors.BlueViolet),Owner);
                 Flash();
                 foreach (Creature t in CombatState.HittableEnemies)
                 {

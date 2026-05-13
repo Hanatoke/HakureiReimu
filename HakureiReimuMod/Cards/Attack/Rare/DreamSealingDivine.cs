@@ -57,6 +57,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                         new SteeringMover(sourcePos,
                             targetPos+FlyingVFXCmd.RandomOffset(4),
                             v,0,500));
+                    NDanmaku danmaku = NDanmaku.Create(color:c,trailLength:50);
                     vfx.Duration = 3;
                     vfx.UpdateMethod = (time, _) =>
                     {
@@ -67,14 +68,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                             mover.Acceleration = 2000+index*100;
                             mover.MaxSpeed += mover.Acceleration*2;
                         }
-                        vfx.Scale = Mathf.Lerp(2, 6, time) * Vector2.One;
+                        danmaku.SetScale(Mathf.Lerp(2, 6, time));
                     };
                     vfx.OnHit = () =>
                     {
                         NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                         FlyingVFXCmd.AddVFXOnTarget(NDanmakuImpact.Create(4,c),vfx.GlobalPosition);
                     };
-                    vfx.AddChildSafely(NDanmaku.Create(color:c,trailLength:50));
+                    vfx.AddChildSafely(danmaku);
                     NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
                     tasks.Add(vfx.HitTask);
                     await Cmd.Wait(0.1f);
