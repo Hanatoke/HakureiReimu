@@ -48,7 +48,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         }
         public override bool IsImmediate => true;
         public override CounterType ActivateType => CounterType.Attack;
-        protected override NDanmaku CreateInstance => NDanmaku.Create((float)GD.RandRange(0.4, 0.5), glow: false);
+        protected override NDanmaku CreateEffectInstance => NDanmaku.Create((float)GD.RandRange(0.4, 0.5), glow: false);
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             if (target is not { IsHittable: true }) return;

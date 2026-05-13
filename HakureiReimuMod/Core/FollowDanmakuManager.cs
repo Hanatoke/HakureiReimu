@@ -28,20 +28,21 @@ namespace HakureiReimu.HakureiReimuMod.Core
             return list;
         }
 
-        public static void AddFollow(this CardModel card, Node2D node, float? a = null, float? b = null,
+        public static FollowVFX AddFollow(this CardModel card, Node2D node, float? a = null, float? b = null,
             float? revolutionSpeed = null, float? orbitalRotationSpeed = null, bool ignoreMaxLimit = false)
         {
-            if (NCombatRoom.Instance==null||CombatManager.Instance.IsOverOrEnding)return;
-            if (!ignoreMaxLimit&&!CanAddFollow)return;
+            if (NCombatRoom.Instance==null||CombatManager.Instance.IsOverOrEnding)return null;
+            if (!ignoreMaxLimit&&!CanAddFollow)return null;
             NCombatRoom room = NCombatRoom.Instance;
             NCreature owner = room.GetCreatureNode(card.Owner.Creature);
-            if (!GodotObject.IsInstanceValid(owner))return;
+            if (!GodotObject.IsInstanceValid(owner))return null;
             FollowVFX vfx = FollowVFX.Create(() => GodotObject.IsInstanceValid(owner) ? owner.VfxSpawnPosition : null,
                 a, b, revolutionSpeed, orbitalRotationSpeed);
             vfx.AddChildSafely(node);
             if (!LocalContext.IsMe(card.Owner)) vfx.Modulate = new Color(Colors.White, 0.5f);
             room.BackCombatVfxContainer.AddChildSafely(vfx);
             GetFollows(card).Add(vfx);
+            return vfx;
         }
 
         public static bool TryGetFollow<T>(this CardModel card, out T node) where T : Node2D

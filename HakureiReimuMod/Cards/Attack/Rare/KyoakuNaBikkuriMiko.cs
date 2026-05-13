@@ -48,7 +48,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             }
             return Task.CompletedTask;
         }
-        protected override NDanmaku CreateInstance => NDanmaku.Create((float)GD.RandRange(0.6, 0.8), glow: false);
+        protected override NDanmaku CreateEffectInstance => NDanmaku.Create((float)GD.RandRange(0.6, 0.8), glow: false);
 
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {

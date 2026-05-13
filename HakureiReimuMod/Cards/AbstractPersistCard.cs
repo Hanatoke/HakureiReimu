@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         // public Vector2 PersistIconOffset = new Vector2(115, -120);
         public Vector2 PersistIconOffset = new Vector2(-150, -210);
         public CardModel Model => this;
-        public AbstractPersistCardSlot InstanceSlot =>Slot=new CounterCardSlot(this,Duration);
+        public virtual AbstractPersistCardSlot InstanceSlot =>Slot=new CounterCardSlot(this,Duration);
         public abstract int Duration { get; }
         public virtual PileType TargetPersistPileType => CounterCardTable.PileType;
         // public bool InPersisting => TargetPersistPileType.GetPile(Owner).Cards.IndexOf(this) >= 0;

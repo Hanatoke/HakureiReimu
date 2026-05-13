@@ -7,13 +7,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
     public partial class FollowVFX :Node2D
     {
         public Func<Vector2?> Target;
+        public float SelfRotationSpeed;
         public float Revolution=GD.RandRange(0,360);//环绕
         public float RevolutionSpeed;
         public float OrbitalRotation=GD.RandRange(0,360);
         public float OrbitalRotationSpeed;
         public float A;
         public float B;
-        protected bool AtStart = true;
+        public bool AtStart = true;
 
         public static FollowVFX Create(Func<Vector2?> target,float? a=null, float? b=null,float? revolutionSpeed=null,float? orbitalRotationSpeed=null)
         {
@@ -58,6 +59,8 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
                 this.QueueFreeSafely();
                 return;
             }
+
+            RotationDegrees = (float)(RotationDegrees + delta * SelfRotationSpeed + 360) % 360;
             Revolution = (float)((Revolution + RevolutionSpeed * delta + 360) % 360);
             OrbitalRotation=(float)((OrbitalRotation + OrbitalRotationSpeed * delta + 360) % 360);
             if (AtStart)

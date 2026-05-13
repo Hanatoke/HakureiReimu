@@ -10,9 +10,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         bool autoAdd = true) :AbstractCounterCard(cost, type, rarity, target,showInCardLibrary, autoAdd)
         where T : Node2D
     {
-        protected abstract T CreateInstance { get; }
+        protected abstract T CreateEffectInstance { get; }
         
-        public void CreateEffect(int amount)
+        public virtual void CreateEffect(int amount)
         {
             if (!FollowDanmakuManager.CanAddFollow)return;
             for (var i = 0; i < amount; i++)
@@ -22,8 +22,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         }
         public virtual void CreateEffect(bool ignoreMaxLimit=false)
         {
-            this.AddFollow(CreateInstance,ignoreMaxLimit:ignoreMaxLimit);
+            this.AddFollow(CreateEffectInstance,ignoreMaxLimit:ignoreMaxLimit);
         }
+
+        public virtual void ClearEffects() => this.ClearFollows();
         public virtual T UseEffect()
         {
             if (this.TryGetFollow(out T danmaku))
@@ -51,7 +53,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         {
             if (slot.Card == this)
             {
-                this.ClearFollows();
+                this.ClearEffects();
             }
             return base.OnStopPersistCard(slot);
         }
