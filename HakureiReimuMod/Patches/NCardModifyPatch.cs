@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Interface;
@@ -34,7 +35,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             [HarmonyPrefix]
             public static bool Prefix(Godot.Node node)
             {
-                if (node is NCard { Model: INCardModify { AllowNodePool: false } })
+                if (GodotObject.IsInstanceValid(node) && node is NCard { Model: INCardModify { AllowNodePool: false } })
                 {
                     node.QueueFreeSafelyNoPool();
                     return false;
@@ -45,6 +46,8 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         [HarmonyPatch(typeof(NCard),nameof(NCard.Model), MethodType.Setter)]
         public static class NCardModelSetPatch
         {
+            private static readonly MethodInfo UnsubscribeFromModel = AccessTools.Method(typeof(NCard), "UnsubscribeFromModel");
+            private static readonly FieldInfo CardOverlay = AccessTools.Field(typeof(NCard), "_cardOverlay");
             [HarmonyPrefix]
             public static bool Prefix(NCard __instance,ref CardModel ____model,CardModel value)
             {
@@ -53,19 +56,22 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 {
                     try
                     {
-                        AccessTools.Method(typeof(NCard), "UnsubscribeFromModel").Invoke(__instance, [____model]);
-                        NCard nc=NodePool.Get<NCard>();
-                        if (nc.Body==null)
+                        UnsubscribeFromModel.Invoke(__instance, [____model]);
+                        NCard template=NodePool.Get<NCard>();
+                        if (template.Body==null)
                         {
-                            nc._Ready();
+                            template._Ready();
                         }
-                        Control control = nc.Body;
+                        Control control = template.Body;
                         Vector2 t=__instance.Body.Position;
+                        
                         __instance.Body.Free();
+                        CardOverlay.SetValue(__instance,null);
+                        
                         control.ReparentSafely(__instance);
                         control.Position = t;
-                        ____model = nc.Model;
-                        nc.QueueFreeSafelyNoPool();
+                        ____model = template.Model;
+                        template.QueueFreeSafelyNoPool();
                         SetUniqueNameToOwner(control, __instance);
                         
                         __instance._Ready();
