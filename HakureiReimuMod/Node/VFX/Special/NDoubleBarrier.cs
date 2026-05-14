@@ -13,7 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Special
         {
             NDoubleBarrier d=PreloadManager.Cache.GetScene(Path).Instantiate<NDoubleBarrier>();
             d.Scale = scale * Vector2.One;
-            (d.Display??=d.GetNode<Node2D>("Display")).Scale=Vector2.One.Rotated((dir ?? Vector2.Right).AngleTo(Vector2.Right));
+            (d.Display??=d.GetNode<Node2D>("Display")).Rotation=(dir ?? Vector2.Right).Angle();
             return d;
         }
     }
