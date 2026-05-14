@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6porlg1bfdsh"]
+
+[ext_resource type="Texture2D" uid="uid://7lbdse1ir8oj" path="res://HakureiReimu/images/effects/barrier/expand.png" id="1_b0af3"]
+[ext_resource type="Script" uid="uid://cbrqe3fyhnq0s" path="res://HakureiReimuMod/Node/VFX/Special/NDoubleBarrier.cs" id="1_te18t"]
+[ext_resource type="Shader" uid="uid://cvfcigttv3b1q" path="res://HakureiReimu/shader/TextureDistortion.gdshader" id="3_8rfe4"]
+
+[sub_resource type="Curve" id="Curve_lxodw"]
+_data = [Vector2(0, 0), 0.0, 2.8265765, 0, 0, Vector2(0.4183267, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.6514325, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b0af3"]
+curve = SubResource("Curve_lxodw")
+
+[sub_resource type="Curve" id="Curve_8rfe4"]
+_data = [Vector2(0, 0), 0.0, 5.396192, 0, 0, Vector2(0.5458168, 0.9890203), 0.0, 0.0, 0, 0, Vector2(1, 0.7913852), -1.5245475, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_te18t"]
+curve = SubResource("Curve_8rfe4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ddi4"]
+particle_flag_disable_z = true
+angular_velocity_min = -180.00002
+angular_velocity_max = -180.00002
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_te18t")
+alpha_curve = SubResource("CurveTexture_b0af3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mehlw"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ddi4"]
+resource_local_to_scene = true
+shader = ExtResource("3_8rfe4")
+shader_parameter/screen_tex = SubResource("ViewportTexture_mehlw")
+shader_parameter/twist = Vector2(1, 0)
+
+[node name="DoubleBarrier" type="Node2D"]
+script = ExtResource("1_te18t")
+Lifetime = 1.5
+
+[node name="Viewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="Visual" type="Node2D" parent="Viewport"]
+position = Vector2(256, 256)
+rotation = 1.3089969
+skew = -1.0471976
+
+[node name="Back" type="Node2D" parent="Viewport/Visual"]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Out" type="GPUParticles2D" parent="Viewport/Visual/Back"]
+modulate = Color(1, 0.5803922, 0.45490196, 1)
+scale = Vector2(1.1, 1.1)
+emitting = false
+amount = 1
+texture = ExtResource("1_b0af3")
+lifetime = 1.25
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ddi4")
+
+[node name="Inner" type="GPUParticles2D" parent="Viewport/Visual/Back"]
+modulate = Color(1, 0.9490196, 0.68235296, 1)
+scale = Vector2(0.99999994, 1)
+emitting = false
+amount = 1
+texture = ExtResource("1_b0af3")
+lifetime = 1.25
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ddi4")
+
+[node name="Front" type="Node2D" parent="Viewport/Visual"]
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Out" type="GPUParticles2D" parent="Viewport/Visual/Front"]
+modulate = Color(0.32156864, 0.6, 0.8666667, 1)
+scale = Vector2(1.1, 1.1)
+emitting = false
+amount = 1
+texture = ExtResource("1_b0af3")
+lifetime = 1.25
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ddi4")
+
+[node name="Inner" type="GPUParticles2D" parent="Viewport/Visual/Front"]
+modulate = Color(0.6509804, 0.91764706, 0.92156863, 1)
+scale = Vector2(0.99999994, 1)
+emitting = false
+amount = 1
+texture = ExtResource("1_b0af3")
+lifetime = 1.25
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ddi4")
+
+[node name="Display" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8ddi4")
+texture = SubResource("ViewportTexture_mehlw")

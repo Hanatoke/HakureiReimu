@@ -27,6 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public BulletMoneyBonusPackets(
             ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly) {
         }
+        protected static readonly FieldInfo PowerField = AccessTools.Field(typeof(Creature),"_powers");
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             if (cardPlay.Target is not {IsPlayer:true})return;
@@ -53,7 +54,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             power.ApplyInternal(Owner.Creature,1,true);
             if (index>=0)
             {
-                if (AccessTools.Field(typeof(Creature),"_powers").GetValue(Owner.Creature) is List<PowerModel> powers)
+                if (PowerField.GetValue(Owner.Creature) is List<PowerModel> powers)
                 {
                     powers.Remove(power);
                     index = Math.Min(index, powers.Count);
