@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface;
@@ -44,7 +45,8 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 {
                     if (result.UnblockedDamage>0)
                     {
-                        await CreatureCmd.GainBlock(Owner, result.UnblockedDamage, ValueProp.Unpowered, null, true);
+                        decimal value = Math.Floor((decimal)result.UnblockedDamage/2);
+                        await CreatureCmd.GainBlock(Owner, value, ValueProp.Unpowered, null, true);
                     }
                 }
             }

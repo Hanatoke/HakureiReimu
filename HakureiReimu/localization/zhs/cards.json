@@ -241,7 +241,7 @@
   "HAKUREIREIMU-COMBO.tip":"额外打出的牌不包括此牌本身，但包括队友打出的牌。",
   
   "HAKUREIREIMU-JUMP_THE_GUN.title":"偷跑",
-  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]战斗开始自动打出[/gold]。\n造成{Damage:diff()}点伤害。\n获得{StrengthPower:diff()}[gold]力量[/gold]。",
+  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]战斗开始自动打出[/gold]。\n造成{Damage:diff()}点伤害。{IfUpgraded:show:\n获得{StrengthPower:diff()}[gold]力量[/gold]。|}",
 
   "HAKUREIREIMU-WILD_EXORCISM_DANCE.sign":"梦符",
   "HAKUREIREIMU-WILD_EXORCISM_DANCE.title":"退魔符乱舞",
@@ -266,7 +266,7 @@
 
   "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"神签",
   "HAKUREIREIMU-CHEAT_BOUNDARY.title":"反则结界",
-  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"本回合每打出一张牌，[gold]免费[/gold]发动相邻的[gold]反制[/gold]牌。",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"本回合每打出一张牌，{IfUpgraded:show:[gold]免费[/gold]|}发动相邻的[gold]反制[/gold]牌。",
   "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"默认向打出的卡牌的目标发动反制。",
 
   "HAKUREIREIMU-DREAM_INNATE.title":"梦想天生",
@@ -340,7 +340,7 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"山雨玉",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得等量[gold]格挡[/gold]。",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得一半[gold]格挡[/gold]。",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.title":"风雷玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.description":"[gold]阴阳玉[/gold]同时对[gold]所有[/gold]敌人造成伤害。",

@@ -241,7 +241,7 @@
   "HAKUREIREIMU-COMBO.tip":"The extra card played does not include this card itself, but can include cards played by allies.",
 
   "HAKUREIREIMU-JUMP_THE_GUN.title":"Jump The Gun",
-  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]Play automatically at the start of combat[/gold].\nDeal {Damage:diff()} damage.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "HAKUREIREIMU-JUMP_THE_GUN.description":"[gold]Play automatically at the start of combat[/gold].\nDeal {Damage:diff()} damage.{IfUpgraded:show:\nGain {StrengthPower:diff()} [gold]Strength[/gold].|}",
   
   "HAKUREIREIMU-WILD_EXORCISM_DANCE.sign":"Dream Sign",
   "HAKUREIREIMU-WILD_EXORCISM_DANCE.title":"Wild Exorcism Dance",
@@ -266,7 +266,7 @@
 
   "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"Mikuji",
   "HAKUREIREIMU-CHEAT_BOUNDARY.title":"Rule Violation Barrier",
-  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"Whenever you play a card this turn, [gold]Free[/gold] activate adjacent [gold]Counter[/gold] effects.",
+  "HAKUREIREIMU-CHEAT_BOUNDARY.description":"Whenever you play a card this turn, {IfUpgraded:show:[gold]Free[/gold] |}activate adjacent [gold]Counter[/gold] effects.",
   "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"Activate Counter effects towards the trigger card's target.",
 
   "HAKUREIREIMU-DREAM_INNATE.title":"Innate Dream",
@@ -343,7 +343,7 @@
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"Storm Mountain Orb",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to unblocked damage dealt.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to Half unblocked damage dealt.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.title":"Wind Thunder Orb",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_WIND_THUNDER.description":"[gold]Yin-Yang Orbs[/gold] deal damage to [gold]ALL[/gold] enemies.",

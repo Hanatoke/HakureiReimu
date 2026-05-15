@@ -15,7 +15,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [
                 new DamageVar(10, ValueProp.Move),
-                new PowerVar<StrengthPower>(1)
+                new PowerVar<StrengthPower>(0)
             ];
 
         protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -33,7 +33,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+            if (IsUpgraded)
+            {
+                await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+            }
         }
 
         protected override void OnUpgrade() {

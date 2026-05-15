@@ -33,9 +33,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         {
             return Task.CompletedTask;
         }
-        protected override void OnUpgrade() {
-            EnergyCost.UpgradeBy(-1);
-        }
+        // protected override void OnUpgrade() {
+        //     EnergyCost.UpgradeBy(-1);
+        // }
         public override int Duration => 0;
         public override AbstractPersistCardSlot InstanceSlot => Slot = new NoCountCardSlot(this);
 
@@ -63,6 +63,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 CardModel left = index - 1 >= 0 ? table.Cards[index - 1] : null;
                 CardModel right = index + 1 < table.Cards.Count ? table.Cards[index + 1] : null;
                 List<ICounter> countersForCard;
+                bool cost = !this.IsUpgraded;
                 if (left!=null)
                 {
                     countersForCard = left.GetCountersForCard().ToList();
@@ -71,7 +72,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                         await Flash(true);
                     }
                     await CounterCmd.InvokeCounter(CombatState, countersForCard, target,
-                        false);
+                        cost);
                 }
                 if (right!=null)
                 {
@@ -81,7 +82,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                         await Flash(true);
                     }
                     await CounterCmd.InvokeCounter(CombatState, countersForCard, target,
-                        false);
+                        cost);
                 }
             }
         }

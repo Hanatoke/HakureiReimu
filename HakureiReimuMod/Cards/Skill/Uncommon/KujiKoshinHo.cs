@@ -11,6 +11,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class KujiKoshinHo : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(9,ValueProp.Move),new PowerVar<KujiKoshinHoPower>(1)];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
         public KujiKoshinHo(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
         }
@@ -24,6 +27,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
                 this);
         }
 
-        protected override void OnUpgrade() => this.DynamicVars.Block.UpgradeValueBy(3);
+        protected override void OnUpgrade()
+        {
+            // this.DynamicVars.Block.UpgradeValueBy(3);
+            RemoveKeyword(CardKeyword.Exhaust);
+        }
     }
 }

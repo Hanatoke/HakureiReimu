@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
     public class Dodge : AbstractCard {
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7,ValueProp.Move)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6,ValueProp.Move)];
         public Dodge(
             ) : base(0, CardType.Skill, CardRarity.Common, TargetType.Self) {
         }

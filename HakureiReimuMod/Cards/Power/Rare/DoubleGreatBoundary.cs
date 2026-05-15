@@ -12,8 +12,11 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         protected override IEnumerable<DynamicVar> CanonicalVars => [
             new PowerVar<DoubleGreatBoundaryPower>(1)
         ];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            HoverTipFactory.FromKeyword(Counter)
+            HoverTipFactory.FromKeyword(Counter),
         ];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
         public DoubleGreatBoundary(
@@ -27,7 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
 
         protected override void OnUpgrade() 
         {
-            EnergyCost.UpgradeBy(-1);
+            RemoveKeyword(CardKeyword.Ethereal);
         }
     }
 }

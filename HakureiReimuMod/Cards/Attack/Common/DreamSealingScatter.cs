@@ -20,7 +20,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
     public class DreamSealingScatter : AbstractCard {
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(14,ValueProp.Move),new PowerVar<VulnerablePower>(2)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(13,ValueProp.Move),new PowerVar<VulnerablePower>(2)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotC;
         public DreamSealingScatter(

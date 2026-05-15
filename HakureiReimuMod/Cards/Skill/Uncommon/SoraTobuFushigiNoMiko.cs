@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
     public class SoraTobuFushigiNoMiko : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<DexterityPower>(4)];
+            [new PowerVar<DexterityPower>(3)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<DexterityPower>()];
 
         public SoraTobuFushigiNoMiko(

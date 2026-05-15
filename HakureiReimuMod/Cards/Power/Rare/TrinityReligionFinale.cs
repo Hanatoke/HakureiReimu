@@ -20,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
             HoverTipFactory.FromPower<InhibitPower>(),
         ];
         public TrinityReligionFinale(
-            ) : base(1, CardType.Power, CardRarity.Rare, TargetType.Self) {
+            ) : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

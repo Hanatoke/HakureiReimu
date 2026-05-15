@@ -26,7 +26,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         public override int Duration => DynamicVars[CounterVar.DefaultName].IntValue;
 
         protected override void OnUpgrade() {
-            DynamicVars[CounterVar.DefaultName].UpgradeValueBy(1);
+            // DynamicVars[CounterVar.DefaultName].UpgradeValueBy(1);
+            DynamicVars.Block.UpgradeValueBy(3);
         }
         public override bool IsImmediate => true;
         public override CounterType ActivateType => CounterType.Attack;

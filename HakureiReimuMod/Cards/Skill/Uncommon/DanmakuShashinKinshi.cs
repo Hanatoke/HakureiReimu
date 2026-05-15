@@ -44,7 +44,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             }
         }
         protected override void OnUpgrade() {
-            DynamicVars.Block.UpgradeValueBy(2);
+            DynamicVars.Block.UpgradeValueBy(1);
             DynamicVars[InhibitPower.ID].UpgradeValueBy(1);
         }
     }
