@@ -18,10 +18,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 new PowerVar<StrengthPower>(0)
             ];
 
-        protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        protected override IEnumerable<IHoverTip> ExtraHoverTips =>IsUpgraded?
         [
             HoverTipFactory.FromPower<StrengthPower>()
-        ];
+        ]:[];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.AttackDashLight;

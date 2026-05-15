@@ -21,11 +21,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         private LocString _exTip;
         public LocString ExTip => _exTip ??= LocString.GetIfExists("cards", this.Id.Entry + ".tip");
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            HoverTipFactory.FromKeyword(Counter),
-            HoverTipFactory.FromKeyword(FreeCounter),
-            new HoverTip(TitleLocString,ExTip)
-        ];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips =>IsUpgraded? 
+            [
+                HoverTipFactory.FromKeyword(Counter),
+                HoverTipFactory.FromKeyword(FreeCounter),
+                new HoverTip(TitleLocString,ExTip)
+            ]:
+            [
+                HoverTipFactory.FromKeyword(Counter),
+                new HoverTip(TitleLocString,ExTip)
+            ];
         public CheatBoundary(
             ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) {
         }
