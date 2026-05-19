@@ -19,7 +19,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             List<Task> waits = [];
             for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
             {
-                waits.Add(FlyingVFXCmd.DanmakuCurveToTarget(Owner.Creature, cardPlay.Target, 3));
+                // waits.Add(FlyingVFXCmd.DanmakuCurveToTarget(Owner.Creature, cardPlay.Target, 3,2,speedScale:1));
+                waits.Add(FlyingVFXCmd.DanmakuCurve3DToTarget(Owner.Creature, cardPlay.Target,3));
                 await Cmd.Wait(0.25f);
             }
             if (waits.Count>0)

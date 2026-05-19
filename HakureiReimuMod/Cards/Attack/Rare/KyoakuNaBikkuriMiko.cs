@@ -60,7 +60,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             {
                 (Vector2,float,Color) set=(danmaku.GlobalPosition,danmaku.Scale.X,danmaku.ColorAble.Modulate);
                 danmaku.QueueFreeSafely();
-                FlyingVFXCmd.DanmakuCurveToTarget(set.Item1, target,count, scale:set.Item2,1.5f, color: set.Item3);
+                _ = FlyingVFXCmd.DanmakuCurveToTarget(set.Item1, target,count, scale:set.Item2,1.5f, color: set.Item3);
                 if (!instant)
                 {
                     await Cmd.Wait(ActivateThisTurn switch

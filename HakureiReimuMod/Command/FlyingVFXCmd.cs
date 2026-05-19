@@ -54,19 +54,12 @@ namespace HakureiReimu.HakureiReimuMod.Command
         {
             if (NCombatRoom.Instance==null)return;
             color ??= Color.FromHsv(GD.Randf(), 1, 1);
-            Vector3 v = new Vector3(
-                (float)GD.RandRange(0, 1),
-                (float)GD.RandRange(-0.5, 1),
-                (float)GD.RandRange(-0.5, 0.5)
-            ).Normalized() * 1000 * speedScale;
-            if (source.X < target.X)
-            {
-                v.X *= -1;
-            }
+            Vector2 v = (source - target).Normalized().Rotated(Mathf.DegToRad((float)GD.RandRange(-120f, 120f))) *
+                        1000 * speedScale;
             FlyingVFX vfx = FlyingVFX.Create(
-                new Steering3DMover(source,
+                new SteeringMover(source,
                     target + RandomOffset(scale),
-                    v, turnSpeed: 10 * speedScale, acceleration: 2000 * speedScale));
+                    v,  7.5f * speedScale,  2000 * speedScale));
             vfx.Duration = 3 / speedScale;
             vfx.OnHit = () =>
             {
@@ -74,6 +67,71 @@ namespace HakureiReimu.HakureiReimuMod.Command
                 AddVFXOnTarget(NDanmakuImpact.Create(scale, color), vfx.GlobalPosition);
             };
             vfx.AddChildSafely(NDanmaku.Create(scale, color,100));
+            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+            await vfx.HitTask;
+        }
+        //---------------------------------------------------------------------------------------------
+        public static async Task DanmakuCurve3DToTarget(Creature source, Creature target, int num = 1, float scale = 1,
+            float speedScale = 1, Color? color = null)
+        {
+            NCreature s = NCombatRoom.Instance?.GetCreatureNode(source);
+            NCreature t = NCombatRoom.Instance?.GetCreatureNode(target);
+            if (s != null && t != null)
+            {
+                await DanmakuCurve3DToTarget(s.VfxSpawnPosition, t.VfxSpawnPosition, num, scale, speedScale,color);
+            }
+        }
+        public static async Task DanmakuCurve3DToTarget(Vector2 source, Creature target, int num = 1, float scale = 1,
+            float speedScale = 1, Color? color = null)
+        {
+            NCreature t = NCombatRoom.Instance?.GetCreatureNode(target);
+            if ( t != null)
+            {
+                await DanmakuCurve3DToTarget(source, t.VfxSpawnPosition, num, scale, speedScale,color);
+            }
+        }
+        public static async Task DanmakuCurve3DToTarget(Vector2 source, Vector2 target, int num = 1, float scale = 1,
+            float speedScale = 1, Color? color = null)
+        {
+            if (NCombatRoom.Instance==null)return;
+            List<Task> tasks = new();
+            for (var i = 0; i < num; i++)
+            {
+                tasks.Add(DanmakuCurve3DToTarget(source, target, scale, speedScale, color));
+            }
+            if (tasks.Count>0)
+            {
+                await Task.WhenAny(tasks);
+            }
+        }
+        public static async Task DanmakuCurve3DToTarget(Vector2 source, Vector2 target, float scale = 1,
+            float speedScale = 1, Color? color = null)
+        {
+            if (NCombatRoom.Instance==null)return;
+            color ??= Color.FromHsv(GD.Randf(), 1, 1);
+            float sign = GD.RandRange(0, 1) > 0 ? 1 : -1;
+            Vector2 dir = (source - target).Normalized();
+            Vector3 v = new Vector3(dir.X, dir.Y, 0)
+                .Rotated(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()).Normalized(), (float)GD.RandRange(60, 120f)*sign)
+                .Normalized() * 1000 * speedScale;
+            FlyingVFX vfx = FlyingVFX.Create(
+                new Steering3DMover(source,
+                    target + RandomOffset(scale),
+                    v,  7.5f * speedScale,  2000 * speedScale));
+            NDanmaku danmaku = NDanmaku.Create(scale, color,100);
+            vfx.Duration = 3 / speedScale;
+            vfx.UpdateMethod = (t, _) =>
+            {
+                danmaku.SetScale(vfx.GlobalScale.X);
+                danmaku.Scale = Vector2.One;
+            };
+            vfx.OnHit = () =>
+            {
+                NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
+                AddVFXOnTarget(NDanmakuImpact.Create(scale, color), vfx.GlobalPosition);
+            };
+            
+            vfx.AddChildSafely(danmaku);
             NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             await vfx.HitTask;
         }

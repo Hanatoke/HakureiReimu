@@ -99,6 +99,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                             mover.TurnSpeed = 2 + 8 * time;
                             mover.Acceleration = 1000 + 1000 * time;
                             mover.MaxSpeed = mover.Speed + mover.Acceleration * 2;
+                            vfx.UpdateMethod = null;
                         }
                     };
                     vfx.OnHit = () =>

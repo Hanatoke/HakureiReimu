@@ -33,7 +33,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
             Vector2 toTarget = (Target - Position).Normalized();
             Vector2 currentDir = Velocity.Normalized();
 
-            // 👉 限制最大转角（更真实）
+            // 限制最大转角
             float maxTurn = TurnSpeed * delta;
 
             float angle = currentDir.AngleTo(toTarget);
@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX.Mover
 
             Vector2 newDir = currentDir.Rotated(angle).Normalized();
 
-            // 👉 吸附（越近越准）
+            // 吸附
             float dist = Position.DistanceTo(Target);
             float factor = Mathf.SmoothStep(0f, 1f, 1f - dist / 400f);
 

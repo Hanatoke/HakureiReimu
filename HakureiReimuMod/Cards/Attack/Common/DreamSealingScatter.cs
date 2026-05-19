@@ -69,6 +69,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
                             mover.TurnSpeed = 90;
                             mover.Acceleration = 3000;
                             mover.MaxSpeed = mover.Speed + mover.Acceleration * 2;
+                            vfx.UpdateMethod = null;
                         }
                     };
                     vfx.OnHit = () =>

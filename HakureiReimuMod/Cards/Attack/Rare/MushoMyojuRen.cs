@@ -76,6 +76,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                         {
                             SteeringMover mover = (SteeringMover)vfx.Mover;
                             mover.TurnSpeed = 10;
+                            vfx.UpdateMethod = null;
                         }
                     };
                     vfx.OnHit = () =>

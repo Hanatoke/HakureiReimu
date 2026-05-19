@@ -57,7 +57,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                         new SteeringMover(sourcePos,
                             targetPos+FlyingVFXCmd.RandomOffset(4),
                             v,0,500));
-                    NDanmaku danmaku = NDanmaku.Create(color:c,trailLength:50);
+                    NDanmaku danmaku = NDanmaku.Create(color:c,trailLength:80);
                     vfx.Duration = 3;
                     vfx.UpdateMethod = (time, _) =>
                     {

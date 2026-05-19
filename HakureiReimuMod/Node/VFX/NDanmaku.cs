@@ -14,8 +14,8 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 		public Node2D ColorAble;
 		public Node2D Fixed;
 		public Node2D Trails;
-		public GpuParticles2D ColorTrails;
-		public GpuParticles2D WhiteTrails;
+		public GpuParticles2D ColorCore;
+		public GpuParticles2D WhiteCore;
 		public Trail TrailOuter;
 		public Trail TrailInner;
 		protected bool IsDuplicated;
@@ -39,8 +39,8 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 			Visual = GetNode<Node2D>("Visual");
 			ColorAble = Visual.GetNode<Node2D>("ColorAble");
 			Fixed = Visual.GetNode<Node2D>("Fixed");
-			ColorTrails = ColorAble.GetNode<GpuParticles2D>("Core");
-			WhiteTrails = Fixed.GetNode<GpuParticles2D>("Core");
+			ColorCore = ColorAble.GetNode<GpuParticles2D>("Core");
+			WhiteCore = Fixed.GetNode<GpuParticles2D>("Core");
 			Trails=ColorAble.GetNode<Node2D>("Trails");
 			TrailOuter = Trails.GetNode<Trail>("TrailOuter");
 			TrailInner = Trails.GetNode<Trail>("TrailInner");
@@ -61,16 +61,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 				_Ready();
 			}
 			this.Scale = Vector2.One * scale;
-			GpuParticles2D c = ColorAble.GetNode<GpuParticles2D>("Core");
-			GpuParticles2D f = Fixed.GetNode<GpuParticles2D>("Core");
 			if (!IsDuplicated)
 			{
 				IsDuplicated=true;
-				c.ProcessMaterial = (ParticleProcessMaterial)c.ProcessMaterial.Duplicate();
-				f.ProcessMaterial = (ParticleProcessMaterial)f.ProcessMaterial.Duplicate();
+				ColorCore.ProcessMaterial = (ParticleProcessMaterial)ColorCore.ProcessMaterial.Duplicate();
+				WhiteCore.ProcessMaterial = (ParticleProcessMaterial)WhiteCore.ProcessMaterial.Duplicate();
 			}
-			((ParticleProcessMaterial)c.ProcessMaterial).Scale=this.Scale;
-			((ParticleProcessMaterial)f.ProcessMaterial).Scale=this.Scale;
+			((ParticleProcessMaterial)ColorCore.ProcessMaterial).Scale=this.Scale;
+			((ParticleProcessMaterial)WhiteCore.ProcessMaterial).Scale=this.Scale;
 		}
 
 		public void SetTrailLength(int length)
@@ -91,14 +89,14 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
 
 			foreach (GpuParticles2D p in ColorAble.GetChildren().OfType<GpuParticles2D>())
 			{
-				if (p!=ColorTrails)
+				if (p!=ColorCore)
 				{
 					p.Visible=glow;
 				}
 			}
 			foreach (GpuParticles2D p in Fixed.GetChildren().OfType<GpuParticles2D>())
 			{
-				if (p!=WhiteTrails)
+				if (p!=WhiteCore)
 				{
 					p.Visible=glow;
 				}

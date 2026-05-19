@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             RunAnimation(Character.HakureiReimu.Animation.DamageLight);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .WithHitFx("vfx/vfx_attack_blunt",tmpSfx:"blunt_attack.mp3")
                 .Execute(null);
             VulnerablePower power=await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);
             if (CombatState is { CurrentSide: CombatSide.Enemy } && power != null)
