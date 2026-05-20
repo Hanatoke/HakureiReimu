@@ -29,6 +29,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         // public bool InPersisting => TargetPersistPileType.GetPile(Owner).Cards.IndexOf(this) >= 0;
         public bool InPersisting{ get; protected set; }
         public AbstractPersistCardSlot Slot=null;
+        
         public static readonly Dictionary<ModelId, int> CounterActivates = new();
         public static float FlashDelayScale = 1;
         
@@ -37,6 +38,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             get { return CounterActivates.GetValueOrDefault(Id, 0); }
             set { CounterActivates[Id]=value; }
         }
+
+        protected override void AfterCloned()
+        {
+            base.AfterCloned();
+            Slot = null;
+            InPersisting = false;
+        }
+
         //-------------------------------------------------------------------------------------------------
         public override void OnReload(NCard card)
         {

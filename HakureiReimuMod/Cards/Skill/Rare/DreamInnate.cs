@@ -107,7 +107,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             {
                 if (creature.IsDead)
                 {
-                    Flash();
+                    _ = Flash();
                     CreatureCmd.Kill(creature);
                 }
                 return 0;

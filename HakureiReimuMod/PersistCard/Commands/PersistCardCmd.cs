@@ -66,6 +66,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     NPersistCardHolder holder=nt.AddCard(nCard);
                     holder.SetCount(slot.Count,slot.ShouldDisplayCount);
                 }
+                
                 await PersistCardHook.OnStartPersistCard(card.CombatState, slot);
             }
         }
@@ -84,6 +85,9 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 CardModel card = slot.Card;
                 ICombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
+                
+                await PersistCardHook.OnStopPersistCard(state, slot);
+                
                 if (!overridePile.HasValue&&slot.Card.IsDupe)
                 {
                     if (!skipVisuals)
@@ -109,7 +113,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     }
                     await CardPileCmd.Add(slot.Card, targetPile,skipVisuals:true);
                 }
-                await PersistCardHook.OnStopPersistCard(state, slot);
+                
             }
         }
 

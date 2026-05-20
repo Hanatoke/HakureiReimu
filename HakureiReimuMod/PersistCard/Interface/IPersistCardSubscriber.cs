@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard.Interface
 {

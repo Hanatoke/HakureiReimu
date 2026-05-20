@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnlex726ee1gg"]
+
+[ext_resource type="Script" uid="uid://c2ewi5qka2610" path="res://HakureiReimuMod/Node/VFX/NShatter.cs" id="1_eblk8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_52dwj"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_eblk8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_618ad"]
+curve = SubResource("Curve_eblk8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3bqyk"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+radial_velocity_min = -100.00002
+radial_velocity_max = 99.99998
+gravity = Vector3(0, 1000, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+alpha_curve = SubResource("CurveTexture_618ad")
+anim_offset_max = 1.0
+
+[node name="Shatter" type="Node2D"]
+script = ExtResource("1_eblk8")
+
+[node name="Main" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_52dwj")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3bqyk")

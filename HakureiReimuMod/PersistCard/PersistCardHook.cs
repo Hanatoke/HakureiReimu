@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
             {
                 if (m is IPersistCardSubscriber s)
                 {
-                    await s.OnStartPersistCardLater(slot);
+                    await s.OnStopPersistCardLater(slot);
                 }
             }
         }
