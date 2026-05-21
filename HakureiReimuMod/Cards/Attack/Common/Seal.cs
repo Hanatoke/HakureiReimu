@@ -5,15 +5,20 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BaseLib.Abstracts;
+using HakureiReimu.HakureiReimuMod.Cards.Attack.Rare;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
-    public class Seal : AbstractCard
+    public class Seal : AbstractCard,ITranscendenceCard
     {
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<Powers.SealPower>()];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(3, ValueProp.Move), new PowerVar<Powers.SealPower>(3)];
-        
+
+        public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<DreamSealingDivine>();
+
         public Seal(
             ) : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) {
         }
