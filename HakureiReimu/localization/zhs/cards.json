@@ -262,7 +262,7 @@
   "HAKUREIREIMU-REPEAT_CAST.description":"将本回合打出过的牌重新移回手牌。",
   
   "HAKUREIREIMU-HELP_FROM_FRIENDS.title":"友人之助",
-  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"获得{Energy:energyIcons()}。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]和{energyPrefix:energyIcons(1)}。",
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"{HasFriend:从3张{IfUpgraded:show:[gold]升级的[/gold]|}[gold]友人[/gold]牌中选择1张加入到你的手牌中。\n否则|[gold]我没有朋友[/gold]。\n}将{IfUpgraded:show:[gold]摸鱼+[/gold]|[gold]摸鱼[/gold]}加入手牌。",
 
   "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"神签",
   "HAKUREIREIMU-CHEAT_BOUNDARY.title":"反则结界",
@@ -335,6 +335,9 @@
   "HAKUREIREIMU-HAKUREI_PHANTOM.description":"所有卡牌额外打出一次。\n每当你打出一张牌时，将其[gold]消耗[/gold]。",
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "HAKUREIREIMU-PROCRASTINATE.title":"摸鱼",
+  "HAKUREIREIMU-PROCRASTINATE.description":"获得{Energy:energyIcons()}。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]和{energyPrefix:energyIcons(1)}。",
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"水火玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
