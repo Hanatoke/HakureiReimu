@@ -87,9 +87,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return Task.CompletedTask;
         }
 
-        public override async Task BeforeTurnEndVeryEarly(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task BeforeSideTurnEndVeryEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
-            if (side == Owner.Side && Owner.IsPlayer)
+            if (participants.Contains(Owner) && Owner.IsPlayer)
             {
                 Flash();
                 await PowerCmd.Remove(this);

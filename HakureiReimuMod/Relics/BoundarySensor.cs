@@ -38,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
                 }
                 if (toMove.Count<=0)return;
                 Flash();
-                await CardPileCmd.Add(toMove, PileType.Hand, source: this);
+                await CardPileCmd.Add(toMove, PileType.Hand);
             }
         }
     }

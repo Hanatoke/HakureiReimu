@@ -15,13 +15,24 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public static readonly string ID = nameof(ExtraDrawPower);
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
+        public readonly HashSet<PlayerChoiceContext> InProgress=[];
         public readonly HashSet<PlayerChoiceContext> Context = new();
 
         public class IgnoreExtraDrawContext : BlockingPlayerChoiceContext;
 
-        public async Task AfterDrawCardFinish(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
+        public virtual Task BeforeDrawCardStart(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
+        {
+            if (player==Owner.Player)
+            {
+                InProgress.Add(choiceContext);
+            }
+            return Task.CompletedTask;
+        }
+
+        public virtual async Task AfterDrawCardFinish(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
         {
             if (player==null||player!=Owner.Player)return;
+            InProgress.Remove(choiceContext);
             if (choiceContext is IgnoreExtraDrawContext)return;
             if (Context.Remove(choiceContext))
             {
@@ -34,13 +45,13 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         }
         public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {
-            if (card.Owner==Owner.Player)
+            if (card.Owner == Owner.Player && InProgress.Contains(choiceContext)) 
             {
                 if (choiceContext is IgnoreExtraDrawContext)
                 {
                     await PowerCmd.Decrement(this);
                 }
-                else
+                else 
                 {
                     Context.Add(choiceContext);
                 }
@@ -50,6 +61,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         {
             if (player.Creature==Owner)
             {
+                InProgress.Clear();
                 Context.Clear();
             }
             return Task.CompletedTask;

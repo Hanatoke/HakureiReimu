@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
-using HakureiReimu.HakureiReimuMod.PersistCard.Node;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Runs;

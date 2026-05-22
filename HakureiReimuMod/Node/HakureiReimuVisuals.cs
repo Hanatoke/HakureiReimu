@@ -17,11 +17,6 @@ namespace HakureiReimu.HakureiReimuMod.Node
 			base._Ready();
 			AnimationTree = GetCurrentBody().GetNode<AnimationTree>("AnimationTree");
 			Playback = (AnimationNodeStateMachinePlayback)AnimationTree?.Get("parameters/playback");
-
-			SpireField<Godot.Node, Func<string[], bool?>> spireField =
-				(SpireField<Godot.Node, Func<string[], bool?>>)AccessTools
-					.Field(typeof(CustomAnimation), "_animHandler").GetValue(null);
-			spireField[this] = (_ => null);
 		}
 	}
 }

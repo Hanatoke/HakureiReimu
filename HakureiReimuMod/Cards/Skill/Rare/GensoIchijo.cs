@@ -69,7 +69,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             if (c!=null)
             {
                 TargetIndex = Owner.PlayerCombatState.DrawPile.Cards.IndexOf(c);
-                await CardPileCmd.Add(c, PileType.Hand, source: this);
+                await CardPileCmd.Add(c, PileType.Hand);
             }
         }
     }

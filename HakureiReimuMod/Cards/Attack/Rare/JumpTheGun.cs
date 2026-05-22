@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -43,9 +45,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             DynamicVars.Strength.UpgradeValueBy(1);
         }
         
-        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
+        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
         {
-            if (combatState.RoundNumber<=1&&side==Owner.Creature.Side&&Pile is { Type: PileType.Draw or PileType.Hand or PileType.Discard })
+            if (combatState.RoundNumber<=1&participants.Contains(Owner.Creature)&&Pile is { Type: PileType.Draw or PileType.Hand or PileType.Discard })
             {
                 await CardCmd.AutoPlay(choiceContext, this,null);
             }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Command;
@@ -40,9 +41,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         public override bool IsImmediate => true;
         public override CounterType ActivateType => CounterType.Attack;
         public int ActivateTimes = 0;
-        public override Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+        public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
         {
-            if (side==Owner.Creature.Side)
+            if (participants.Contains(Owner.Creature))
             {
                 ActivateTimes = 0;
             }

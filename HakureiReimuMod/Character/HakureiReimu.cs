@@ -50,6 +50,8 @@ public class HakureiReimu : PlaceholderCharacterModel {
     [
         ModelDb.Relic<HakureiGohei>()
     ];
+    //TODO:等待Basemod修复bug
+    public override float DeathAnimTime => 0;
 
     public override CardPoolModel CardPool => ModelDb.CardPool<HakureiReimuCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<HakureiReimuRelicPool>();

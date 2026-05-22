@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Command;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -27,8 +28,13 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 .WithHitVfxNode(NGrandFinaleImpactVfx.Create)
                 .WithHitFx(tmpSfx: "blunt_attack.mp3")
                 .Execute(choiceContext);
-            await CardPileCmd.Add(Owner.PlayerCombatState.DrawPile.Cards.Where(c => c.Type == CardType.Attack).ToList(),
-                PileType.Hand, source: this);
+            
+            List<CardModel> cards = Owner.PlayerCombatState.DrawPile.Cards.Where(c => c.Type == CardType.Attack).ToList();
+            foreach (CardModel card in cards)
+            {
+                await CardPileCmd.Add(cards, PileType.Hand);
+                await Hook.AfterCardDrawn(CombatState, choiceContext, card, false);
+            }
         }
 
         protected override void OnUpgrade() {

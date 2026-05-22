@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Godot;
@@ -6,6 +8,7 @@ using HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -23,14 +26,14 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         }}
         public string CustomPackedIconPath => CustomBigIconPath;
 
-        public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             return Task.CompletedTask;
         }
 
-        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side,IReadOnlyList<Creature> participants, ICombatState combatState)
         {
-            if (side != Owner.Side)
+            if (!participants.Contains(Owner))
                 return;
             Flash();
             await PowerCmd.Remove(this);

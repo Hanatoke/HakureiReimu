@@ -203,7 +203,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                                     return;
                                 };
                                 nCard.ReparentSafely(node);
-                                NCardFlyVfx child = NCardFlyVfx.Create(nCard, card.Pile.Type.GetTargetPosition(nCard), true, card.Owner.Character.TrailPath);
+                                NCardFlyVfx child = NCardFlyVfx.Create(nCard, card.Pile.Type, true, card.Owner.Character.TrailPath);
                                 node.AddChildSafely( child);
                             })));
                         }

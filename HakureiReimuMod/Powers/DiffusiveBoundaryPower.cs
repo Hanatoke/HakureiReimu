@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Extensions;
 using HarmonyLib;
@@ -46,9 +48,9 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return Task.CompletedTask;
         }
 
-        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
         {
-            if (side==Owner.Side)
+            if (participants.Contains(Owner))
             {
                 await PowerCmd.TickDownDuration(this);
             }

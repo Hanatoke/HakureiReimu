@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
             public static bool Prefix(IEnumerable<CardModel> cards,
                 CardPile newPile,
                 CardPilePosition position ,
-                AbstractModel source ,
+                AbstractModel clonedBy ,
                 bool skipVisuals,ref Task<IReadOnlyList<CardPileAddResult>> __result)
             {
                 if (newPile is AbstractPersistCardTable table)
