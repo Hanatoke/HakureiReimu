@@ -38,6 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             typeof(SuckPower),
             typeof(TerritorialPower),
             typeof(ThieveryPower),
+            typeof(VitalSparkPower),
         ];
         public static readonly HashSet<Type> LessIsMore = [
             typeof(EscapeArtistPower),

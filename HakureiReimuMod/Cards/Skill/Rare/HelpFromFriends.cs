@@ -87,6 +87,10 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                         {
                             _allChoose.Add(c);
                         }
+                        else
+                        {
+                            HakureiReimuMain.Logger.Warn($"HelpFromFriends : Could not find card with id {s.Entry}");
+                        }
                     }
                 }
                 return  _allChoose;
