@@ -20,5 +20,6 @@ namespace HakureiReimu.HakureiReimuMod.Core
         }
         public static bool UseStaticEnergyIcon { get; set; } = false;
         public static bool UseStaticEnergyCounter { get; set; } = false;
+        public static bool ShowSealTotal { get; set; } = true;
     }
 }

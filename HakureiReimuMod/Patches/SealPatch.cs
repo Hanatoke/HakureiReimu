@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using BaseLib.Utils.Patching;
+using Godot;
+using HakureiReimu.HakureiReimuMod.Node;
 using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Patches
@@ -68,6 +72,24 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 }
             }
             return amount;
+        }
+        [HarmonyPatch(typeof(NCreature),nameof(NCreature._Ready))]
+        public static class NCreatureReadyPatch
+        {
+            private static FieldInfo _stateDisplay = AccessTools.Field(typeof(NCreature), "_stateDisplay");
+            [HarmonyPostfix]
+            public static void ReadyPostfix(NCreature __instance)
+            {
+                if (__instance.Entity is {IsPlayer:true} player)
+                {
+                    if (_stateDisplay.GetValue(__instance) is NCreatureStateDisplay stateDisplay)
+                    {
+                        NSealTotal sealTotal = NSealTotal.Create(player.Player);
+                        stateDisplay.AddChildSafely(sealTotal);
+                        sealTotal.Position += new Vector2(200, 0);
+                    }
+                }
+            }
         }
     }
 }

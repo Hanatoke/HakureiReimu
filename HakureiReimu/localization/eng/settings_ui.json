@@ -12,7 +12,9 @@
 
   "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.title": "Use Static Energy Counter",
   "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.hover.desc": "When enabled, the character's energy counter will not glow dynamically over time.",
-  
+
+  "HAKUREIREIMU-SHOW_SEAL_TOTAL.title": "Show Seal Total",
+  "HAKUREIREIMU-SHOW_SEAL_TOTAL.hover.desc": "When enabled, the total amount of Seals will be displayed on the right side of the character status bar.",
   
   
   

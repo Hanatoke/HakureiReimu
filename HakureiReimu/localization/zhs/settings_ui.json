@@ -13,6 +13,9 @@
   "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.title": "使用静态能量计数器",
   "HAKUREIREIMU-USE_STATIC_ENERGY_COUNTER.hover.desc": "开启后，角色的能量计数器将不会随时间变化发光",
   
+  "HAKUREIREIMU-SHOW_SEAL_TOTAL.title": "显示封印统计",
+  "HAKUREIREIMU-SHOW_SEAL_TOTAL.hover.desc": "开启后，将在角色的状态条右边显示封印的总量",
+  
   
   
   
