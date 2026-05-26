@@ -181,6 +181,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
                 if (HoverTip!=null)
                 {
                     this.AddChildSafely(HoverTip);
+                    HoverTip.ZIndex = 100;
                     HoverTip.SetForceUnpoweredPreview(false);
                     HoverTip.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
                     HoverTip.Scale = Vector2.One * TipScale;

@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://wvfeo27jmf85"]
+
+[ext_resource type="Script" uid="uid://y46uut0k11up" path="res://HakureiReimuMod/Node/VFX/Special/NPhantom.cs" id="1_kug8u"]
+[ext_resource type="Shader" uid="uid://bbsvrd3stwdtp" path="res://HakureiReimu/shader/Afterimage.gdshader" id="2_kug8u"]
+[ext_resource type="Texture2D" uid="uid://dulec0lpepgra" path="res://HakureiReimu/images/effects/danmaku/GradientCircle.png" id="2_m3xbp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0hxe8"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_m3xbp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.011824369), -3.0064514, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0hxe8"]
+curve = SubResource("Curve_m3xbp")
+
+[sub_resource type="Curve" id="Curve_261gk"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 1.975858, 0, 1, Vector2(1, 1.975858), 1.975858, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4hni1"]
+curve = SubResource("Curve_261gk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4yn4d"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_4hni1")
+alpha_curve = SubResource("CurveTexture_0hxe8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbt27"]
+resource_local_to_scene = true
+shader = ExtResource("2_kug8u")
+shader_parameter/offset_px = PackedVector2Array(20, 0, -20, 0, 40, 0, -40, 0, 60, 0)
+shader_parameter/ghost_color = PackedColorArray(1, 1, 1, 0.50980395, 0.851769, 0.8517689, 0.85176885, 0.41960785, 0.6706895, 0.6706895, 0.6706895, 0.3647059, 0.5890956, 0.5890956, 0.5890956, 0.21568628, 0.5449743, 0.54497427, 0.54497427, 0.21176471)
+shader_parameter/ghost_count = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5oqj2"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Phantom" type="Node2D"]
+script = ExtResource("1_kug8u")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(384, 384)
+
+[node name="Wave" type="GPUParticles2D" parent="SubViewport"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_0hxe8")
+position = Vector2(192, 192)
+texture = ExtResource("2_m3xbp")
+lifetime = 2.0
+preprocess = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_4yn4d")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Main" type="Sprite2D" parent="BackBufferCopy"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hbt27")
+texture = SubResource("ViewportTexture_5oqj2")
