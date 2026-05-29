@@ -262,7 +262,7 @@
   "HAKUREIREIMU-REPEAT_CAST.description":"将本回合打出过的牌重新移回手牌。",
   
   "HAKUREIREIMU-HELP_FROM_FRIENDS.title":"友人之助",
-  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"{HasFriend:从3张{IfUpgraded:show:[gold]升级的[/gold]|}[gold]友人[/gold]牌中选择1张加入到你的手牌中。\n否则|[gold]我没有朋友[/gold]。\n}将{IfUpgraded:show:[gold]摸鱼+[/gold]|[gold]摸鱼[/gold]}加入手牌。",
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.description":"从3张{IfUpgraded:show:[gold]升级的[/gold]|}来自[gold]最好的朋友[/gold]的礼物中选择1张加入到你的手牌中。\n否则将{IfUpgraded:show:[gold]摸鱼+[/gold]|[gold]摸鱼[/gold]}加入手牌。",
 
   "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"神签",
   "HAKUREIREIMU-CHEAT_BOUNDARY.title":"反则结界",

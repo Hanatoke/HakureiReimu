@@ -262,7 +262,7 @@
   "HAKUREIREIMU-REPEAT_CAST.description":"Return all other cards played this turn back into your hand in order.",
 
   "HAKUREIREIMU-HELP_FROM_FRIENDS.title":"Friends' help",
-  "HAKUREIREIMU-HELP_FROM_FRIENDS.description": "{HasFriend:Choose 1 card from 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}[gold]Friend[/gold] cards to add to your hand.\nOtherwise, |[gold]I have no friends[/gold].\n} Add {IfUpgraded:show:[gold]Slack off+[/gold]|[gold]Slack off[/gold]} to your hand.",
+  "HAKUREIREIMU-HELP_FROM_FRIENDS.description": "Choose 1 card from 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}[gold]Best Friend[/gold] cards to add to your hand.\nOtherwise,  Add {IfUpgraded:show:[gold]Slack off+[/gold]|[gold]Slack off[/gold]} to your hand.",
 
   "HAKUREIREIMU-CHEAT_BOUNDARY.sign":"Mikuji",
   "HAKUREIREIMU-CHEAT_BOUNDARY.title":"Rule Violation Barrier",
