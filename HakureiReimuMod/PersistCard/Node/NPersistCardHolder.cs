@@ -187,6 +187,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
                     HoverTip.Scale = Vector2.One * TipScale;
                     HoverTip.Position=new Vector2(0,NPersistCardTable.CardHeight*(TipScale+1)/2);
                     NHoverTipSet tipSet=NHoverTipSet.CreateAndShow(HoverTip, this.CardNode.Model.HoverTips);
+                    if (tipSet==null)return;
                     tipSet.SetAlignment(HoverTip,MegaCrit.Sts2.Core.HoverTips.HoverTip.GetHoverTipAlignment(this));
                     tipSet.SetFollowOwner();
                     tipSet.SetExtraFollowOffset(new Vector2(NPersistCardTable.CardWidth*TipScale/2,-NPersistCardTable.CardHeight*TipScale/2)*this.Scale);

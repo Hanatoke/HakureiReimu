@@ -37,7 +37,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         public override async Task Invoke(Creature target, bool cost = true, bool instant = false)
         {
             if (target is not { IsHittable: true }) return;
-            RunAnimation(Character.HakureiReimu.Animation.DamageLight);
+            RunAnimation(Character.HakureiReimu.Animation.AttackDashLight);
             await Flash(instant);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_blunt",tmpSfx:"blunt_attack.mp3")

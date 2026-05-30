@@ -18,15 +18,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public RepeatCast(
             ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.None) {
         }
+        public List<CardModel> CardPlaysThisTurn=>CombatManager.Instance.History.CardPlaysFinished.Where(p =>
+                p.HappenedThisTurn(CombatState)&& p.Actor==Owner.Creature && p.CardPlay.Card is not RepeatCast &&p.CardPlay.Card.Owner==Owner&&
+                p.CardPlay.Card.Type != CardType.Status && p.CardPlay.Card.Type != CardType.Curse&&!Owner.PlayerCombatState.Hand.Cards.Contains(p.CardPlay.Card))
+            .Select(p => p.CardPlay.Card).Reverse().Distinct().ToList();
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             CardPile hand = Owner.PlayerCombatState.Hand;
             int count = CardPile.MaxCardsInHand-hand.Cards.Count;
             if (count <= 0)return;
-            List<CardModel> cards = CombatManager.Instance.History.CardPlaysFinished.Where(p =>
-                    p.HappenedThisTurn(CombatState)&& p.Actor==Owner.Creature && p.CardPlay.Card is not RepeatCast &&p.CardPlay.Card.Owner==Owner&&
-                    p.CardPlay.Card.Type != CardType.Status && p.CardPlay.Card.Type != CardType.Curse&&!hand.Cards.Contains(p.CardPlay.Card))
-                .Select(p => p.CardPlay.Card).Reverse().Distinct().ToList();
+            List<CardModel> cards = CardPlaysThisTurn;
             foreach (CardModel c in cards)
             {
                 if (count>0)

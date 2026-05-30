@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new DamageVar(6,ValueProp.Move),
                 new CalculationBaseVar(0),
                 new CalculationExtraVar(1),
-                new CalculatedVar("CalculatedTimes").WithMultiplier((c,_)=>c.Owner.GetAllCounterCards().Count)
+                new CalculatedVar("CalculatedHits").WithMultiplier((c,_)=>c.Owner.GetAllCounterCards().Count)
             ];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromKeyword(Counter)
@@ -37,7 +37,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            int n = (int)((CalculatedVar)DynamicVars["CalculatedTimes"]).Calculate(cardPlay.Target);
+            int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
             await Vfx(Owner.Creature, cardPlay.Target, n);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).WithHitCount(n)
                 .Execute(choiceContext);

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -141,10 +142,11 @@ namespace HakureiReimu.HakureiReimuMod.Core
             if (!VerifyResource) return true;
             if (card.Keywords.Contains(CardKeyword.Retain))
             {
-                weight -= 30*(card.EnergyCost.GetResolved()-PlayerCombatState.Energy);
-                weight -= 10 * (card.CurrentStarCost - PlayerCombatState.Stars);
+                weight -= 30*Math.Max(0, card.EnergyCost.GetResolved() - PlayerCombatState.Energy);
+                weight -= 10 * Math.Max(0, card.CurrentStarCost - PlayerCombatState.Stars);
                 return true;
             }
+            
             return false;
         }
 
@@ -209,7 +211,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 if (damage<=0) break;
                 damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
                     ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
-                damage *= hitCount;
+                damage *= hitCount > 0 ? hitCount : Math.Max(0, CalculateAttackCount(card, t));
                 if (damage>=needToKill)
                 {
                     int w = 30;
@@ -363,21 +365,37 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case Cruelty:
                     return Math.Min(5,
                         CombatState.HittableEnemies.Select(e => e.GetPowerAmount<VulnerablePower>()).Max());
-                case Tracking:
+                case Tracking://跟踪
                     return Math.Min(5,
                         CombatState.HittableEnemies.Select(e => e.GetPowerAmount<WeakPower>()).Max());
-                case Expose:
+                case Expose://暴露
                     return CombatState.HittableEnemies.Select(e => e.GetPowerAmount<ArtifactPower>()).Max();
+                case Purity://净化
+                    return -100;
             }
 
             switch (card.Id.Entry)
             {
-                case "MARISAMOD-TREASURE_HUNTER":
-                    return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Elite or RoomType.Boss } ? 0 : -100;
-                case "HAKUREIREIMU-STRENGTH":
-                    return -15;
-                case "HAKUREIREIMU-NO_INTERVAL_BOUNDARY":
+                case "BLADE_DANCE"://刀舞
                     return -100;
+                case "MARISAMOD-STARLIT_POTION"://星彩药剂
+                    return -100;
+                case "MARISAMOD-TREASURE_HUNTER"://宝物猎手
+                    return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Elite or RoomType.Boss } ? 0 : -100;
+                case "HAKUREIREIMU-STRENGTH"://强化
+                    return -15;
+                case "HAKUREIREIMU-NO_INTERVAL_BOUNDARY"://无检索结界
+                    return -100;
+                case "HAKUREIREIMU-DREAM_INNATE"://梦想天生
+                    return EnemyAttackDamage;
+                case "HAKUREIREIMU-FANTASY_MOON"://幻想之月
+                    return EnemyAttackDamage / 2;
+                case "HAKUREIREIMU-DIVINE_MIGHT"://神威
+                    return Owner.Creature.Powers.Count(p => p.TypeForCurrentAmount == PowerType.Debuff) * 5;
+                case "HAKUREIREIMU-CELESTIAL_FLIGHT"://天人飞翔
+                    return -10 + Owner.PlayerCombatState.DrawPile.Cards.Count - EnemyAttackDamage;
+                case "HAKUREIREIMU-REPEAT_CAST"://复诵
+                    return Math.Min(CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count,(card as RepeatCast)?.CardPlaysThisTurn.Count ?? 0)*3;
             }
             return 0;
         }

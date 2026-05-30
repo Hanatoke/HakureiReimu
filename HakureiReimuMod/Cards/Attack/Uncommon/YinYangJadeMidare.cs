@@ -18,7 +18,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 new RepeatVar(1),
                 new CalculationBaseVar(0),
                 new CalculationExtraVar(1),
-                new CalculatedVar("CalculatedTimes").WithMultiplier((c,_)=>c.Owner.PlayerCombatState?.YinYangOrbManager()?.Orbs.Count??0)
+                new CalculatedVar("CalculatedHits").WithMultiplier((c,_)=>c.Owner.PlayerCombatState?.YinYangOrbManager()?.Orbs.Count??0)
             ];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.ShotA;
@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            int n = (int)((CalculatedVar)DynamicVars["CalculatedTimes"]).Calculate(cardPlay.Target);
+            int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).WithHitCount(n)
                 .WithHitFx("vfx/vfx_attack_blunt")
                 .Execute(choiceContext);

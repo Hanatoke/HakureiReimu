@@ -107,11 +107,11 @@
   "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.description":"Deal {Damage:diff()} damage {Repeat:diff()} times.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] when hit.",
 
   "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.title":"Yin-Yang Dance",
-  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"Deal {Damage:diff()} damage and [gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orb[/gold] for every [gold]Yin-Yang Orb[/gold] you have currently.{InCombat:\n(Repeats {CalculatedTimes:diff()} times)|}",
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"Deal {Damage:diff()} damage and [gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orb[/gold] for every [gold]Yin-Yang Orb[/gold] you have currently.{InCombat:\n(Repeats {CalculatedHits:diff()} times)|}",
 
   "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.sign":"Divine Arts",
   "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.title":"Omnidirectional Demon Binding Circle",
-  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"Deal {Damage:diff()} damage for each [gold]Counter[/gold] on the battlefield.{InCombat:\n(Deals {CalculatedTimes:diff()} times)|}",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"Deal {Damage:diff()} damage for each [gold]Counter[/gold] on the battlefield.{InCombat:\n(Deals {CalculatedHits:diff()} times)|}",
 
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -230,7 +230,7 @@
 
   "HAKUREIREIMU-MUSHO_MYOJU_REN.sign":"Sign I",
   "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"Dream Orb String",
-  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"For each time target has taken damage this turn, deal {Damage:diff()} damage once.{IsTargeting:\n(deal {CalculatedTimes:diff()} times)|}",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"For each time target has taken damage this turn, deal {Damage:diff()} damage once.{IsTargeting:\n(deal {CalculatedHits:diff()} times)|}",
 
   "HAKUREIREIMU-YIN_YANG_SCATTERING.sign":"Sign II",
   "HAKUREIREIMU-YIN_YANG_SCATTERING.title":"Yin-Yang Scattering",

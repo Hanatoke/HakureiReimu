@@ -107,11 +107,11 @@
   "HAKUREIREIMU-LEAPING_YIN_YANG_JADE.description":"随机造成{Damage:diff()}点伤害{Repeat:diff()}次。\n对击中敌人给予{VulnerablePower:diff()}[gold]易伤[/gold]。",
   
   "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.title":"阴阳玉乱舞",
-  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"每有一个[gold]阴阳玉[/gold]，便造成{Damage:diff()}点伤害，生成{Repeat:diff()}个[gold]阴阳玉[/gold]。{InCombat:\n（重复{CalculatedTimes:diff()}次）|}",
+  "HAKUREIREIMU-YIN_YANG_JADE_MIDARE.description":"每有一个[gold]阴阳玉[/gold]，便造成{Damage:diff()}点伤害，生成{Repeat:diff()}个[gold]阴阳玉[/gold]。{InCombat:\n（重复{CalculatedHits:diff()}次）|}",
 
   "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.sign":"神技",
   "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.title":"八方鬼缚阵",
-  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"场上每有一张[gold]反制[/gold]牌，造成{Damage:diff()}点伤害一次。{InCombat:\n（造成{CalculatedTimes:diff()}次）|}",
+  "HAKUREIREIMU-HAPPO_ONIBAKU_JIN.description":"场上每有一张[gold]反制[/gold]牌，造成{Damage:diff()}点伤害一次。{InCombat:\n（造成{CalculatedHits:diff()}次）|}",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -230,7 +230,7 @@
   
   "HAKUREIREIMU-MUSHO_MYOJU_REN.sign":"符之一",
   "HAKUREIREIMU-MUSHO_MYOJU_REN.title":"梦想妙珠连",
-  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"本回合该敌人每受到过一次伤害，便造成{Damage:diff()}点伤害一次。{IsTargeting:\n（造成{CalculatedTimes:diff()}次）|}",
+  "HAKUREIREIMU-MUSHO_MYOJU_REN.description":"本回合该敌人每受到过一次伤害，便造成{Damage:diff()}点伤害一次。{IsTargeting:\n（造成{CalculatedHits:diff()}次）|}",
   
   "HAKUREIREIMU-YIN_YANG_SCATTERING.sign":"符之二",
   "HAKUREIREIMU-YIN_YANG_SCATTERING.title":"阴阳散华",

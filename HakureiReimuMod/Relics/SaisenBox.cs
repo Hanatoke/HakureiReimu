@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -17,9 +16,6 @@ namespace HakureiReimu.HakureiReimuMod.Relics
     public class SaisenBox:AbstractRelic
     {
         public override RelicRarity Rarity => RelicRarity.Uncommon;
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            
-        ];
         public override bool ShowCounter => true;
         public override int DisplayAmount => Gold;
         private int _gold;
@@ -43,8 +39,8 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             if (player!=Owner)return;
             if (amount+Gold>=DynamicVars.Gold.IntValue)
             {
-                int n=Mathf.FloorToInt((float)(amount+Gold)/DynamicVars.Gold.IntValue);
-                Gold +=(int) (amount + Gold) % DynamicVars.Gold.IntValue;
+                decimal n=Math.Floor((amount+Gold)/DynamicVars.Gold.BaseValue);
+                Gold +=(int) ((amount + Gold) % DynamicVars.Gold.BaseValue);
                 Flash();
                 await CreatureCmd.Heal(player.Creature, n);
             }

@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             new DamageVar(3, ValueProp.Move),
             new CalculationBaseVar(0),
             new CalculationExtraVar(1),
-            new CalculatedVar("CalculatedTimes").WithMultiplier((c, t) =>
+            new CalculatedVar("CalculatedHits").WithMultiplier((c, t) =>
                 CombatManager.Instance.History.Entries.OfType<DamageReceivedEntry>().Count(e =>
                     e.Receiver == t && e.HappenedThisTurn(c.CombatState) && e.Dealer != null &&
                     e.Dealer.Side == c.Owner.Creature.Side))
@@ -38,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            int n = (int)((CalculatedVar)DynamicVars["CalculatedTimes"]).Calculate(cardPlay.Target);
+            int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
             await StartVfx(n, Owner.Creature, cardPlay.Target);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitCount(n).Execute(choiceContext);
