@@ -4,7 +4,9 @@
 
   "HAKUREIREIMU-BOTTLED_BOUNDARY.title": "Bottled Barrier",
   "HAKUREIREIMU-BOTTLED_BOUNDARY.description": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Counter[/gold] cards to add into your [gold]Hand[/gold]. It's free to play this turn.",
-
+  
+  "HAKUREIREIMU-LUCK_SIGN.title": "Luck Sign",
+  "HAKUREIREIMU-LUCK_SIGN.description": "Add [blue]{Cards}[/blue] [gold]Lucky[/gold] cards to your [gold]hand[/gold]. They are free to play this turn.",
 
 
   "HAKUREIREIMU-PLACEHOLDER.description": "给予[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",

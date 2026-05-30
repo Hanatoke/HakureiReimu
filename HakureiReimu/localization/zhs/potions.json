@@ -5,6 +5,9 @@
   "HAKUREIREIMU-BOTTLED_BOUNDARY.title": "瓶装结界",
   "HAKUREIREIMU-BOTTLED_BOUNDARY.description": "从[blue]3[/blue]张随机[gold]反制[/gold]牌中选择[blue]1[/blue]张加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
   
+  "HAKUREIREIMU-LUCK_SIGN.title": "大吉签",
+  "HAKUREIREIMU-LUCK_SIGN.description": "将[blue]{Cards}[/blue]张[gold]幸运[/gold]卡牌加入你的[gold]手牌[/gold]。它们在本回合可以免费打出。",
+  
   
   
   "HAKUREIREIMU-PLACEHOLDER.description": "给予[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",

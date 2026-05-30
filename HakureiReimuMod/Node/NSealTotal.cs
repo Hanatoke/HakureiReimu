@@ -86,6 +86,10 @@ namespace HakureiReimu.HakureiReimuMod.Node
             UpdateValue();
             if (hasChanged) Flash();
             Visible = ShouldDisplay;
+            if (!Visible)
+            {
+                HideHoverTips();
+            }
         }
 
         public bool ShouldDisplay => TotalSeal > 0;

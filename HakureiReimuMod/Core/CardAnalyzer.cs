@@ -1,0 +1,385 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using HakureiReimu.HakureiReimuMod.Cards;
+using HakureiReimu.HakureiReimuMod.Cards.Skill.Rare;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Monsters;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
+using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace HakureiReimu.HakureiReimuMod.Core
+{
+    public class CardAnalyzer
+    {
+        public ICombatState CombatState { get;}
+        public Player Owner { get;}
+        public List<CardModel> Cards { get;}
+        public Dictionary<CardModel,int> Weights{get;protected set;}
+        public Func<CardModel, int> Modifier;
+        public bool VerifyResource = true;
+        public bool UseSpecial = true;
+        protected IRunState RunState=>CombatState.RunState;
+        protected PlayerCombatState PlayerCombatState => Owner.PlayerCombatState;
+        public int EnemyAttackDamage {get;protected set;}
+
+        public CardAnalyzer(ICombatState combatState, Player owner, List<CardModel> cards)
+        {
+            CombatState = combatState;
+            Owner = owner;
+            Cards = cards;
+        }
+
+        public CardAnalyzer Analyze(Func<CardModel, int> modifier=null)
+        {
+            this.Modifier = modifier??this.Modifier;
+            EnemyAttackDamage = CalculateEnemyAttackDamage();
+            Weights = new Dictionary<CardModel, int>();
+            foreach (CardModel card in Cards)
+            {
+                Weights.TryAdd(card, CalculateWeight(card));
+            }
+            return this;
+        }
+
+        public List<CardModel> GetResultsByBest(Rng rng, int count, bool reverse = false)
+        {
+            var groups = reverse
+                ? Weights.GroupBy(x => x.Value).OrderBy(g => g.Key)
+                : Weights.GroupBy(x => x.Value).OrderByDescending(g => g.Key);
+
+            return groups
+                .SelectMany(g => g.OrderBy(_ => rng.NextInt()))
+                .Select(x => x.Key)
+                .Take(count)
+                .ToList();
+        }
+
+        public List<CardModel> GetResultsByMost(Rng rng, int count, bool reverse = false)
+        {
+            var groups = reverse
+                ? Weights.GroupBy(x => x.Value).OrderBy(g => g.Key)
+                : Weights.GroupBy(x => x.Value).OrderByDescending(g => g.Key);
+            
+            return groups.Select(g =>
+            {
+                var list = g.ToList();
+                return list[rng.NextInt(list.Count)].Key;
+            })
+            .Take(count)
+            .ToList();
+        }
+        public int CalculateWeight(CardModel card)
+        {
+            int weight = 0;
+            try
+            {
+                card.UpgradePreviewType = CardUpgradePreviewType.Combat;
+                // //可以打出的
+                // if (!card.CanPlay())
+                // {
+                //     if (card.Keywords.Contains(CardKeyword.Retain)&&!PlayerCombatState.HasEnoughResourcesFor(card,out UnplayableReason _))
+                //     {
+                //         weight -= 30*(card.EnergyCost.GetResolved()-PlayerCombatState.Energy);
+                //         weight -= 10 * (card.CurrentStarCost - PlayerCombatState.Stars);
+                //     }
+                //     else
+                //     {
+                //         return -100;
+                //     }
+                // }
+                if (!CanCardPlay(card, ref weight)) return -100;
+                
+                if (card.Keywords.Contains(CardKeyword.Exhaust)||card.Type==CardType.Power) weight += 10;
+                
+                if (card.Type==CardType.Attack)
+                {
+                    weight += TryAttack(card);
+                }
+                if (card.GainsBlock)
+                {
+                    weight += TryDefense(card);
+                }
+                weight += TryBuff(card);
+                
+                if (!card.CanBeGeneratedInCombat) weight = (int) (weight*1.1m);
+                if (UseSpecial)
+                {
+                    weight += Special(card);
+                }
+                if (Modifier!=null)
+                {
+                    weight += Modifier.Invoke(card);
+                }
+                weight = TryRarity(card, weight);
+            }
+            catch (Exception e)
+            {
+                // HakureiReimuMain.Logger.Info("Skip:"+card.Title);
+                // HakureiReimuMain.Logger.Info(e.ToString());
+                return -100;
+            }
+            HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+weight);
+            return weight;
+        }
+
+        public bool CanCardPlay(CardModel card,ref int weight)
+        {
+            if (card.CanPlay())return true;
+            if (PlayerCombatState.HasEnoughResourcesFor(card, out UnplayableReason _)) return false;
+            if (!VerifyResource) return true;
+            if (card.Keywords.Contains(CardKeyword.Retain))
+            {
+                weight -= 30*(card.EnergyCost.GetResolved()-PlayerCombatState.Energy);
+                weight -= 10 * (card.CurrentStarCost - PlayerCombatState.Stars);
+                return true;
+            }
+            return false;
+        }
+
+        public int CalculateEnemyAttackDamage()
+        {
+            int enemyAttackDamage = -Owner.Creature.Block-Owner.Creature.GetPowerAmount<PlatingPower>();
+            foreach (Creature t in CombatState.HittableEnemies)
+            {
+                if (t.IsMonster&&t.Monster is { IntendsToAttack: true } monster)
+                {
+                    enemyAttackDamage += monster.NextMove.Intents.OfType<AttackIntent>()
+                        .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum();
+                }
+            }
+            return Math.Max(0, enemyAttackDamage);
+        }
+
+        public int TryRarity(CardModel card,int baseValue)
+        {
+            return card.Rarity switch
+            {
+                CardRarity.Common => baseValue,
+                CardRarity.Uncommon => (int)(baseValue*1.05m),
+                CardRarity.Rare => (int)(baseValue*1.1m),
+                _ => baseValue
+            };
+        }
+
+        public int TryAttack(CardModel card)
+        {
+            int result = 0;
+            if (card.DynamicVars.TryGetValue(DamageVar.defaultName, out DynamicVar damageVar)) { }
+            else if (card.DynamicVars.TryGetValue(CalculatedDamageVar.defaultName, out damageVar)) { }
+            if (damageVar == null) return 0;
+            int hitCount = 1;
+            if (card.TargetType is TargetType.AnyEnemy or TargetType.AllEnemies)
+            {
+                hitCount = Math.Max(0, CalculateAttackCount(card));
+            }
+            List<Creature> targets = CombatState.HittableEnemies.ToList();
+            List<int> weights=new ();
+            foreach (Creature t in targets)
+            {
+                int needToKill = Math.Min(10000,t.CurrentHp);
+                if (!card.Keywords.Contains(AbstractCard.IgnoreDefense)) needToKill += t.Block;
+                decimal damage = 0;
+                ValueProp prop=ValueProp.Move;
+                if (damageVar is DamageVar d)
+                {
+                    damage = d.BaseValue;
+                    prop = d.Props;
+                }
+                else if (damageVar is CalculatedDamageVar c)
+                {
+                    damage = c.Calculate(t);
+                    prop = c.Props;
+                }
+                if (card.Tags.Contains(CardTag.OstyAttack)&& PlayerCombatState.GetPet<Osty>() is not { IsAlive: true })
+                {
+                    damage = 0;
+                }
+                if (damage<=0) break;
+                damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
+                    ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
+                damage *= hitCount;
+                if (damage>=needToKill)
+                {
+                    int w = 30;
+                    if (t.IsMonster && t.Monster.IntendsToAttack)
+                    {
+                        w+= t.Monster.NextMove.Intents.OfType<AttackIntent>()
+                            .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum();
+                    }
+                    if (!card.CanBeGeneratedInCombat) w += 20;
+                    weights.Add(w);
+                }
+                else if (needToKill>0)
+                {
+                    weights.Add((int)(15m*damage/needToKill));
+                }
+            }
+            if (weights.Count>0)
+            {
+                //是aoe?
+                result += card.TargetType == TargetType.AllEnemies ? weights.Sum() : weights.Max();
+            }
+            return result;
+        }
+
+        public int TryDefense(CardModel card)
+        {
+            if (card.DynamicVars.TryGetValue(BlockVar.defaultName, out DynamicVar blockVar)){}
+            else if (card.DynamicVars.TryGetValue(CalculatedBlockVar.defaultName, out blockVar)){}
+            if (blockVar == null) return 0;
+            decimal block=0;ValueProp prop=ValueProp.Move;
+            if (blockVar is BlockVar b)
+            {
+                block = b.BaseValue;
+                prop = b.Props;
+            }else if (blockVar is CalculatedBlockVar c)
+            {
+                block = c.Calculate(null);
+                prop = c.Props;
+            }
+            if (block<=0) return 0;
+            block = Hook.ModifyBlock(CombatState, Owner.Creature, block, prop, card, new CardPlay()
+                {
+                    Card =  card,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo(){EnergySpent = card.EnergyCost.GetResolved(),EnergyValue = PlayerCombatState.Energy,StarsSpent = card.CurrentStarCost,StarValue = PlayerCombatState.Stars},
+                    IsAutoPlay =  false,ResultPile = PileType.Discard,Target = null
+                },
+                out IEnumerable<AbstractModel> _);
+            if (block<=0) return 0;
+            return (int)Math.Min(block,EnemyAttackDamage);
+        }
+
+        public int TryBuff(CardModel card)
+        {
+            int result = 0;
+            if (card.Type==CardType.Power)
+            {
+                result -= EnemyAttackDamage;
+                int rate = CombatState.HittableEnemies.Select(e=>e.CurrentHp).Max();
+                rate = (int)Math.Log10(rate) * 3;
+                rate = Math.Min(15, rate);
+                rate =(int)(rate* 4m / (CombatState.RoundNumber + 3));
+                result += Math.Min(PlayerCombatState.Energy,card.EnergyCost.GetResolved())*rate;
+            }
+            else
+            {
+                // if (EnemyAttackDamage <= 0 && !card.CanBeGeneratedInCombat) result += 10;
+                if (card.DynamicVars.TryGetValue(EnergyVar.defaultName, out DynamicVar energyVar))
+                {
+                    int energyNeed=PlayerCombatState.Hand.Cards.Select(c=>c.EnergyCost.GetResolved()).Sum()-PlayerCombatState.Energy;
+                    result += Math.Min(energyNeed, energyVar.IntValue-card.EnergyCost.GetResolved()) * 3;
+                }
+                if (card.DynamicVars.TryGetValue(CardsVar.defaultName, out DynamicVar cardsVar))
+                {
+                    int canDraw = CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count;
+                    canDraw = Math.Min(canDraw,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count);
+                    result += Math.Min(cardsVar.IntValue,
+                        canDraw) * 3;
+                }
+            }
+            return result;
+        }
+        //--------------------------------------------------------------------------------------------------------------
+        public static decimal CalculateIntentDamage(AttackIntent intent,Creature owner,Creature target)
+        {
+            decimal d = intent.DamageCalc?.Invoke() ?? 0;
+            d = Hook.ModifyDamage(target.CombatState.RunState, target.CombatState, target, owner, d, ValueProp.Move, null,
+                ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
+            return d * intent.Repeats;
+        }
+
+        public static int CalculateAttackCount(CardModel card, Creature target=null)
+        {
+            if (card.DynamicVars.TryGetValue("CalculatedHits", out DynamicVar dynamicVar)&&dynamicVar is CalculatedVar c)
+            {
+                return (int)c.Calculate(target);
+            }
+
+            if (card.DynamicVars.TryGetValue(RepeatVar.defaultName, out DynamicVar repeatVar))
+            {
+                return repeatVar.IntValue;
+            }
+            return 1;
+        }
+        //---------------------------------------------------------------------------------------------------------------
+
+        public int Special(CardModel card)
+        {
+            switch (card)
+            {
+                case HelpFromFriends:
+                    return -1000;
+                case Reboot://重启
+                    return -PlayerCombatState.Hand.Cards.Count*3;
+                case GlimpseBeyond://彼岸一瞥
+                    return -100;
+                case Offering://祭品
+                    return -(1 - (Owner.Creature.CurrentHp / Owner.Creature.MaxHp)) * 10;
+                case IceLance://冰之长枪
+                    return -100;
+                case Scrawl://潦草
+                    return Math.Min(CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count) * 3;
+                case Compact://压缩
+                    return PlayerCombatState.Hand.Cards.Count(c => c.Type == CardType.Status) * 3;
+                case SecondWind://重振
+                    return PlayerCombatState.Hand.Cards.Count(c =>
+                        (c.Type == CardType.Status||c.Type==CardType.Curse) || (c.Rarity == CardRarity.Basic&&c.Type!=CardType.Attack)) * 3;
+                case Stoke:
+                    return PlayerCombatState.Hand.Cards.Count(c =>
+                        (c.Type == CardType.Status||c.Type==CardType.Curse) || c.Rarity == CardRarity.Basic) * 3;
+                case FlakCannon://散射炮
+                    return (PlayerCombatState.DiscardPile.Cards.Count(c => c.Type == CardType.Status) +
+                                 PlayerCombatState.Hand.Cards.Count(c => c.Type == CardType.Status) +
+                                 PlayerCombatState.DrawPile.Cards.Count(c => c.Type == CardType.Status)) * 2;
+                case HiddenGem://味觉宝石
+                    return PlayerCombatState.DrawPile.Cards.Count(c=>c.Type == CardType.Power||c.Rarity==CardRarity.Rare)*2;
+                case Alchemize://炼药
+                    return Owner.PotionSlots.Count(s => s == null) * 5;
+                case NotYet://包扎
+                    return (1 - Owner.Creature.CurrentHp / Owner.Creature.MaxHp) * 5;
+                case PiercingWail://尖啸
+                    int n = card.DynamicVars.FirstOrDefault().Value.IntValue;
+                    int num = 0;
+                    foreach (Creature t in CombatState.HittableEnemies.Where(e=>!e.HasPower<ArtifactPower>()))
+                    {
+                        if (t.IsMonster && t.Monster.IntendsToAttack)
+                        {
+                            num+= t.Monster.NextMove.Intents.OfType<AttackIntent>()
+                                .Select(a=>a.Repeats).Sum();
+                        }
+                    }
+                    return Math.Min(EnemyAttackDamage, n * num);
+                case Cruelty:
+                    return Math.Min(5,
+                        CombatState.HittableEnemies.Select(e => e.GetPowerAmount<VulnerablePower>()).Max());
+                case Tracking:
+                    return Math.Min(5,
+                        CombatState.HittableEnemies.Select(e => e.GetPowerAmount<WeakPower>()).Max());
+                case Expose:
+                    return CombatState.HittableEnemies.Select(e => e.GetPowerAmount<ArtifactPower>()).Max();
+            }
+
+            switch (card.Id.Entry)
+            {
+                case "MARISAMOD-TREASURE_HUNTER":
+                    return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Elite or RoomType.Boss } ? 0 : -100;
+                case "HAKUREIREIMU-STRENGTH":
+                    return -15;
+                case "HAKUREIREIMU-NO_INTERVAL_BOUNDARY":
+                    return -100;
+            }
+            return 0;
+        }
+    }
+}
