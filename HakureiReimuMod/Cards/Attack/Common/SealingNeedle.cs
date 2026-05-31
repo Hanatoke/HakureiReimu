@@ -34,6 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         protected override void OnUpgrade() {
             DynamicVars.Damage.UpgradeValueBy(2);
             DynamicVars[Powers.SealPower.ID].UpgradeValueBy(1);
+            DynamicVars.Cards.UpgradeValueBy(1);
         }
     }
 }

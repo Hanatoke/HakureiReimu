@@ -23,6 +23,7 @@ using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using ParryPower = HakureiReimu.HakureiReimuMod.Powers.ParryPower;
+// ReSharper disable FieldCanBeMadeReadOnly.Global
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
@@ -35,9 +36,33 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public Func<CardModel, int> Modifier;
         public bool VerifyResource = true;
         public bool UseSpecial = true;
+        public WeightSetting Setting = new ();
         protected IRunState RunState=>CombatState.RunState;
         protected PlayerCombatState PlayerCombatState => Owner.PlayerCombatState;
         public int EnemyAttackDamage {get;protected set;}
+        public int SelfEnergyNeed {get;protected set;}
+        public int SelfCardLack {get;protected set;}
+        public decimal SelfHealthRate {get;protected set;}
+        
+        public struct WeightSetting
+        {
+            public int ExhaustAndPowerWeight = 5;
+            public decimal ExtraRewardsMulti = 1.1m;
+            public decimal RarityCommonMulti = 1m;
+            public decimal RarityUncommonMulti = 1.05m;
+            public decimal RarityRareMulti = 1.1m;
+            public int KillEnemiesWeight = 30;
+            public int FatalWeight = 20;
+            public decimal DamageReductionMulti = 1m;
+            public int PowerBuffWeight = 15;
+            public int DrawCardWeight  = 2;
+            public int GainEnergyWeight = 3;
+            public decimal CardCostMulti = 0.5m;
+            public decimal OtherSpecialMulti = 1m;
+            public WeightSetting()
+            {
+            }
+        }
 
         public CardAnalyzer(ICombatState combatState, Player owner, List<CardModel> cards)
         {
@@ -49,7 +74,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public CardAnalyzer Analyze(Func<CardModel, int> modifier=null)
         {
             this.Modifier = modifier??this.Modifier;
-            EnemyAttackDamage = CalculateEnemyAttackDamage();
+            Precompute();
             Weights = new Dictionary<CardModel, int>();
             foreach (CardModel card in Cards)
             {
@@ -85,28 +110,63 @@ namespace HakureiReimu.HakureiReimuMod.Core
             .Take(count)
             .ToList();
         }
+
+        public void Precompute()
+        {
+            EnemyAttackDamage = CalculateEnemyAttackDamage();
+            SelfEnergyNeed = CalculateEnergyNeed();
+            SelfCardLack = CalculateCardLack();
+            SelfHealthRate = (decimal)Owner.Creature.CurrentHp / Owner.Creature.MaxHp;
+        }
+        public int CalculateEnemyAttackDamage()
+        {
+            int enemyAttackDamage = -Owner.Creature.Block;
+            enemyAttackDamage -= Owner.Creature.GetPowerAmount<PlatingPower>();//覆甲
+            AbstractPersistCardTable table = Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType);
+            if (table!=null)
+            {
+                decimal parry = Owner.Creature.GetPowerAmount<ParryPower>();//招架
+                foreach (CardModel card in table.Cards)
+                {
+                    if (card.GainsBlock)
+                    {
+                        enemyAttackDamage -= (int)(CalculateCardBlock(card)+parry);
+                    }
+                }
+            }
+            foreach (Creature t in CombatState.HittableEnemies)
+            {
+                if (t.IsMonster&&t.Monster is { IntendsToAttack: true } monster)
+                {
+                    enemyAttackDamage += Math.Max(0, monster.NextMove.Intents.OfType<AttackIntent>()
+                        .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()-t.GetPowerAmount<SealPower>());
+                }
+            }
+
+            return (int)(Math.Max(0, enemyAttackDamage) * Setting.DamageReductionMulti);
+        }
+
+        public int CalculateEnergyNeed()
+        {
+            return PlayerCombatState.Hand.Cards.Select(c => c.EnergyCost.GetResolved()).Sum()
+                   - PlayerCombatState.Energy;
+        }
+
+        public int CalculateCardLack()
+        {
+            return CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count;
+        }
+        //-------------------------------------------------------------------------
         public int CalculateWeight(CardModel card)
         {
             int weight = 0;
             try
             {
                 card.UpgradePreviewType = CardUpgradePreviewType.Combat;
-                // //可以打出的
-                // if (!card.CanPlay())
-                // {
-                //     if (card.Keywords.Contains(CardKeyword.Retain)&&!PlayerCombatState.HasEnoughResourcesFor(card,out UnplayableReason _))
-                //     {
-                //         weight -= 30*(card.EnergyCost.GetResolved()-PlayerCombatState.Energy);
-                //         weight -= 10 * (card.CurrentStarCost - PlayerCombatState.Stars);
-                //     }
-                //     else
-                //     {
-                //         return -100;
-                //     }
-                // }
+                
                 if (!CanCardPlay(card, ref weight)) return -100;
                 
-                if (card.Keywords.Contains(CardKeyword.Exhaust)||card.Type==CardType.Power) weight += 10;
+                if (card.Keywords.Contains(CardKeyword.Exhaust)||card.Type==CardType.Power) weight += Setting.ExhaustAndPowerWeight;
                 
                 if (card.Type==CardType.Attack)
                 {
@@ -116,12 +176,21 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 {
                     weight += TryDefense(card);
                 }
-                weight += TryBuff(card);
+                if (card.Type==CardType.Power)
+                {
+                    weight += TryBuff(card);
+                }
+                else
+                {
+                    weight += TryGainEnergy(card,CalculateCardGainEnergy(card));
+                    weight += TryDrawCard(card,CalculateCardDrawCount(card));
+                    weight += TryCardCost(card);
+                }
                 
-                if (!card.CanBeGeneratedInCombat) weight = (int) (weight*1.1m);
+                if (!card.CanBeGeneratedInCombat) weight = (int) (weight*Setting.ExtraRewardsMulti);
                 if (UseSpecial)
                 {
-                    weight += Special(card);
+                    weight += (int)(Special(card) * Setting.OtherSpecialMulti);
                 }
                 if (Modifier!=null)
                 {
@@ -153,41 +222,14 @@ namespace HakureiReimu.HakureiReimuMod.Core
             
             return false;
         }
-
-        public int CalculateEnemyAttackDamage()
-        {
-            int enemyAttackDamage = -Owner.Creature.Block;
-            enemyAttackDamage -= Owner.Creature.GetPowerAmount<PlatingPower>();//覆甲
-            AbstractPersistCardTable table = Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType);
-            if (table!=null)
-            {
-                decimal parry = Owner.Creature.GetPowerAmount<ParryPower>();//招架
-                foreach (CardModel card in table.Cards)
-                {
-                    if (card.GainsBlock)
-                    {
-                        enemyAttackDamage -= (int)(CalculateCardBlock(card)+parry);
-                    }
-                }
-            }
-            foreach (Creature t in CombatState.HittableEnemies)
-            {
-                if (t.IsMonster&&t.Monster is { IntendsToAttack: true } monster)
-                {
-                    enemyAttackDamage += Math.Max(0, monster.NextMove.Intents.OfType<AttackIntent>()
-                        .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()-t.GetPowerAmount<SealPower>());
-                }
-            }
-            return Math.Max(0, enemyAttackDamage);
-        }
-
+        
         public int TryRarity(CardModel card,int baseValue)
         {
             return card.Rarity switch
             {
-                CardRarity.Common => baseValue,
-                CardRarity.Uncommon => (int)(baseValue*1.05m),
-                CardRarity.Rare => (int)(baseValue*1.1m),
+                CardRarity.Common => (int)(baseValue*Setting.RarityCommonMulti),
+                CardRarity.Uncommon => (int)(baseValue*Setting.RarityUncommonMulti),
+                CardRarity.Rare => (int)(baseValue*Setting.RarityRareMulti),
                 _ => baseValue
             };
         }
@@ -236,18 +278,18 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 damage *= hitCount > 0 ? hitCount : Math.Max(0, CalculateAttackCount(card, t));
                 if (damage>=needToKill)
                 {
-                    int w = 30;
+                    int w = Setting.KillEnemiesWeight;
                     if (t.IsMonster && t.Monster.IntendsToAttack)
                     {
-                        w+= t.Monster.NextMove.Intents.OfType<AttackIntent>()
-                            .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum();
+                        w+= (int)(t.Monster.NextMove.Intents.OfType<AttackIntent>()
+                            .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()*Setting.DamageReductionMulti);
                     }
-                    if (!card.CanBeGeneratedInCombat) w += 20;
+                    if (!card.CanBeGeneratedInCombat) w += Setting.FatalWeight;
                     weights.Add(w);
                 }
                 else if (needToKill>0)
                 {
-                    weights.Add((int)(15m*damage/Math.Min(10000,needToKill)));
+                    weights.Add((int)(Setting.KillEnemiesWeight*damage/Math.Min(10000,needToKill)));
                 }
             }
             if (weights.Count>0)
@@ -299,13 +341,13 @@ namespace HakureiReimu.HakureiReimuMod.Core
             {
                 return targets.Select(t =>
                 {
-                    int w = 30;
+                    int w = Setting.KillEnemiesWeight;
                     if (t.IsMonster && t.Monster.IntendsToAttack)
                     {
-                        w += t.Monster.NextMove.Intents.OfType<AttackIntent>()
-                            .Select(a => (int)CalculateIntentDamage(a, t, Owner.Creature)).Sum();
+                        w+= (int)(t.Monster.NextMove.Intents.OfType<AttackIntent>()
+                            .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()*Setting.DamageReductionMulti);
                     }
-                    if (!card.CanBeGeneratedInCombat) w += 20;
+                    if (!card.CanBeGeneratedInCombat) w += Setting.FatalWeight;
                     return w;
                 }).Sum();
             }
@@ -316,41 +358,52 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             decimal block = CalculateCardBlock(card);
             if (block<=0) return 0;
-            return (int)Math.Min(block,EnemyAttackDamage);
+            return (int)Math.Min(block, EnemyAttackDamage);
         }
 
         public int TryBuff(CardModel card)
         {
             int result = 0;
-            if (card.Type==CardType.Power)
-            {
-                result -= EnemyAttackDamage;
-                int rate = CombatState.HittableEnemies.Select(e=>e.CurrentHp).Max();
-                rate = (int)Math.Log10(rate) * 3;
-                rate = Math.Min(15, rate);
-                rate =(int)(rate* 4m / (CombatState.RoundNumber + 3));
-                result += Math.Min(PlayerCombatState.Energy,card.EnergyCost.GetResolved())*rate;
-            }
-            else
-            {
-                // if (EnemyAttackDamage <= 0 && !card.CanBeGeneratedInCombat) result += 10;
-                if (card.DynamicVars.TryGetValue(EnergyVar.defaultName, out DynamicVar energyVar) && card.IsGainEnergyCard())
-                {
-                    // HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+card.IsGainEnergyCard());
-                    int energyNeed=PlayerCombatState.Hand.Cards.Select(c=>c.EnergyCost.GetResolved()).Sum()-PlayerCombatState.Energy;
-                    result += Math.Min(energyNeed, energyVar.IntValue-card.EnergyCost.GetResolved()) * 3;
-                }
-
-                if (card.DynamicVars.TryGetValue(CardsVar.defaultName, out DynamicVar cardsVar) && card.IsDrawCard()) 
-                {
-                    // HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+card.IsDrawCard());
-                    int canDraw = CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count;
-                    canDraw = Math.Min(canDraw,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count);
-                    result += Math.Min(cardsVar.IntValue,
-                        canDraw) * 3;
-                }
-            }
+            
+            result -= EnemyAttackDamage;
+            decimal rate = CombatState.HittableEnemies.Select(e=>e.CurrentHp).Max();
+            rate = (int)Math.Log10((int)rate) * Setting.PowerBuffWeight/5m;
+            rate = Math.Min(Setting.PowerBuffWeight, rate);
+            rate = Math.Floor(rate * 4m / (CombatState.RoundNumber + 3));
+            result += Math.Min(PlayerCombatState.Energy,card.EnergyCost.GetResolved())*(int)rate;
+            
             return result;
+        }
+
+        public int TryGainEnergy(CardModel card,int amount)
+        {
+            if (amount <= 0) return 0;
+            int result = 0;
+            
+            result += Math.Min(SelfEnergyNeed, amount) * Setting.GainEnergyWeight;
+            
+            return result;
+        }
+
+        public int TryDrawCard(CardModel card,int amount)
+        {
+            if (amount <= 0) return 0;
+            int result = 0;
+
+            int canDraw = Math.Min(SelfCardLack,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count);
+            result += Math.Min(amount, canDraw) * Setting.DrawCardWeight;
+            
+            return result;
+        }
+
+        public int TryCardCost(CardModel card)
+        {
+            int result = 0;
+            
+            result -= (card.EnergyCost.CostsX ? Math.Min(4,PlayerCombatState.Energy) : card.EnergyCost.GetResolved()) * 3;
+            result -= (card.HasStarCostX ? Math.Min(10,PlayerCombatState.Stars) : card.CurrentStarCost);
+
+            return (int)(result * Setting.CardCostMulti);
         }
         //--------------------------------------------------------------------------------------------------------------
         public static decimal CalculateIntentDamage(AttackIntent intent,Creature owner,Creature target)
@@ -415,6 +468,24 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 out IEnumerable<AbstractModel> _);
             return block;
         }
+
+        public static int CalculateCardGainEnergy(CardModel card)
+        {
+            if (card.DynamicVars.TryGetValue(EnergyVar.defaultName, out DynamicVar energyVar) && card.IsGainEnergyCard())
+            {
+                return energyVar.IntValue;
+            }
+            return 0;
+        }
+
+        public static int CalculateCardDrawCount(CardModel card)
+        {
+            if (card.DynamicVars.TryGetValue(CardsVar.defaultName, out DynamicVar cardsVar) && card.IsDrawCard()) 
+            {
+                return cardsVar.IntValue;
+            }
+            return 0;
+        }
         //---------------------------------------------------------------------------------------------------------------
 
         public int Special(CardModel card)
@@ -424,15 +495,15 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case HelpFromFriends:
                     return -1000;
                 case Reboot://重启
-                    return -PlayerCombatState.Hand.Cards.Count*3;
+                    return -PlayerCombatState.Hand.Cards.Count*Setting.DrawCardWeight;
                 case GlimpseBeyond://彼岸一瞥
                     return -100;
                 case Offering://祭品
-                    return -(1 - (Owner.Creature.CurrentHp / Owner.Creature.MaxHp)) * 10;
+                    return (int)((SelfHealthRate - 1) * 15);
                 case IceLance://冰之长枪
                     return -100;
                 case Scrawl://潦草
-                    return Math.Min(CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count) * 3;
+                    return TryDrawCard(card,SelfCardLack);
                 case Compact://压缩
                     return PlayerCombatState.Hand.Cards.Count(c => c.Type == CardType.Status) * 3;
                 case SecondWind://重振
@@ -446,11 +517,12 @@ namespace HakureiReimu.HakureiReimuMod.Core
                                  PlayerCombatState.Hand.Cards.Count(c => c.Type == CardType.Status) +
                                  PlayerCombatState.DrawPile.Cards.Count(c => c.Type == CardType.Status)) * 2;
                 case HiddenGem://味觉宝石
-                    return PlayerCombatState.DrawPile.Cards.Count(c=>c.Type == CardType.Power||c.Rarity==CardRarity.Rare)*2;
+                    if (PlayerCombatState.DrawPile.Cards.Count<=0) return -100;
+                    return (int)(((decimal)PlayerCombatState.DrawPile.Cards.Count(c=>c.Type == CardType.Power||c.Rarity==CardRarity.Rare)/PlayerCombatState.DrawPile.Cards.Count)*30m);
                 case Alchemize://炼药
                     return Owner.PotionSlots.Count(s => s == null) * 5;
                 case NotYet://包扎
-                    return (1 - Owner.Creature.CurrentHp / Owner.Creature.MaxHp) * 5;
+                    return (int)((1 - SelfHealthRate) * 10);
                 case PiercingWail://尖啸
                     int n = card.DynamicVars.FirstOrDefault().Value.IntValue;
                     int num = 0;
@@ -473,11 +545,19 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     return CombatState.HittableEnemies.Select(e => e.GetPowerAmount<ArtifactPower>()).Max();
                 case Purity://净化
                     return -100;
+                case DecisionsDecisions://抉择抉择
+                    return 15;
             }
 
             switch (card.Id.Entry)
             {
+                case "PANIC_BUTTON"://应急按钮
+                    return -10;
+                case "THE_GAMBIT"://孤独一掷
+                    return (int)(-20 * SelfHealthRate);
                 case "BLADE_DANCE"://刀舞
+                    return -100;
+                case "ABRASIVE"://磨蚀
                     return -100;
                 case "MARISAMOD-STARLIT_POTION"://星彩药剂
                     return -100;
@@ -496,7 +576,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case "HAKUREIREIMU-CELESTIAL_FLIGHT"://天人飞翔
                     return -10 + Owner.PlayerCombatState.DrawPile.Cards.Count - EnemyAttackDamage;
                 case "HAKUREIREIMU-REPEAT_CAST"://复诵
-                    return Math.Min(CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count,(card as RepeatCast)?.CardPlaysThisTurn.Count ?? 0)*3;
+                    return Math.Min(SelfCardLack,(card as RepeatCast)?.CardPlaysThisTurn.Count ?? 0)*Setting.DrawCardWeight;
             }
             return 0;
         }

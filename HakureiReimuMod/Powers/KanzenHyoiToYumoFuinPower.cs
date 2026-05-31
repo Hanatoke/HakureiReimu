@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Extensions;
-using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 {
                     total += e.GetPowerAmount<SealPower>();
                 }
-                return Mathf.FloorToInt((float)total/Div)*Amount;
+                return (int)(Math.Floor((decimal)total/Div)*Amount);
             }
         }
         public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext,PowerModel power, decimal amount, Creature applier, CardModel cardSource)

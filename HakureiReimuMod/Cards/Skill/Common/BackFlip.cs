@@ -23,8 +23,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         protected override void OnUpgrade()
         {
-            // this.DynamicVars.Cards.UpgradeValueBy(1);
-            DynamicVars.Block.UpgradeValueBy(3);
+            this.DynamicVars.Cards.UpgradeValueBy(1);
+            // DynamicVars.Block.UpgradeValueBy(3);
         }
     }
 }

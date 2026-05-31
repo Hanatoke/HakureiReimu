@@ -32,7 +32,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 PowerType type = p.TypeForCurrentAmount;
                 if (type==PowerType.Buff&&HalfBuff.Contains(p.GetType()))
                 {
-                    n = -(int)MathF.Floor(p.Amount / 2f);
+                    n = -(int)Math.Floor(p.Amount / 2m);
                 }
                 else if (type==PowerType.Debuff||DoubleBuff.Contains(p.GetType()))
                 {
