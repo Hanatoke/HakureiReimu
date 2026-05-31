@@ -131,7 +131,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
             catch (Exception e)
             {
-                // HakureiReimuMain.Logger.Info("Skip:"+card.Title);
+                HakureiReimuMain.Logger.Info("Card Analyzer Skip By Exception:"+card.Title);
                 // HakureiReimuMain.Logger.Info(e.ToString());
                 return -100;
             }
@@ -203,7 +203,12 @@ namespace HakureiReimu.HakureiReimuMod.Core
             {
                 hitCount = Math.Max(0, CalculateAttackCount(card));
             }
+            else if (card.TargetType is TargetType.RandomEnemy)
+            {
+                return TryRandomAttack(card);
+            }
             List<Creature> targets = CombatState.HittableEnemies.ToList();
+            if (targets.Count<=0) return 0;
             List<int> weights=new ();
             foreach (Creature t in targets)
             {
@@ -251,6 +256,60 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 result += card.TargetType == TargetType.AllEnemies ? weights.Sum() : weights.Max();
             }
             return result;
+        }
+
+        public int TryRandomAttack(CardModel card)
+        {
+            if (card.DynamicVars.TryGetValue(DamageVar.defaultName, out DynamicVar damageVar)) { }
+            else if (card.DynamicVars.TryGetValue(CalculatedDamageVar.defaultName, out damageVar)) { }
+            if (damageVar == null) return 0;
+            int hitCount = Math.Max(0, CalculateAttackCount(card));
+            if (hitCount <= 0) return 0;
+            int needCount = 0;
+            List<Creature> targets = CombatState.HittableEnemies.ToList();
+            if (targets.Count<=0) return 0;
+            foreach (Creature t in targets)
+            {
+                int needToKill = t.CurrentHp;
+                if (!card.Keywords.Contains(AbstractCard.IgnoreDefense)) needToKill += t.Block;
+                decimal damage = 0;
+                ValueProp prop=ValueProp.Move;
+                if (damageVar is DamageVar d)
+                {
+                    damage = d.BaseValue;
+                    prop = d.Props;
+                }
+                else if (damageVar is CalculatedDamageVar c)
+                {
+                    damage = c.Calculate(t);
+                    prop = c.Props;
+                }
+                if (card.Tags.Contains(CardTag.OstyAttack)&& PlayerCombatState.GetPet<Osty>() is not { IsAlive: true })
+                {
+                    damage = 0;
+                }
+                if (damage<=0) break;
+                damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
+                    ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
+                needCount += (int)Math.Ceiling(needToKill / damage);
+                //总数不够提前结束
+                if (needCount > hitCount) return 0;
+            }
+            if (needCount<=hitCount)
+            {
+                return targets.Select(t =>
+                {
+                    int w = 30;
+                    if (t.IsMonster && t.Monster.IntendsToAttack)
+                    {
+                        w += t.Monster.NextMove.Intents.OfType<AttackIntent>()
+                            .Select(a => (int)CalculateIntentDamage(a, t, Owner.Creature)).Sum();
+                    }
+                    if (!card.CanBeGeneratedInCombat) w += 20;
+                    return w;
+                }).Sum();
+            }
+            return 0;
         }
 
         public int TryDefense(CardModel card)
@@ -312,6 +371,21 @@ namespace HakureiReimu.HakureiReimuMod.Core
             if (card.DynamicVars.TryGetValue(RepeatVar.defaultName, out DynamicVar repeatVar))
             {
                 return repeatVar.IntValue;
+            }
+
+            if (card.EnergyCost.CostsX)
+            {
+                int count = Hook.ModifyXValue(card.CombatState,card,card.Owner.PlayerCombatState.Energy);
+                // HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+count);
+                if (card is HeavenlyDrill d && count >= d.DynamicVars.Energy.IntValue) count *= 2;
+                
+                return count;
+            }
+            //Special
+            switch (card.Id.Entry)
+            {
+                case "STARDUST":
+                    return Hook.ModifyXValue(card.CombatState, card, card.Owner.PlayerCombatState.Stars);
             }
             return 1;
         }
