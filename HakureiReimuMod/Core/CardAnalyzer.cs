@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Cards.Skill.Rare;
+using HakureiReimu.HakureiReimuMod.PersistCard;
+using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
+using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,6 +22,7 @@ using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using ParryPower = HakureiReimu.HakureiReimuMod.Powers.ParryPower;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
@@ -152,13 +156,26 @@ namespace HakureiReimu.HakureiReimuMod.Core
 
         public int CalculateEnemyAttackDamage()
         {
-            int enemyAttackDamage = -Owner.Creature.Block-Owner.Creature.GetPowerAmount<PlatingPower>();
+            int enemyAttackDamage = -Owner.Creature.Block;
+            enemyAttackDamage -= Owner.Creature.GetPowerAmount<PlatingPower>();//覆甲
+            AbstractPersistCardTable table = Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType);
+            if (table!=null)
+            {
+                decimal parry = Owner.Creature.GetPowerAmount<ParryPower>();//招架
+                foreach (CardModel card in table.Cards)
+                {
+                    if (card.GainsBlock)
+                    {
+                        enemyAttackDamage -= (int)(CalculateCardBlock(card)+parry);
+                    }
+                }
+            }
             foreach (Creature t in CombatState.HittableEnemies)
             {
                 if (t.IsMonster&&t.Monster is { IntendsToAttack: true } monster)
                 {
-                    enemyAttackDamage += monster.NextMove.Intents.OfType<AttackIntent>()
-                        .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum();
+                    enemyAttackDamage += Math.Max(0, monster.NextMove.Intents.OfType<AttackIntent>()
+                        .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()-t.GetPowerAmount<SealPower>());
                 }
             }
             return Math.Max(0, enemyAttackDamage);
@@ -190,7 +207,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             List<int> weights=new ();
             foreach (Creature t in targets)
             {
-                int needToKill = Math.Min(10000,t.CurrentHp);
+                int needToKill = t.CurrentHp;
                 if (!card.Keywords.Contains(AbstractCard.IgnoreDefense)) needToKill += t.Block;
                 decimal damage = 0;
                 ValueProp prop=ValueProp.Move;
@@ -225,7 +242,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
                 else if (needToKill>0)
                 {
-                    weights.Add((int)(15m*damage/needToKill));
+                    weights.Add((int)(15m*damage/Math.Min(10000,needToKill)));
                 }
             }
             if (weights.Count>0)
@@ -238,26 +255,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
 
         public int TryDefense(CardModel card)
         {
-            if (card.DynamicVars.TryGetValue(BlockVar.defaultName, out DynamicVar blockVar)){}
-            else if (card.DynamicVars.TryGetValue(CalculatedBlockVar.defaultName, out blockVar)){}
-            if (blockVar == null) return 0;
-            decimal block=0;ValueProp prop=ValueProp.Move;
-            if (blockVar is BlockVar b)
-            {
-                block = b.BaseValue;
-                prop = b.Props;
-            }else if (blockVar is CalculatedBlockVar c)
-            {
-                block = c.Calculate(null);
-                prop = c.Props;
-            }
-            if (block<=0) return 0;
-            block = Hook.ModifyBlock(CombatState, Owner.Creature, block, prop, card, new CardPlay()
-                {
-                    Card =  card,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo(){EnergySpent = card.EnergyCost.GetResolved(),EnergyValue = PlayerCombatState.Energy,StarsSpent = card.CurrentStarCost,StarValue = PlayerCombatState.Stars},
-                    IsAutoPlay =  false,ResultPile = PileType.Discard,Target = null
-                },
-                out IEnumerable<AbstractModel> _);
+            decimal block = CalculateCardBlock(card);
             if (block<=0) return 0;
             return (int)Math.Min(block,EnemyAttackDamage);
         }
@@ -277,13 +275,16 @@ namespace HakureiReimu.HakureiReimuMod.Core
             else
             {
                 // if (EnemyAttackDamage <= 0 && !card.CanBeGeneratedInCombat) result += 10;
-                if (card.DynamicVars.TryGetValue(EnergyVar.defaultName, out DynamicVar energyVar))
+                if (card.DynamicVars.TryGetValue(EnergyVar.defaultName, out DynamicVar energyVar) && card.IsGainEnergyCard())
                 {
+                    // HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+card.IsGainEnergyCard());
                     int energyNeed=PlayerCombatState.Hand.Cards.Select(c=>c.EnergyCost.GetResolved()).Sum()-PlayerCombatState.Energy;
                     result += Math.Min(energyNeed, energyVar.IntValue-card.EnergyCost.GetResolved()) * 3;
                 }
-                if (card.DynamicVars.TryGetValue(CardsVar.defaultName, out DynamicVar cardsVar))
+
+                if (card.DynamicVars.TryGetValue(CardsVar.defaultName, out DynamicVar cardsVar) && card.IsDrawCard()) 
                 {
+                    // HakureiReimuMain.Logger.Info("{"+card.Id.Entry+"}"+card.Title+":"+card.IsDrawCard());
                     int canDraw = CardPile.MaxCardsInHand - PlayerCombatState.Hand.Cards.Count;
                     canDraw = Math.Min(canDraw,PlayerCombatState.DrawPile.Cards.Count+PlayerCombatState.DiscardPile.Cards.Count);
                     result += Math.Min(cardsVar.IntValue,
@@ -313,6 +314,32 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 return repeatVar.IntValue;
             }
             return 1;
+        }
+
+        public static decimal CalculateCardBlock(CardModel card)
+        {
+            if (card.CombatState==null) return 0;
+            if (card.DynamicVars.TryGetValue(BlockVar.defaultName, out DynamicVar blockVar)){}
+            else if (card.DynamicVars.TryGetValue(CalculatedBlockVar.defaultName, out blockVar)){}
+            if (blockVar == null) return 0;
+            decimal block=0;ValueProp prop=ValueProp.Move;
+            if (blockVar is BlockVar b)
+            {
+                block = b.BaseValue;
+                prop = b.Props;
+            }else if (blockVar is CalculatedBlockVar c)
+            {
+                block = c.Calculate(null);
+                prop = c.Props;
+            }
+            if (block<=0) return 0;
+            block = Hook.ModifyBlock(card.CombatState, card.Owner.Creature, block, prop, card, new CardPlay()
+                {
+                    Card =  card,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo(){EnergySpent = card.EnergyCost.GetResolved(),EnergyValue = card.Owner.PlayerCombatState.Energy,StarsSpent = card.CurrentStarCost,StarValue = card.Owner.PlayerCombatState.Stars},
+                    IsAutoPlay =  false,ResultPile = PileType.Discard,Target = null
+                },
+                out IEnumerable<AbstractModel> _);
+            return block;
         }
         //---------------------------------------------------------------------------------------------------------------
 
