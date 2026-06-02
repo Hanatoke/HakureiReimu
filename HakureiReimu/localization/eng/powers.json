@@ -101,6 +101,10 @@
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "Swap back your [gold]hand[/gold] at the end of the turn.",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "At the end of the turn, your [gold]hand[/gold] will be swapped back.\nCards to be [red]Lost[/red]: {Replace}\nCards to be [gold]Returned[/gold]: {Origin}",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "At the end of the turn, [gold]{OwnerName}[/gold]'s [gold]hand[/gold] will be swapped back.",
+  
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.title": "Narrowing Barrier of Avici",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.description": "At the start of your turn, add a random [gold]Counter[/gold] card into your [gold]Hand[/gold].",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] random [gold]Counter[/gold] {Amount:plural:card|cards} into your [gold]Hand[/gold].",
 
 
 

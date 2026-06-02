@@ -34,8 +34,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public List<CardModel> Cards { get;}
         public Dictionary<CardModel,int> Weights{get;protected set;}
         public Func<CardModel, int> Modifier;
-        public bool VerifyResource = true;
-        public bool UseSpecial = true;
+        public bool VerifyResource = true;//验证费用足够
+        public bool UseSpecial = true;//使用特判
         public WeightSetting Setting = new ();
         protected IRunState RunState=>CombatState.RunState;
         protected PlayerCombatState PlayerCombatState => Owner.PlayerCombatState;
@@ -50,18 +50,18 @@ namespace HakureiReimu.HakureiReimuMod.Core
         
         public struct WeightSetting
         {
-            public int ExhaustAndPowerWeight = 5;
-            public decimal ExtraRewardsMulti = 1.1m;
-            public decimal RarityCommonMulti = 1m;
-            public decimal RarityUncommonMulti = 1.05m;
-            public decimal RarityRareMulti = 1.1m;
-            public int KillEnemiesWeight = 30;
-            public int FatalWeight = 20;
-            public decimal DamageReductionMulti = 1m;
-            public int PowerBuffWeight = 15;
-            public int DrawCardWeight  = 2;
-            public int GainEnergyWeight = 3;
-            public decimal CardCostMulti = 0.5m;
+            public int ExhaustAndPowerWeight = 5;//消耗卡和能力牌
+            public decimal ExtraRewardsMulti = 1.1m;//局外收益
+            public decimal RarityCommonMulti = 1m;//普通牌
+            public decimal RarityUncommonMulti = 1.05m;//罕见牌
+            public decimal RarityRareMulti = 1.1m;//稀有牌
+            public int KillEnemiesWeight = 30;//击杀敌人
+            public int FatalWeight = 20;//斩杀收益
+            public decimal DamageReductionMulti = 1m;//伤害规避
+            public int PowerBuffWeight = 15;//能力强化
+            public int DrawCardWeight  = 2;//抽牌
+            public int GainEnergyWeight = 3;//加费
+            public decimal CardCostMulti = 0.5m;//卡牌自身费用
             public decimal OtherSpecialMulti = 1m;
             public WeightSetting()
             {
@@ -610,7 +610,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                         num += EnemiesAttackCount.GetValueOrDefault(t, 0) *
                                Math.Min(n, EnemiesAttackDamage.GetValueOrDefault(t, 0));
                     }
-                    return Math.Min(EnemyAttackDamageTotal, num);
+                    return (int)Math.Min(EnemyAttackDamageTotal, num * Setting.DamageReductionMulti);
                 case Cruelty:
                     return Math.Min(5,GetEnemiesPowerMax<VulnerablePower>());
                 case Tracking://跟踪
@@ -630,7 +630,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     return TryGainEnergy(card, amount);
                 case Colossus://巨像
                     return CombatState.HittableEnemies.Where(e => e.HasPower<VulnerablePower>())
-                        .Select(e => (int)(EnemiesAttackDamage.GetValueOrDefault(e, 0) / 2m)).Sum();
+                        .Select(e => (int)(EnemiesAttackDamage.GetValueOrDefault(e, 0) / 2m *Setting.DamageReductionMulti)).Sum();
                 case Eidolon://幻景
                     return PlayerCombatState.Hand.Cards.Count < 9
                         ? 0

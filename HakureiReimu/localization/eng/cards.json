@@ -157,10 +157,6 @@
   "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.description":"Select a [gold]Counter[/gold] on the battlefield and [gold]Free[/gold] activate it {IfUpgraded:show:X+1|X} times.",
   "HAKUREIREIMU-RANBO_NA_SEKAI_NO_SAKEMEGUCHI.selectionScreenPrompt":"Select",
 
-  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.sign":"Recollection",
-  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.title":"Narrowing Barrier of Avici",
-  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.description":"Shuffle {Cards:diff()} {Cards:plural:copy|copies} of all [gold]Counter[/gold] cards on the battlefield into your draw pile.",
-
   "HAKUREIREIMU-DETER.title":"Deter",
   "HAKUREIREIMU-DETER.description":"Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.\n[gold]Stun[/gold] the Minions.",
   "HAKUREIREIMU-DETER.talk.1":"Nooo！",
@@ -215,6 +211,11 @@
   "HAKUREIREIMU-JINJA_HANJO_KIGAN.title":"Shrine Prosperity Prayer Talismans",
   "HAKUREIREIMU-JINJA_HANJO_KIGAN.description":"Whenever you [gold]Fatal[/gold] an enemy, gain {ProtectionFeePower:diff()} [gold]Gold[/gold].",
 
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.sign":"Recollection",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.title":"Narrowing Barrier of Avici",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.description":"At the start of your turn, add {Cards:diff()} random [gold]Counter[/gold] card into your [gold]Hand[/gold].",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY.tip":"Exclude [gold]Innate Dream[/gold].",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.title":"Most Evil Surprise Miko Orbs",

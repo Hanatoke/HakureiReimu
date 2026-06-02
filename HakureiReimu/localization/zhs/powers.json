@@ -101,7 +101,10 @@
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.description": "回合结束时将[gold]手牌[/gold]换回。",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.smartDescription": "回合结束时，你的[gold]手牌[/gold]将会换回。\n将要[red]失去[/red]的卡牌:{Replace}\n将要[gold]返回[/gold]的卡牌:{Origin}",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS_POWER.remoteDescription": "回合结束时，[gold]{OwnerName}[/gold]的[gold]手牌[/gold]将会换回。",
-
+  
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.title": "无间缩结界",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.description": "在你的回合开始时，将一张随机[gold]反制[/gold]牌添加到你的[gold]手牌[/gold]中。",
+  "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.smartDescription": "在你的回合开始时，将[blue]{Amount}[/blue]张随机[gold]反制[/gold]牌添加到你的[gold]手牌[/gold]中。",
 
 
 
