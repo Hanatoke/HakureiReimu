@@ -4,6 +4,7 @@ using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -12,7 +13,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(9,ValueProp.Move),new PowerVar<KujiKoshinHoPower>(1)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<SealPower>()];
 
         public KujiKoshinHo(
             ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) {
@@ -29,8 +30,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
 
         protected override void OnUpgrade()
         {
-            // this.DynamicVars.Block.UpgradeValueBy(3);
-            RemoveKeyword(CardKeyword.Exhaust);
+            this.DynamicVars.Block.UpgradeValueBy(3);
+            this.DynamicVars[KujiKoshinHoPower.ID].UpgradeValueBy(1);
         }
     }
 }

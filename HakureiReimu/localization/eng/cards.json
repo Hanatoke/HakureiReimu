@@ -128,7 +128,7 @@
 
   "HAKUREIREIMU-KUJI_KOSHIN_HO.sign":"Main Two Religions",
   "HAKUREIREIMU-KUJI_KOSHIN_HO.title":"Nine-Syllable Self-Defense",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO.description":"Gain {Block:diff()} [gold]Block[/gold].\nALL enemy's attacks will not consume [gold]Seal[/gold] this turn.",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO.description":"Gain {Block:diff()} [gold]Block[/gold].\nYou receive {KujiKoshinHoPower:diff()} less damage from [gold]Sealed[/gold] enemies this turn.",
 
   "HAKUREIREIMU-DUEL.title":"Duel",
   "HAKUREIREIMU-DUEL.description":"Execute the enemy's [gold]Intent[/gold].\nGain {Energy:energyIcons()}.",
@@ -301,7 +301,7 @@
   "HAKUREIREIMU-UNFETTERED_FORM.description":"At the start of your turn, draw {UnfetteredFormPower:diff()} additional cards.\n Whenever your Hand becomes [gold]Full[/gold] from drawing, a random card costs 0 this turn.",
 
   "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.title":"Perfect Possession and Dream Seal",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"Every {Div:diff()} [gold]Seal[/gold] on ALL enemies increase your damage by {KanzenHyoiToYumoFuinPower:diff()}.",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"Whenever an Attack deals damage, apply {KanzenHyoiToYumoFuinPower:diff()} [gold]Seal[/gold].",
 
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.sign":"Charm",
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.title":"Fantastic High-Speed Prayer Talismans",

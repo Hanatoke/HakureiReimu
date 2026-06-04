@@ -16,7 +16,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [
             new PowerVar<KanzenHyoiToYumoFuinPower>(1),
-            new DynamicVar("Div",KanzenHyoiToYumoFuinPower.Div)
         ];
         public override Character.HakureiReimu.Animation Animation => Character.HakureiReimu.Animation.SpellLongB;
         public KanzenHyoiToYumoFuin(
@@ -29,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Rare {
         }
         protected override void OnUpgrade() 
         {
-            DynamicVars[KanzenHyoiToYumoFuinPower.ID].UpgradeValueBy(1);
+            AddKeyword(CardKeyword.Innate);
         }
     }
 }

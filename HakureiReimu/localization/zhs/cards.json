@@ -128,7 +128,7 @@
 
   "HAKUREIREIMU-KUJI_KOSHIN_HO.sign":"二大宗教",
   "HAKUREIREIMU-KUJI_KOSHIN_HO.title":"九字护身法",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO.description":"获得{Block:diff()}点[gold]格挡[/gold]。\n本回合敌人的[gold]封印[/gold]不会因为攻击你而减少。",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO.description":"获得{Block:diff()}点[gold]格挡[/gold]。\n本回合有[gold]封印[/gold]的敌人对你造成的伤害减少{KujiKoshinHoPower:diff()}点。",
 
   "HAKUREIREIMU-DUEL.title":"决斗",
   "HAKUREIREIMU-DUEL.description":"目标立即执行当前[gold]意图[/gold]。\n获得{Energy:energyIcons()}。",
@@ -301,7 +301,7 @@
   "HAKUREIREIMU-UNFETTERED_FORM.description":"每回合开始时抽{UnfetteredFormPower:diff()}张牌。\n抽牌达到手牌[gold]上限[/gold]时，使随机手牌本回合费用变为0。",
 
   "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.title":"完全凭依与梦想封印",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"敌人每有{Div:diff()}层[gold]封印[/gold]，你造成的伤害便增加{KanzenHyoiToYumoFuinPower:diff()}点。",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN.description":"每当你攻击一名敌人时，给予{KanzenHyoiToYumoFuinPower:diff()}层[gold]封印[/gold]。",
 
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.sign":"御札",
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN.title":"梦幻的高速祈愿",

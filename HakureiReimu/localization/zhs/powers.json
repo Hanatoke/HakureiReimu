@@ -10,8 +10,8 @@
   "HAKUREIREIMU-INHIBIT_POWER.smartDescription": "[red]阻止[/red]下[blue]{Amount}[/blue]次[gold]正面[/gold]效果。",
     
   "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.title": "九字护身法",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "敌人的[gold]封印[/gold]不会因为攻击你而减少。",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "在[blue]{Amount}[/blue]回合内，敌人的[gold]封印[/gold]不会因为攻击你而减少。",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "有[gold]封印[/gold]的敌人对你造成的伤害减少。",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "有[gold]封印[/gold]的敌人对[gold]{OwnerName}[/gold]造成的伤害减少[blue]{Amount}[/blue]点。",
       
   "HAKUREIREIMU-EXTRA_DRAW_POWER.title": "额外抽牌",
   "HAKUREIREIMU-EXTRA_DRAW_POWER.description": "下次抽牌时[gold]额外[/gold]抽牌。",
@@ -70,8 +70,8 @@
   "HAKUREIREIMU-UNFETTERED_FORM_POWER.smartDescription": "每回合开始时额外抽[blue]{Amount}[/blue]张牌。\n抽牌达到手牌[gold]上限[/gold]时，使随机手牌本回合费用变为0。",
     
   "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.title": "完全凭依与梦想封印",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "敌人每有{Div:diff()}层[gold]封印[/gold]，你造成的伤害便增加。",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "敌人每有[blue]{Div:diff()}[/blue]层[gold]封印[/gold]，[gold]{OwnerName}[/gold]造成的伤害便增加[blue]{Amount}[/blue]点。\n当前已增加了[blue]{Total:diff()}[/blue]点。",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "每当你攻击一名敌人，给予[blue]1[/blue]层[gold]封印[/gold]。",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "每当[gold]{OwnerName}[/gold]攻击一名敌人，给予[blue]{Amount}[/blue]层[gold]封印[/gold]。",
   
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.title": "梦幻的高速祈愿",
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.description": "在你将[gold]反制[/gold]牌置入场上后，使其对随机敌人发动。",

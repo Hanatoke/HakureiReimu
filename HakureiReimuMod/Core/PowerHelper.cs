@@ -45,6 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             typeof(HardenedShellPower),
             typeof(HardToKillPower),
             // typeof(SandpitPower),
+            typeof(WitheringPresencePower),
         ];
         public static readonly HashSet<Type> DontBlock = [
             typeof(FlutterPower),

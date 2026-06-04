@@ -10,8 +10,8 @@
   "HAKUREIREIMU-INHIBIT_POWER.smartDescription": "[red]Negates[/red] [blue]{Amount}[/blue] [gold]Buffs[/gold].",
 
   "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.title": "9-Syllable Self-Defense",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "ALL enemy attack to you will not consume [gold]Seal[/gold].",
-  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "ALL enemy attack to you will not consume [gold]Seal[/gold] for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.description": "You receive less damage from [gold]Sealed[/gold] enemies this turn.",
+  "HAKUREIREIMU-KUJI_KOSHIN_HO_POWER.smartDescription": "[gold]{OwnerName}[/gold] receive [blue]{Amount}[/blue] less damage from [gold]Sealed[/gold] enemies this turn.",
 
   "HAKUREIREIMU-EXTRA_DRAW_POWER.title": "Extra Draw",
   "HAKUREIREIMU-EXTRA_DRAW_POWER.description": "Draw [gold]Additional[/gold] cards the next time you draw any card.",
@@ -70,8 +70,8 @@
   "HAKUREIREIMU-UNFETTERED_FORM_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] additional cards.\nWhen your hand becomes full from drawing, a random card costs [blue]0[/blue] this turn.",
 
   "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.title": "Perfect Possession",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "For every {Div:diff()} [gold]Seal[/gold] on enemies, your damage increases.",
-  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "For every [blue]{Div:diff()}[/blue] [gold]Seal[/gold] on enemies, [gold]{OwnerName}[/gold] deals [blue]{Amount}[/blue] more damage.\nCurrently increased by [blue]{Total:diff()}[/blue].",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.description": "Whenever your Attack deals damage, apply [blue]1[/blue] [gold]Seal[/gold].",
+  "HAKUREIREIMU-KANZEN_HYOI_TO_YUMO_FUIN_POWER.smartDescription": "Whenever [gold]{OwnerName}[/gold]'s Attack deals damage, apply [blue]{Amount}[/blue] [gold]Seal[/gold].",
 
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.title": "High-Speed Prayer",
   "HAKUREIREIMU-MUGEN_NO_KOSOKU_KIGAN_POWER.description": "Whenever you place a [gold]Counter[/gold], it activates against a random enemy.",

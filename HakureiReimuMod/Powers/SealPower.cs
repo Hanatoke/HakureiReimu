@@ -64,22 +64,22 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 NeedToCost = 0;
                 Flash();
                 await PowerCmd.ModifyAmount(choiceContext,this,-n,null,null);
-                foreach (Creature p in CombatState.GetOpponentsOf(Owner).ToList())
-                {
-                    if (p.HasPower<KujiKoshinHoPower>())
-                    {
-                        if (Owner.Monster is {IsPerformingMove:true})
-                        {
-                            KujiKoshinHoPower power = p.GetPower<KujiKoshinHoPower>();
-                            power?.TryAddToLater(Owner,n);
-                        }
-                        else
-                        {
-                            await PowerCmd.Apply<SealPower>(choiceContext, Owner,n, Owner, null);
-                        }
-                        return;
-                    }
-                }
+                // foreach (Creature p in CombatState.GetOpponentsOf(Owner).ToList())
+                // {
+                //     if (p.HasPower<KujiKoshinHoPower>())
+                //     {
+                //         if (Owner.Monster is {IsPerformingMove:true})
+                //         {
+                //             KujiKoshinHoPower power = p.GetPower<KujiKoshinHoPower>();
+                //             power?.TryAddToLater(Owner,n);
+                //         }
+                //         else
+                //         {
+                //             await PowerCmd.Apply<SealPower>(choiceContext, Owner,n, Owner, null);
+                //         }
+                //         return;
+                //     }
+                // }
             }
         }
     }
