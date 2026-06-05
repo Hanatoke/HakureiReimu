@@ -15,18 +15,18 @@ namespace HakureiReimu.HakureiReimuMod.Core
     {
         public override bool ShouldReceiveCombatHooks => true;
 
-        public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature target,
+        public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature target,
             CardModel cardSource)
         {
             if (power is SealPower && amount > 0 && giver is { Side: CombatSide.Player, CombatState: { } state })
             {
                 if (target is {Side:CombatSide.Player}) return amount;
                 int count = state.RunState.Players.Count(p => p.Creature.IsAlive);
-                if (count<=1)return amount;
+                if (count<=1)return 1;
                 decimal d = amount * SealPower.MultiplayerScaling(count);
-                return d > 1 ? Math.Floor(d) : Math.Ceiling(d);
+                return d > 1 ? Math.Floor(d) / amount : 1 / amount;
             }
-            return amount;
+            return 1;
         }
 
         public override Task BeforeAttack(AttackCommand command)

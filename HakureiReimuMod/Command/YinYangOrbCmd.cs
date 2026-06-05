@@ -58,7 +58,7 @@ namespace HakureiReimu.HakureiReimuMod.Command
             {
                 YinYangOrb orb = manager.Pop();
                 Vector2 pos=Vector2.Zero;
-                NOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.NYinYangOrbManager(manager)?.PopOrb(out pos);
+                NYinYangOrb nOrb=NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.NYinYangOrbManager(manager)?.PopOrb(out pos);
                 choiceContext.PushModel(orb);
                 IEnumerable<DamageResult> results=await orb.Attack(choiceContext,target,nOrb,pos);
                 choiceContext.PopModel(orb);

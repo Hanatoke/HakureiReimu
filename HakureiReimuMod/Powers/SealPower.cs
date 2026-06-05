@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             get
             {
                 LocString locString = base.Description;
-                bool isMultiplayerRun=RunManager.Instance.IsInProgress&&!RunManager.Instance.IsSinglePlayerOrFakeMultiplayer;
+                bool isMultiplayerRun=RunManager.Instance.IsInProgress&&!RunManager.Instance.IsSingleplayerOrFakeMultiplayer;
                 locString.Add("IsMultiplayerRun",isMultiplayerRun);
                 if (isMultiplayerRun)
                 {

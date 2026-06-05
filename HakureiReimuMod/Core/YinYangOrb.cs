@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Node;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using MegaCrit.Sts2.Core.Assets;
@@ -40,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             return Task.FromResult<IEnumerable<Creature>>(new List<Creature>());
         }
-        public virtual async Task<IEnumerable<DamageResult>> Attack(PlayerChoiceContext playerChoiceContext,Creature target,NOrb nOrb,Vector2 startPos)
+        public virtual async Task<IEnumerable<DamageResult>> Attack(PlayerChoiceContext playerChoiceContext,Creature target,NYinYangOrb nOrb,Vector2 startPos)
         {
             if (target is { IsHittable: false })
             {

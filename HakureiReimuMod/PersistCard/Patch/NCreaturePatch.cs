@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
             [HarmonyPostfix]
             public static void Postfix(NCreature __instance, bool shouldRemove, CancellationToken cancelToken)
             {
-                if (!RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
+                if (!RunManager.Instance.IsSingleplayerOrFakeMultiplayer)
                 {
                     __instance.ClearPersistCardTable();
                 }

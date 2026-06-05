@@ -114,7 +114,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             CardModel c=(await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(), cards, Owner, prefs)).FirstOrDefault();
             if (c != null)
             {
-                if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer)
+                if (RunManager.Instance.IsSingleplayerOrFakeMultiplayer)
                 {
                     CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(c, PileType.Deck), 2);
                 }

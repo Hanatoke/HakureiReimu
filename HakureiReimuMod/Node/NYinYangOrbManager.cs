@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.Orbs;
 
 namespace HakureiReimu.HakureiReimuMod.Node
 {
@@ -18,7 +17,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
         protected float TweenSpeed = 0.45f;
         protected Tween Tween;
         public bool IsLocal { get; protected set; }
-        public List<NOrb> Orbs { get; protected set; } = new();
+        public List<NYinYangOrb> Orbs { get; protected set; } = new();
 
         protected Player Player => this.CreatureNode.Entity.Player;
         protected readonly static Random Random = new();
@@ -37,10 +36,10 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             Vector2 offset = CreatureNode.Visuals.OrbPosition.Position;
             this.Position = offset/2;
-            if (!IsLocal)
-            {
-                Scale *= 0.85f;
-            }
+            // if (!IsLocal)
+            // {
+            //     Scale *= 0.85f;
+            // }
         }
 
         public override void _EnterTree()
@@ -61,7 +60,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
         
         public virtual void UpdateVisuals()
         {
-            foreach (NOrb nOrb in Orbs)
+            foreach (NYinYangOrb nOrb in Orbs)
             {
                 nOrb.UpdateVisuals(false);
             }
@@ -71,7 +70,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             foreach (YinYangOrb o in orbs)
             {
-                NOrb nOrb = NOrb.Create(LocalContext.IsMe(Player),o);
+                NYinYangOrb nOrb = NYinYangOrb.Create(LocalContext.IsMe(Player),o);
                 this.AddChildSafely(nOrb);
                 Orbs.Add(nOrb);
                 nOrb.Position = Vector2.Zero;
@@ -80,12 +79,12 @@ namespace HakureiReimu.HakureiReimuMod.Node
             UpdateControllerNavigation();
         }
 
-        public virtual NOrb PopOrb(out Vector2 position)
+        public virtual NYinYangOrb PopOrb(out Vector2 position)
         {
             if (Orbs.Count>0)
             {
                 int index = Random.Next(0, Orbs.Count);
-                NOrb nOrb = Orbs[index];
+                NYinYangOrb nOrb = Orbs[index];
                 position = nOrb.GlobalPosition;
                 this.RemoveChildSafely(nOrb);
                 Orbs.RemoveAt(index);
@@ -132,11 +131,11 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             for (int index = 0; index < this.Orbs.Count; ++index)
             {
-                NOrb orb = this.Orbs[index];
+                NYinYangOrb orb = this.Orbs[index];
                 NodePath path;
                 if (index <= 0)
                 {
-                    List<NOrb> orbs = this.Orbs;
+                    List<NYinYangOrb> orbs = this.Orbs;
                     path = orbs[orbs.Count - 1].GetPath();
                 }
                 else
