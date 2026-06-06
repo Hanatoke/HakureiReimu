@@ -22,7 +22,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
         private LocString _talk ;
         public LocString Talk => _talk??=LocString.GetIfExists("cards", Id.Entry + ".talk");
         public YokaiAshidomeOmamori(
-            ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy) {
+            ) : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy,autoAdd:false) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

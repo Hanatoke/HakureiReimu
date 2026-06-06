@@ -182,6 +182,9 @@
   "HAKUREIREIMU-BARRIER_REVERSAL.title":"Barrier Reversal",
   "HAKUREIREIMU-BARRIER_REVERSAL.description":"For every {Num:diff()} cards in your [gold]Discard Pile[/gold], gain {Energy:energyIcons()}.\nThen Shuffle your [gold]Discard Pile[/gold] into your [gold]Draw Pile[/gold].{InCombat:{CalculatedEnergy:cond:>0?\n(Gain{CalculatedEnergy:cond:>3? {CalculatedEnergy:diff()}{energyPrefix:energyIcons(1)}|{CalculatedEnergy:energyIcons()}}.)|}|}",
 
+  "HAKUREIREIMU-NISHOKU_LOTUS_BUTTERFLY.title":"Nishoku Lotus Butterfly",
+  "HAKUREIREIMU-NISHOKU_LOTUS_BUTTERFLY.description": "Gain {Block:diff()} [gold]Block[/gold].\nIncrease the activation count of [gold]Counter[/gold] cards on the battlefield by {Count:diff()}.",
+  
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-ITARUDOKORO_NO_AOYAMA.sign":"Barrier",
