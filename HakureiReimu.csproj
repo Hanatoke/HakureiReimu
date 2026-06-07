@@ -13,7 +13,7 @@
     <Reference Include="sts2">
       <HintPath>D:\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\sts2.dll</HintPath>
     </Reference>
-	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.1.2" />
+	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HakureiReimuMod\Cards\Power\Common\" />

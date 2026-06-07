@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -11,25 +12,25 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
-    public class ReimuGlobalModel : SingletonModel
+    public class ReimuGlobalModel : SingletonModel,HookPatch.IModifyPowerAmountGivenFinal
     {
         public override bool ShouldReceiveCombatHooks => true;
-        private const decimal Fixed = 0.0000000001m;
-
-        public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature target,
+        public decimal ModifyPowerAmountGivenFinal(PowerModel power, Creature giver, decimal amount, Creature target,
             CardModel cardSource)
         {
             if (power is SealPower && amount > 0 && giver is { Side: CombatSide.Player, CombatState: { } state })
             {
                 if (target is {Side:CombatSide.Player}) return amount;
-                int count = state.RunState.Players.Count(p => p.Creature.IsAlive);
-                if (count<=1)return 1;
-                decimal d = amount * SealPower.MultiplayerScaling(count);
-                d = Math.Max(1, d);
-                return (d + Fixed) / amount;
+                int count = state.Players.Count(p => p.Creature.IsAlive);
+                if (count>1)
+                {
+                    decimal d = amount * SealPower.MultiplayerScaling(count);
+                    return Math.Max(1, d);
+                }
             }
-            return 1;
+            return amount;
         }
+        
 
         public override Task BeforeAttack(AttackCommand command)
         {
