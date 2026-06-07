@@ -69,9 +69,8 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         Control control = template.Body;
                         
                         //记录位置
-                        Dictionary<NodePath, Vector2> positions = new();
-                        RecordPosition(__instance,__instance.Body,positions);
-                        // Vector2 t=__instance.Body.Position;
+                        // Dictionary<NodePath, Vector2> positions = new();
+                        // RecordPosition(__instance,__instance.Body,positions);
                         
                         //记录UniqueName
                         Dictionary<NodePath, NodePath> uniqueNames=new();
@@ -80,25 +79,23 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         //保留移动vfx
                         foreach (Godot.Node vfx in __instance.CardVfxContainer.GetChildren().ToList())
                         {
-                            RecordPosition(__instance,vfx,positions);
-                            vfx.ReparentSafely(template.CardVfxContainer);
+                            // RecordPosition(__instance,vfx,positions);
+                            vfx.ReparentSafely(template.CardVfxContainer,false);
                         }
                         
                         //移除
                         __instance.Body.Free();
                         CardOverlay.SetValue(__instance,null);
                         
-                        control.ReparentSafely(__instance);
+                        control.ReparentSafely(__instance,false);
                         
-                        // control.Position = t;
-                        RecoveryPosition(__instance,positions);
+                        // RecoveryPosition(__instance,positions);
                         
                         ____model = template.Model;
                         template.QueueFreeSafelyNoPool();
                         
                         //重构UniqueName
                         RecoveryUniqueName(__instance, uniqueNames);
-                        // SetUniqueNameToOwner(control, __instance);
                         
                         __instance._Ready();
                     }
@@ -111,46 +108,46 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             }
         }
 
-        private static void RecordPosition(Godot.Node root,Godot.Node node, Dictionary<NodePath, Vector2> positions,
-            bool includeChild = false)
-        {
-            if (includeChild)
-            {
-                foreach (Godot.Node child in node.GetChildren())
-                {
-                    RecordPosition(root,child, positions, true);
-                }
-            }
-            NodePath nodePath = root.GetPathTo(node);
-            switch (node)
-            {
-                case Node2D node2D:
-                    positions[nodePath]=node2D.Position;
-                    break;
-                case Control control:
-                    positions[nodePath]=control.Position;
-                    break;
-            }
-        }
-
-        private static void RecoveryPosition(Godot.Node root, Dictionary<NodePath, Vector2> positions)
-        {
-            foreach (var keyValuePair in positions)
-            {
-                if (root.GetNodeOrNull(keyValuePair.Key) is {} node)
-                {
-                    switch (node)
-                    {
-                        case Node2D node2D:
-                            node2D.Position=keyValuePair.Value;
-                            break;
-                        case Control control:
-                            control.Position=keyValuePair.Value;
-                            break;
-                    }
-                }
-            }
-        }
+        // private static void RecordPosition(Godot.Node root,Godot.Node node, Dictionary<NodePath, Vector2> positions,
+        //     bool includeChild = false)
+        // {
+        //     if (includeChild)
+        //     {
+        //         foreach (Godot.Node child in node.GetChildren())
+        //         {
+        //             RecordPosition(root,child, positions, true);
+        //         }
+        //     }
+        //     NodePath nodePath = root.GetPathTo(node);
+        //     switch (node)
+        //     {
+        //         case Node2D node2D:
+        //             positions[nodePath]=node2D.Position;
+        //             break;
+        //         case Control control:
+        //             positions[nodePath]=control.Position;
+        //             break;
+        //     }
+        // }
+        //
+        // private static void RecoveryPosition(Godot.Node root, Dictionary<NodePath, Vector2> positions)
+        // {
+        //     foreach (var keyValuePair in positions)
+        //     {
+        //         if (root.GetNodeOrNull(keyValuePair.Key) is {} node)
+        //         {
+        //             switch (node)
+        //             {
+        //                 case Node2D node2D:
+        //                     node2D.Position=keyValuePair.Value;
+        //                     break;
+        //                 case Control control:
+        //                     control.Position=keyValuePair.Value;
+        //                     break;
+        //             }
+        //         }
+        //     }
+        // }
 
         private static void RecordUniqueName(Godot.Node root, Godot.Node node, Dictionary<NodePath, NodePath> uniqueNames)
         {
@@ -175,15 +172,5 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 }
             }
         }
-
-        // private static void SetUniqueNameToOwner(Godot.Node node, Godot.Node parent)
-        // {
-        //     node.UniqueNameInOwner = true;
-        //     node.Owner = parent;
-        //     foreach (Godot.Node child in node.GetChildren())
-        //     {
-        //         SetUniqueNameToOwner(child, parent);
-        //     }
-        // }
     }
 }

@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -85,7 +86,11 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 CardModel card = slot.Card;
                 ICombatState state = card.CombatState;
                 PileType targetPile = overridePile ?? PileType.Discard;
-                
+                if (targetPile == PileType.Hand && CardPile.Get(targetPile, card.Owner)?.Cards.Count >= CardPile.MaxCardsInHand)
+                {
+                    ThinkCmd.Play(new LocString("combat_messages", "HAND_FULL"), card.Owner.Creature, 2.0);
+                    targetPile = PileType.Discard;
+                }
                 await PersistCardHook.OnStopPersistCard(state, slot);
                 
                 if (!overridePile.HasValue&&slot.Card.IsDupe)

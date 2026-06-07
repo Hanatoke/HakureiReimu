@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             if (amount+Gold>=DynamicVars.Gold.IntValue)
             {
                 decimal n=Math.Floor((amount+Gold)/DynamicVars.Gold.BaseValue);
-                Gold +=(int) ((amount + Gold) % DynamicVars.Gold.BaseValue);
+                Gold =(int) ((amount + Gold) % DynamicVars.Gold.BaseValue);
                 Flash();
                 await CreatureCmd.Heal(player.Creature, n);
             }

@@ -4,13 +4,14 @@ namespace HakureiReimu.HakureiReimuMod.Extensions
 {
     public static class GodotExtensions
     {
-        public static void ReparentSafely(this Godot.Node node, Godot.Node newParent)
+        public static void ReparentSafely(this Godot.Node node, Godot.Node newParent, bool keepGlobalTransform=true)
         {
             if (NGame .IsMainThread())
             {
-                node.Reparent(newParent);
-            }else{
-                node.CallDeferred(Godot.Node.MethodName.Reparent,newParent);
+                node.Reparent(newParent, keepGlobalTransform);
+            }else
+            {
+                node.CallDeferred(Godot.Node.MethodName.Reparent, newParent, keepGlobalTransform);
             }
         }
     }

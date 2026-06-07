@@ -7,6 +7,7 @@ using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -44,6 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public Dictionary<Creature,int> EnemiesAttackCount {get;protected set;}
         public int SelfEnergyNeed {get;protected set;}
         public int SelfCardLack {get;protected set;}
+        public bool SelfCanDraw {get;protected set;}
         public decimal SelfHealthRate {get;protected set;}
         public Dictionary<Type,int> EnemiesPowerMax {get;protected set;}
         public Dictionary<Type,int> EnemiesPowerSum {get;protected set;}
@@ -149,6 +151,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             EnemiesAttackCount = new Dictionary<Creature, int>();
             SelfEnergyNeed = CalculateEnergyNeed();
             SelfCardLack = CalculateCardLack();
+            SelfCanDraw = Hook.ShouldDraw(CombatState, Owner, false, out AbstractModel _);
             SelfHealthRate = (decimal)Owner.Creature.CurrentHp / Owner.Creature.MaxHp;
             EnemiesPowerMax = new Dictionary<Type, int>();
             EnemiesPowerSum = new Dictionary<Type, int>();
@@ -192,11 +195,18 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
             }
             EnemyAttackDamageTotal = CalculateEnemyAttackDamageTotal();
+            
         }
         public int GetEnemiesPowerMax<T>() where T : PowerModel=>EnemiesPowerMax.GetValueOrDefault(typeof(T),0);
         public int GetEnemiesPowerSum<T>() where T : PowerModel=>EnemiesPowerSum.GetValueOrDefault(typeof(T),0);
         public int CalculateEnemyAttackDamageTotal()
         {
+            //梦想天生
+            if (CombatState.Players.Any(p =>
+                    p.PlayerCombatState.PersistCardTable(CounterCardTable.PileType)?.Cards.Any(c => c is DreamInnate) == true))
+            {
+                return 0;
+            }
             int enemyAttackDamage = -Owner.Creature.Block;
             enemyAttackDamage -= Owner.Creature.GetPowerAmount<PlatingPower>();//覆甲
             AbstractPersistCardTable table = Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType);
@@ -207,7 +217,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 {
                     if (card.GainsBlock)
                     {
-                        enemyAttackDamage -= (int)(CalculateCardBlock(card)+parry);
+                        enemyAttackDamage -= (int)(CalculateCardBlock(card) + parry);
                     }
                 }
             }
@@ -216,14 +226,6 @@ namespace HakureiReimu.HakureiReimuMod.Core
             {
                 enemyAttackDamage += EnemiesAttackDamage.Values.Sum();
             }
-            // foreach (Creature t in CombatState.HittableEnemies)
-            // {
-            //     if (t.IsMonster&&t.Monster is { IntendsToAttack: true } monster)
-            //     {
-            //         enemyAttackDamage += Math.Max(0, monster.NextMove.Intents.OfType<AttackIntent>()
-            //             .Select(a => (int)CalculateIntentDamage(a,t,Owner.Creature)).Sum()-t.GetPowerAmount<SealPower>());
-            //     }
-            // }
 
             return (int)(Math.Max(0, enemyAttackDamage) * Setting.DamageReductionMulti);
         }
@@ -454,8 +456,12 @@ namespace HakureiReimu.HakureiReimuMod.Core
             return result;
         }
 
-        public int TryGainEnergy(CardModel card,int amount)
+        public int TryGainEnergy(CardModel card,int amount,bool ignoreModify=false)
         {
+            if (!ignoreModify)
+            {
+                amount = (int)Hook.ModifyEnergyGain(CombatState, Owner, amount, out IEnumerable<AbstractModel> _);
+            }
             if (amount <= 0) return 0;
             int result = 0;
             
@@ -464,8 +470,9 @@ namespace HakureiReimu.HakureiReimuMod.Core
             return result;
         }
 
-        public int TryDrawCard(CardModel card,int amount)
+        public int TryDrawCard(CardModel card,int amount,bool ignoreVerify=false)
         {
+            if (!ignoreVerify && !SelfCanDraw) return 0;
             if (amount <= 0) return 0;
             int result = 0;
 
