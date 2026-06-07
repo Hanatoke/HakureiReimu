@@ -14,6 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
     public class ReimuGlobalModel : SingletonModel
     {
         public override bool ShouldReceiveCombatHooks => true;
+        private const decimal Fixed = 0.0000000001m;
 
         public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature target,
             CardModel cardSource)
@@ -24,7 +25,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 int count = state.RunState.Players.Count(p => p.Creature.IsAlive);
                 if (count<=1)return 1;
                 decimal d = amount * SealPower.MultiplayerScaling(count);
-                return d > 1 ? Math.Floor(d) / amount : 1 / amount;
+                d = Math.Max(1, d);
+                return (d + Fixed) / amount;
             }
             return 1;
         }
