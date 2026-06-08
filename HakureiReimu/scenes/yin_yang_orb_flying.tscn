@@ -122,7 +122,6 @@ texture_mode = 2
 begin_cap_mode = 2
 antialiased = true
 script = ExtResource("1_8h6kb")
-_maxSegments = null
 
 [node name="TrailInner" type="Line2D" parent="Visual/Fixed/Trails"]
 material = SubResource("CanvasItemMaterial_vk33o")
@@ -135,7 +134,6 @@ joint_mode = 2
 begin_cap_mode = 2
 antialiased = true
 script = ExtResource("1_8h6kb")
-_maxSegments = null
 
 [node name="Ratation" type="Node2D" parent="Visual"]
 

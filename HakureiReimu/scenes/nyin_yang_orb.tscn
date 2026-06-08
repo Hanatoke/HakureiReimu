@@ -8,6 +8,7 @@
 [sub_resource type="SystemFont" id="SystemFont_lkejc"]
 
 [sub_resource type="SystemFont" id="SystemFont_2onw5"]
+subpixel_positioning = 0
 
 [sub_resource type="Curve" id="Curve_to04r"]
 _limits = [0.5, 2.0, 0.0, 1.0]
@@ -46,10 +47,18 @@ pivot_offset = Vector2(30, 30)
 texture = ExtResource("2_2onw5")
 expand_mode = 1
 
+[node name="BackVfxContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+
 [node name="VisualContainer" type="Control" parent="."]
 unique_name_in_owner = true
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
+
+[node name="FrontVfxContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
 
 [node name="LabelContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

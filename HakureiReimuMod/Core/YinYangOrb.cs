@@ -7,12 +7,15 @@ using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Node;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
+using HakureiReimu.HakureiReimuMod.Node.VFX.Special;
+using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Orbs;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -31,6 +34,19 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public virtual decimal ModifyEvokeVal(decimal result)=>YinYangOrbHook.ModifyOrbValue(this, result);
         protected override string ChannelSfx => "event:/sfx/characters/defect/defect_dark_channel";
         public override string CustomIconPath => ImgPath;
+        public virtual bool ShowLightning => Owner?.Creature.HasPower<RainbowDragonYinYangOrbsWindThunderPower>()==true;
+        public virtual bool ShowFire => Owner?.Creature.HasPower<RainbowDragonYinYangOrbsFireWaterPower>()==true;
+        public virtual bool ShowRain => Owner?.Creature.HasPower<RainbowDragonYinYangOrbsStormMountainPower>()==true;
+        protected override IEnumerable<IHoverTip> ExtraHoverTips
+        {
+            get
+            {
+                if (!IsMutable)yield break;
+                if (ShowFire)yield return HoverTipFactory.FromPower<RainbowDragonYinYangOrbsFireWaterPower>();
+                if (ShowRain)yield return HoverTipFactory.FromPower<RainbowDragonYinYangOrbsStormMountainPower>();
+                if (ShowLightning)yield return HoverTipFactory.FromPower<RainbowDragonYinYangOrbsWindThunderPower>();
+            }
+        }
 
         public override Node2D CreateCustomSprite()
         {
@@ -71,7 +87,26 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     NDebugAudioManager.Instance?.Play("blunt_attack.mp3");
                     VfxCmd.PlayOnCreatureCenter(target,"vfx/vfx_attack_blunt");
                 };
+                if (ShowFire)
+                {
+                    Node2D fire = NFirePersistent.Create(0.15f,new Color("#bf44ff"));
+                    fire.RotationDegrees = -90;
+                    vfx.AddChildSafely(fire);
+                }
+                if (ShowRain)
+                {
+                    NRain rain = NRain.Create(0.7f);
+                    rain.RotationDegrees = 90;
+                    vfx.AddChildSafely(rain);
+                }
                 vfx.AddChildSafely(NYinYangOrbFlying.Create());
+                if (ShowLightning)
+                {
+                    NLightning lightning = NLightning.Create();
+                    lightning.RotationDegrees = 90;
+                    vfx.AddChildSafely(lightning);
+                }
+                
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
             }
             

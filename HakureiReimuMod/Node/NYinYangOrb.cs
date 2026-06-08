@@ -2,6 +2,7 @@
 using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
+using HakureiReimu.HakureiReimuMod.Node.VFX.Special;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
@@ -19,6 +20,8 @@ namespace HakureiReimu.HakureiReimuMod.Node
     {
         public static readonly string Path = "nyin_yang_orb.tscn".ScenePath();
         public TextureRect _outline;
+        public Control BackVfxContainer;
+        public Control FrontVfxContainer;
         public Control _visualContainer;
         public Control _labelContainer;
         public MegaLabel _passiveLabel;
@@ -27,25 +30,14 @@ namespace HakureiReimu.HakureiReimuMod.Node
         public CpuParticles2D _flashParticle;
         public NSelectionReticle _selectionReticle;
         public bool _isLocal;
-        public Node2D _sprite;
+        public Node2D Sprite;
         public Tween _curTween;
-        // private Font defaultFont;
-        // public Font GetDefaultFont
-        // {
-        //     get
-        //     {
-        //         if (this.defaultFont == null)
-        //         {
-        //             NOrb nOrb = NOrb.Create(true);
-        //             var label = nOrb.GetNode<MegaLabel>("%PassiveAmount");
-        //             defaultFont = label.GetThemeFont(ThemeConstants.Label.Font);
-        //             nOrb.QueueFreeSafely();
-        //         }
-        //         return defaultFont;
-        //     }
-        // }
+        public NLightning lightning;
+        public Node2D FirePersistent;
+        public NRain Rain;
 
         public YinYangOrb Model { get; private set; }
+        
 
         public static NYinYangOrb Create(bool isLocal)
         {
@@ -64,6 +56,8 @@ namespace HakureiReimu.HakureiReimuMod.Node
         {
             this.ConnectSignals();
             this._outline = this.GetNode<TextureRect>("%Outline");
+            BackVfxContainer=this.GetNode<Control>("%BackVfxContainer");
+            FrontVfxContainer=this.GetNode<Control>("%FrontVfxContainer");
             this._visualContainer = this.GetNode<Control>("%VisualContainer");
             this._passiveLabel = this.GetNode<MegaLabel>("%PassiveAmount");
             this._evokeLabel = this.GetNode<MegaLabel>("%EvokeAmount");
@@ -97,10 +91,10 @@ namespace HakureiReimu.HakureiReimuMod.Node
 
         public void ReplaceOrb(YinYangOrb model)
         {
-            Node2D sprite = this._sprite;
+            Node2D sprite = this.Sprite;
             if (sprite != null)
                 sprite.QueueFreeSafely();
-            this._sprite = (Node2D)null;
+            this.Sprite = (Node2D)null;
             this.Model = model;
             this.UpdateVisuals(false);
         }
@@ -111,7 +105,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
                 return;
             if (this.Model == null)
             {
-                Node2D sprite = this._sprite;
+                Node2D sprite = this.Sprite;
                 if (sprite != null)
                     sprite.QueueFreeSafely();
                 this._passiveLabel.Visible = false;
@@ -121,15 +115,15 @@ namespace HakureiReimu.HakureiReimuMod.Node
             }
             else
             {
-                if (this._sprite == null)
+                if (this.Sprite == null)
                 {
-                    this._sprite = this.Model.CreateSprite();
-                    this._visualContainer.AddChildSafely(this._sprite);
-                    this._sprite.Position = Vector2.Zero;
+                    this.Sprite = this.Model.CreateSprite();
+                    this._visualContainer.AddChildSafely(this.Sprite);
+                    this.Sprite.Position = Vector2.Zero;
                     this._curTween?.Kill();
                     this._curTween = this.CreateTween();
                     this._curTween
-                        .TweenProperty(this._sprite, "scale", Vector2.One, 0.5)
+                        .TweenProperty(this.Sprite, "scale", Vector2.One, 0.5)
                         .From(Vector2.Zero).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
                 }
 
@@ -147,6 +141,48 @@ namespace HakureiReimu.HakureiReimuMod.Node
                         this._passiveLabel.SetTextAutoSize(this.Model.PassiveVal.ToString("0"));
                         this._evokeLabel.SetTextAutoSize(this.Model.EvokeVal.ToString("0"));
                         break;
+                }
+
+                if ((lightning != null) != Model.ShowLightning)
+                {
+                    if (lightning==null)
+                    {
+                        lightning = NLightning.Create();
+                        FrontVfxContainer.AddChildSafely(lightning);
+                    }
+                    else
+                    {
+                        lightning.QueueFreeSafely();
+                        lightning = null;
+                    }
+                }
+
+                if ((FirePersistent != null) != Model.ShowFire) 
+                {
+                    if (FirePersistent==null)
+                    {
+                        FirePersistent = NFirePersistent.Create(0.2f,new Color("#bf44ff"));
+                        BackVfxContainer.AddChildSafely(FirePersistent);
+                        FirePersistent.Position = new Vector2(0, 20f);
+                    }
+                    else
+                    {
+                        FirePersistent.QueueFreeSafely();
+                        FirePersistent = null;
+                    }
+                }
+                if ((Rain != null) != Model.ShowRain) 
+                {
+                    if (Rain==null)
+                    {
+                        Rain = NRain.Create();
+                        BackVfxContainer.AddChildSafely(Rain);
+                    }
+                    else
+                    {
+                        Rain.QueueFreeSafely();
+                        Rain = null;
+                    }
                 }
             }
         }

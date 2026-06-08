@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public Player Owner { get;}
         public List<CardModel> Cards { get;}
         public Dictionary<CardModel,int> Weights{get;protected set;}
-        public Func<CardModel, int> Modifier;
+        public Func<CardAnalyzer,CardModel, int> Modifier;
         public bool VerifyResource = true;//验证费用足够
         public bool UseSpecial = true;//使用特判
         public WeightSetting Setting = new ();
@@ -102,7 +102,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             Cards = cards;
         }
 
-        public CardAnalyzer Analyze(Func<CardModel, int> modifier=null)
+        public CardAnalyzer Analyze(Func<CardAnalyzer,CardModel, int> modifier=null)
         {
             this.Modifier = modifier??this.Modifier;
             Precompute();
@@ -278,7 +278,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
                 if (Modifier!=null)
                 {
-                    weight += Modifier.Invoke(card);
+                    weight += Modifier.Invoke(this,card);
                 }
                 weight = TryRarity(card, weight);
             }
@@ -578,8 +578,6 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             switch (card)
             {
-                case HelpFromFriends:
-                    return -1000;
                 case Reboot://重启
                     return -PlayerCombatState.Hand.Cards.Count*Setting.DrawCardWeight;
                 case GlimpseBeyond://彼岸一瞥
@@ -649,6 +647,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
 
             switch (card.Id.Entry)
             {
+                case "BUNDLE_OF_JOY"://新生之喜
+                    return SelfCanDraw ? 0 : TryDrawCard(card, card.DynamicVars.Cards.IntValue, true);
                 case "FIGHT_THROUGH"://强撑
                     return -10;
                 case "DOMINATE"://主宰
@@ -685,6 +685,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
                     return -10 + Owner.PlayerCombatState.DrawPile.Cards.Count - EnemyAttackDamageTotal;
                 case "HAKUREIREIMU-REPEAT_CAST"://复诵
                     return Math.Min(SelfCardLack,(card as RepeatCast)?.CardPlaysThisTurn.Count ?? 0)*Setting.DrawCardWeight;
+                case "HAKUREIREIMU-HELP_FROM_FRIENDS"://友人之助
+                    return 20;
             }
             return 0;
         }

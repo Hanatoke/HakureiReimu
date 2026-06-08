@@ -60,7 +60,16 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 }
                 return c;
             }).ToList();
-            return new CardAnalyzer(CombatState, Owner, allCards).Analyze().GetResultsByBest(rng, count);
+            return new CardAnalyzer(CombatState, Owner, allCards).Analyze(SpecialModifier).GetResultsByBest(rng, count);
+        }
+
+        public int SpecialModifier(CardAnalyzer analyzer,CardModel card)
+        {
+            if (card is HelpFromFriends)
+            {
+                return -100;
+            }
+            return 0;
         }
     }
 }
