@@ -8,6 +8,7 @@ using HakureiReimu.HakureiReimuMod.Node;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Special;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio.Debug;
@@ -17,7 +18,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.Nodes.Orbs;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -27,10 +27,13 @@ namespace HakureiReimu.HakureiReimuMod.Core
     {
         public static readonly string ImgPath = "effects/YinYangOrb.png".ImagePath();
         public static readonly string ScenePath = "yin_yang_orb.tscn".ScenePath();
-        public override decimal PassiveVal => EvokeVal;
-        public override decimal EvokeVal => ModifyEvokeVal(3);
+        public override decimal PassiveVal => ModifyEvokeVal(3);
+        public override decimal EvokeVal => PassiveVal;
+        public virtual ValueProp DamageProp => ValueProp.Unpowered | DamagePropsPatch.YinYangOrbDamage;
         public override Color DarkenedColor => new(1, 1, 1, 0.5f);
 
+        public virtual bool IsAvailableTarget(Creature target) =>
+            target != null && target.Side != Owner.Creature.Side && target.IsHittable;
         public virtual decimal ModifyEvokeVal(decimal result)=>YinYangOrbHook.ModifyOrbValue(this, result);
         protected override string ChannelSfx => "event:/sfx/characters/defect/defect_dark_channel";
         public override string CustomIconPath => ImgPath;
@@ -59,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         }
         public virtual async Task<IEnumerable<DamageResult>> Attack(PlayerChoiceContext playerChoiceContext,Creature target,NYinYangOrb nOrb,Vector2 startPos)
         {
-            if (target is { IsHittable: false })
+            if (!IsAvailableTarget(target))
             {
                 target = null;
             }
@@ -72,7 +75,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             if (target == null) return [];
             List<Creature> targets = [target];
             decimal damage = EvokeVal;
-            ValueProp props = ValueProp.Unpowered;
+            ValueProp props = DamageProp;
             YinYangOrbHook.ModifyOrbDamage(playerChoiceContext,this,targets,ref damage,ref props);
             
             NCreature targetNode = NCombatRoom.Instance?.GetCreatureNode(target);

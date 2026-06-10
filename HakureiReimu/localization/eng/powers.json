@@ -86,8 +86,8 @@
   "HAKUREIREIMU-HAKUREI_PHANTOM_POWER.smartDescription": "Cards are played [blue]{Amount}[/blue] additional times.\nWhenever [gold]{OwnerName}[/gold] plays a card, [gold]Exhaust[/gold] it.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.title": "Fire Water Orb",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.description": "[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.description": "[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.\nDamage is also increased by [gold]Positive[/gold] effects.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER_POWER.smartDescription": "[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.\nDamage is also increased by [gold]Positive[/gold] effects.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.title": "Storm Mountain Orb",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN_POWER.description": "[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to Half unblocked damage dealt.",

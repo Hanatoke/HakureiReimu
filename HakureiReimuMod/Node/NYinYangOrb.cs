@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Extensions;
@@ -6,7 +7,10 @@ using HakureiReimu.HakureiReimuMod.Node.VFX.Special;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -68,7 +72,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
             if (this.Model != null)
                 this.CreateTween().TweenProperty(this._outline, "scale", Vector2.One, 0.25).From(Vector2.Zero);
             this.Scale *= 0.85f;
-            this.UpdateVisuals(false);
+            this.UpdateVisuals();
             // _passiveLabel.AddThemeFontOverride(ThemeConstants.Label.Font,defaultFont);
             // _evokeLabel.AddThemeFontOverride(ThemeConstants.Label.Font, defaultFont);
         }
@@ -96,10 +100,10 @@ namespace HakureiReimu.HakureiReimuMod.Node
                 sprite.QueueFreeSafely();
             this.Sprite = (Node2D)null;
             this.Model = model;
-            this.UpdateVisuals(false);
+            this.UpdateVisuals();
         }
 
-        public void UpdateVisuals(bool isEvoking)
+        public void UpdateVisuals(Creature target=null)
         {
             if (!this.IsNodeReady() || !CombatManager.Instance.IsInProgress)
                 return;
@@ -133,15 +137,16 @@ namespace HakureiReimu.HakureiReimuMod.Node
                 this._labelContainer.Visible = this._isLocal;
                 if (!this._isLocal)
                     this.Modulate = this.Model.DarkenedColor;
-                switch (this.Model)
-                {
-                    default:
-                        this._passiveLabel.Visible = !isEvoking;
-                        this._evokeLabel.Visible = isEvoking;
-                        this._passiveLabel.SetTextAutoSize(this.Model.PassiveVal.ToString("0"));
-                        this._evokeLabel.SetTextAutoSize(this.Model.EvokeVal.ToString("0"));
-                        break;
-                }
+                bool preview = Model.IsAvailableTarget(target);
+                this._passiveLabel.Visible = !preview;
+                this._evokeLabel.Visible = preview;
+                this._passiveLabel.SetTextAutoSize(this.Model.PassiveVal.ToString("0"));
+                decimal evokeValue = Model.EvokeVal;
+                if (preview)
+                    evokeValue = Hook.ModifyDamage(Model.CombatState.RunState, Model.CombatState, target, Model.Owner.Creature,
+                        evokeValue, Model.DamageProp, null, ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
+                evokeValue=Math.Floor(evokeValue);
+                this._evokeLabel.SetTextAutoSize(evokeValue.ToString("0"));
 
                 if ((lightning != null) != Model.ShowLightning)
                 {

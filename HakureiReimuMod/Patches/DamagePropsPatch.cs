@@ -11,6 +11,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 {
     public static class DamagePropsPatch
     {
+        public static readonly ValueProp YinYangOrbDamage = (ValueProp)(1 << 16);
         /// <summary>
         /// 无视伤害减免(飞行,难以杀灭,灵体,坚不可摧...)
         /// </summary>

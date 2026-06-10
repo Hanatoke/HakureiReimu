@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
@@ -20,15 +22,62 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerStackType StackType => PowerStackType.Single;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<YinYangOrb>()];
 
+        public static readonly ValueProp ModifyProp = ValueProp.Unblockable | DamagePropsPatch.IgnoreDamageImmunity |
+                                                      DamagePropsPatch.IgnoreDamageResponse;
+
         public void ModifyOrbDamage(PlayerChoiceContext choiceContext, YinYangOrb orb, List<Creature> targets, ref decimal damage,
             ref ValueProp props)
         {
             if (orb.Owner.Creature==Owner)
             {
-                props |= ValueProp.Unblockable;
-                props |= DamagePropsPatch.IgnoreDamageImmunity;
-                props |= DamagePropsPatch.IgnoreDamageResponse;
+                props |= ModifyProp;
             }
+        }
+
+        public static readonly ValueProp CalculateProp = ValueProp.Move;
+
+        public override decimal ModifyDamageAdditive(Creature target, decimal amount, ValueProp props, Creature dealer,
+            CardModel cardSource)
+        {
+            if (dealer == Owner && (props & DamagePropsPatch.YinYangOrbDamage) != 0)
+            {
+                decimal total = 0;
+                foreach (AbstractModel listener in CombatState.IterateHookListeners())
+                {
+                    if (listener is not (RainbowDragonYinYangOrbsFireWaterPower or StrengthPower))
+                    {
+                        decimal add = listener.ModifyDamageAdditive(target, amount, CalculateProp, dealer, cardSource);
+                        if (add > 0)
+                        {
+                            total += add;
+                        }
+                    }
+                }
+                return total;
+            }
+            return 0;
+        }
+
+        public override decimal ModifyDamageMultiplicative(Creature target, decimal amount, ValueProp props, Creature dealer,
+            CardModel cardSource)
+        {
+            if (dealer == Owner && (props & DamagePropsPatch.YinYangOrbDamage) != 0)
+            {
+                decimal total = 1;
+                foreach (AbstractModel listener in CombatState.IterateHookListeners())
+                {
+                    if (listener is not (RainbowDragonYinYangOrbsFireWaterPower or StrengthPower))
+                    {
+                        decimal mult = listener.ModifyDamageMultiplicative(target, amount, CalculateProp, dealer, cardSource);
+                        if (mult > 1)
+                        {
+                            total *= mult;
+                        }
+                    }
+                }
+                return total;
+            }
+            return 1;
         }
     }
     public class RainbowDragonYinYangOrbsStormMountainPower : AbstractPower,IYinYangOrbListener

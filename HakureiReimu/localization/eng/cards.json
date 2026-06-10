@@ -348,7 +348,7 @@
   "HAKUREIREIMU-PROCRASTINATE.description":"Gain {Energy:energyIcons()}.\n [gold]Retain[/gold] your hand and {energyPrefix:energyIcons(1)} this turn.",
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"Fire Water Orb",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]Yin-Yang Orbs[/gold] ignore [blue]Block[/blue] and [gold]Defensive[/gold] powers.\nDamage is also increased by [gold]Positive[/gold] effects.",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"Storm Mountain Orb",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]Yin-Yang Orbs[/gold] gain [gold]Block[/gold] equal to Half unblocked damage dealt.",

@@ -346,7 +346,7 @@
   "HAKUREIREIMU-PROCRASTINATE.description":"获得{Energy:energyIcons()}。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]和{energyPrefix:energyIcons(1)}。",
   
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.title":"水火玉",
-  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。",
+  "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_FIRE_WATER.description":"[gold]阴阳玉[/gold]无视[blue]格挡[/blue]和[gold]防御[/gold]能力。\n伤害还会受到[gold]正面[/gold]效果加成。",
 
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.title":"山雨玉",
   "HAKUREIREIMU-RAINBOW_DRAGON_YIN_YANG_ORBS_STORM_MOUNTAIN.description":"[gold]阴阳玉[/gold]造成未被格挡的伤害时，获得一半[gold]格挡[/gold]。",

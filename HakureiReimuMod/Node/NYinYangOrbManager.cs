@@ -4,6 +4,7 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -18,6 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
         protected Tween Tween;
         public bool IsLocal { get; protected set; }
         public List<NYinYangOrb> Orbs { get; protected set; } = new();
+        public Creature PreviewTarget { get; protected set; }
 
         protected Player Player => this.CreatureNode.Entity.Player;
         protected readonly static Random Random = new();
@@ -53,16 +55,22 @@ namespace HakureiReimu.HakureiReimuMod.Node
             base._ExitTree();
             CombatManager.Instance.StateTracker.CombatStateChanged -= this.OnCombatStateChanged;
         }
-        
-        protected virtual void OnCombatStateChanged(CombatState _){
-            UpdateVisuals();
+
+        public virtual void OnCardPlayHover(Creature target)
+        {
+            PreviewTarget = target;
+            UpdateVisuals(PreviewTarget);
         }
         
-        public virtual void UpdateVisuals()
+        protected virtual void OnCombatStateChanged(CombatState _){
+            UpdateVisuals(PreviewTarget);
+        }
+        
+        public virtual void UpdateVisuals(Creature target = null)
         {
             foreach (NYinYangOrb nOrb in Orbs)
             {
-                nOrb.UpdateVisuals(false);
+                nOrb.UpdateVisuals(target);
             }
         }
 
