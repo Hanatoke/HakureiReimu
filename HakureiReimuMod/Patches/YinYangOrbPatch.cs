@@ -35,6 +35,13 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 Managers[__instance]?.Clear();
             }
         }
+
+        public static void SetPreviewTarget(Player player, Creature target)
+        {
+            player?.Creature.GetCreatureNode()
+                ?.NYinYangOrbManager(player.PlayerCombatState?.YinYangOrbManager())
+                ?.OnCardPlayHover(target);
+        }
         
         [HarmonyPatch(typeof(NCard), nameof(NCard.SetPreviewTarget))]
         public static class NCardSetPreviewTargetPatch
@@ -46,12 +53,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 {
                     CardModel card = __instance.Model;
                     Player player = card?.IsMutable == true ? card.Owner : null;
-                    if (player != null)
-                    {
-                        player.Creature.GetCreatureNode()
-                            ?.NYinYangOrbManager(player.PlayerCombatState?.YinYangOrbManager())
-                            ?.OnCardPlayHover(creature);
-                    }
+                    SetPreviewTarget(player, creature);
                 }
                 catch (Exception e)
                 {
@@ -68,6 +70,16 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             {
                 //不要删除这个Patch
                 //用于修复某个神秘bug，可能是JIT优化导致的
+            }
+        }
+
+        [HarmonyPatch(typeof(NCardPlay), "HideTargetingVisuals")]
+        public static class NCardPlayHideTargetingVisualsPatch
+        {
+            [HarmonyPostfix]
+            public static void Postfix(NCardPlay __instance)
+            {
+                SetPreviewTarget(__instance.Player,null);
             }
         }
     }

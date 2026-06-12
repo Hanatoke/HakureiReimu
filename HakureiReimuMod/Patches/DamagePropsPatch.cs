@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -11,6 +12,9 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 {
     public static class DamagePropsPatch
     {
+        /// <summary>
+        /// 仅标记为阴阳玉造成的伤害
+        /// </summary>
         public static readonly ValueProp YinYangOrbDamage = (ValueProp)(1 << 16);
         /// <summary>
         /// 无视伤害减免(飞行,难以杀灭,灵体,坚不可摧...)
@@ -23,11 +27,11 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         public static void PatchAll(Harmony harmony,IEnumerable<Type> types)
         {
             List<(string, MethodInfo, MethodInfo, MethodInfo,Action<Harmony,Type>)> patches = new();
-            patches.Add(("ModifyDamageCap",GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.CapPrefix)),null,null,null));
-            patches.Add(("ModifyHpLostBeforeOsty",GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add(("ModifyHpLostBeforeOstyLate",GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add(("ModifyHpLostAfterOsty",GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add(("ModifyHpLostAfterOstyLate",GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((nameof(AbstractModel.ModifyDamageCap),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.CapPrefix)),null,null,null));
+            patches.Add((nameof(AbstractModel.ModifyHpLostBeforeOsty),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((nameof(AbstractModel.ModifyHpLostBeforeOstyLate),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((nameof(AbstractModel.ModifyHpLostAfterOsty),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((nameof(AbstractModel.ModifyHpLostAfterOstyLate),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
             foreach (Type type in types)
             {
                 if (!type.IsClass|| type.IsAbstract)continue;

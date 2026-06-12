@@ -36,7 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
 
         protected override void OnUpgrade()
         {
-            this.DynamicVars.Block.UpgradeValueBy(2);
+            this.DynamicVars.Block.UpgradeValueBy(3);
         }
     }
 }
