@@ -13,6 +13,9 @@ using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
@@ -111,7 +114,11 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             {
                 Cancelable = false
             };
-            CardModel c=(await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(), cards, Owner, prefs)).FirstOrDefault();
+            NPlayerHand.Instance?.CancelAllCardPlay();
+            NSimpleCardSelectScreen screen = NSimpleCardSelectScreen.Create(cards, prefs);
+            NOverlayStack.Instance?.Push(screen);
+            CardModel c = (await screen.CardsSelected()).FirstOrDefault();
+            // CardModel c=(await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(), cards, Owner, prefs)).FirstOrDefault();
             if (c != null)
             {
                 if (RunManager.Instance.IsSingleplayerOrFakeMultiplayer)
