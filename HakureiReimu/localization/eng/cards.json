@@ -222,7 +222,7 @@
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.title":"Most Evil Surprise Miko Orbs",
-  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] Deal {Damage:diff()} damage. Deals damage 1 more time for each reactivation within the same turn.{InCombat:\n(Deal{CalculatedTimes:diff()}Times)|}",
+  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.description":"[gold]Counter Attack[/gold] {Counter:diff()}.\n[gold]Preemptively[/gold] Deal {Damage:diff()} damage. Deals damage 1 more time for each reactivation within the same turn.{InPersisting:\n(Deal {CalculatedTimes:diff()} Times)|}",
 
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.sign":"Divine Spirit",
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.title":"Dream Seal -Blink-",

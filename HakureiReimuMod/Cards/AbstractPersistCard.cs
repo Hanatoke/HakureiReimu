@@ -8,9 +8,9 @@ using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
 using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -44,6 +44,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             base.AfterCloned();
             Slot = null;
             InPersisting = false;
+        }
+
+        protected override void AddExtraArgsToDescription(LocString description)
+        {
+            base.AddExtraArgsToDescription(description);
+            description.Add("InPersisting", InPersisting);
         }
 
         //-------------------------------------------------------------------------------------------------

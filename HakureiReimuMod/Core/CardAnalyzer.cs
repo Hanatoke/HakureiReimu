@@ -642,7 +642,9 @@ namespace HakureiReimu.HakureiReimuMod.Core
                         : EnemyAttackDamageTotal - EnemiesAttackCount.Values.Sum() -
                           PlayerCombatState.Hand.Cards.Count * Setting.DrawCardWeight;
                 case CreativeAi://创造性ai
-                    return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Boss } && CombatState.RoundNumber <= 1 ? 5 : 0;
+                    return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Boss } && CombatState.RoundNumber <= 3 ? 10 : 0;
+                case Barricade://壁垒
+                    return Owner.Creature.Block > 80 && !Owner.Creature.HasPower<BarricadePower>() ? 10 : 0;
             }
 
             switch (card.Id.Entry)

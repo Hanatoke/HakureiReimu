@@ -223,7 +223,7 @@
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.title":"最凶恶的巫女玉",
-  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.description":"[gold]反制攻击[/gold]{Counter:diff()}。\n[gold]立即[/gold]造成{Damage:diff()}点伤害，本回合每发动过一次，额外造成一次伤害。{InCombat:\n（造成{CalculatedTimes:diff()}次）|}",
+  "HAKUREIREIMU-KYOAKU_NA_BIKKURI_MIKO.description":"[gold]反制攻击[/gold]{Counter:diff()}。\n[gold]立即[/gold]造成{Damage:diff()}点伤害，本回合每发动过一次，额外造成一次伤害。{InPersisting:\n（造成{CalculatedTimes:diff()}次）|}",
 
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.sign":"神灵",
   "HAKUREIREIMU-DREAM_SEALING_INSTANT.title":"梦想封印 瞬",
