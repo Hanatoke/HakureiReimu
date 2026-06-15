@@ -25,13 +25,13 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 Player player,
                 bool fromHandDraw){return Task.CompletedTask;}
         }
-        [HarmonyPatch(typeof(CardPileCmd),nameof(CardPileCmd.Draw),[typeof(PlayerChoiceContext) ,
-            typeof(decimal) ,
-            typeof(Player) ,
-            typeof(bool)])]
+        // [HarmonyPatch(typeof(CardPileCmd),nameof(CardPileCmd.Draw),[typeof(PlayerChoiceContext) ,
+        //     typeof(decimal) ,
+        //     typeof(Player) ,
+        //     typeof(bool)])]
         public static class DrawCardPatch
         {
-            [HarmonyTranspiler][HarmonyPatch(MethodType.Async)]
+            // [HarmonyTranspiler][HarmonyPatch(MethodType.Async)]
             public static IEnumerable<CodeInstruction> BeforeTranspiler(ILGenerator generator, IEnumerable<CodeInstruction> instructions, MethodBase original)
             {
                 return AsyncMethodCall.Create(generator, instructions, original,
@@ -44,7 +44,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             //     return AsyncMethodCall.Create(generator, instructions, original,
             //         AccessTools.Method(typeof(DrawCardPatch), nameof(After)), afterState: original);
             // }
-            [HarmonyPostfix]
+            // [HarmonyPostfix]
             public static async Task<IEnumerable<CardModel>> Postfix(Task<IEnumerable<CardModel>> __result,PlayerChoiceContext choiceContext,
                 decimal count,
                 Player player,

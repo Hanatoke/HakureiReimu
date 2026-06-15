@@ -138,7 +138,8 @@
 
   "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.sign":"Dream Sign",
   "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.title":"Dream Dimensional Rift",
-  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.description":"Draw {Cards:diff()} [gold]Additional[/gold] cards the next time you draw any card.",
+  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.description":"Gain {Block:diff()} [gold]Block[/gold].\n[gold]Retain[/gold] {Cards:diff()} cards from your [gold]Hand[/gold] this turn.",
+  "HAKUREIREIMU-DREAM_SUBSPACE_HOLE.selectionScreenPrompt":"Retain",
 
   "HAKUREIREIMU-PAPARATCHI_GEKITAI_KEKKAI.sign":"Barrier",
   "HAKUREIREIMU-PAPARATCHI_GEKITAI_KEKKAI.title":"Paparazzi-Repelling Barrier",
