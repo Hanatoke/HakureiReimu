@@ -7,6 +7,9 @@
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.title": "最大弹幕环绕数量",
   "HAKUREIREIMU-MAX_FOLLOW_DANMAKU_COUNT.hover.desc": "决定场上同时能存在多少个弹幕环绕特效。\n如果感觉到卡顿,请尝试[gold]降低[/gold]这个数值。",
   
+  "HAKUREIREIMU-FLYING_VFX_ANIMATION_SPEED.title": "飞行物特效动画速度",
+  "HAKUREIREIMU-FLYING_VFX_ANIMATION_SPEED.hover.desc": "将决定卡牌产生的飞行物特效的动画速度。",
+  
   "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.title": "使用静态能量图标",
   "HAKUREIREIMU-USE_STATIC_ENERGY_ICON.hover.desc": "开启后，卡牌的能量图标将不会随时间变化发光。",
   

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -44,7 +45,13 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         //     }
         //     NeedAddToLater.Clear();
         // }
-        public readonly Dictionary<Creature, bool> Record = new();
+        public Dictionary<Creature, bool> Record = new();
+        protected override void DeepCloneFields()
+        {
+            base.DeepCloneFields();
+            Record = Record.ToDictionary();
+        }
+
         public override decimal ModifyDamageAdditive(Creature target, decimal amount, ValueProp props, Creature dealer,
             CardModel cardSource)
         {

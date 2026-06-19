@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Godot;
-using HakureiReimu.HakureiReimuMod.Extensions;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Mover;
 using MegaCrit.Sts2.Core.Helpers;
+using ModConfig = HakureiReimu.HakureiReimuMod.Core.ModConfig;
 
 namespace HakureiReimu.HakureiReimuMod.Node.VFX
 {
@@ -13,6 +12,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
         private float _time;
         public float Duration = 0.5f;
         public float DestroyDuration = 0f;
+        public double TimeScale = 1;
         public bool IsHit ;
 
         private float _curveLength;
@@ -30,6 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
         {
             FlyingVFX vfx = new();
             vfx.Mover = mover;
+            vfx.TimeScale = ModConfig.FlyingVfxAnimationSpeed;
             return vfx;
         }
 
@@ -42,6 +43,7 @@ namespace HakureiReimu.HakureiReimuMod.Node.VFX
         }
         public override void _Process(double delta)
         {
+            delta *= TimeScale;
             float dt = (float)delta;
             if (IsHit)
             {

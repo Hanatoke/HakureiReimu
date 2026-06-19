@@ -1,9 +1,5 @@
-﻿using System.Threading.Tasks;
-using HakureiReimu.HakureiReimuMod.Core;
+﻿using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface;
-using HakureiReimu.HakureiReimuMod.PersistCard;
-using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
-using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
 using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace HakureiReimu.HakureiReimuMod.Powers

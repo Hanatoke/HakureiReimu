@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
@@ -26,6 +27,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             AttackCommand command=await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+                .WithHitFx(tmpSfx: "heavy_attack.mp3")
+                .WithHitVfxNode(NBigSlashVfx.Create)
+                .WithHitVfxNode(NBigSlashImpactVfx.Create)
                 .Execute(choiceContext);
             foreach (DamageResult result in command.Results.SelectMany(r=>r).ToList())
             {

@@ -18,6 +18,8 @@ namespace HakureiReimu.HakureiReimuMod.Core
             get => FollowDanmakuManager.MaxFollows;
             set => FollowDanmakuManager.MaxFollows = value;
         }
+        [ConfigSlider(0.5,3,0.01,Format = "{0:P0}")]
+        public static double FlyingVfxAnimationSpeed { get; set; } = 1;
         public static bool UseStaticEnergyIcon { get; set; } = false;
         public static bool UseStaticEnergyCounter { get; set; } = false;
         public static bool ShowSealTotal { get; set; } = true;

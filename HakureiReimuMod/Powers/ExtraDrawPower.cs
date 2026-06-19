@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Patches;
 using MegaCrit.Sts2.Core.Combat;
@@ -15,10 +16,17 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public static readonly string ID = nameof(ExtraDrawPower);
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
-        public readonly HashSet<PlayerChoiceContext> InProgress=[];
-        public readonly HashSet<PlayerChoiceContext> Context = new();
+        public HashSet<PlayerChoiceContext> InProgress=[];
+        public HashSet<PlayerChoiceContext> Context = new();
 
         public class IgnoreExtraDrawContext : BlockingPlayerChoiceContext;
+
+        protected override void DeepCloneFields()
+        {
+            base.DeepCloneFields();
+            InProgress = InProgress.ToHashSet();
+            Context = Context.ToHashSet();
+        }
 
         public virtual Task BeforeDrawCardStart(PlayerChoiceContext choiceContext, decimal count, Player player, bool fromHandDraw)
         {
