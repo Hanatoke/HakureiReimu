@@ -5,6 +5,8 @@ using Godot;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
 using HakureiReimu.HakureiReimuMod.Node.VFX.Special;
+using HakureiReimu.HakureiReimuMod.PersistCard;
+using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,7 +18,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
-    public class HakureiPhantomPower : AbstractPower
+    public class HakureiPhantomPower : AbstractPower,IPersistCardSubscriber
     {
         public static readonly string ID = nameof(HakureiPhantomPower);
 
@@ -51,6 +53,15 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 return (pileType, position);
             }
             return (PileType.Exhaust, position);
+        }
+
+        public PileType ModifyStopPersistCardPile(AbstractPersistCardSlot slot, PileType defaultPile)
+        {
+            if (slot.Card?.Owner.Creature == this.Owner)
+            {
+                return PileType.Exhaust;
+            }
+            return defaultPile;
         }
 
         public override Task AfterApplied(Creature applier, CardModel cardSource)

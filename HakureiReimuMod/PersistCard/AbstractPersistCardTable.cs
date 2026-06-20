@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using BaseLib.Abstracts;
 using Godot;
+using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Screens;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard
 {
@@ -16,6 +19,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
 
         public new virtual bool IsCombatPile => true;
         public virtual bool AlwaysShowsDynamicVarPreview => true;
+        public virtual LocString PileViewScreenText(NCardPileScreen screen) => null;
+        public virtual string[] CloseViewScreenHotkeys => [MegaInput.viewDrawPile];
         public override bool CardShouldBeVisible(CardModel card)
         {
             return false;

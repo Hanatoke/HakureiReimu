@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard.Interface
 {
@@ -6,6 +7,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Interface
     {
         Task OnStartPersistCard(AbstractPersistCardSlot slot){return Task.CompletedTask;}
         Task OnStartPersistCardLater(AbstractPersistCardSlot slot){return Task.CompletedTask;}
+        PileType ModifyStopPersistCardPile(AbstractPersistCardSlot slot, PileType defaultPile){return defaultPile;}
         Task OnStopPersistCard(AbstractPersistCardSlot slot){return Task.CompletedTask;}
         Task OnStopPersistCardLater(AbstractPersistCardSlot slot){return Task.CompletedTask;}
         bool AtIncreasePersistCount(AbstractPersistCardSlot slot, int origin, ref int result) => true;

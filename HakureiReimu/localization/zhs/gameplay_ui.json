@@ -27,6 +27,9 @@
   "HAKUREIREIMU-ENCHANT_REWARD.description": "选择一张牌附魔[purple]{EnchantName}[/purple]{Amount}!",
   
   
+  "HAKUREIREIMU-COUNTER_CARD_TABLE_VIEW.description": "[center]场上的反制卡等待发动中。\n[gold](当前总共[blue]{Amount}[/blue]张卡。)[/gold]",
+  
+  
   
   
   "HAKUREIREIMU-PlaceHolder.title": "占位符"

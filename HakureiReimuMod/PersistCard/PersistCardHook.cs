@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.PersistCard.Interface;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard
@@ -43,6 +44,18 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard
                     await s.OnStopPersistCardLater(slot);
                 }
             }
+        }
+
+        public static PileType ModifyStopPersistCardPile(ICombatState combatState, AbstractPersistCardSlot slot, PileType defaultPile)
+        {
+            foreach (AbstractModel m in combatState.IterateHookListeners())
+            {
+                if (m is IPersistCardSubscriber s)
+                {
+                    defaultPile=s.ModifyStopPersistCardPile(slot,defaultPile);
+                }
+            }
+            return defaultPile;
         }
 
         public static bool AtIncreaseCount(ICombatState state, AbstractPersistCardSlot slot,int origin,ref int result)

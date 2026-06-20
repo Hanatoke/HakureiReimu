@@ -25,8 +25,8 @@
   "HAKUREIREIMU-TRANSFORM_REWARD.description": "[gold]Transfer[/gold] a card!",
   "HAKUREIREIMU-CLONE_REWARD.description": "[gold]Clone[/gold] a card!",
   "HAKUREIREIMU-ENCHANT_REWARD.description": "Select a card to Enchant [purple]{EnchantName}[/purple] {Amount}!",
-  
-  
+
+  "HAKUREIREIMU-COUNTER_CARD_TABLE_VIEW.description": "[center]Counter cards on the field are waiting to be triggered.\n[gold](Currently a total of [blue]{Amount}[/blue] cards.)[/gold]",
   
   
   "HAKUREIREIMU-PlaceHolder.title": "占位符"

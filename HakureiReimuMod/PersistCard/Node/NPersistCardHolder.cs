@@ -102,12 +102,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
 
         protected override void OnMousePressed(InputEvent inputEvent)
         {
-            
+            base.OnMousePressed(inputEvent);
         }
 
         protected override void OnMouseReleased(InputEvent inputEvent)
         {
-            
+            base.OnMouseReleased(inputEvent);
         }
 
         protected override void DoCardHoverEffects(bool isHovered)
@@ -406,6 +406,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
           Control set = CardSet;
           while (!cancelToken.IsCancellationRequested)
           {
+              if (!IsInstanceValid(set) || !set.IsInsideTree()) return;
               set.Position = set.Position.Lerp(position, (float) set.GetProcessDeltaTime() * 7f);
               if (set.Position.DistanceSquaredTo(position) < 1.0)
               {

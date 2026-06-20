@@ -65,7 +65,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         protected override PileType GetResultPileTypeForCardPlay()
         {
-            if (Pile?.Type!=CounterCardTable.PileType)
+            if (Pile?.Type != TargetPersistPileType) 
             {
                 return TargetPersistPileType;
             }
@@ -75,7 +75,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
             ResourceInfo resources, PileType pileType, CardPilePosition position)
         {
-            if (card==this&&Pile?.Type!=CounterCardTable.PileType)
+            if (card == this && Pile?.Type != TargetPersistPileType) 
             {
                 return (TargetPersistPileType, position);
             }

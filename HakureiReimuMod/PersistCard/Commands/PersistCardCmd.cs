@@ -67,8 +67,8 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     NPersistCardHolder holder=nt.AddCard(nCard);
                     holder.SetCount(slot.Count,slot.ShouldDisplayCount);
                 }
-                
                 await PersistCardHook.OnStartPersistCard(card.CombatState, slot);
+                table.InvokeContentsChanged();
             }
         }
 
@@ -81,11 +81,11 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 return;
             }
             if (CombatManager.Instance.IsOverOrEnding)return;
-            if (slot.Card.Pile is AbstractPersistCardTable)
+            if (slot.Card.Pile is AbstractPersistCardTable table)
             {
                 CardModel card = slot.Card;
                 ICombatState state = card.CombatState;
-                PileType targetPile = overridePile ?? PileType.Discard;
+                PileType targetPile = overridePile ?? PersistCardHook.ModifyStopPersistCardPile(state, slot, PileType.Discard);
                 if (targetPile == PileType.Hand && CardPile.Get(targetPile, card.Owner)?.Cards.Count >= CardPile.MaxCardsInHand)
                 {
                     ThinkCmd.Play(new LocString("combat_messages", "HAND_FULL"), card.Owner.Creature, 2.0);
@@ -118,7 +118,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                     }
                     await CardPileCmd.Add(slot.Card, targetPile,skipVisuals:true);
                 }
-                
+                table.InvokeContentsChanged();
             }
         }
 

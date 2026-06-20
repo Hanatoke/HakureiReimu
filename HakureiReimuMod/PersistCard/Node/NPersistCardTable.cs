@@ -10,8 +10,11 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using MegaCrit.Sts2.Core.Nodes.Screens;
+using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 
 namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
 {
@@ -33,6 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
         public virtual PileType PileType { get; protected set; }= PileType.None;
 
         public bool Folding { get; protected set; } = false;
+        protected Callable? AltPressCardHolder;
         private Player Player => CreatureNode.Entity.Player;
         // protected Tween Tween;
 
@@ -51,6 +55,12 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
                 table.SetNoLocal();
             }
             return table;
+        }
+
+        public override void _Ready()
+        {
+            base._Ready();
+            AltPressCardHolder = Callable.From(new Action<NCardHolder>(OpenPreviewScene));
         }
 
         public void SetNoLocal()
@@ -155,6 +165,33 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             CreatureNode.UpdateNavigation();
         }
         //----------------------------------------------------
+        public virtual void OpenPreviewScene(NCardHolder holder)
+        {
+            AbstractPersistCardTable table = Player?.PlayerCombatState?.PersistCardTable(PileType);
+            if (table == null || table.IsEmpty)return;
+            if (NCapstoneContainer.Instance?.CurrentCapstoneScreen is NCardPileScreen currentCapstoneScreen &&
+                currentCapstoneScreen.Pile == table)
+            {
+                NCapstoneContainer.Instance.Close();
+            }
+            else
+            {
+                NCardPileScreen.ShowScreen(table, table.CloseViewScreenHotkeys);
+            }
+        }
+        
+        protected virtual void ConnectCardHolderSign(NCardHolder holder)
+        {
+            if (holder==null || AltPressCardHolder==null)return;
+            holder.Connect(NCardHolder.SignalName.AltPressed, AltPressCardHolder.Value);
+        }
+
+        protected virtual void DisconnectCardHolderSign(NCardHolder holder)
+        {
+            if (holder==null || AltPressCardHolder==null)return;
+            holder.Disconnect(NCardHolder.SignalName.AltPressed, AltPressCardHolder.Value);
+        }
+        //-----------------------------------------------------------
         public virtual NPersistCardHolder AddCard(NCard card)
         {
             return InsertCard(card,CardHolders.Count);
@@ -229,6 +266,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
             this.AddChildSafely( holder);
             this.MoveChildSafely(holder, index);
             CardHolders.Insert(index,holder);
+            ConnectCardHolderSign(holder);
             this.RefreshLayout();
             if (!this.HasFocus())
                 return;
@@ -261,6 +299,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
         {
             bool flag = holder.HasFocus();
             holder.ReparentSafely(newParent);
+            DisconnectCardHolderSign(holder);
             CardHolders.Remove(holder);
             this.RefreshLayout();
             if (!flag)
