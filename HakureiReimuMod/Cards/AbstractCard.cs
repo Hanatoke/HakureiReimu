@@ -36,6 +36,8 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     //Normal art: 1000x760 (Using 500x380 should also work, it will simply be scaled.)
     //Full art: 606x852
     public override string CustomPortraitPath => $"{OriginId.BigCardImagePath()}_p.png";
+    public virtual string SignatureImgPath => $"{OriginId.CardSignaturePath()}_s_p.png";
+    public virtual Vector2 SignatureImgScale => Vector2.One * 0.5f;
 
     //Smaller variants of card images for efficiency:
     //Smaller variant of fullart: 250x350

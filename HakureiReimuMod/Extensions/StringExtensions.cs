@@ -19,6 +19,9 @@ public static class StringExtensions {
     public static string CardImagePath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "images", "cards", path);
     }
+    public static string CardSignaturePath(this string path) {
+        return Path.Join(HakureiReimuMain.ModId, "images", "signature", path);
+    }
     public static string CardItemPath(this string path) {
         return Path.Join(HakureiReimuMain.ModId, "images", "card_item", path);
     }

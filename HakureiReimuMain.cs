@@ -1,13 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using BaseLib.Config;
 using Godot;
+using HakureiReimu.HakureiReimuMod.Cards;
 using HakureiReimu.HakureiReimuMod.CombatReward;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Patches;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using ModConfig = HakureiReimu.HakureiReimuMod.Core.ModConfig;
@@ -37,7 +42,32 @@ public partial class HakureiReimuMain : Node
         CustomRewardPatch.CustomRewards.Add(TransformReward.Type,(s,p)=>new TransformReward(p));
         CustomRewardPatch.CustomRewards.Add(CloneReward.Type,(s,p)=>new CloneReward(p));
         CustomRewardPatch.CustomRewards.Add(EnchantReward.Type,(s,p)=>new EnchantReward(p,s.PredeterminedModelId,s.OptionCount));
+        
+        RegisterSignature();
     }
+
+    public static void RegisterSignature()
+    {
+        var asm = AppDomain.CurrentDomain.GetAssemblies()
+            .FirstOrDefault(a => a.GetName().Name == "SignatureLib");
+
+        if (asm != null)
+        {
+            var type = asm.GetType("SignatureLib.SignatureLibCode.Core.SignatureManager");
+            var method = type?.GetMethod("RegisterSignatureSetsProvider",
+                BindingFlags.Public | BindingFlags.Static);
+            Logger.Info("Registering signature provider");
+            method?.Invoke(null, [(Func<CardModel, IEnumerable<(string,string,Vector2,Func<LocString>,Func<LocString>)>>)(card =>
+            {
+                if (card.Rarity!=CardRarity.Ancient&&card is AbstractCard abstractCard)
+                {
+                    return [(abstractCard.Id.Entry,abstractCard.SignatureImgPath, abstractCard.SignatureImgScale,null,null)];
+                }
+                return null;
+            })]);
+        }
+    }
+    
     public static void AfterGameInit(Harmony harmony)
     {
         // foreach (CardModel c in ModelDb.AllCards.Where(c=>c is AbstractCard))
