@@ -26,12 +26,12 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         public static readonly ValueProp IgnoreDamageResponse=(ValueProp)(1<<18);
         public static void PatchAll(Harmony harmony,IEnumerable<Type> types)
         {
-            List<(string, MethodInfo, MethodInfo, MethodInfo,Action<Harmony,Type>)> patches = new();
-            patches.Add((nameof(AbstractModel.ModifyDamageCap),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.CapPrefix)),null,null,null));
-            patches.Add((nameof(AbstractModel.ModifyHpLostBeforeOsty),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add((nameof(AbstractModel.ModifyHpLostBeforeOstyLate),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add((nameof(AbstractModel.ModifyHpLostAfterOsty),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
-            patches.Add((nameof(AbstractModel.ModifyHpLostAfterOstyLate),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            List<(MethodInfo, MethodInfo, MethodInfo, MethodInfo,Action<Harmony,Type>)> patches = new();
+            patches.Add((GetInfo(typeof(AbstractModel),nameof(AbstractModel.ModifyDamageCap)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.CapPrefix)),null,null,null));
+            patches.Add((GetInfo(typeof(AbstractModel),nameof(AbstractModel.ModifyHpLostBeforeOsty)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((GetInfo(typeof(AbstractModel),nameof(AbstractModel.ModifyHpLostBeforeOstyLate)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((GetInfo(typeof(AbstractModel),nameof(AbstractModel.ModifyHpLostAfterOsty)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
+            patches.Add((GetInfo(typeof(AbstractModel),nameof(AbstractModel.ModifyHpLostAfterOstyLate)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.ModifyHpLostPrefix)),null,null,null));
             foreach (Type type in types)
             {
                 if (!type.IsClass|| type.IsAbstract)continue;
@@ -41,15 +41,15 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 }
             }
             //Special
-            HarmonyHelper.Patch(harmony,typeof(HardenedShellPower),nameof(HardenedShellPower.AfterDamageReceived),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.DamageTaskPrefix)));
-            HarmonyHelper.Patch(harmony,typeof(SoarPower),nameof(SoarPower.ModifyDamageMultiplicative),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.MultiplicativePrefix)));
-            HarmonyHelper.Patch(harmony,typeof(FlutterPower),nameof(FlutterPower.ModifyDamageMultiplicative),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.MultiplicativePrefix)));
+            HarmonyHelper.Patch(harmony,typeof(HardenedShellPower),GetInfo(typeof(HardenedShellPower),nameof(HardenedShellPower.AfterDamageReceived)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.DamageTaskPrefix)));
+            HarmonyHelper.Patch(harmony,typeof(SoarPower),GetInfo(typeof(SoarPower),nameof(SoarPower.ModifyDamageMultiplicative)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.MultiplicativePrefix)));
+            HarmonyHelper.Patch(harmony,typeof(FlutterPower),GetInfo(typeof(FlutterPower),nameof(FlutterPower.ModifyDamageMultiplicative)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.MultiplicativePrefix)));
             
-            HarmonyHelper.Patch(harmony,typeof(ThornsPower),nameof(ThornsPower.BeforeDamageReceived),GetInfo(typeof(IgnoreDamageResponsePatch),nameof(IgnoreDamageResponsePatch.DamageTaskPrefix)));
+            HarmonyHelper.Patch(harmony,typeof(ThornsPower),GetInfo(typeof(ThornsPower),nameof(ThornsPower.BeforeDamageReceived)),GetInfo(typeof(IgnoreDamageResponsePatch),nameof(IgnoreDamageResponsePatch.DamageTaskPrefix)));
         }
         
         private static MethodInfo GetInfo(Type type,string name)=>type.GetMethod(name, 
-            BindingFlags.Public | BindingFlags.Static);
+            BindingFlags.Public | BindingFlags.Static|BindingFlags.NonPublic | BindingFlags.Instance);
         public static class IgnoreDamageImmunityPatch
         {
             public static bool MultiplicativePrefix(ValueProp props, ref decimal __result)

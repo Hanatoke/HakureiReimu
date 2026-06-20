@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
@@ -18,21 +19,30 @@ namespace HakureiReimu.HakureiReimuMod.Core
             }
         }
 
-        public static void Patch(Harmony harmony, Type type, string methodName, MethodInfo prefix = null,
+        public static void Patch(Harmony harmony, Type type, MethodInfo targetMethod, MethodInfo prefix = null,
             MethodInfo postfix = null, MethodInfo transpiler = null,
             Action<Harmony, Type> afterSuccess = null)
         {
-            MethodInfo method = type.GetMethod(methodName,
-                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            if (method == null) return;
-            if (!method.IsVirtual) return;
-            if (method.DeclaringType != type) return;
-            if (method.GetBaseDefinition().DeclaringType == type) return;
-            harmony.Patch(method, prefix != null ? new HarmonyMethod(prefix) : null,
-                postfix != null ? new HarmonyMethod(postfix) : null,
-                transpiler != null ? new HarmonyMethod(transpiler) : null);
-            HakureiReimuMain.Logger.Info("Patched DamageProps:" + type.Name + ":" + method.Name);
-            afterSuccess?.Invoke(harmony, type);
+            try
+            {
+                MethodInfo method = type.GetMethod(targetMethod.Name,
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,null,
+                    targetMethod.GetParameters().Select(i => i.ParameterType).ToArray(),null);
+                if (method == null) return;
+                if (!method.IsVirtual) return;
+                if (method.DeclaringType != type) return;
+                if (method.GetBaseDefinition().DeclaringType == type) return;
+                harmony.Patch(method, prefix != null ? new HarmonyMethod(prefix) : null,
+                    postfix != null ? new HarmonyMethod(postfix) : null,
+                    transpiler != null ? new HarmonyMethod(transpiler) : null);
+                HakureiReimuMain.Logger.Info("Patched override:" + type.Name + ":" + method.Name);
+                afterSuccess?.Invoke(harmony, type);
+            }
+            catch (Exception e)
+            {
+                HakureiReimuMain.Logger.Info("Patch Error:" + type.Name + ":" + targetMethod+" skipped!");
+                throw;
+            }
         }
     }
 }
