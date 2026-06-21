@@ -11,6 +11,11 @@ namespace HakureiReimu.HakureiReimuMod.Core
         [HarmonyPatch(typeof(OneTimeInitialization), nameof(OneTimeInitialization.ExecuteEssential))]
         static class InitPatch
         {
+            [HarmonyPrefix]
+            public static void Prefix()
+            {
+                HakureiReimuMain.BeforeGameInit();
+            }
             [HarmonyPostfix]
             public static void Postfix()
             {

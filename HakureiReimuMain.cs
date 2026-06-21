@@ -43,11 +43,11 @@ public partial class HakureiReimuMain : Node
         CustomRewardPatch.CustomRewards.Add(CloneReward.Type,(s,p)=>new CloneReward(p));
         CustomRewardPatch.CustomRewards.Add(EnchantReward.Type,(s,p)=>new EnchantReward(p,s.PredeterminedModelId,s.OptionCount));
         
-        RegisterSignature();
     }
 
     public static void RegisterSignature()
     {
+        Logger.Info("Start Registering signature provider");
         var asm = AppDomain.CurrentDomain.GetAssemblies()
             .FirstOrDefault(a => a.GetName().Name == "SignatureLib");
 
@@ -66,6 +66,15 @@ public partial class HakureiReimuMain : Node
                 return null;
             })]);
         }
+        else
+        {
+            Logger.Info("Not Find SignatureLib");
+        }
+    }
+
+    public static void BeforeGameInit()
+    {
+        RegisterSignature();
     }
     
     public static void AfterGameInit(Harmony harmony)
