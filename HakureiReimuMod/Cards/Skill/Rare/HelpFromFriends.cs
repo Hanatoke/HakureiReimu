@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,14 +53,22 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 (c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare) &&
                 Owner.Character.CardPool != c.Pool&& !c.Keywords.Contains(CardKeyword.Unplayable)).Select(c =>
             {
-                c = (CardModel)c.MutableClone();
-                c.Owner = this.Owner;
-                if (IsUpgraded)
+                try
                 {
-                    c.UpgradeInternal();
+                    c = (CardModel)c.MutableClone();
+                    c.Owner = this.Owner;
+                    if (IsUpgraded)
+                    {
+                        c.UpgradeInternal();
+                    }
+                    return c;
                 }
-                return c;
-            }).ToList();
+                catch (Exception e)
+                {
+                    HakureiReimuMain.Logger.Warn("Failed to clone card by HelpFromFriends.GenerateChoose :"+c.Id.Entry);
+                    return null;
+                }
+            }).Where(c=>c!=null).ToList();
             return new CardAnalyzer(CombatState, Owner, allCards).Analyze(SpecialModifier).GetResultsByBest(rng, count);
         }
 

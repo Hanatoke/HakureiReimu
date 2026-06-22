@@ -277,6 +277,9 @@
 
   "HAKUREIREIMU-DREAM_INNATE.title":"Innate Dream",
   "HAKUREIREIMU-DREAM_INNATE.description":"[gold]Counter ALL[/gold] this turn only.\n[gold]Preemptively[/gold] invalidate their actions.",
+  "HAKUREIREIMU-DREAM_INNATE.signature.0.name": "Aesthetic",
+  "HAKUREIREIMU-DREAM_INNATE.signature.1.name": "Classic",
+  "HAKUREIREIMU-DREAM_INNATE.signature.1.description": "In short, it is the ultimate technique. Reimu floats in the center of all objects and becomes invincible.",
 
   "HAKUREIREIMU-GENSO_ICHIJO.sign":"Dream Sign",
   "HAKUREIREIMU-GENSO_ICHIJO.title":"Fine Line Fantasy",

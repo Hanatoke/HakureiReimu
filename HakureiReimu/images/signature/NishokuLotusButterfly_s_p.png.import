@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dijg4j3jgxxkj"
-path="res://.godot/imported/DreamSealingScatter_s.png-22e84c0ef0599e76c4c11487218f8faf.ctex"
+uid="uid://duly17epy6gcr"
+path="res://.godot/imported/NishokuLotusButterfly_s_p.png-d770859421c6ae5faf832275f2dccc4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/signature/DreamSealingScatter_s.png"
-dest_files=["res://.godot/imported/DreamSealingScatter_s.png-22e84c0ef0599e76c4c11487218f8faf.ctex"]
+source_file="res://HakureiReimu/images/signature/NishokuLotusButterfly_s_p.png"
+dest_files=["res://.godot/imported/NishokuLotusButterfly_s_p.png-d770859421c6ae5faf832275f2dccc4a.ctex"]
 
 [params]
 

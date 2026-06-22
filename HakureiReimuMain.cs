@@ -61,7 +61,7 @@ public partial class HakureiReimuMain : Node
             {
                 if (card.Rarity!=CardRarity.Ancient&&card is AbstractCard abstractCard)
                 {
-                    return [(abstractCard.Id.Entry,abstractCard.SignatureImgPath, abstractCard.SignatureImgScale,null,null)];
+                    return abstractCard.SignatureInfos;
                 }
                 return null;
             })]);

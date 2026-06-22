@@ -79,28 +79,30 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
             return hitCount;
         }
-        public override decimal ModifyBlockMultiplicative(Creature target, decimal block, ValueProp props, CardModel cardSource,
-            CardPlay cardPlay)
+        // public override decimal ModifyBlockMultiplicative(Creature target, decimal block, ValueProp props, CardModel cardSource,
+        //     CardPlay cardPlay)
+        // {
+        //     if (InPersisting&&target is {IsMonster:true,Side:CombatSide.Enemy})
+        //     {
+        //         return 0;
+        //     }
+        //     return 1;
+        // }
+
+        public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
-            if (InPersisting&&target is {IsMonster:true,Side:CombatSide.Enemy})
+            if (InPersisting && amount > 0 && creature is { IsMonster: true, Side: CombatSide.Enemy })
             {
-                return 0;
+                await CreatureCmd.LoseBlock(creature, amount);
+                await InvokeCounter(null, CounterType.Buff);
             }
-            return 1;
-        }
-        public override async Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel cardSource, CardPlay cardPlay)
-        {
-            await InvokeCounter(null, CounterType.Buff);
         }
 
-        // public override decimal ModifyHealAmount(Creature creature, decimal amount)
+        // public override async Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel cardSource, CardPlay cardPlay)
         // {
-        //     if (InPersisting&&creature is {IsMonster:true})
-        //     {
-        //         return creature.IsDead ? 1 : 0;
-        //     }
-        //     return amount;
+        //     await InvokeCounter(null, CounterType.Buff);
         // }
+
         public decimal ModifyHealMultiplicative(Creature creature, decimal amount)
         {
             if (InPersisting && creature is { IsMonster: true,Side:CombatSide.Enemy})

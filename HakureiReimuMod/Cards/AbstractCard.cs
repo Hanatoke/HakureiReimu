@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Patches.Content;
@@ -36,9 +37,38 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
     //Normal art: 1000x760 (Using 500x380 should also work, it will simply be scaled.)
     //Full art: 606x852
     public override string CustomPortraitPath => $"{OriginId.BigCardImagePath()}_p.png";
-    public virtual string SignatureImgPath => $"{OriginId.CardSignaturePath()}_s_p.png";
-    public virtual Vector2 SignatureImgScale => Vector2.One * 0.5f;
+    //------------------------------------------------------------------------------------------------
+    protected virtual string SignatureId(int index) => $"{Id.Entry}.{index}";
+    protected virtual string SignatureImgPath(int index) => index > 0
+        ? $"{OriginId.CardSignaturePath()}_s_p_{index}.png"
+        : $"{OriginId.CardSignaturePath()}_s_p.png";
+    protected virtual Vector2 SignatureImgScale(int index) => Vector2.One * 0.5f;
+    protected virtual Func<LocString> SignatureName(int index)
+    {
+        string key = $"{Id.Entry}.signature.{index}.name";
+        return LocString.Exists("cards", key) ? () => new LocString("cards", key) : null;
+    }
 
+    protected virtual Func<LocString> SignatureDescription(int index)
+    {
+        string key = $"{Id.Entry}.signature.{index}.description";
+        return LocString.Exists("cards", key) ? () => new LocString("cards", key) : null;
+    }
+
+    public virtual IEnumerable<(string,string,Vector2,Func<LocString>,Func<LocString>)> SignatureInfos
+    {
+        get
+        {
+            int index = 0;
+            string s;
+            while (ResourceLoader.Exists(s=SignatureImgPath(index)))
+            {
+                yield return (SignatureId(index),s,SignatureImgScale(index),SignatureName(index),SignatureDescription(index));
+                index++;
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------
     //Smaller variants of card images for efficiency:
     //Smaller variant of fullart: 250x350
     //Smaller variant of normalart: 250x190

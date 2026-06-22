@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dunal2ajvke2s"
-path="res://.godot/imported/SealingFormation_s.png-b53ab82bc7236815318ffd4de96b78a2.ctex"
+uid="uid://c42ns7hef688s"
+path="res://.godot/imported/DreamSealingInstant_s_p.png-dca72c4b6e19eaff01b510b3a3f501b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/signature/SealingFormation_s.png"
-dest_files=["res://.godot/imported/SealingFormation_s.png-b53ab82bc7236815318ffd4de96b78a2.ctex"]
+source_file="res://HakureiReimu/images/signature/DreamSealingInstant_s_p.png"
+dest_files=["res://.godot/imported/DreamSealingInstant_s_p.png-dca72c4b6e19eaff01b510b3a3f501b8.ctex"]
 
 [params]
 

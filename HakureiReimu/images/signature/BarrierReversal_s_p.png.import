@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cke2jp2g6t7go"
-path="res://.godot/imported/ItarudokoroNoAoyama_s.png-661b4d3485650a3afa6125274e4740c6.ctex"
+uid="uid://bmausn2gm2no3"
+path="res://.godot/imported/BarrierReversal_s_p.png-0ba36783f74235f38f5c6f0ecaaa8d6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/signature/ItarudokoroNoAoyama_s.png"
-dest_files=["res://.godot/imported/ItarudokoroNoAoyama_s.png-661b4d3485650a3afa6125274e4740c6.ctex"]
+source_file="res://HakureiReimu/images/signature/BarrierReversal_s_p.png"
+dest_files=["res://.godot/imported/BarrierReversal_s_p.png-0ba36783f74235f38f5c6f0ecaaa8d6f.ctex"]
 
 [params]
 

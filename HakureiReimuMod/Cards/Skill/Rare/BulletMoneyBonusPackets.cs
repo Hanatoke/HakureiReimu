@@ -39,11 +39,18 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             List<CardModel> copes = [];
             foreach (CardModel card in targetCards)
             {
-                CardModel copy = card.CreateClone();
-                copy.Owner = null;
-                copy.Owner = Owner;
-                copes.Add(copy);
-                await CardPileCmd.Add(copy, PileType.Hand);
+                try
+                {
+                    CardModel copy = card.CreateClone();
+                    copy.Owner = null;
+                    copy.Owner = Owner;
+                    copes.Add(copy);
+                    await CardPileCmd.Add(copy, PileType.Hand);
+                }
+                catch (Exception e)
+                {
+                    HakureiReimuMain.Logger.Info("Failed to create clone Card by BulletMoneyBonusPackets.OnPlay :"+card.Id.Entry);
+                }
             }
             //存储
             BulletMoneyBonusPacketsPower power = (BulletMoneyBonusPacketsPower)ModelDb.Power<BulletMoneyBonusPacketsPower>().MutableClone();

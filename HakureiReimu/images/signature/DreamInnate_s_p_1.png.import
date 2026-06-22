@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3t4tccggo7r8"
-path="res://.godot/imported/LeapingYinYangJade_s.png-7a2e04ca8040b05e308f98a6aa0bf4f3.ctex"
+uid="uid://cpaq4wrmwvgk1"
+path="res://.godot/imported/DreamInnate_s_p_1.png-38c2ef19afc21ac38788ff2d4df50848.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HakureiReimu/images/signature/LeapingYinYangJade_s.png"
-dest_files=["res://.godot/imported/LeapingYinYangJade_s.png-7a2e04ca8040b05e308f98a6aa0bf4f3.ctex"]
+source_file="res://HakureiReimu/images/signature/DreamInnate_s_p_1.png"
+dest_files=["res://.godot/imported/DreamInnate_s_p_1.png-38c2ef19afc21ac38788ff2d4df50848.ctex"]
 
 [params]
 
