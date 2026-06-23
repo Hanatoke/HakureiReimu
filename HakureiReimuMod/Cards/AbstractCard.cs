@@ -109,15 +109,15 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         }
     }
     
-    public virtual void OnReload(NCard card)
+    public virtual void OnReload(NCard card,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
     {
         Traverse traverse = Traverse.Create(card);
-        ModifyBackground(card, traverse);
-        ModifyEnergy(card, traverse);
-        ModifyTitle(card, traverse);
+        ModifyBackground(card, traverse, needRecover, needRemove);
+        ModifyEnergy(card, traverse, needRecover, needRemove);
+        ModifyTitle(card, traverse, needRecover, needRemove);
     }
     
-    protected virtual void ModifyBackground(NCard card,Traverse traverse)
+    protected virtual void ModifyBackground(NCard card,Traverse traverse,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
     {
         TextureRect control = traverse.Field<TextureRect>("_frame").Value;
         
@@ -142,11 +142,15 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         cover.MouseFilter = Control.MouseFilterEnum.Ignore;
         cover.Texture=PreloadManager.Cache.GetTexture2D("bg_cover.png".CardItemPath());
         control.AddChild(cover);
+        
+        needRecover.Add(control);
+        needRemove.Add(border);
+        needRemove.Add(cover);
     }
     
     public static readonly Random EnergyOffsetRandom=new();
     
-    protected virtual void ModifyEnergy(NCard card, Traverse traverse)
+    protected virtual void ModifyEnergy(NCard card, Traverse traverse,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
     {
         TextureRect energyIcon = traverse.Field<TextureRect>("_energyIcon").Value;
         energyIcon.Texture=PreloadManager.Cache.GetTexture2D("energy.png".CardItemPath());
@@ -160,9 +164,11 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
         }
         energyIcon.Material=material;
         energyIcon.Scale = new Vector2(EnergyScale,EnergyScale);
+        
+        needRecover.Add(energyIcon);
     }
 
-    protected virtual void ModifyTitle(NCard card, Traverse traverse)
+    protected virtual void ModifyTitle(NCard card, Traverse traverse,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
     {
         if (!LocString.IsNullOrWhitespace(Sign)&&Sign.Exists())
         {
@@ -172,6 +178,8 @@ public abstract class AbstractCard(int cost, CardType type, CardRarity rarity, T
             sign.AddThemeFontOverride("font",title.GetThemeFont("font"));
             sign.SetText(Sign.GetFormattedText());
             sign.Position = new Vector2(0, -25); 
+            
+            needRemove.Add(sign);
         }
     }
 }

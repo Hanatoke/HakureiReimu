@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common
             DynamicVars.Energy.UpgradeValueBy(1);
         }
 
-        public override void OnReload(NCard card)
+        public override void OnReload(NCard card,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
         {
             
         }

@@ -1,11 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Entities.UI;
+﻿using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace HakureiReimu.HakureiReimuMod.Interface
 {
     public interface INCardModify
     {
-        bool AllowNodePool => false;
-        void OnReload(NCard card);
+        void OnReload(NCard card,List<Godot.Node> needRecover,List<Godot.Node> needRemove);
     }
 }
