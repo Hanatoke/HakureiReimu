@@ -65,7 +65,7 @@
   "HAKUREIREIMU-DODGE.description":"Can only be played if you have not played any [gold]Attack[/gold] this turn.\nGain {Block:diff()} [gold]Block[/gold].",
 
   "HAKUREIREIMU-STRENGTH.title":"Strength",
-  "HAKUREIREIMU-STRENGTH.description":"[gold]Counter Debuff[/gold] {Counter:diff()}.\n[gold]Upgrade[/gold] {Cards:diff()} cards from the top of draw pile.",
+  "HAKUREIREIMU-STRENGTH.description":"[gold]Counter {IfUpgraded:show:ALL|Debuff}[/gold] {Counter:diff()}.\n[gold]Upgrade[/gold] {Cards:diff()} cards from the top of draw pile.",
 
   "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.title":"Paparazzi Exorcism",
   "HAKUREIREIMU-TOSATSUSHA_CHOFUKU.description":"Apply {InhibitPower:diff()} [gold]Inhibit[/gold] to ALL enemies.",
