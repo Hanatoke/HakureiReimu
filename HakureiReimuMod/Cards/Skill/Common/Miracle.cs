@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common
             DynamicVars.Energy.UpgradeValueBy(1);
         }
 
-        public override void OnReload(NCard card,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
+        public override void OnReload(NCard card, List<Action<NCard>> recoverAction, List<Godot.Node> needRemove)
         {
             
         }

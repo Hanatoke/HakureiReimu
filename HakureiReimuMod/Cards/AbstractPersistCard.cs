@@ -53,9 +53,9 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         }
 
         //-------------------------------------------------------------------------------------------------
-        public override void OnReload(NCard card,List<Godot.Node> needRecover,List<Godot.Node> needRemove)
+        public override void OnReload(NCard card, List<Action<NCard>> recoverAction, List<Godot.Node> needRemove)
         {
-            base.OnReload(card,needRecover, needRemove);
+            base.OnReload(card,recoverAction, needRemove);
             Control persistIcon = NPersistIcon.Create();
             card.Body.AddChildSafely(persistIcon);
             persistIcon.Position = PersistIconOffset;

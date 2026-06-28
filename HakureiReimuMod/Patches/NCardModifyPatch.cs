@@ -14,7 +14,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 {
     public class NCardModifyPatch
     {
-        public static readonly Dictionary<Godot.Node, (List<NodePath>, List<NodePath>)> HasModify = new();
+        public static readonly Dictionary<Godot.Node, (List<Action<NCard>>, List<NodePath>)> HasModify = new();
         [HarmonyPatch(typeof(NCard),"Reload")]
         public static class ReloadPatch
         {
@@ -28,12 +28,12 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 
                 if (__instance.Model is INCardModify nCardCreate && !HasModify.ContainsKey(__instance))
                 {
-                    List<Godot.Node> needRecover = [];
+                    List<Action<NCard>> recoverAction = [];
                     List<Godot.Node> needRemove = [];
-                    nCardCreate.OnReload(__instance, needRecover, needRemove);
-                    if (needRecover.Count>0|| needRemove.Count>0)
+                    nCardCreate.OnReload(__instance, recoverAction, needRemove);
+                    if (recoverAction.Count>0|| needRemove.Count>0)
                     {
-                        HasModify[__instance] = (needRecover.Select(n => __instance.GetPathTo(n)).ToList(),
+                        HasModify[__instance] = (recoverAction,
                             needRemove.Select(n => __instance.GetPathTo(n)).ToList());
                     }
                 }
@@ -48,9 +48,12 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             {
                 if (GodotObject.IsInstanceValid(node) && node is NCard card &&  HasModify.ContainsKey(card))
                 {
-                    HasModify.Remove(node);
-                    node.QueueFreeSafelyNoPool();
-                    return false;
+                    if (!TryRecoverNCard(card))
+                    {
+                        HasModify.Remove(node);
+                        node.QueueFreeSafelyNoPool();
+                        return false;
+                    }
                 }
                 return true;
             }
@@ -74,14 +77,13 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                 return true;
             }
         }
-        public static readonly FieldInfo ModelField = AccessTools.Field(typeof(NCard), "_model");
 
         public static bool TryRecoverNCard(NCard card)
         {
             try
             {
-                if (!HasModify.TryGetValue(card, out (List<NodePath>, List<NodePath>) value)) return true;
-                List<NodePath> needRecover = value.Item1;
+                if (!HasModify.TryGetValue(card, out (List<Action<NCard>>, List<NodePath>) value)) return true;
+                List<Action<NCard>> recoverActions = value.Item1;
                 List<NodePath> needRemove = value.Item2;
                 //移除需要移除的
                 foreach (NodePath path in needRemove)
@@ -96,60 +98,11 @@ namespace HakureiReimu.HakureiReimuMod.Patches
                         HakureiReimuMain.Logger.Info("No find node:"+path);
                     }
                 }
-                //获取标准模板
-                NCard template=NodePool.Get<NCard>();
-                if (template.Body==null)
+                //执行恢复方法
+                foreach (Action<NCard> action in recoverActions)
                 {
-                    template._Ready();
+                    action?.Invoke(card);
                 }
-                //记录唯一名称
-                Dictionary<NodePath, NodePath> uniqueNames=new();
-                foreach (NodePath path in needRecover)
-                {
-                    if (card.GetNodeOrNull(path) is {} node )
-                    {
-                        RecordUniqueName(card, node, uniqueNames);
-                    }
-                }
-                //从模板恢复节点
-                foreach (NodePath path in needRecover)
-                {
-                    Godot.Node parent = null;
-                    Godot.Node sibling = null;
-                    if (card.GetNodeOrNull(path) is {} old )
-                    {
-                        parent = old.GetParent();
-                        if (parent != null)
-                        {
-                            int index = old.GetIndex();
-                            if (index>0)
-                            {
-                                sibling = parent.GetChild(index - 1);
-                            }
-                        }
-                        parent?.RemoveChildSafely(old);
-                        old.QueueFreeSafelyNoPool();
-                    }
-                    if (parent!=null &&template.GetNodeOrNull(path) is {} newNode )
-                    {
-                        newNode.ReparentSafely(parent,false);
-                        if (sibling != null)
-                        {
-                            parent.MoveChild(newNode,sibling.GetIndex()+1);
-                        }
-                        else
-                        {
-                            parent.MoveChildSafely(newNode,0);
-                        }
-                    }
-                }
-                
-                template.QueueFreeSafelyNoPool();
-                //重建唯一名称
-                RecoveryUniqueName(card, uniqueNames);
-                
-                ModelField.SetValue(card,null);
-                card._Ready();
                 HasModify.Remove(card);
             }
             catch (Exception e)
