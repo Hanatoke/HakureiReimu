@@ -173,7 +173,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
 
         public void ShowCardTip()
         {
-            HoverTip?.QueueFreeSafely();
+            HideCardTip();
             if (CardNode?.Model!=null)
             {
                 if (!IsInstanceValid(CardNode)||!CardNode.IsInsideTree())return;
@@ -197,6 +197,10 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Node
 
         public void HideCardTip()
         {
+            if (HoverTip!=null)
+            {
+                HoverTip.ZIndex = 0;
+            }
             HoverTip?.QueueFreeSafely();
             HoverTip = null;
         }
