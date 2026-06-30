@@ -11,10 +11,14 @@ namespace HakureiReimu.HakureiReimuMod.Patches
         [HarmonyPatch(typeof(MonsterModel),nameof(MonsterModel.PerformMove))]
         public static class MonsterPerformMovePatch
         {
+            [HarmonyPrefix]
+            public static void Prefix()
+            {
+                CounterManager.InMonsterMove = true;
+            }
             [HarmonyPostfix]
             public static async Task Postfix(Task __result,MonsterModel __instance)
             {
-                CounterManager.InMonsterMove = true;
                 await __result;
                 CounterManager.InMonsterMove = false;
                 await CounterManager.RunLater();
