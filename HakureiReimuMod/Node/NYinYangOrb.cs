@@ -77,21 +77,21 @@ namespace HakureiReimu.HakureiReimuMod.Node
             // _evokeLabel.AddThemeFontOverride(ThemeConstants.Label.Font, defaultFont);
         }
 
-        public override void _EnterTree()
-        {
-            base._EnterTree();
-            if (this.Model == null)
-                return;
-            this.Model.Triggered += this.Flash;
-        }
-
-        public override void _ExitTree()
-        {
-            base._ExitTree();
-            if (this.Model == null)
-                return;
-            this.Model.Triggered -= this.Flash;
-        }
+        // public override void _EnterTree()
+        // {
+        //     base._EnterTree();
+        //     if (this.Model == null)
+        //         return;
+        //     this.Model.Triggered += this.Flash;
+        // }
+        //
+        // public override void _ExitTree()
+        // {
+        //     base._ExitTree();
+        //     if (this.Model == null)
+        //         return;
+        //     this.Model.Triggered -= this.Flash;
+        // }
 
         public void ReplaceOrb(YinYangOrb model)
         {
@@ -144,7 +144,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
                 decimal evokeValue = Model.EvokeVal;
                 if (preview)
                     evokeValue = Hook.ModifyDamage(Model.CombatState.RunState, Model.CombatState, target, Model.Owner.Creature,
-                        evokeValue, Model.DamageProp, null, ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
+                        evokeValue, Model.DamageProp, null, null,ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
                 evokeValue=Math.Floor(evokeValue);
                 this._evokeLabel.SetTextAutoSize(evokeValue.ToString("0"));
 

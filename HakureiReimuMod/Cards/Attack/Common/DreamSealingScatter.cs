@@ -30,7 +30,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         {
             await Vfx(Owner.Creature, CombatState.HittableEnemies);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this).TargetingAllOpponents(CombatState)
+                .FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             foreach (Creature e in CombatState.HittableEnemies)

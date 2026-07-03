@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         {
             await PowerCmd.Apply<Powers.SealPower>(choiceContext, cardPlay.Target, DynamicVars[Powers.SealPower.ID].BaseValue,
                 Owner.Creature, this);
-            await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .BeforeDamage(async delegate
                 {
                     await FlyingVFXCmd.NeedleLineToTarget(Owner.Creature,cardPlay.Target);

@@ -13,20 +13,4 @@
     </Reference>
 	  <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.2.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HakureiReimuMod\Cards\Power\Common\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="HakureiReimuMod\Extensions\EnumExtensions.cs" />
-    <Compile Remove="HakureiReimuMod\PersistCard\IPersistCardSlot.cs" />
-    <Compile Remove="HakureiReimuMod\Reward.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HakureiReimu\localization\eng\enchantments.json" />
-    <Content Include="HakureiReimu\localization\eng\gameplay_ui.json" />
-    <Content Include="HakureiReimu\localization\eng\settings_ui.json" />
-    <Content Include="HakureiReimu\localization\zhs\enchantments.json" />
-    <Content Include="HakureiReimu\localization\zhs\gameplay_ui.json" />
-    <Content Include="HakureiReimu\localization\zhs\settings_ui.json" />
-  </ItemGroup>
 </Project>

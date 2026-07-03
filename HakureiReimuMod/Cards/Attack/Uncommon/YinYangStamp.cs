@@ -34,7 +34,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .BeforeDamage(delegate
                 {
                     SfxCmd.Play("event:/sfx/characters/attack_fire");

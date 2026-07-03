@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             
-            AttackCommand dummy = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
+            AttackCommand dummy = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
                 .TargetingRandomOpponents(CombatState);
             await Hook.BeforeAttack(CombatState,dummy);
             int repeat =(int) Hook.ModifyAttackHitCount(CombatState, dummy, DynamicVars.Repeat.IntValue);
@@ -68,7 +68,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                     await vfx.HitTask;
                 }
                 IEnumerable<Creature> targets = Owner.Creature.HasPower<DiffusiveBoundaryPower>()?CombatState.HittableEnemies:[target];
-                var results=await CreatureCmd.Damage(choiceContext,targets,DynamicVars.Damage.BaseValue,dummy.DamageProps,Owner.Creature, this);
+                var results = await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue,
+                    dummy.DamageProps, Owner.Creature, this, cardPlay);
                 dummy.AddResultsInternal(results);
             }
             await Hook.AfterAttack(CombatState,choiceContext,dummy);

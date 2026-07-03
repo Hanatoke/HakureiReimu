@@ -41,7 +41,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             int count = ResolveEnergyXValue();
             decimal seal = DynamicVars[SealPower.ID].BaseValue;
             await Vfx(Owner.Creature, CombatState.HittableEnemies, count);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState).WithHitCount(count)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState).WithHitCount(count)
                 .BeforeDamage(async delegate
                 {
                     await PowerCmd.Apply<SealPower>(choiceContext, CombatState.HittableEnemies, seal, Owner.Creature, this);

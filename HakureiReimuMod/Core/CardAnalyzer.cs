@@ -358,7 +358,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
                 if (damage<=0) break;
                 damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
-                    ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
+                    null,ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
                 damage *= hitCount > 0 ? hitCount : Math.Max(0, CalculateAttackCount(card, t));
                 if (damage>=needToKill)
                 {
@@ -414,7 +414,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
                 if (damage<=0) break;
                 damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
-                    ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
+                    null,ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
                 needCount += (int)Math.Ceiling(needToKill / damage);
                 //总数不够提前结束
                 if (needCount > hitCount) return 0;
@@ -496,7 +496,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
         {
             decimal d = intent.DamageCalc?.Invoke() ?? 0;
             d = Hook.ModifyDamage(target.CombatState.RunState, target.CombatState, target, owner, d, ValueProp.Move, null,
-                ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
+                null,ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
             return d * intent.Repeats;
         }
 

@@ -39,7 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             if (target is not { IsHittable: true }) return;
             RunAnimation(Character.HakureiReimu.Animation.AttackDashLight);
             await Flash(instant);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, null).Targeting(target)
                 .WithHitFx("vfx/vfx_attack_blunt",tmpSfx:"blunt_attack.mp3")
                 .Execute(null);
             VulnerablePower power=await PowerCmd.Apply<VulnerablePower>(new BlockingPlayerChoiceContext(), target, DynamicVars.Vulnerable.IntValue, Owner.Creature, this);

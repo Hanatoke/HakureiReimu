@@ -42,8 +42,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 try
                 {
                     CardModel copy = card.CreateClone();
-                    copy.Owner = null;
-                    copy.Owner = Owner;
+                    copy.GiveToAnotherPlayer(Owner);
                     copes.Add(copy);
                     await CardPileCmd.Add(copy, PileType.Hand);
                 }

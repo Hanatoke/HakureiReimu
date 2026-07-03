@@ -19,6 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
             typeof(CardPile),
             typeof(CardPilePosition),
             typeof(AbstractModel),
+            typeof(bool),
             typeof(bool)])]
         public static class AddCardPatch
         {
@@ -27,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
                 CardPile newPile,
                 CardPilePosition position ,
                 AbstractModel clonedBy ,
-                bool skipVisuals,ref Task<IReadOnlyList<CardPileAddResult>> __result)
+                bool skipVisuals,bool isChangingOwners,ref Task<IReadOnlyList<CardPileAddResult>> __result)
             {
                 if (newPile is AbstractPersistCardTable table)
                 {

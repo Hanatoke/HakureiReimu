@@ -45,7 +45,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             }
             RunAnimation(Character.HakureiReimu.Animation.AttackCloseRound);
             await Flash(instant);
-            await DamageCmd.Attack(d).FromCard(this).TargetingAllOpponents(CombatState)
+            await DamageCmd.Attack(d).FromCard(this, null).TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_giant_horizontal_slash", tmpSfx: "slash_attack.mp3").BeforeDamage(async () =>
                 {
                     NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NSweepingBeamVfx.Create(Owner.Creature,CombatState.HittableEnemies.ToList()));
@@ -62,7 +62,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         {
             decimal d = intent.DamageCalc?.Invoke() ?? 0;
             d = Hook.ModifyDamage(target.RunState, target.Creature.CombatState, target.Creature, owner, d, ValueProp.Move, null,
-                ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
+                null,ModifyDamageHookType.All, CardPreviewMode.None, out IEnumerable<AbstractModel> _);
             return d * intent.Repeats;
         }
     }

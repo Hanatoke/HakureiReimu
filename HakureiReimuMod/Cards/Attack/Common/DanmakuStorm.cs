@@ -19,7 +19,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
             SfxCmd.Play("event:/sfx/characters/silent/silent_dagger_spray");
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(DynamicVars.Repeat.IntValue)
-                .FromCard(this).TargetingAllOpponents(CombatState)
+                .FromCard(this,cardPlay).TargetingAllOpponents(CombatState)
                 .BeforeDamage(async delegate
                 {
                     List<Task> tasks = [];

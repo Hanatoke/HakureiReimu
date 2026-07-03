@@ -5,6 +5,7 @@ using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Interface;
 using HakureiReimu.HakureiReimuMod.Patches;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -37,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public static readonly ValueProp CalculateProp = ValueProp.Move;
 
         public override decimal ModifyDamageAdditive(Creature target, decimal amount, ValueProp props, Creature dealer,
-            CardModel cardSource)
+            CardModel cardSource, CardPlay cardPlay)
         {
             if (dealer == Owner && (props & DamagePropsPatch.YinYangOrbDamage) != 0)
             {
@@ -46,7 +47,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 {
                     if (listener is not (RainbowDragonYinYangOrbsFireWaterPower or StrengthPower))
                     {
-                        decimal add = listener.ModifyDamageAdditive(target, amount, CalculateProp, dealer, cardSource);
+                        decimal add = listener.ModifyDamageAdditive(target, amount, CalculateProp, dealer, cardSource,cardPlay);
                         if (add > 0)
                         {
                             total += add;
@@ -59,7 +60,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         }
 
         public override decimal ModifyDamageMultiplicative(Creature target, decimal amount, ValueProp props, Creature dealer,
-            CardModel cardSource)
+            CardModel cardSource, CardPlay cardPlay)
         {
             if (dealer == Owner && (props & DamagePropsPatch.YinYangOrbDamage) != 0)
             {
@@ -68,7 +69,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 {
                     if (listener is not (RainbowDragonYinYangOrbsFireWaterPower or StrengthPower))
                     {
-                        decimal mult = listener.ModifyDamageMultiplicative(target, amount, CalculateProp, dealer, cardSource);
+                        decimal mult = listener.ModifyDamageMultiplicative(target, amount, CalculateProp, dealer, cardSource,cardPlay);
                         if (mult > 1)
                         {
                             total *= mult;

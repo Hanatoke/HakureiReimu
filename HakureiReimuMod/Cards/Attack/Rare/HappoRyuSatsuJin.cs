@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
             int n = CombatState.IterateHookListeners()
                 .Where(a => CanInvoke(a, out ICounter _)).OfType<CardModel>().Where(c => c.Type == CardType.Attack).Count();
             var list=await Vfx(Owner.Creature, cardPlay.Target, n);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             foreach (AbstractModel abstractModel in CombatState.IterateHookListeners())

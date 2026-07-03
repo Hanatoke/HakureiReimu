@@ -21,7 +21,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .BeforeDamage(async delegate
                 {
                     await FlyingVFXCmd.NeedleLineToTarget(Owner.Creature,cardPlay.Target);

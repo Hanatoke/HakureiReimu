@@ -23,7 +23,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 // .BeforeDamage(async ()=>await FlyingVFXCmd.DanmakuLineToTarget(Owner.Creature,cardPlay.Target))
                 .WithHitVfxNode(NGrandFinaleImpactVfx.Create)
                 .WithHitFx(tmpSfx: "blunt_attack.mp3")

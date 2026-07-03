@@ -30,14 +30,14 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
         }
 
-        protected override PileType GetResultPileTypeForCardPlay()
+        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
         {
-            PileType type=base.GetResultPileTypeForCardPlay();
-            if (type==PileType.Discard)
+            (PileType, CardPilePosition) result = base.GetResultPileTypeAndPositionForCardPlay();
+            if (result.Item1 == PileType.Discard && TargetSelectCards.Count > 0)
             {
-                return TargetSelectCards.Count>0 ? PileType.Draw : type;
+                return (PileType.Draw, result.Item2);
             }
-            return type;
+            return result;
         }
 
         public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel source)

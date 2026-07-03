@@ -39,7 +39,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         {
             int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
             await Vfx(Owner.Creature, cardPlay.Target, n);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).WithHitCount(n)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).WithHitCount(n)
                 .Execute(choiceContext);
         }
         protected override void OnUpgrade() {

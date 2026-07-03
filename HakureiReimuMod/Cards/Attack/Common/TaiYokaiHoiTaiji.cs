@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Common {
             ) : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
-            await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .BeforeDamage(async delegate
                 {
                     NCreature s = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);

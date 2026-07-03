@@ -40,7 +40,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         {
             int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
             await StartVfx(n, Owner.Creature, cardPlay.Target);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitCount(n).Execute(choiceContext);
         }
 

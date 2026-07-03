@@ -7,6 +7,7 @@ using HakureiReimu.HakureiReimuMod.Powers;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -19,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
     public class SealPatch
     {
         [HarmonyPatch(typeof(CreatureCmd),nameof(CreatureCmd.Damage),[typeof(PlayerChoiceContext),typeof(IEnumerable<Creature>),typeof(decimal),typeof(ValueProp),
-            typeof(Creature),typeof(CardModel)])]
+            typeof(Creature),typeof(CardModel),typeof(CardPlay)])]
         [HarmonyPatch(MethodType.Async)]
         public static class DamageCmdPatch
         {

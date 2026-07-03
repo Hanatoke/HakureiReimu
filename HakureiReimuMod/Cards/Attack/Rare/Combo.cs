@@ -42,7 +42,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
             CardModel card = LastAttack;

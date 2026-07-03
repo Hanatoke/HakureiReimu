@@ -22,7 +22,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
             ) : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay) {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .BeforeDamage(async ()=>await FlyingVFXCmd.DanmakuLineToTarget(Owner.Creature,cardPlay.Target))
                 .Execute(choiceContext);
         }

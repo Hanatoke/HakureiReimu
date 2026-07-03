@@ -64,14 +64,13 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             // card.ShowUpgradePreview();
         }
         //-------------------------------------------------------------------------------------------------
-
-        protected override PileType GetResultPileTypeForCardPlay()
+        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
         {
-            if (Pile?.Type != TargetPersistPileType) 
+            if (Pile?.Type != TargetPersistPileType)
             {
-                return TargetPersistPileType;
+                return (TargetPersistPileType, CardPilePosition.Bottom);
             }
-            return base.GetResultPileTypeForCardPlay();
+            return base.GetResultPileTypeAndPositionForCardPlay();
         }
 
         public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,

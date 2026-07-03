@@ -299,7 +299,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
                 {
                     holder.SetTargetPosition(holder.Position+new Vector2(0,-200));
                     Tween tween = NCombatRoom.Instance.Ui.CreateTween().SetParallel();
-                    tween.Chain().TweenCallback(Callable.From((Action) (() => NCombatRoom.Instance.Ui.AddChildSafely(NExhaustVfx.Create(nc)))));
+                    tween.Chain().TweenCallback(Callable.From((Action) (() => NCombatRoom.Instance.Ui.AddChildSafely(NCardExhaustVfx.Create(nc)))));
                     tween.Parallel().TweenProperty( nc, "modulate", (Variant) StsColors.exhaustGray,  0.2);
                     tween.Chain().TweenCallback(Callable.From((holder.QueueFreeSafely)));
                 }

@@ -74,7 +74,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 }
                 if (!cost)CreateEffect();
             }
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, null).Targeting(target)
                 .WithHitCount(count)
                 .WithHitFx("vfx/vfx_attack_blunt")
                 .Execute(null);

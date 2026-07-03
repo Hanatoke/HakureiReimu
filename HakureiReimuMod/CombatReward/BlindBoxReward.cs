@@ -50,17 +50,10 @@ namespace HakureiReimu.HakureiReimuMod.CombatReward
             await RewardsCmd.OfferCustom(Player, Rewards);
             return Rewards.Count<=0;
         }
-
-        public static List<CardModel> GetCardPools(Player player, CardRarity rarity)
-        {
-            return player.Character.CardPool
-                .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-                .Where(c => c.Rarity == rarity).ToList();
-        }
         public static readonly List<(int, Func<Player, Reward>,Func<Player,bool>,Action<LocString>)> RewardCreator = [
-            (30,p=>new CardReward(new CardCreationOptions(GetCardPools(p,CardRarity.Common),CardCreationSource.Other,CardRarityOddsType.Uniform),3,p),null,null),
-            (20,p=>new CardReward(new CardCreationOptions(GetCardPools(p,CardRarity.Uncommon),CardCreationSource.Other,CardRarityOddsType.Uniform),3,p),null,null),
-            (10,p=>new CardReward(new CardCreationOptions(GetCardPools(p,CardRarity.Rare),CardCreationSource.Other,CardRarityOddsType.Uniform),3,p),null,null),
+            (30,p=>new CardReward(new CardCreationOptions([p.Character.CardPool],CardCreationSource.Other,CardRarityOddsType.Uniform,c=>c.Rarity==CardRarity.Common),3,p),null,null),
+            (20,p=>new CardReward(new CardCreationOptions([p.Character.CardPool],CardCreationSource.Other,CardRarityOddsType.Uniform,c=>c.Rarity==CardRarity.Uncommon),3,p),null,null),
+            (10,p=>new CardReward(new CardCreationOptions([p.Character.CardPool],CardCreationSource.Other,CardRarityOddsType.Uniform,c=>c.Rarity==CardRarity.Rare),3,p),null,null),
             (10,p=>new RelicReward(RelicRarity.Common,p),null,null),
             (5,p=>new RelicReward(RelicRarity.Uncommon,p),null,null),
             (2,p=>new RelicReward(RelicRarity.Rare,p),null,null),

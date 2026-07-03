@@ -26,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            AttackCommand command=await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            AttackCommand command=await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx(tmpSfx: "heavy_attack.mp3")
                 .WithHitVfxNode(NBigSlashVfx.Create)
                 .WithHitVfxNode(NBigSlashImpactVfx.Create)

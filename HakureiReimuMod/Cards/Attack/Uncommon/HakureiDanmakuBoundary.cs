@@ -59,7 +59,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
                 }
                 if (!cost)CreateEffect();
             }
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, null).TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_blunt")
                 .Execute(null);
             if (cost)

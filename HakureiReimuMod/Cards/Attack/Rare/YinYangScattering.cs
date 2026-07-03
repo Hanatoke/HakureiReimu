@@ -38,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
         {
             VFX(Owner.Creature,CombatState.HittableEnemies);
             await Cmd.Wait(0.5f);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
                 .WithHitFx(VfxCmd.bluntPath)
                 .Execute(choiceContext);
         }

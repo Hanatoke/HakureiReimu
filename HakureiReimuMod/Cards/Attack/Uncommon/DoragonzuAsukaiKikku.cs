@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target)).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
                 .Execute(choiceContext);
         }

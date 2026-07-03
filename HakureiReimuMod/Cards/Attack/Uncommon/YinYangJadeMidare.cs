@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Uncommon {
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             int n = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).WithHitCount(n)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).WithHitCount(n)
                 .WithHitFx("vfx/vfx_attack_blunt")
                 .Execute(choiceContext);
             await YinYangOrbCmd.Spawn(choiceContext,Owner,DynamicVars.Repeat.IntValue*n, this);

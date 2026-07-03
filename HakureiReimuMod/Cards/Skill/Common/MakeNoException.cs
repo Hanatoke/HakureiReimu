@@ -19,25 +19,37 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            List<PowerModel> originalDebuffs = cardPlay.Target.Powers.Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-                .Select(p => (PowerModel) p.ClonePreservingMutability()).ToList();
+            Dictionary<PowerModel, int> debuffAmounts = cardPlay.Target.Powers
+                .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
+                .Select(p => ((PowerModel)p.ClonePreservingMutability(), p.Amount))
+                .ToDictionary();
+            foreach (KeyValuePair<PowerModel, int> pair in debuffAmounts)
+            {
+                if (pair.Key is ITemporaryPower temporaryPower)
+                {
+                    KeyValuePair<PowerModel, int> other =
+                        debuffAmounts.FirstOrDefault(p => p.Key.Id == temporaryPower.InternallyAppliedPower.Id);
+                    if (other.Key != null)
+                    {
+                        debuffAmounts[other.Key] += pair.Value;
+                    }
+                }
+            }
             foreach (Creature enemy in CombatState.HittableEnemies)
             {
                 if (enemy!=cardPlay.Target)
                 {
-                    foreach (PowerModel p in originalDebuffs)
+                    foreach (KeyValuePair<PowerModel, int> pair in debuffAmounts)
                     {
-                        PowerModel instanceForStacking = PowerCmd.FindExistingInstanceForStacking(p, enemy, p.Applier);
-                        if (instanceForStacking != null)
+                        if (pair.Value != 0)
                         {
-                            DoHackyThingsForSpecificPowers(instanceForStacking);
-                            await PowerCmd.ModifyAmount(choiceContext,instanceForStacking, p.Amount, Owner.Creature, this);
-                        }
-                        else
-                        {
-                            PowerModel power =(PowerModel)p.ClonePreservingMutability();
-                            DoHackyThingsForSpecificPowers(power);
-                            await PowerCmd.Apply(choiceContext,power, enemy,p.Amount, Owner.Creature, this);
+                            PowerModel instanceForStacking = PowerCmd.FindExistingInstanceForStacking(pair.Key, enemy, pair.Key.Applier);
+                            if (instanceForStacking != null)
+                            {
+                                await PowerCmd.ModifyAmount(choiceContext, instanceForStacking, pair.Value, pair.Key.Applier, this);
+                            }
+                            else
+                                await PowerCmd.Apply(choiceContext, (PowerModel) pair.Key.ClonePreservingMutability(), enemy, pair.Value, pair.Key.Applier,this);
                         }
                     }
                 }
@@ -45,12 +57,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Common {
         }
         protected override void OnUpgrade() {
             EnergyCost.UpgradeBy(-1);
-        }
-        private static void DoHackyThingsForSpecificPowers(PowerModel power)
-        {
-            if (!(power is ITemporaryPower temporaryPower))
-                return;
-            temporaryPower.IgnoreNextInstance();
         }
     }
 }
