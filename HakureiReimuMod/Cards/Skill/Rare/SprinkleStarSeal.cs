@@ -24,7 +24,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public static HashSet<Type> DoubleBuff => _doubleBuff ??= PowerHelper.CanModify.And(PowerHelper.LessIsMore);
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await CreatureCmd.LoseBlock(cardPlay.Target, cardPlay.Target.Block / 2);
+            await CreatureCmd.LoseBlock(choiceContext,cardPlay.Target, cardPlay.Target.Block / 2,Owner.Creature);
             foreach (PowerModel p in cardPlay.Target.Powers.ToList())
             {
                 if (!p.IsVisible||p.Type==PowerType.None)continue;

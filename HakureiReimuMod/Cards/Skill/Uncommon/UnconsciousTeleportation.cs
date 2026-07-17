@@ -36,6 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
             await Flash(instant);
             CardPlay dummyPlay = new()
             {
+                Player =  Owner,
                 Card =  this,IsAutoPlay = false,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo
                 {
                     EnergySpent = 0,EnergyValue = 0,StarValue = 0,StarsSpent = 0

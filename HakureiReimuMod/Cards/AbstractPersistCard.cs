@@ -64,23 +64,23 @@ namespace HakureiReimu.HakureiReimuMod.Cards
             // card.ShowUpgradePreview();
         }
         //-------------------------------------------------------------------------------------------------
-        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+        protected override CardLocation GetResultLocationForCardPlay()
         {
             if (Pile?.Type != TargetPersistPileType)
             {
-                return (TargetPersistPileType, CardPilePosition.Bottom);
+                return new CardLocation(Owner, TargetPersistPileType, CardPilePosition.Bottom);
             }
-            return base.GetResultPileTypeAndPositionForCardPlay();
+            return base.GetResultLocationForCardPlay();
         }
 
-        public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
-            ResourceInfo resources, PileType pileType, CardPilePosition position)
+        public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay, ResourceInfo resources,
+            CardLocation cardLocation)
         {
-            if (card == this && Pile?.Type != TargetPersistPileType) 
+            if (card==this&&Pile?.Type != TargetPersistPileType)
             {
-                return (TargetPersistPileType, position);
+                return new CardLocation(Owner, TargetPersistPileType, CardPilePosition.Bottom);
             }
-            return (pileType, position);
+            return base.ModifyCardPlayResultLocation(card, isAutoPlay, resources, cardLocation);
         }
 
         public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

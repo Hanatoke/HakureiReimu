@@ -45,14 +45,14 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return playCount;
         }
 
-        public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(CardModel card, bool isAutoPlay,
-            ResourceInfo resources, PileType pileType, CardPilePosition position)
+        public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay, ResourceInfo resources,
+            CardLocation cardLocation)
         {
-            if (card.Owner.Creature!=Owner)
+            if (card.Owner.Creature != this.Owner)
             {
-                return (pileType, position);
+                return cardLocation;
             }
-            return (PileType.Exhaust, position);
+            return new CardLocation(card.Owner, PileType.Exhaust, cardLocation.position);
         }
 
         public PileType ModifyStopPersistCardPile(AbstractPersistCardSlot slot, PileType defaultPile)

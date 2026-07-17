@@ -51,9 +51,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Attack.Rare {
                 if (card.Owner != this.Owner ||card.Pile is AbstractPersistCardTable)
                 {
                     Player originalOwner = card.Owner;
-                    card = card.CreateDupe();
-                    card.Owner = null;
-                    card.Owner = this.Owner;
+                    card = card.CreateDupe(this.Owner);
                     if (NCard.FindOnTable(card)==null&&NCombatRoom.Instance?.GetCreatureNode(originalOwner.Creature) is {} creature)
                     {
                         NCard nCard = NCard.Create(card);

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
@@ -25,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             if (block==0)return;
             if (block>Amount)
             {
-                await CreatureCmd.LoseBlock(creature, block - Amount);
+                await CreatureCmd.LoseBlock(new BlockingPlayerChoiceContext(),creature, block - Amount,null);
                 await PowerCmd.Remove(this);
             }
         }

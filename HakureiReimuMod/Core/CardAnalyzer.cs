@@ -548,6 +548,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             if (block<=0) return 0;
             block = Hook.ModifyBlock(card.CombatState, card.Owner.Creature, block, prop, card, new CardPlay()
                 {
+                    Player = card.Owner,
                     Card =  card,PlayCount = 1,PlayIndex = 1,Resources = new ResourceInfo(){EnergySpent = card.EnergyCost.GetResolved(),EnergyValue = card.Owner.PlayerCombatState.Energy,StarsSpent = card.CurrentStarCost,StarValue = card.Owner.PlayerCombatState.Stars},
                     IsAutoPlay =  false,ResultPile = PileType.Discard,Target = null
                 },

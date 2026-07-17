@@ -46,7 +46,7 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             if (player==Owner&&player.Creature.CombatState?.RoundNumber==1)
             {
                 Flash();
-                DoubleBoundary card = (DoubleBoundary)player.Creature.CombatState.CreateCard<DoubleBoundary>(Owner).CreateDupe();
+                DoubleBoundary card = (DoubleBoundary)player.Creature.CombatState.CreateCard<DoubleBoundary>(Owner).CreateDupe(Owner);
                 card.AddKeyword(CardKeyword.Exhaust);
                 await CardPileCmd.Add(card, PileType.Play, skipVisuals: true);
                 if (LocalContext.IsMe(Owner)&&NCombatRoom.Instance is {} room)

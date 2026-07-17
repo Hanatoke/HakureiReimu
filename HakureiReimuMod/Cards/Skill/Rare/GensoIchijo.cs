@@ -30,12 +30,12 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
         }
 
-        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+        protected override CardLocation GetResultLocationForCardPlay()
         {
-            (PileType, CardPilePosition) result = base.GetResultPileTypeAndPositionForCardPlay();
-            if (result.Item1 == PileType.Discard && TargetSelectCards.Count > 0)
+            CardLocation result = base.GetResultLocationForCardPlay();
+            if (result.pileType == PileType.Discard && TargetSelectCards.Count > 0)
             {
-                return (PileType.Draw, result.Item2);
+                return new CardLocation(Owner, PileType.Draw, result.position);
             }
             return result;
         }

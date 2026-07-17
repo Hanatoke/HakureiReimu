@@ -93,7 +93,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         {
             if (InPersisting && amount > 0 && creature is { IsMonster: true, Side: CombatSide.Enemy })
             {
-                await CreatureCmd.LoseBlock(creature, amount);
+                await CreatureCmd.LoseBlock(new BlockingPlayerChoiceContext(),creature, amount,Owner.Creature);
                 await InvokeCounter(null, CounterType.Buff);
             }
         }

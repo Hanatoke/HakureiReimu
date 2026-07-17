@@ -80,7 +80,7 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Patch
                 if (CombatManager.Instance.IsOverOrEnding)return;
                 if (cardPlay.PlayIndex>0&&cardPlay.PlayCount>1&&CardPile.Get(cardPlay.ResultPile,cardPlay.Card.Owner) is AbstractPersistCardTable table)
                 {
-                    CardModel card = cardPlay.Card.CreateDupe();
+                    CardModel card = cardPlay.Card.CreateDupe(cardPlay.Card.Owner);
                     card.AddKeyword(CardKeyword.Exhaust);
                     await CardPileCmd.Add(card, PileType.Play, skipVisuals: true);
                     await PersistCardCmd.StartPersistCard(table,card.GetInstanceSlot());
