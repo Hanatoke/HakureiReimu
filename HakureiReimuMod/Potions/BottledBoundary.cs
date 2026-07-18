@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Cards;
+using HakureiReimu.HakureiReimuMod.Character;
 using HakureiReimu.HakureiReimuMod.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +20,7 @@ namespace HakureiReimu.HakureiReimuMod.Potions
     {
         public override PotionRarity Rarity => PotionRarity.Uncommon;
         public override PotionUsage Usage => PotionUsage.CombatOnly;
-        public override TargetType TargetType => TargetType.Self;
+        public override TargetType TargetType => TargetType.AnyPlayer;
 
         public override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
@@ -27,11 +29,13 @@ namespace HakureiReimu.HakureiReimuMod.Potions
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature target)
         {
+            AssertValidForTargetedPotion(target);
+            Player player = target.Player;
             CardModel card = await CardSelectCmd.FromChooseACardScreen(choiceContext,
-                CardFactory.GetDistinctForCombat(Owner,
-                    Owner.Character.CardPool
-                        .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-                        .Where(c => c.HasCounter()), 3, Owner.RunState.Rng.CombatCardGeneration).ToList(), Owner, true);
+                CardFactory.GetDistinctForCombat(player,
+                    ModelDb.CardPool<HakureiReimuCardPool>()
+                        .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
+                        .Where(c => c.HasCounter()), 3, player.RunState.Rng.CombatCardGeneration).ToList(), player, true);
             if (card!=null)
             {
                 card.SetToFreeThisCombat();

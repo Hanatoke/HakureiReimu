@@ -46,6 +46,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             HarmonyHelper.Patch(harmony,typeof(FlutterPower),GetInfo(typeof(FlutterPower),nameof(FlutterPower.ModifyDamageMultiplicative)),GetInfo(typeof(IgnoreDamageImmunityPatch),nameof(IgnoreDamageImmunityPatch.MultiplicativePrefix)));
             
             HarmonyHelper.Patch(harmony,typeof(ThornsPower),GetInfo(typeof(ThornsPower),nameof(ThornsPower.BeforeDamageReceived)),GetInfo(typeof(IgnoreDamageResponsePatch),nameof(IgnoreDamageResponsePatch.DamageTaskPrefix)));
+            HarmonyHelper.Patch(harmony,typeof(PersonalHivePower),GetInfo(typeof(PersonalHivePower),nameof(PersonalHivePower.AfterDamageReceived)),GetInfo(typeof(IgnoreDamageResponsePatch),nameof(IgnoreDamageResponsePatch.DamageTaskPrefix)));
         }
         
         private static MethodInfo GetInfo(Type type,string name)=>type.GetMethod(name, 

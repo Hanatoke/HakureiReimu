@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
     public class YinYangGyokusho : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [
-            new PowerVar<YinYangGyokushoPower>(4)
+            new PowerVar<YinYangGyokushoPower>(3)
         ];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromOrb<YinYangOrb>()
@@ -27,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
 
         protected override void OnUpgrade() 
         {
-            DynamicVars[YinYangGyokushoPower.ID].UpgradeValueBy(2);
+            DynamicVars[YinYangGyokushoPower.ID].UpgradeValueBy(1);
         }
     }
 }

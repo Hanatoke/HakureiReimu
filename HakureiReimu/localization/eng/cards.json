@@ -276,7 +276,7 @@
   "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"Activate Counter effects towards the trigger card's target.",
 
   "HAKUREIREIMU-DREAM_INNATE.title":"Innate Dream",
-  "HAKUREIREIMU-DREAM_INNATE.description":"[gold]Counter ALL[/gold] this turn only.\n[gold]Preemptively[/gold] invalidate their actions.",
+  "HAKUREIREIMU-DREAM_INNATE.description":"[gold]Counter ALL[/gold] this turn only.\n[gold]Preemptively[/gold] invalidate their actions for you.",
   "HAKUREIREIMU-DREAM_INNATE.signature.0.name": "[gold]Aesthetic[/gold]",
   "HAKUREIREIMU-DREAM_INNATE.signature.1.name": "[gold]Classic[/gold]",
   "HAKUREIREIMU-DREAM_INNATE.signature.1.description": "In short, it is the ultimate technique. Reimu floats in the center of all objects and becomes invincible.",
@@ -331,10 +331,17 @@
   "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.title":"Every Yin-Yang Orb In Stock",
   "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.description":"[gold]Channel[/gold] {Repeat:diff()} [gold]Yin-Yang Orbs[/gold] for each players.",
 
+  "HAKUREIREIMU-SOARING_TOGETHER.title":"Soaring Together",
+  "HAKUREIREIMU-SOARING_TOGETHER.description":"Halve the attack damage taken by yourself and another player this turn.\nEnd your turn.",
+
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"Full House Amulets",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"Bullet Money Bonus Packets",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"Replace your [gold]hand[/gold] with [gold]copies[/gold] of another player's hand.\nSwap them back at the end of this turn.",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.tip":"At the end of the turn, only copied cards that remain in your hand and have not been played will be removed.",
+  
+  "HAKUREIREIMU-FORTUNE_DRAW.title":"Fortune Draw",
+  "HAKUREIREIMU-FORTUNE_DRAW.description":"Another player adds 1 {IfUpgraded:show:[gold]upgraded[/gold]} [gold]Lucky[/gold] card to their [gold]Hand[/gold].",
+  "HAKUREIREIMU-FORTUNE_DRAW.tip":"Based on the target player's character card pool.",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -27,6 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards
         public bool IsCounterEnable => InPersisting;
         public virtual bool IsImmediate=>false;
         public virtual CounterType ActivateType => CounterType.None;
+        protected virtual bool CheckOwner(Creature? t) => t == this.Owner.Creature;
 
         protected virtual bool CheckAttack(AttackCommand command) => ActivateType.HasFlag(CounterType.Attack)&& command.Attacker is { IsMonster: true ,Side: CombatSide.Enemy} &&
                                                                      command.DamageProps.IsCardOrMonsterMove_();
@@ -39,12 +40,15 @@ namespace HakureiReimu.HakureiReimuMod.Cards
                 return false;
             }
             PowerType type=power.GetTypeForAmount(modifiedAmount);
-            if (power.IsVisible&&type == PowerType.Buff&&modifiedAmount>=0&& ActivateType.HasFlag(CounterType.Buff)&&applier is { IsMonster: true ,Side:CombatSide.Enemy}&&target is{IsMonster:true,Side:CombatSide.Enemy})
+            if (power.IsVisible && type == PowerType.Buff && modifiedAmount >= 0 &&
+                ActivateType.HasFlag(CounterType.Buff) && applier is { IsMonster: true, Side: CombatSide.Enemy } &&
+                target is { IsMonster: true, Side: CombatSide.Enemy }) 
             {
                 counterType = CounterType.Buff;
                 return true;
             }
-            if (power.IsVisible&&type == PowerType.Debuff&&ActivateType.HasFlag(CounterType.Debuff)&&applier is { IsMonster: true ,Side:CombatSide.Enemy}&&target is{IsPlayer:true})
+            if (power.IsVisible && type == PowerType.Debuff && ActivateType.HasFlag(CounterType.Debuff) &&
+                applier is { IsMonster: true, Side: CombatSide.Enemy } && target is { IsPlayer: true } && CheckOwner(target)) 
             {
                 counterType = CounterType.Debuff;
                 return true;
@@ -96,7 +100,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards
 
         public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
         {
-            if (InPersisting&&ActivateType.HasFlag(CounterType.Debuff)&&creator==null&&card.Type is CardType.Curse or CardType.Status)
+            if (InPersisting && ActivateType.HasFlag(CounterType.Debuff) && creator == null &&
+                card.Type is CardType.Curse or CardType.Status && CheckOwner(card.Owner.Creature)) 
             {
                 await InvokeCounter(null,CounterType.Debuff);
             }

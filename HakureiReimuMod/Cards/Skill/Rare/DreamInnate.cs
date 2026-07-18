@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Extensions;
 using BaseLib.Hooks;
 using Godot;
 using HakureiReimu.HakureiReimuMod.Command;
 using HakureiReimu.HakureiReimuMod.Core;
 using HakureiReimu.HakureiReimuMod.Node.VFX;
+using HakureiReimu.HakureiReimuMod.Patches;
 using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Commands;
 using MegaCrit.Sts2.Core.Assets;
@@ -22,7 +24,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
-    public class DreamInnate : EffectFollowCard<NDanmaku>,IHealAmountModifier {
+    public class DreamInnate : EffectFollowCard<NDanmaku>,IHealAmountModifier,AttackCommandPatch.IModifyAttackCommandTargets {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [All,Immediate,CardKeyword.Exhaust];
 
         public DreamInnate(
@@ -71,24 +73,24 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             }
         }
 
-        public override int ModifyAttackHitCount(AttackCommand attack, int hitCount)
+        public List<Creature> ModifyAttackTargets(List<Creature> origin, AttackCommand command)
         {
-            if (InPersisting&&CheckAttack(attack))
+            if (InPersisting&&CheckAttack(command))
             {
-                return -999999999;
+                origin.RemoveAll(c => c == Owner.Creature);
             }
-            return hitCount;
+            return origin;
         }
-        // public override decimal ModifyBlockMultiplicative(Creature target, decimal block, ValueProp props, CardModel cardSource,
-        //     CardPlay cardPlay)
-        // {
-        //     if (InPersisting&&target is {IsMonster:true,Side:CombatSide.Enemy})
-        //     {
-        //         return 0;
-        //     }
-        //     return 1;
-        // }
 
+        //
+        // public override int ModifyAttackHitCount(AttackCommand attack, int hitCount)
+        // {
+        //     if (InPersisting&&CheckAttack(attack))
+        //     {
+        //         return -999999999;
+        //     }
+        //     return hitCount;
+        // }
         public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel cardSource)
         {
             if (InPersisting && amount > 0 && creature is { IsMonster: true, Side: CombatSide.Enemy })
@@ -97,12 +99,6 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
                 await InvokeCounter(null, CounterType.Buff);
             }
         }
-
-        // public override async Task AfterModifyingBlockAmount(decimal modifiedAmount, CardModel cardSource, CardPlay cardPlay)
-        // {
-        //     await InvokeCounter(null, CounterType.Buff);
-        // }
-
         public decimal ModifyHealMultiplicative(Creature creature, decimal amount)
         {
             if (InPersisting && creature is { IsMonster: true,Side:CombatSide.Enemy})
@@ -136,7 +132,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
 
         public override async Task AfterCardGeneratedForCombat(CardModel card, Player creator)
         {
-            if (InPersisting&&creator==null&&card.Type is CardType.Curse or CardType.Status)
+            if (InPersisting&&creator==null&&card.Type is CardType.Curse or CardType.Status && CheckOwner(card.Owner.Creature))
             {
                 await InvokeCounter(null, CounterType.Debuff);
                 if (card.Pile is not { IsCombatPile: true })return;

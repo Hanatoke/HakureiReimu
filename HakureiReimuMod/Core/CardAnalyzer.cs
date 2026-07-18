@@ -689,7 +689,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case "HAKUREIREIMU-REPEAT_CAST"://复诵
                     return Math.Min(SelfCardLack,(card as RepeatCast)?.CardPlaysThisTurn.Count ?? 0)*Setting.DrawCardWeight;
                 case "HAKUREIREIMU-HELP_FROM_FRIENDS"://友人之助
-                    return 20;
+                    return 15;
             }
             return 0;
         }

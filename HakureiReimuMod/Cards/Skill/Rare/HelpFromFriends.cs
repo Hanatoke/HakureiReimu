@@ -28,7 +28,7 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
         public LocString Tip => _tip ??= new LocString("cards", Id.Entry + ".tip");
 
         public HelpFromFriends(
-            ) : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self) {
+            ) : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) {
         }
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

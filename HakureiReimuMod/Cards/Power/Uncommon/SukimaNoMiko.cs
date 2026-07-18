@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace HakureiReimu.HakureiReimuMod.Cards.Power.Uncommon {
     public class SukimaNoMiko : AbstractCard {
         protected override IEnumerable<DynamicVar> CanonicalVars => [
-            new PowerVar<ParryPower>(3)
+            new PowerVar<ParryPower>(2)
         ];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromKeyword(Counter),

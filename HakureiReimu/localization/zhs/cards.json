@@ -277,7 +277,7 @@
   "HAKUREIREIMU-CHEAT_BOUNDARY.tip":"默认向打出的卡牌的目标发动反制。",
 
   "HAKUREIREIMU-DREAM_INNATE.title":"梦想天生",
-  "HAKUREIREIMU-DREAM_INNATE.description":"在本回合[gold]反制所有[/gold]。\n[gold]立即[/gold]使其本次行动无效。",
+  "HAKUREIREIMU-DREAM_INNATE.description":"在本回合[gold]反制所有[/gold]。\n[gold]立即[/gold]使其本次行动对你无效。",
   "HAKUREIREIMU-DREAM_INNATE.signature.0.name":"[gold]唯美[/gold]",
   "HAKUREIREIMU-DREAM_INNATE.signature.1.name":"[gold]经典[/gold]",
   "HAKUREIREIMU-DREAM_INNATE.signature.1.description":"总之是究极奥义。灵梦漂浮于所有物体中间变成了无敌。",
@@ -330,10 +330,17 @@
   "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.title":"库存全部阴阳玉",
   "HAKUREIREIMU-EVERY_YIN_YANG_ORB_IN_STOCK.description":"所有玩家[gold]生成[/gold]{Repeat:diff()}个[gold]阴阳玉[/gold]。",
 
+  "HAKUREIREIMU-SOARING_TOGETHER.title":"共同翱翔",
+  "HAKUREIREIMU-SOARING_TOGETHER.description":"直到下一回合，使自身和一名其他玩家受到的攻击伤害减半。\n结束你的回合。",
+
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"满员御礼",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"弹币红包",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"将你的[gold]手牌[/gold]替换为另一名玩家的[gold]复制[/gold]。\n在本回合结束时换回。",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.tip":"回合结束时，只有在手牌中且未被打出过的卡牌复制，才会被移除。",
+  
+  "HAKUREIREIMU-FORTUNE_DRAW.title":"吉运开签",
+  "HAKUREIREIMU-FORTUNE_DRAW.description":"将一张{IfUpgraded:show:[gold]升级的[/gold]}[gold]幸运[/gold]卡牌添加至一位其他玩家的[gold]手牌[/gold]中。",
+  "HAKUREIREIMU-FORTUNE_DRAW.tip":"以目标玩家的角色卡池为准。",
   
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   "HAKUREIREIMU-DREAM_SEALING_DIVINE.sign":"神灵",
