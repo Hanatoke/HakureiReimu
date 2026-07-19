@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -16,7 +15,6 @@ using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -27,6 +25,11 @@ namespace HakureiReimu.HakureiReimuMod.Relics
     {
         public override RelicRarity Rarity => RelicRarity.Rare;
         public List<CardModel> Cards = null;
+        protected override void AfterCloned()
+        {
+            base.AfterCloned();
+            Cards = null;
+        }
 
         public List<CardModel> TryGetCards(IRunState runState,Player player)
         {
@@ -58,61 +61,56 @@ namespace HakureiReimu.HakureiReimuMod.Relics
             return null;
         }
 
+        public static List<CardModel> GetDefaultCards(Player player)
+        {
+            return player.Character.StartingDeck.Select(c => player.RunState.CreateCard(c, player)).ToList();
+        }
+
         public static CardModel CreateCard(Player owner, SerializableCard s)
         {
-            if (s.Id != null)
+            try
             {
-                CardModel card = ModelDb.GetByIdOrNull<CardModel>(s.Id);
-                if (card != null&&card.Rarity!=CardRarity.Event)
-                {
-                    card = owner.RunState.CreateCard(card, owner);
-                    for (var i = 0; i < s.CurrentUpgradeLevel; i++)
-                    {
-                        CardCmd.Upgrade(card);
-                    }
-                    if (s.Enchantment?.Id!=null)
-                    {
-                        EnchantmentModel enchantment = ModelDb.GetByIdOrNull<EnchantmentModel>(s.Enchantment.Id)?.ToMutable();
-                        if (enchantment != null)
-                        {
-                            try
-                            {
-                                CardCmd.Enchant(enchantment, card, s.Enchantment.Amount);
-                            }
-                            catch (InvalidOperationException e)
-                            {
-                                HakureiReimuMain.Logger.Info("无法进行附魔,已跳过:"+e.Message);
-                            }
-                        }
-                    }
-                    return card;
-                }
+                CardModel card = CardModel.FromSerializable(s);
+                card.FloorAddedToDeck = owner.RunState.ActFloor;
+                owner.RunState.AddCard(card,owner);
+                card.AfterCreated();
+                return card;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
         
         public override bool IsAllowed(IRunState runState)
         {
-            if (runState.CurrentRoom?.RoomType==RoomType.Treasure&&runState.Players.Count>1)
+            if (!RunManager.Instance.IsSingleplayerOrFakeMultiplayer)
             {
-                return false;
+                return true;
             }
-            Player player = runState.GetPlayer(LocalContext.NetId.GetValueOrDefault());
-            return TryGetCards(runState, player) != null;
+            return TryGetCards(runState, LocalContext.GetMe(runState)) != null;
         }
 
         public override async Task AfterObtained()
         {
             if (!LocalContext.IsMe(Owner))return;
+            bool canSkip = false;
+            const int count = 1;
             List<CardModel> cards = TryGetCards(Owner.RunState,Owner);
+            if (cards == null || cards.Count == 0)
+            {
+                canSkip = true;
+                cards = GetDefaultCards(Owner);
+            }
             if (cards == null || cards.Count == 0)
             {
                 HakureiReimuMain.Logger.Info("绀珠之药获得时没有返回任何卡牌? 这是不应该出现的情况");
                 return;
             }
-            CardSelectorPrefs prefs = new(SelectionScreenPrompt, 1)
+            CardSelectorPrefs prefs = new(SelectionScreenPrompt, canSkip ? 0 : count, count)
             {
-                Cancelable = false
+                Cancelable = false,
+                RequireManualConfirmation = true
             };
             NPlayerHand.Instance?.CancelAllCardPlay();
             NSimpleCardSelectScreen screen = NSimpleCardSelectScreen.Create(cards, prefs);
@@ -167,7 +165,11 @@ namespace HakureiReimu.HakureiReimuMod.Relics
 
             protected override async Task ExecuteAction()
             {
-                
+                if (Card == null)
+                {
+                    HakureiReimuMain.Logger.Info("绀珠之药的同步动作出现错误! 无法反序列化Card!");
+                    return;
+                };
                 var result=await CardPileCmd.Add(Card,PileType.Deck);
                 if (LocalContext.IsMe(Player))
                 {
