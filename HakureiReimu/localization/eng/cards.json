@@ -333,7 +333,10 @@
 
   "HAKUREIREIMU-SOARING_TOGETHER.title":"Soaring Together",
   "HAKUREIREIMU-SOARING_TOGETHER.description":"Halve the attack damage taken by yourself and another player this turn.\nEnd your turn.",
-
+  
+  "HAKUREIREIMU-DIVINE_POSSESSION.title":"Divine Possession",
+  "HAKUREIREIMU-DIVINE_POSSESSION.description":"Choose another player. At the end of each turn, autoplay a card from their [gold]Hand[/gold] for free.\n(Smarter than Vakuu.)",
+  
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.sign":"Full House Amulets",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.title":"Bullet Money Bonus Packets",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"Replace your [gold]hand[/gold] with [gold]copies[/gold] of another player's hand.\nSwap them back at the end of this turn.",

@@ -106,6 +106,10 @@
   "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.description": "At the start of your turn, add a random [gold]Counter[/gold] card into your [gold]Hand[/gold].",
   "HAKUREIREIMU-NO_INTERVAL_BOUNDARY_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] random [gold]Counter[/gold] {Amount:plural:card|cards} into your [gold]Hand[/gold].",
 
+  "HAKUREIREIMU-DIVINE_POSSESSION_POWER.title": "Divine Possession",
+  "HAKUREIREIMU-DIVINE_POSSESSION_POWER.description": "At the end of the turn, autoplay a card from your [gold]Hand[/gold] for free.",
+  "HAKUREIREIMU-DIVINE_POSSESSION_POWER.smartDescription": "At the end of the turn, autoplay [blue]{Amount}[/blue] {Amount:plural:card|cards} from your [gold]Hand[/gold] for free.",
+
 
 
 

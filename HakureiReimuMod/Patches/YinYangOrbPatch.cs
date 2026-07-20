@@ -38,6 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 
         public static void SetPreviewTarget(Player player, Creature target)
         {
+            HakureiReimuMain.Logger.Info(target?.Name ?? "null");
             player?.Creature.GetCreatureNode()
                 ?.NYinYangOrbManager(player.PlayerCombatState?.YinYangOrbManager())
                 ?.OnCardPlayHover(target);
@@ -68,7 +69,24 @@ namespace HakureiReimu.HakureiReimuMod.Patches
             [HarmonyPostfix]
             public static void Postfix(NCardPlay __instance)
             {
-                //不要删除这个Patch
+                //用于修复某个神秘bug，可能是JIT优化导致的
+            }
+        }
+        [HarmonyPatch(typeof(NCardPlay), "OnCreatureHover")]
+        public static class NCardPlayOnCreatureHoverPatch
+        {
+            [HarmonyPostfix]
+            public static void Postfix(NCardPlay __instance)
+            {
+                //用于修复某个神秘bug，可能是JIT优化导致的
+            }
+        }
+        [HarmonyPatch(typeof(NCardPlay), "OnCreatureUnhover")]
+        public static class NCardPlayOnCreatureUnhoverPatch
+        {
+            [HarmonyPostfix]
+            public static void Postfix(NCardPlay __instance)
+            {
                 //用于修复某个神秘bug，可能是JIT优化导致的
             }
         }

@@ -34,12 +34,15 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public Player Owner { get;}
         public List<CardModel> Cards { get;}
         public Dictionary<CardModel,int> Weights{get;protected set;}
+        
         public Func<CardAnalyzer,CardModel, int> Modifier;
+        public bool CalculateByVirtual = true;
         public bool VerifyResource = true;//验证费用足够
         public bool UseSpecial = true;//使用特判
         public WeightSetting Setting = new ();
         protected IRunState RunState=>CombatState.RunState;
         protected PlayerCombatState PlayerCombatState => Owner.PlayerCombatState;
+        public Dictionary<CardModel,Creature> CardTarget {get;protected set;}
         public int EnemyAttackDamageTotal {get;protected set;}
         public Dictionary<Creature,int> EnemiesAttackDamage {get;protected set;}
         public Dictionary<Creature,int> EnemiesAttackCount {get;protected set;}
@@ -147,6 +150,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
 
         public void Precompute()
         {
+            CardTarget = new Dictionary<CardModel, Creature>();
             EnemiesAttackDamage = new Dictionary<Creature, int>();
             EnemiesAttackCount = new Dictionary<Creature, int>();
             SelfEnergyNeed = CalculateEnergyNeed();
@@ -201,17 +205,13 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public int GetEnemiesPowerSum<T>() where T : PowerModel=>EnemiesPowerSum.GetValueOrDefault(typeof(T),0);
         public int CalculateEnemyAttackDamageTotal()
         {
-            //梦想天生
-            if (CombatState.Players.Any(p =>
-                    p.PlayerCombatState.PersistCardTable(CounterCardTable.PileType)?.Cards.Any(c => c is DreamInnate) == true))
-            {
-                return 0;
-            }
             int enemyAttackDamage = -Owner.Creature.Block;
             enemyAttackDamage -= Owner.Creature.GetPowerAmount<PlatingPower>();//覆甲
             AbstractPersistCardTable table = Owner.PlayerCombatState.PersistCardTable(CounterCardTable.PileType);
             if (table!=null)
             {
+                //梦想天生
+                if (table.Cards.Any(c => c is DreamInnate)) return 0;
                 decimal parry = Owner.Creature.GetPowerAmount<ParryPower>();//招架
                 foreach (CardModel card in table.Cards)
                 {
@@ -246,7 +246,10 @@ namespace HakureiReimu.HakureiReimuMod.Core
             int weight = 0;
             try
             {
-                card.UpgradePreviewType = CardUpgradePreviewType.Combat;
+                if (CalculateByVirtual)
+                {
+                    card.UpgradePreviewType = CardUpgradePreviewType.Combat;
+                }
                 
                 if (!CanCardPlay(card, ref weight)) return -100;
                 
@@ -336,6 +339,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             List<Creature> targets = CombatState.HittableEnemies.ToList();
             if (targets.Count<=0) return 0;
             List<int> weights=new ();
+            Creature bestTarget = null;
             foreach (Creature t in targets)
             {
                 int needToKill = t.CurrentHp;
@@ -354,30 +358,43 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 }
                 if (card.Tags.Contains(CardTag.OstyAttack)&& PlayerCombatState.GetPet<Osty>() is not { IsAlive: true })
                 {
-                    damage = 0;
+                    break;
                 }
-                if (damage<=0) break;
+                if (damage<=0) continue;
                 damage = Hook.ModifyDamage(RunState, CombatState, t, Owner.Creature, damage, prop, card,
                     null,ModifyDamageHookType.All, CardPreviewMode.Normal, out IEnumerable<AbstractModel> _);
                 damage *= hitCount > 0 ? hitCount : Math.Max(0, CalculateAttackCount(card, t));
+                int w = 0;
                 if (damage>=needToKill)
                 {
-                    int w = Setting.KillEnemiesWeight;
+                    w = Setting.KillEnemiesWeight;
                     
                     w += (int)(EnemiesAttackDamage.GetValueOrDefault(t, 0) * Setting.DamageReductionMulti);
                     
                     if (!card.CanBeGeneratedInCombat) w += Setting.FatalWeight;
-                    weights.Add(w);
                 }
                 else if (needToKill>0)
                 {
-                    weights.Add((int)(Setting.KillEnemiesWeight *0.5m * damage/needToKill));
+                    w = (int)(Setting.KillEnemiesWeight * 0.5m * damage / needToKill);
+                }
+
+                if (w > 0)
+                {
+                    if (weights.Count <= 0 || weights.Max() < w)
+                    {
+                        bestTarget = t;
+                    }
+                    weights.Add(w);
                 }
             }
             if (weights.Count>0)
             {
                 //是aoe?
                 result += card.TargetType == TargetType.AllEnemies ? weights.Sum() : weights.Max();
+                if (card.TargetType==TargetType.AnyEnemy)
+                {
+                    CardTarget[card] = bestTarget;
+                }
             }
             return result;
         }
