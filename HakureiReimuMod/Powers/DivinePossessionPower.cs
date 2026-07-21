@@ -2,14 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using HakureiReimu.HakureiReimuMod.Core;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
@@ -27,7 +26,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             CardPile pile = PileType.Hand.GetPile(Owner.Player);
             if (!pile.Cards.Any(c => c.CanPlay())) return;
             Flash();
-            using (CardSelectCmd.PushSelector(new VakuuCardSelector()))
+            using (CardSelectCmd.PushSelector(new CardSelector.CombatSmartSelector(choiceContext,Owner.Player,Owner.Player.RunState.Rng.CombatTargets)))
             {
                 CardAnalyzer.WeightSetting setting = new()
                 {
@@ -37,6 +36,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
                 };
                 for (var i = 0; i < Amount; i++)
                 {
+                    if (CombatManager.Instance.IsOverOrEnding)return;
                     if (pile.IsEmpty) return;
                     CardAnalyzer analyzer = new CardAnalyzer(Owner.CombatState, Owner.Player,
                         pile.Cards.Where(c => c.CanPlay()).ToList())
