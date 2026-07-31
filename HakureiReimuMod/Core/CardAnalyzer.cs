@@ -540,7 +540,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
             //Special
             switch (card.Id.Entry)
             {
-                case "STARDUST":
+                case "STARDUST"://星尘
                     return Hook.ModifyXValue(card.CombatState, card, card.Owner.PlayerCombatState.Stars);
             }
             return 1;
@@ -611,7 +611,7 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case SecondWind://重振
                     return PlayerCombatState.Hand.Cards.Count(c =>
                         (c.Type == CardType.Status||c.Type==CardType.Curse) || (c.Rarity == CardRarity.Basic&&c.Type!=CardType.Attack)) * 3;
-                case Stoke://添彩
+                case Stoke://添柴
                     return PlayerCombatState.Hand.Cards.Count(c =>
                         (c.Type == CardType.Status||c.Type==CardType.Curse) || c.Rarity == CardRarity.Basic) * 3;
                 case FlakCannon://散射炮
@@ -654,11 +654,6 @@ namespace HakureiReimu.HakureiReimuMod.Core
                 case Colossus://巨像
                     return CombatState.HittableEnemies.Where(e => e.HasPower<VulnerablePower>())
                         .Select(e => (int)(EnemiesAttackDamage.GetValueOrDefault(e, 0) / 2m *Setting.DamageReductionMulti)).Sum();
-                case Eidolon://幻景
-                    return PlayerCombatState.Hand.Cards.Count < 9
-                        ? 0
-                        : EnemyAttackDamageTotal - EnemiesAttackCount.Values.Sum() -
-                          PlayerCombatState.Hand.Cards.Count * Setting.DrawCardWeight;
                 case CreativeAi://创造性ai
                     return RunState.CurrentRoom is CombatRoom { RoomType: RoomType.Boss } && CombatState.RoundNumber <= 3 ? 10 : 0;
                 case Barricade://壁垒

@@ -203,7 +203,7 @@ namespace HakureiReimu.HakureiReimuMod.Node
                 ?.SetFollowOwner();
             this._labelContainer.Visible = true;
             this.Modulate = Colors.White;
-            if (!NControllerManager.Instance.IsUsingController)
+            if (!NControllerManager.Instance.IsUsingDirectionalNavigation)
                 return;
             this._selectionReticle.OnSelect();
         }

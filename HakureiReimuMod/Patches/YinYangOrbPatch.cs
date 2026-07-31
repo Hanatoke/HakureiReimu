@@ -38,7 +38,7 @@ namespace HakureiReimu.HakureiReimuMod.Patches
 
         public static void SetPreviewTarget(Player player, Creature target)
         {
-            HakureiReimuMain.Logger.Info(target?.Name ?? "null");
+            // HakureiReimuMain.Logger.Info(target?.Name ?? "null");
             player?.Creature.GetCreatureNode()
                 ?.NYinYangOrbManager(player.PlayerCombatState?.YinYangOrbManager())
                 ?.OnCardPlayHover(target);

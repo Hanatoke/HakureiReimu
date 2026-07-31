@@ -341,7 +341,7 @@
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.description":"将你的[gold]手牌[/gold]替换为另一名玩家的[gold]复制[/gold]。\n在本回合结束时换回。",
   "HAKUREIREIMU-BULLET_MONEY_BONUS_PACKETS.tip":"回合结束时，只有在手牌中且未被打出过的卡牌复制，才会被移除。",
   
-  "HAKUREIREIMU-FORTUNE_DRAW.title":"吉运开签",
+  "HAKUREIREIMU-FORTUNE_DRAW.title":"吉签开运",
   "HAKUREIREIMU-FORTUNE_DRAW.description":"将一张{IfUpgraded:show:[gold]升级的[/gold]}[gold]幸运[/gold]卡牌添加至一位其他玩家的[gold]手牌[/gold]中。",
   "HAKUREIREIMU-FORTUNE_DRAW.tip":"以目标玩家的角色卡池为准。",
   
