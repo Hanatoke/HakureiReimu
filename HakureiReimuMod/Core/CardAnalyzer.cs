@@ -7,7 +7,6 @@ using HakureiReimu.HakureiReimuMod.PersistCard;
 using HakureiReimu.HakureiReimuMod.PersistCard.Extensions;
 using HakureiReimu.HakureiReimuMod.Powers;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -42,16 +41,16 @@ namespace HakureiReimu.HakureiReimuMod.Core
         public WeightSetting Setting = new ();
         protected IRunState RunState=>CombatState.RunState;
         protected PlayerCombatState PlayerCombatState => Owner.PlayerCombatState;
-        public Dictionary<CardModel,Creature> CardTarget {get;protected set;}
-        public int EnemyAttackDamageTotal {get;protected set;}
-        public Dictionary<Creature,int> EnemiesAttackDamage {get;protected set;}
-        public Dictionary<Creature,int> EnemiesAttackCount {get;protected set;}
-        public int SelfEnergyNeed {get;protected set;}
-        public int SelfCardLack {get;protected set;}
-        public bool SelfCanDraw {get;protected set;}
-        public decimal SelfHealthRate {get;protected set;}
-        public Dictionary<Type,int> EnemiesPowerMax {get;protected set;}
-        public Dictionary<Type,int> EnemiesPowerSum {get;protected set;}
+        public Dictionary<CardModel,Creature> CardTarget {get;protected set;}//计算出来的卡牌目标(如果有)
+        public int EnemyAttackDamageTotal {get;protected set;}//敌人的意图伤害总计
+        public Dictionary<Creature,int> EnemiesAttackDamage {get;protected set;}//敌人的攻击意图伤害
+        public Dictionary<Creature,int> EnemiesAttackCount {get;protected set;}//敌人的攻击意图次数
+        public int SelfEnergyNeed {get;protected set;}//自身能量需求
+        public int SelfCardLack {get;protected set;}//自身手牌空位
+        public bool SelfCanDraw {get;protected set;}//自身是否可以抽牌
+        public decimal SelfHealthRate {get;protected set;}//自身当前生命值百分比
+        public Dictionary<Type,int> EnemiesPowerMax {get;protected set;}//敌人的Power统计最大值
+        public Dictionary<Type,int> EnemiesPowerSum {get;protected set;}//敌人的Power统计之和
         
         public struct WeightSetting
         {

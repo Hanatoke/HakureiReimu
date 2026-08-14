@@ -40,8 +40,8 @@ namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Rare {
             return Task.CompletedTask;
         }
         protected override void OnUpgrade() {
-            // DynamicVars.Gold.UpgradeValueBy(-10);
-            this.RemoveKeyword(CardKeyword.Exhaust);
+            DynamicVars.Gold.UpgradeValueBy(-10);
+            // this.RemoveKeyword(CardKeyword.Exhaust);
         }
     }
 }

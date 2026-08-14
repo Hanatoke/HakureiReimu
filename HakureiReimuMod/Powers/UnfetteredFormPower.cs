@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Random;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
@@ -19,6 +24,8 @@ namespace HakureiReimu.HakureiReimuMod.Powers
         public override PowerType Type => PowerType.Buff;
 
         public override PowerStackType StackType => PowerStackType.Counter;
+        public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+
         public override decimal ModifyHandDraw(Player player, decimal count)
         {
             return player.Creature != Owner ? count : count + Amount;
@@ -47,8 +54,8 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             if (cardModel != null)
             {
                 cardModel.SetToFreeThisTurn();
-                NCard.FindOnTable(cardModel)?.CardHighlight.AnimFlash();
-                Flash();
+                if (!LocalContext.IsMine(cardModel)) return;
+                (NCombatRoom.Instance?.Ui.Hand.GetCardHolder(cardModel) as NHandCardHolder)?.Flash();
             }
         }
     }

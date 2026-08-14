@@ -7,7 +7,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace HakureiReimu.HakureiReimuMod.Cards.Skill.Uncommon {
-    public class DiffusiveBoundary : AbstractCard {
+    public class DiffusiveBoundary : AbstractCard
+    {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
 
         public DiffusiveBoundary(
