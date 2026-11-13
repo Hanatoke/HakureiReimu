@@ -209,7 +209,7 @@ public class HakureiReimu : PlaceholderCharacterModel {
         return Task.CompletedTask;
     }
 
-    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel source, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (!wasRemovalPrevented&&creature.IsPlayer&&creature.Player?.Character is HakureiReimu c)
         {

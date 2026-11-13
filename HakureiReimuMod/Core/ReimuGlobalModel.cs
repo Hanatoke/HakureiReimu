@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Core
 {
-    public class ReimuGlobalModel : SingletonModel,HookPatch.IModifyPowerAmountGivenFinal
+    public class ReimuGlobalModel : RunModel,HookPatch.IModifyPowerAmountGivenFinal
     {
         public override bool ShouldReceiveCombatHooks => true;
         public decimal ModifyPowerAmountGivenFinal(PowerModel power, Creature giver, decimal amount, Creature target,

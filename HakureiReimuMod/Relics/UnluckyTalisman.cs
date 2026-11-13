@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 
 namespace HakureiReimu.HakureiReimuMod.Relics
 {
@@ -14,7 +15,8 @@ namespace HakureiReimu.HakureiReimuMod.Relics
     {
         public override RelicRarity Rarity => RelicRarity.Common;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<SealPower>()];
-        public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+
+        public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel source, bool wasRemovalPrevented, float deathAnimLength)
         {
             int amount;
             if (creature is {IsMonster:true, CombatState: not null } && (amount=creature.GetPowerAmount<SealPower>())>0)

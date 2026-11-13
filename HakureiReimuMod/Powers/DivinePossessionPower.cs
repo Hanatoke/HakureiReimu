@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
 {
@@ -26,7 +27,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             CardPile pile = PileType.Hand.GetPile(Owner.Player);
             if (!pile.Cards.Any(c => c.CanPlay())) return;
             Flash();
-            using (CardSelectCmd.PushSelector(new CardSelector.CombatSmartSelector(choiceContext,Owner.Player,Owner.Player.RunState.Rng.CombatTargets)))
+            using (RunManager.Instance.CardSelectorStack.PushSelector(Owner.Player,new CardSelector.CombatSmartSelector(choiceContext,Owner.Player,Owner.Player.RunState.Rng.CombatTargets)))
             {
                 CardAnalyzer.WeightSetting setting = new()
                 {

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace HakureiReimu.HakureiReimuMod.Powers
@@ -24,7 +25,7 @@ namespace HakureiReimu.HakureiReimuMod.Powers
             return Task.CompletedTask;
         }
 
-        public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+        public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, CardModel source, bool wasRemovalPrevented, float deathAnimLength)
         {
             if (Owner.IsPlayer&&!wasRemovalPrevented&&creature.IsMonster&&creature.Side==CombatSide.Enemy&&creature.Powers.All(p=>p.ShouldOwnerDeathTriggerFatal()))
             {

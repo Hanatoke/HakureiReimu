@@ -81,8 +81,8 @@ namespace HakureiReimu.HakureiReimuMod.Relics
                 return null;
             }
         }
-        
-        public override bool IsAllowed(IRunState runState)
+
+        protected override bool IsAllowedInternal(IRunState runState)
         {
             if (!RunManager.Instance.IsSingleplayerOrFakeMultiplayer)
             {
