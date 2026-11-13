@@ -125,15 +125,23 @@ namespace HakureiReimu.HakureiReimuMod.PersistCard.Commands
         private static MethodInfo _appendPlayPileLerpTween;
         private static MethodInfo AppendPlayPileLerpTween => _appendPlayPileLerpTween ??=
             AccessTools.Method(typeof(CardPileCmd), "AppendPlayPileLerpTween",
-                [typeof(Tween), typeof(NCard), typeof(CardPile)]);
+                [typeof(Tween), typeof(NCard), typeof(PileType)]);
         private static MethodInfo _appendPileLerpTween;
         private static MethodInfo AppendPileLerpTween => _appendPileLerpTween ??= AccessTools.Method(
             typeof(CardPileCmd), "AppendPileLerpTween", [
                 typeof(Tween),
                 typeof(NCard),
                 typeof(PileType),
-                typeof(CardPile)
+                typeof(PileType)
             ]);
+
+        static PersistCardCmd()
+        {
+            HakureiReimuMain.Logger.Info("PersistCardCmd : 引用检查开始");
+            if (AppendPileLerpTween is null)HakureiReimuMain.Logger.Error(nameof(AppendPileLerpTween) + " is not found");
+            if (AppendPlayPileLerpTween is null)HakureiReimuMain.Logger.Error(nameof(AppendPlayPileLerpTween) + " is not found");
+            HakureiReimuMain.Logger.Info("PersistCardCmd : 引用检查完成");
+        }
 
         public static void StopPersistCardVisual(AbstractPersistCardSlot slot, PileType targetPile)
         {

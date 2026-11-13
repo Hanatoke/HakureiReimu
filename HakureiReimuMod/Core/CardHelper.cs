@@ -88,10 +88,12 @@ namespace HakureiReimu.HakureiReimuMod.Core
         }
         static CardHelper()
         {
+            HakureiReimuMain.Logger.Info("CardHelper : 引用检查开始");
             if (DrawMethod == null) HakureiReimuMain.Logger.Error(nameof(DrawMethod) + " is not find");
             if (GainEnergyMethod == null)HakureiReimuMain.Logger.Error(nameof(GainEnergyMethod) + " is not find");
             if (ExhaustMethod == null)HakureiReimuMain.Logger.Error(nameof(ExhaustMethod) + " is not find");
             if (DiscardMethod == null)HakureiReimuMain.Logger.Error(nameof(DiscardMethod) + " is not find");
+            HakureiReimuMain.Logger.Info("CardHelper : 引用检查完成");
         }
     }
 }
